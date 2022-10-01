@@ -1,23 +1,32 @@
-<div class="auth-page">
+<app-header-main ></app-header-main>
+
+<div class="auth-page" style="margin-bottom: 60px !important;">
     <div class="container-fluid p-0">
         <div class="row g-0">
             <div class="col-xxl-3 col-lg-4 col-md-5">
                 <div class="auth-full-page-content d-flex p-sm-5 p-4">
                     <div class="w-100">
                         <div class="d-flex flex-column h-100">
-                            <div class="mb-4 mb-md-5 text-center">
+                            <!-- <div class="mb-4 mb-md-5 text-center">
                                 <a routerLink="/" class="d-block auth-logo">
                                     <img src="assets/images/logo-sm.svg" alt="" height="28"> <span
-                                        class="logo-txt">Minia</span>
+                                        class="logo-txt">Nextgen Metals</span>
                                 </a>
-                            </div>
-                            <div class="auth-content my-auto">
+                            </div> -->
+                            <div class="auth-content my-auto mt-5">
                                 <div class="text-center">
                                     <h5 class="mb-0">Welcome Back !</h5>
-                                    <p class="text-muted mt-2">Sign in to continue to Minia.</p>
+                                    <p class="text-muted mt-2">Sign in to continue to Nextgen Metals.</p>
                                 </div>
                                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
+                                    <div class="mb-3">
+                                        <label class="form-label">Login As.</label>
+                                        <select class="form-select" (change)="onChangeRole($event.target)">
+                                            <option selected value="">Select Role</option>
+                                            <option value="seller">Seller</option>
+                                            <option value="buyer">Buyer</option>
+                                        </select>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="email">Email</label>
                                         <input type="email" class="form-control" id="email" formControlName="email"
@@ -63,7 +72,7 @@
 
                                 </form>
 
-                                <div class="mt-4 pt-2 text-center">
+                                <!-- <div class="mt-4 pt-2 text-center">
                                     <div class="signin-other-title">
                                         <h5 class="font-size-14 mb-3 text-muted fw-medium">- Sign in with -</h5>
                                     </div>
@@ -88,19 +97,19 @@
                                             </a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
 
                                 <div class="mt-5 text-center">
-                                    <p class="text-muted mb-0">Don't have an account ? <a routerLink="/account/register"
-                                            class="text-primary fw-semibold"> Signup now </a> </p>
+                                    <p class="text-muted mb-0">Don't have an account ? <a routerLink="/pages/register"
+                                            class="text-primary fw-semibold"> Register now </a> </p>
                                 </div>
                             </div>
-                            <div class="mt-4 mt-md-5 text-center">
+                            <!-- <div class="mt-4 mt-md-5 text-center">
                                 <p class="mb-0">©
                                     {{year}} Minia . Crafted with <i class="mdi mdi-heart text-danger"></i> by
                                     Themesbrand
                                 </p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

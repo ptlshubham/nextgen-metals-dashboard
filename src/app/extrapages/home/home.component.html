@@ -1,0 +1,532 @@
+<app-header-main></app-header-main>
+
+<div class="bg-soft-light">
+    <div class="row mb-4">
+        <div class="col-lg-12">
+            <ngb-carousel [showNavigationIndicators]="!showNavigationIndicators">
+                <ng-template ngbSlide>
+                    <img src="assets/images/small/scrap1.png" alt="first slide" class="d-block img-fluid">
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img src="assets/images/small/scrap2.png" alt="second slide" class="d-block img-fluid">
+                </ng-template>
+                <ng-template ngbSlide>
+                    <img src="assets/images/small/scrap3.png" alt="third slide" class="d-block img-fluid">
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="text-center mb-4 mt-5">About Nextgen Metals</h3>
+                <h5 class="text-muted">Your one-stop destination for all scrap trade.</h5>
+                <p class="mb-0 text-justify mr-35">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                    unknown printer took a galley of type and scrambled it to make a type specimen book. It has
+                    survived not only five centuries, but also the leap into electronic typesetting, remaining
+                    essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                    containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+                    PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="assets/images/small/02.jpg" class="img-fluid" alt="Responsive image">
+            </div>
+        </div>
+    </div>
+    <div class="mt-5">
+        <div class="row">
+            <div class="col-xl-1"></div>
+            <div class="col-xl-10">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="mt-4 mb-4 text-center"><u> Material Categories</u></h4>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <ul ngbNav #verticalNav="ngbNav" [activeId]="1" class="nav-pills flex-column">
+                                    <li [ngbNavItem]="1">
+                                        <a ngbNavLink class="mb-2">
+                                            <span class="d-block d-sm-none">Iron Scrap</span>
+                                            <span class="d-none d-sm-block">Iron Scrap</span>
+                                        </a>
+                                        <ng-template ngbNavContent>
+                                            <p>
+                                                Raw denim you probably haven't heard of them jean shorts Austin.
+                                                Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache
+                                                cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
+                                                butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi,
+                                                qui irure terry richardson ex squid. Aliquip placeat salvia cillum
+                                                iphone. Seitan aliquip quis cardigan.
+                                            </p>
+                                            <p>Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu
+                                                banh
+                                                mi,
+                                                qui irure terry richardson ex squid.</p>
+                                            <a
+                                                href="https://drive.google.com/u/0/uc?id=1D26-y1mt0-UfigrnOtdbxpmTP40oSMhD&export=download">
+                                                <p class="text-right mt-5"><i class=" fas fa-file-pdf"></i> Download PDF
+                                                </p>
+                                            </a>
+                                        </ng-template>
+                                    </li>
+                                    <li [ngbNavItem]="2">
+                                        <a ngbNavLink class="mb-2">
+                                            <span class="d-block d-sm-none">Aluminium Scrap</span>
+                                            <span class="d-none d-sm-block">Aluminium Scrap</span>
+                                        </a>
+                                        <ng-template ngbNavContent>
+                                            <p>
+                                                Food truck fixie locavore, accusamus mcsweeney's marfa nulla
+                                                single-origin coffee squid. Exercitation +1 labore velit, blog
+                                                sartorial PBR leggings next level wes anderson artisan four loko
+                                                farm-to-table craft beer twee. Qui photo booth letterpress,
+                                                commodo enim craft beer mlkshk.
+                                            </p>
+                                            <p class="mb-0"> Qui photo booth letterpress, commodo enim craft beer mlkshk
+                                                aliquip
+                                                jean shorts
+                                                ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore
+                                                aesthetic
+                                                magna 8-bit</p>
+                                            <a
+                                                href="https://drive.google.com/u/0/uc?id=1D26-y1mt0-UfigrnOtdbxpmTP40oSMhD&export=download">
+                                                <p class="text-right mt-5"><i class=" fas fa-file-pdf"></i> Download PDF
+                                                </p>
+                                            </a>
+                                        </ng-template>
+                                    </li>
+                                    <li [ngbNavItem]="3">
+                                        <a ngbNavLink class="mb-2">
+                                            <span class="d-block d-sm-none">Copper Scrap</span>
+                                            <span class="d-none d-sm-block">Copper Scrap</span>
+                                        </a>
+                                        <ng-template ngbNavContent>
+                                            <p>
+                                                Etsy mixtape wayfarers, ethical wes anderson tofu before they
+                                                sold out mcsweeney's organic lomo retro fanny pack lo-fi
+                                                farm-to-table readymade. Messenger bag gentrify pitchfork
+                                                tattooed craft beer, iphone skateboard locavore carles etsy
+                                                salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
+                                                Leggings gentrify squid 8-bit cred.
+                                            </p>
+                                            <p class="mb-0">DIY synth PBR banksy irony.
+                                                Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh
+                                                mi whatever gluten-free.</p>
+                                            <a
+                                                href="https://drive.google.com/u/0/uc?id=1D26-y1mt0-UfigrnOtdbxpmTP40oSMhD&export=download">
+                                                <p class="text-right mt-5"><i class=" fas fa-file-pdf"></i> Download PDF
+                                                </p>
+                                            </a>
+                                        </ng-template>
+                                    </li>
+                                    <li [ngbNavItem]="4">
+                                        <a ngbNavLink class="mb-2">
+                                            <span class="d-block d-sm-none">Iron Scrap</span>
+                                            <span class="d-none d-sm-block">Iron Scrap</span>
+                                        </a>
+                                        <ng-template ngbNavContent>
+                                            <p>
+                                                Trust fund seitan letterpress, keytar raw denim keffiyeh etsy
+                                                art party before they sold out master cleanse gluten-free squid
+                                                scenester freegan cosby sweater. Fanny pack portland seitan DIY,
+                                                art party locavore wolf cliche high life echo park Austin. Cred
+                                                vinyl keffiyeh DIY salvia PBR, banh mi before they sold out
+                                                farm-to-table.
+                                            </p>
+                                            <p class="mb-0">Fanny pack portland seitan DIY,
+                                                art party locavore wolf cliche high life echo park Austin. Cred
+                                                vinyl keffiyeh DIY salvia PBR, banh mi before they sold out
+                                                farm-to-table.
+                                            </p>
+                                            <a
+                                                href="https://drive.google.com/u/0/uc?id=1D26-y1mt0-UfigrnOtdbxpmTP40oSMhD&export=download">
+                                                <p class="text-right mt-5"><i class=" fas fa-file-pdf"></i> Download PDF
+                                                </p>
+                                            </a>
+                                        </ng-template>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-9">
+                                <div [ngbNavOutlet]="verticalNav" class="text-muted"></div>
+                            </div>
+                        </div><!-- end row -->
+                    </div><!-- end card-body -->
+                </div><!-- end card -->
+            </div><!-- end col -->
+            <div class="col-xl-1"></div>
+        </div>
+    </div>
+
+    <app-product-slider></app-product-slider>
+
+    <!-- <div class="container mb-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="text-center mb-4 mt-5">Meterial Categories</h3>
+                <div class="row text-center">
+                    <div class="col-lg-4">
+                        <div class="card">
+
+                            <h4 class="mb-2 mt-2">Iron Scrap</h4>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <h4 class="mb-2 mt-2">Aluminium Scrap</h4>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <h4 class="mb-2 mt-2">Copper Scrap</h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+
+                            <h4 class="mb-2 mt-2">Iron Scrap</h4>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <h4 class="mb-2 mt-2">Aluminium Scrap</h4>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <h4 class="mb-2 mt-2">Copper Scrap</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="text-center mb-4 mt-4">Trading Roadmap With Securely</h3>
+            <div class="row">
+                <div class="col-lg-5">
+                    <ul class="bg-bubbles">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <img src="assets/images/small/01.jpg" class="img-fluid" alt="Responsive image">
+                </div>
+                <div class="col-lg-7">
+                    <h5 class="mb-4 text-muted">About Metals</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Lorem
+                            Ipsum is
+                            simply dummy text of the printing and typesetting
+                            industry. </li>
+                        <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Lorem
+                            Ipsum has
+                            been the industry's standard dummy text ever since the 1500s, when an
+                            unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        </li>
+                        <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>It
+                            has
+                            survived not only five centuries, but also the leap into electronic typesetting,
+                            remaining
+                            essentially unchanged. </li>
+                        <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>It
+                            was popularised in the 1960s with the release of Letraset sheets
+                            containing Lorem Ipsum passages, and more recently with desktop publishing software
+                            like Aldus
+                            PageMaker including versions of Lorem Ipsum.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-soft-light ">
+
+    <div class="row mb-4">
+        <div class="col-lg-12">
+            <img src="assets/images/small/next_banner.jpg" class="img-fluid" alt="Responsive image">
+        </div>
+    </div>
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="text-center mb-4 mt-3">Invest With Confidence</h3>
+                <div class="row">
+                    <div class="col-lg-7">
+                        <!-- <h5 class="mb-4 text-muted">About Buying</h5> -->
+                        <ul class="list-unstyled mb-0">
+                            <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Lorem
+                                Ipsum is
+                                simply dummy text of the printing and typesetting
+                                industry. </li>
+                            <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Lorem
+                                Ipsum has
+                                been the industry's standard dummy text ever since the 1500s, when an
+                                unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </li>
+                            <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>It
+                                has
+                                survived not only five centuries, but also the leap into electronic typesetting,
+                                remaining
+                                essentially unchanged. </li>
+                            <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>It
+                                was popularised in the 1960s with the release of Letraset sheets
+                                containing Lorem Ipsum passages, and more recently with desktop publishing software
+                                like Aldus
+                                PageMaker including versions of Lorem Ipsum.</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-5">
+                        <ul class="bg-bubbles">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <img src="assets/images/small/03.png" class="img-fluid" alt="Responsive image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="text-center mb-4 mt-3">Mark Your Profit</h3>
+            <div class="row">
+                <div class="col-lg-5">
+                    <ul class="bg-bubbles">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <img src="assets/images/small/04.png" class="img-fluid" alt="Responsive image">
+                </div>
+                <div class="col-lg-7">
+                    <!-- <h5 class="mb-4 text-muted">About Buying</h5> -->
+                    <ul class="list-unstyled mb-0">
+                        <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Lorem
+                            Ipsum is
+                            simply dummy text of the printing and typesetting
+                            industry. </li>
+                        <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Lorem
+                            Ipsum has
+                            been the industry's standard dummy text ever since the 1500s, when an
+                            unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        </li>
+                        <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>It
+                            has
+                            survived not only five centuries, but also the leap into electronic typesetting,
+                            remaining
+                            essentially unchanged. </li>
+                        <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>It
+                            was popularised in the 1960s with the release of Letraset sheets
+                            containing Lorem Ipsum passages, and more recently with desktop publishing software
+                            like Aldus
+                            PageMaker including versions of Lorem Ipsum.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-soft-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="text-center mb-4 mt-4">Stay Updated To Our Blog & News</h3>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-xl-4 mb-4">
+                <div class="p-1 mb-xl-0">
+                    <div class="position-relative">
+                        <img src="assets/images/small/img-3.jpg" alt="" class="img-thumbnail">
+                    </div>
+
+                    <div class="card p-3">
+                        <ul class="list-inline">
+                            <li class="list-inline-item me-3">
+                                <a href="javascript: void(0);" class="text-muted">
+                                    <i class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
+                                    Project
+                                </a>
+                            </li>
+                            <li class="list-inline-item me-3">
+                                <a href="javascript: void(0);" class="text-muted">
+                                    <i class="bx bx-comment-dots align-middle text-muted me-1"></i>
+                                    12 Comments
+                                </a>
+                            </li>
+                        </ul>
+                        <p class="text-muted">Neque porro quisquam est, qui dolorem
+                            ipsum quia dolor sit amet</p>
+
+                        <div>
+                            <a href="javascript: void(0);" class="text-primary">Read
+                                more <i class="mdi mdi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+
+            <div class="col-xl-4 mb-4">
+                <div class="p-1 mb-xl-0">
+                    <div class="position-relative">
+                        <img src="assets/images/small/img-1.jpg" alt="" class="img-thumbnail">
+                    </div>
+
+                    <div class="card p-3">
+                        <ul class="list-inline">
+                            <li class="list-inline-item me-3">
+                                <a href="javascript: void(0);" class="text-muted">
+                                    <i class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
+                                    Development
+                                </a>
+                            </li>
+                            <li class="list-inline-item me-3">
+                                <a href="javascript: void(0);" class="text-muted">
+                                    <i class="bx bx-comment-dots align-middle text-muted me-1"></i>
+                                    08 Comments
+                                </a>
+                            </li>
+                        </ul>
+                        <p class="text-muted">At vero eos et accusamus et iusto odio
+                            dignissimos ducimus quos</p>
+
+                        <div>
+                            <a href="javascript: void(0);" class="text-primary">Read
+                                more <i class="mdi mdi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- end card -->
+            </div>
+            <!-- end col -->
+
+            <div class="col-xl-4 mb-4">
+                <div class="p-1 mb-sm-0">
+                    <div class="position-relative">
+                        <img src="assets/images/small/img-5.jpg" alt="" class="img-thumbnail">
+                    </div>
+
+                    <div class="card p-3">
+                        <ul class="list-inline">
+                            <li class="list-inline-item me-3">
+                                <a href="javascript: void(0);" class="text-muted">
+                                    <i class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
+                                    Project
+                                </a>
+                            </li>
+                            <li class="list-inline-item me-3">
+                                <a href="javascript: void(0);" class="text-muted">
+                                    <i class="bx bx-comment-dots align-middle text-muted me-1"></i>
+                                    08 Comments
+                                </a>
+                            </li>
+                        </ul>
+                        <p class="text-muted">Itaque earum rerum hic tenetur a
+                            sapiente delectus ut aut</p>
+
+                        <div>
+                            <a href="javascript: void(0);" class="text-primary">Read
+                                more <i class="mdi mdi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- end card -->
+            </div>
+            <!-- end col -->
+        </div>
+    </div>
+</div>
+<div class="row mb-5" style="background-image:url('../assets/images/small/bg.jpg')!important;
+background-repeat: no-repeat;background-size: 100% 100%;margin-bottom: 60px !important; ">
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row text-center">
+                    <div class="col-lg-4 mt-5">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-sm-1 offset-sm-4">
+                                    <i class="fas fa-map-marker-alt mt-2 c-icon"> </i>
+                                </div>
+                            </div>
+
+                            <h5 class="mb-2 mt-3">Address</h5>
+                            <h5 class="mb-3 mt-2">
+                                <small class="text-muted">32a, Knowledge Park 1, Greater Noida, Noida </small><br>
+                                <small class="text-muted">Delhi, India, 201301</small>
+                            </h5>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4 mt-5">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-sm-1 offset-sm-4">
+                                    <i class="fas fa-envelope mt-2 c-icon"> </i>
+                                </div>
+                            </div>
+                            <h5 class="mb-2 mt-3">Email</h5>
+                            <h5 class="mb-3 mt-2">
+                                <small class="text-muted">info@nextgenmetals.com</small>
+                                <br>&nbsp;
+
+                            </h5>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 mt-5">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-sm-1 offset-sm-4">
+                                    <i class="fas fa-phone-alt mt-2 c-icon"> </i>
+                                </div>
+                            </div>
+                            <h5 class="mb-2 mt-3">Phone</h5>
+                            <h5 class="mb-3 mt-2">
+                                <small class="text-muted">01202230297</small><br>
+                                <small class="text-muted">+91 9898942298</small>
+
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

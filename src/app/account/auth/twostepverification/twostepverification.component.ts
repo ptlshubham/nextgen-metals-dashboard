@@ -21,13 +21,13 @@ export class TwostepverificationComponent implements OnInit {
    */
   config = {
     allowNumbersOnly: true,
-    length: 4,
+    length: 6,
     isPasswordInput: false,
-    disableAutoFocus: false,
-    placeholder: '',
+    disableAutoFocus: true,
+    placeholder: ' * ',
     inputStyles: {
-      'width': '80px',
-      'height': '50px'
+      'width': '45px',
+      'height': '45px'
     }
   };
 

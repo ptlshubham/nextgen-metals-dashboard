@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   returnUrl!: string;
   layout_mode!: string;
   fieldTextType!: boolean;
+  role: any = '';
 
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -63,7 +64,11 @@ export class LoginComponent implements OnInit {
   /**
    * Form submit
    */
+  public onChangeRole(val: any) {
+    this.role = val.value;
+  }
   onSubmit() {
+    localStorage.setItem('role', this.role);
     this.submitted = true;
 
     // stop here if form is invalid
@@ -72,7 +77,7 @@ export class LoginComponent implements OnInit {
     } else {
       if (environment.defaultauth === 'firebase') {
         this.authenticationService.login(this.f.email.value, this.f.password.value).then((res: any) => {
-          this.router.navigate(['/']);
+          this.router.navigate(['landing/user-home']);
         })
           .catch(error => {
             this.error = error ? error : '';
@@ -82,7 +87,7 @@ export class LoginComponent implements OnInit {
           .pipe(first())
           .subscribe(
             data => {
-              this.router.navigate(['/']);
+              this.router.navigate(['landing/user-home']);
             },
             error => {
               this.error = error ? error : '';
@@ -97,5 +102,6 @@ export class LoginComponent implements OnInit {
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
   }
+
 
 }

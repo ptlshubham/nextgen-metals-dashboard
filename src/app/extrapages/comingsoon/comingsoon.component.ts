@@ -40,7 +40,6 @@ export class ComingsoonComponent implements OnInit {
   ];
 
   @Output() settingsButtonClicked = new EventEmitter();
-  @Output() mobileMenuButtonClicked = new EventEmitter();
   constructor(
     public languageService: LanguageService,
     public _cookiesService: CookieService,
@@ -86,13 +85,7 @@ export class ComingsoonComponent implements OnInit {
       this.flagvalue = val.map(element => element.flag);
     }
   }
-  /**
-     * Toggle the menu bar when having mobile screen
-     */
-  toggleMobileMenu(event: any) {
-    event.preventDefault();
-    this.mobileMenuButtonClicked.emit();
-  }
+
   toggleRightSidebar() {
     this.settingsButtonClicked.emit();
   }

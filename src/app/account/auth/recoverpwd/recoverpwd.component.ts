@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recoverpwd',
@@ -23,7 +24,10 @@ export class RecoverpwdComponent implements OnInit {
   // Carousel navigation arrow show
   showNavigationArrows: any;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router:Router
+    ) { }
 
   ngOnInit(): void {
     /**
@@ -48,5 +52,7 @@ export class RecoverpwdComponent implements OnInit {
       return;
     }
   }
-
+  submitResetPassword(){
+    this.router.navigate(['account/two-step-verification']);
+  }
 }

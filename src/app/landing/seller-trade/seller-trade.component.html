@@ -1,0 +1,166 @@
+<div class="row" *ngIf="!isAccept">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Trade Request</h5>
+                <!-- <p class="card-title-desc">
+                   
+                </p> -->
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>SELLER NAME</th>
+                                <th>QUALITY</th>
+                                <th>QUANTITY (mt)</th>
+                                <th>RATE (rs/pmt)</th>
+                                <th>DELIVERY TERMS</th>
+                                <th>Validity</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let s of sellerTrade">
+                                <th scope="row">{{s.id}}</th>
+                                <td>{{s.sname}}</td>
+                                <td>{{s.quality}}</td>
+                                <td>{{s.quantity}} (mt)</td>
+                                <td>{{s.rate}} ₹</td>
+                                <td>{{s.terms}} days</td>
+                                <td>{{s.validity}}</td>
+
+                                <td>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <button type="button" class="btn btn-soft-primary waves-effect waves-light"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"
+                                            (click)="editAcceptOrder(s)"><i
+                                                class="bx bx-edit font-size-16 align-middle"></i></button>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <!-- end card body -->
+        </div>
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+</div>
+<div class="row" *ngIf="isAccept">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-11">
+                        <h5 class="card-title">SELLER REQUEST</h5>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-danger waves-effect waves-light"
+                            (click)="backToSummary()"><i class="bx bx-left-arrow-alt"></i>back</button>
+                    </div>
+                </div>
+
+                <p class="card-title-desc">New Trade Request</p>
+            </div>
+            <!-- end card header -->
+
+            <div class="card-body">
+                <div>
+                    <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
+                        <input type="hidden" />
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6">
+                                <label>Quality</label>
+                                <input type="text" formControlName="quality" class="form-control" id="quality"
+                                    placeholder="Enter quality" [(ngModel)]="tradeModel.quality">
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Buyer Name + Location</label>
+                                    <input type="text" formControlName="buyer" class="form-control" id="buyer"
+                                        placeholder="Enter Buyer" [(ngModel)]="tradeModel.sname">
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Required Quantity (Metric Ton)</label>
+                                    <input type="number" formControlName="quantity" class="form-control" id="quantity"
+                                        placeholder="Enter Quantity (mt)" [(ngModel)]="tradeModel.quantity">
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Rate (Rupees / Per Metric Ton)</label>
+                                    <input type="number" formControlName="rate" class="form-control" id="rate"
+                                        placeholder="Enter Rate (rs/pmt)" [(ngModel)]="tradeModel.rate">
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Payment Terms (Days)</label>
+                                    <input type="number" formControlName="terms" class="form-control" id="terms"
+                                        placeholder="Enter Payment Terms (days)" [(ngModel)]="tradeModel.terms">
+
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Validity</label>
+                                    <input type="text" formControlName="validity" class="form-control" id="validity"
+                                        placeholder="Enter Validity" [(ngModel)]="tradeModel.validity">
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Quantity (Metric Ton)</label>
+                                    <input type="number" formControlName="sellquantity"
+                                        [ngClass]="{ 'is-invalid': submitted && f.sellquantity.errors }"
+                                        class="form-control" id="sellquantity" placeholder="Enter Quantity (mt)">
+                                    <div *ngIf="submitted && f.sellquantity.errors" class="invalid-feedback">
+                                        <div *ngIf="f.sellquantity.errors.required">Quantity is required</div>
+                                        <div *ngIf="f.sellquantity.errors.min">Only Numbers allowed & Do not enter
+                                            characters.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Delivery Terms (Days)</label>
+                                    <input type="number" formControlName="diliveryterms"
+                                        [ngClass]="{ 'is-invalid': submitted && f.diliveryterms.errors }"
+                                        class="form-control" id="diliveryterms"
+                                        placeholder="Enter Delivery Terms (days)">
+                                    <div *ngIf="submitted && f.diliveryterms.errors" class="invalid-feedback">
+                                        <div *ngIf="f.diliveryterms.errors.required">Delivery Terms is required</div>
+                                        <div *ngIf="f.diliveryterms.errors.min">Only Numbers allowed & Do not enter
+                                            characters.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                        <div class="form-group mt-3 mb-3 form-check">
+                            <input id="term-check01" type="checkbox" class="form-check-input" name="future" required
+                                data-pristine-required-message="You must accept the terms and conditions" />
+                            <label class="form-check-label" for="term-check01">I accept the terms and
+                                conditions</label><br />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

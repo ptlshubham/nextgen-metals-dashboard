@@ -14,6 +14,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { ConfirmmailComponent } from './confirmmail/confirmmail.component';
 import { VerificationComponent } from './verification/verification.component';
 import { TwostepverificationComponent } from './twostepverification/twostepverification.component';
+import { ExtrapagesModule } from 'src/app/extrapages/extrapages.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TwostepverificationComponent } from './twostepverification/twostepverif
     ReactiveFormsModule,
     FormsModule,
     NgOtpInputModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    ExtrapagesModule
   ]
 })
 export class AuthModule { }

@@ -8,7 +8,6 @@ import { SimplebarAngularModule } from 'simplebar-angular';
 import { LanguageService } from '../core/services/language.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { ClickOutsideModule } from 'ng-click-outside';
-
 import { VerticalComponent } from './vertical/vertical.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { LayoutComponent } from './layout.component';
@@ -27,7 +26,7 @@ import { HorizontaltopbarComponent } from './horizontaltopbar/horizontaltopbar.c
     FooterComponent,
     RightsidebarComponent,
     HorizontalComponent,
-    HorizontaltopbarComponent
+    HorizontaltopbarComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +38,8 @@ import { HorizontaltopbarComponent } from './horizontaltopbar/horizontaltopbar.c
     ClickOutsideModule
   ],
   providers: [LanguageService],
-  exports: [VerticalComponent]
+  exports: [
+    VerticalComponent,
+  ]
 })
 export class LayoutsModule { }

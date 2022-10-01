@@ -1,20 +1,22 @@
-<div class="auth-page">
+<app-header-main ></app-header-main>
+
+<div class="auth-page" style="margin-bottom: 60px !important;">
     <div class="container-fluid p-0">
         <div class="row g-0">
             <div class="col-xxl-3 col-lg-4 col-md-5">
                 <div class="auth-full-page-content d-flex p-sm-5 p-4">
                     <div class="w-100">
                         <div class="d-flex flex-column h-100">
-                            <div class="mb-4 mb-md-5 text-center">
+                            <!-- <div class="mb-4 mb-md-5 text-center">
                                 <a routerLink="/" class="d-block auth-logo">
                                     <img src="assets/images/logo-sm.svg" alt="" height="28"> <span
-                                        class="logo-txt">Minia</span>
+                                        class="logo-txt">Nextgen Metals</span>
                                 </a>
-                            </div>
+                            </div> -->
                             <div class="auth-content my-auto">
                                 <div class="text-center">
-                                    <h5 class="mb-0">Reset Password</h5>
-                                    <p class="text-muted mt-2">Reset Password with Minia.</p>
+                                    <h5 class="mb-0">Forgot Password</h5>
+                                    <p class="text-muted mt-2">Reset Password with Nextgen Metals.</p>
                                 </div>
                                 <div class="alert alert-success text-center my-4" role="alert">
                                     Enter your Email and instructions will be sent to you!
@@ -36,7 +38,7 @@
                                     </div>
                                     <div class="text-end">
                                         <button class="btn btn-primary w-100 waves-effect waves-light"
-                                            type="submit">Reset</button>
+                                            type="submit" (click)="submitResetPassword()">Reset</button>
                                     </div>
                                 </form>
 
@@ -45,12 +47,12 @@
                                             class="text-primary fw-semibold"> Sign In </a> </p>
                                 </div>
                             </div>
-                            <div class="mt-4 mt-md-5 text-center">
+                            <!-- <div class="mt-4 mt-md-5 text-center">
                                 <p class="mb-0">©
                                     {{year}} Minia . Crafted with <i class="mdi mdi-heart text-danger"></i> by
                                     Themesbrand
                                 </p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

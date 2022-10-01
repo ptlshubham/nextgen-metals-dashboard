@@ -1,0 +1,280 @@
+<div class="bg-soft-light">
+    <app-header-main></app-header-main>
+    <div style="margin-top: 5% !important;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="mb-3"><small class="text-muted">Welcome To NextGen Metals!</small></h1>
+                </div>
+            </div>
+            <div *ngIf="role=='buyer'">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6" (click)="openNewTrade()">
+                        <!-- card -->
+                        <div class="card card-h-100">
+                            <!-- card body -->
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">New Trade
+                                            Request</span>
+                                        <h4 class="mb-3">
+                                            <span [CountTo]="865" class="counter-value" [from]="0"
+                                                [duration]="1"></span>
+                                        </h4>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <i class="bx bx bx-transfer-alt c-icon"> </i>
+                                        <!-- <apx-chart class="apex-charts" dir="ltr" [series]="walletlineChart.series"
+                                [chart]="walletlineChart.chart" [colors]="walletlineChart.colors"
+                                [stroke]="walletlineChart.stroke" [tooltip]="walletlineChart.tooltip">
+                            </apx-chart> -->
+                                    </div>
+                                </div>
+                                <div class="text-nowrap">
+                                    <span class="badge bg-soft-success text-success">+₹20.9k</span>
+                                    <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                </div>
+                            </div><!-- end card body -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+
+                    <div class="col-xl-3 col-md-6" (click)="openTradeSummary()">
+                        <!-- card -->
+                        <div class="card card-h-100">
+                            <!-- card body -->
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Trade Summary</span>
+                                        <h4 class="mb-3">
+                                            <span [CountTo]="6258" class="counter-value" [from]="0"
+                                                [duration]="1"></span>
+                                        </h4>
+                                    </div>
+                                    <div class="col-4">
+                                        <i class="mdi mdi-view-list-outline c-icon"> </i>
+
+                                        <!-- <apx-chart class="apex-charts" dir="ltr" [series]="tradeslineChart.series"
+                                [chart]="tradeslineChart.chart" [colors]="tradeslineChart.colors"
+                                [stroke]="tradeslineChart.stroke" [tooltip]="tradeslineChart.tooltip">
+                            </apx-chart> -->
+                                    </div>
+                                </div>
+                                <div class="text-nowrap">
+                                    <span class="badge bg-soft-danger text-danger">-29 Trades</span>
+                                    <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                </div>
+                            </div><!-- end card body -->
+                        </div><!-- end card -->
+                    </div><!-- end col-->
+
+                    <div class="col-xl-3 col-md-6" (click)="openPaymentSummary()">
+                        <!-- card -->
+                        <div class="card card-h-100">
+                            <!-- card body -->
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Payment Summary</span>
+                                        <h4 class="mb-3">
+                                            ₹<span [CountTo]="4.32" class="counter-value" [from]="0"
+                                                [duration]="1"></span>M
+                                        </h4>
+                                    </div>
+                                    <div class="col-4">
+                                        <i class="bx bx bx-rupee c-icon"> </i>
+
+                                        <!-- <apx-chart class="apex-charts" dir="ltr" [series]="investedlineChart.series"
+                                [chart]="investedlineChart.chart" [colors]="investedlineChart.colors"
+                                [stroke]="investedlineChart.stroke" [tooltip]="investedlineChart.tooltip">
+                            </apx-chart> -->
+                                    </div>
+                                </div>
+                                <div class="text-nowrap">
+                                    <span class="badge bg-soft-success text-success">+ ₹2.8k</span>
+                                    <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                </div>
+                            </div><!-- end card body -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+
+                    <div class="col-xl-3 col-md-6" (click)="openHelpSupport()">
+                        <!-- card -->
+                        <div class="card card-h-100">
+                            <!-- card body -->
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Help & Support</span>
+                                        <h4 class="mb-3">
+                                            <!-- <span [CountTo]="12.37" class="counter-value" [from]="0" [duration]="1"></span>% -->
+                                        </h4>
+                                    </div>
+                                    <div class="col-4">
+
+                                        <i class="fas fa-hands-helping c-icon"> </i>
+
+                                        <!-- <apx-chart class="apex-charts" dir="ltr" [series]="profitlineChart.series"
+                                [chart]="profitlineChart.chart" [colors]="profitlineChart.colors"
+                                [stroke]="profitlineChart.stroke" [tooltip]="profitlineChart.tooltip">
+                            </apx-chart> -->
+                                    </div>
+                                </div>
+                                <div class="text-nowrap">
+                                    <span class="badge bg-soft-success text-success">+2.95%</span>
+                                    <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                </div>
+                            </div><!-- end card body -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+                </div>
+                <div style="margin-bottom: 60px !important;" *ngIf="openNewRequest">
+                    <app-trade></app-trade>
+                </div>
+                <div style="margin-bottom: 60px !important;" *ngIf="openTSummary">
+                    <app-trade-summary></app-trade-summary>
+                </div>
+                <div style="margin-bottom: 60px !important;" *ngIf="openPaymentSumm">
+                    <app-trade-payment></app-trade-payment>
+                </div>
+            </div>
+            <div *ngIf="role=='seller'">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6" (click)="openNewTrade()">
+                        <!-- card -->
+                        <div class="card card-h-100">
+                            <!-- card body -->
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">New Trade
+                                            Request</span>
+                                        <h4 class="mb-3">
+                                            <span [CountTo]="865" class="counter-value" [from]="0"
+                                                [duration]="1"></span>
+                                        </h4>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <i class="bx bx bx-transfer-alt c-icon"> </i>
+                                        <!-- <apx-chart class="apex-charts" dir="ltr" [series]="walletlineChart.series"
+                                [chart]="walletlineChart.chart" [colors]="walletlineChart.colors"
+                                [stroke]="walletlineChart.stroke" [tooltip]="walletlineChart.tooltip">
+                            </apx-chart> -->
+                                    </div>
+                                </div>
+                                <div class="text-nowrap">
+                                    <span class="badge bg-soft-success text-success">+₹20.9k</span>
+                                    <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                </div>
+                            </div><!-- end card body -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+
+                    <div class="col-xl-3 col-md-6" (click)="openTradeSummary()">
+                        <!-- card -->
+                        <div class="card card-h-100">
+                            <!-- card body -->
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Trade Summary</span>
+                                        <h4 class="mb-3">
+                                            <span [CountTo]="6258" class="counter-value" [from]="0"
+                                                [duration]="1"></span>
+                                        </h4>
+                                    </div>
+                                    <div class="col-4">
+                                        <i class="mdi mdi-view-list-outline c-icon"> </i>
+
+                                        <!-- <apx-chart class="apex-charts" dir="ltr" [series]="tradeslineChart.series"
+                                [chart]="tradeslineChart.chart" [colors]="tradeslineChart.colors"
+                                [stroke]="tradeslineChart.stroke" [tooltip]="tradeslineChart.tooltip">
+                            </apx-chart> -->
+                                    </div>
+                                </div>
+                                <div class="text-nowrap">
+                                    <span class="badge bg-soft-danger text-danger">-29 Trades</span>
+                                    <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                </div>
+                            </div><!-- end card body -->
+                        </div><!-- end card -->
+                    </div><!-- end col-->
+
+                    <div class="col-xl-3 col-md-6" (click)="openPaymentSummary()">
+                        <!-- card -->
+                        <div class="card card-h-100">
+                            <!-- card body -->
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Payment Summary</span>
+                                        <h4 class="mb-3">
+                                            ₹<span [CountTo]="4.32" class="counter-value" [from]="0"
+                                                [duration]="1"></span>M
+                                        </h4>
+                                    </div>
+                                    <div class="col-4">
+                                        <i class="bx bx bx-rupee c-icon"> </i>
+
+                                        <!-- <apx-chart class="apex-charts" dir="ltr" [series]="investedlineChart.series"
+                                [chart]="investedlineChart.chart" [colors]="investedlineChart.colors"
+                                [stroke]="investedlineChart.stroke" [tooltip]="investedlineChart.tooltip">
+                            </apx-chart> -->
+                                    </div>
+                                </div>
+                                <div class="text-nowrap">
+                                    <span class="badge bg-soft-success text-success">+ ₹2.8k</span>
+                                    <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                </div>
+                            </div><!-- end card body -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+
+                    <div class="col-xl-3 col-md-6" (click)="openHelpSupport()">
+                        <!-- card -->
+                        <div class="card card-h-100">
+                            <!-- card body -->
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Help & Support</span>
+                                        <h4 class="mb-3">
+                                            <!-- <span [CountTo]="12.37" class="counter-value" [from]="0" [duration]="1"></span>% -->
+                                        </h4>
+                                    </div>
+                                    <div class="col-4">
+
+                                        <i class="fas fa-hands-helping c-icon"> </i>
+
+                                        <!-- <apx-chart class="apex-charts" dir="ltr" [series]="profitlineChart.series"
+                                [chart]="profitlineChart.chart" [colors]="profitlineChart.colors"
+                                [stroke]="profitlineChart.stroke" [tooltip]="profitlineChart.tooltip">
+                            </apx-chart> -->
+                                    </div>
+                                </div>
+                                <div class="text-nowrap">
+                                    <span class="badge bg-soft-success text-success">+2.95%</span>
+                                    <span class="ms-1 text-muted font-size-13">Since last week</span>
+                                </div>
+                            </div><!-- end card body -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+                </div>
+                <div style="margin-bottom: 60px !important;" *ngIf="openNewRequest">
+                    <app-seller-trade></app-seller-trade>
+                </div>
+                <div style="margin-bottom: 60px !important;" *ngIf="openTSummary">
+                    <app-seller-trade-summary></app-seller-trade-summary>
+                </div>
+                <div style="margin-bottom: 60px !important;" *ngIf="openPaymentSumm">
+                    <app-seller-trade-payment></app-seller-trade-payment>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
