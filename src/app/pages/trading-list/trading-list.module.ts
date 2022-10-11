@@ -15,6 +15,7 @@ import { TradeListRoutingModule } from './trade-list-routing';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { dataTableSortableDirective } from '../tables/datatable/datatable-sortable.directive';
 import { TablesModule } from '../tables/tables.module';
+import { CustomerTradeSummaryComponent } from './customer-trade-summary/customer-trade-summary.component';
 
 
 
@@ -24,6 +25,7 @@ import { TablesModule } from '../tables/tables.module';
     SellerListComponent,
     BuyerListComponent,
     CustomerListComponent,
+    CustomerTradeSummaryComponent,
   ],
   imports: [
     CommonModule,

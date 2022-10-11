@@ -20,16 +20,16 @@ export const MENU: MenuItem[] = [
     },
     {
         id: 88,
-        label: 'Seller Trade',
+        label: 'Trade Summary',
         icon: 'repeat',
-        link: '/trade-list/seller',
+        link: '/trade-list/trade',
     },
-    {
-        id:89,
-        label:'Buyer Trade',
-        icon:'trending-up',
-        link:'/trade-list/buyer'
-    },
+    // {
+    //     id:89,
+    //     label:'Buyer Trade',
+    //     icon:'trending-up',
+    //     link:'/trade-list/buyer'
+    // },
     {
         id: 7,
         label: 'MENUITEMS.APPS.LIST.INBOX',
