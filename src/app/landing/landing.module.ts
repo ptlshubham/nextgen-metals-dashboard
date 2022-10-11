@@ -19,6 +19,8 @@ import { SellerTradeComponent } from './seller-trade/seller-trade.component';
 import { SellerTradeSummaryComponent } from './seller-trade-summary/seller-trade-summary.component';
 import { SellerTradePaymentComponent } from './seller-trade-payment/seller-trade-payment.component';
 import { CustomerPaymentComponent } from './customer-payment/customer-payment.component';
+import { CompleteProfileComponent } from './complete-profile/complete-profile.component';
+import { ArchwizardModule } from 'angular-archwizard';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -29,6 +31,7 @@ import { CustomerPaymentComponent } from './customer-payment/customer-payment.co
     SellerTradeSummaryComponent,
     SellerTradePaymentComponent,
     CustomerPaymentComponent,
+    CompleteProfileComponent,
     
   ],
   imports: [
@@ -45,7 +48,8 @@ import { CustomerPaymentComponent } from './customer-payment/customer-payment.co
     CountToModule,
     FeatherModule.pick(allIcons),
     NgbPaginationModule,
-    NgbTypeaheadModule
+    NgbTypeaheadModule,
+    ArchwizardModule
   ],
   exports:[
     TradeComponent

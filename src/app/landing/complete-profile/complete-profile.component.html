@@ -1,0 +1,244 @@
+<app-header-main></app-header-main>
+<div class="bg-soft-light" style="margin-bottom: 60px !important;">
+    <div class="row">
+        <div class="col-lg-12 mt-5">
+
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">Complete Your Profile</h4>
+                    </div>
+                    <div class="card-body">
+                        <aw-wizard [navBarLayout]="'large-empty-symbols'">
+                            <aw-wizard-step stepTitle="Personal Details">
+                                <ng-template awWizardStepSymbol>
+                                    <i class=" bx bxs-user"></i>
+                                </ng-template>
+                                <div class="row">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Salutation</label>
+                                                    <select class="form-select">
+                                                        <option selected>Select Salutation</option>
+                                                        <option value="Mr">Mr.</option>
+                                                        <option value="Mrs">Mrs.</option>
+                                                        <option value="Ms">Ms.</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-firstname-input1" class="form-label">First
+                                                        name</label>
+                                                    <input type="text" class="form-control"
+                                                        id="basicpill-firstname-input1" placeholder="Enter First Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-lastname-input1" class="form-label">Last
+                                                        name</label>
+                                                    <input type="text" class="form-control"
+                                                        id="basicpill-lastname-input1" placeholder="Enter Last Name">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-phoneno-input1"
+                                                        class="form-label">Phone</label>
+                                                    <input type="text" class="form-control"
+                                                        id="basicpill-phoneno-input1" placeholder="Enter Phone Number">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-email-input1" class="form-label">Email</label>
+                                                    <input type="email" class="form-control" id="basicpill-email-input1"
+                                                        placeholder="Enter Email Address">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Register As.</label>
+                                                    <select class="form-select">
+                                                        <option selected>Select Role</option>
+                                                        <option value="Mr">Seller</option>
+                                                        <option value="Mrs">Buyer</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <ul class="list-inline wizard mb-0">
+                                    <li class="next list-inline-item float-end"><button class="btn btn-primary"
+                                            awNextStep>Next</button>
+                                    </li>
+                                </ul>
+                            </aw-wizard-step>
+
+                            <aw-wizard-step stepTitle="Comapny Details">
+                                <ng-template awWizardStepSymbol>
+                                    <i class="bx bx-buildings"></i>
+                                </ng-template>
+                                <div class="row">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-pancard-input1" class="form-label">Company
+                                                        Name.</label>
+                                                    <input type="text" class="form-control"
+                                                        id="basicpill-pancard-input1" placeholder="Enter Company Name">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-vatno-input1"
+                                                        class="form-label">Desgination</label>
+                                                    <input type="text" class="form-control" id="basicpill-vatno-input1"
+                                                        placeholder="Enter Desgination">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-cstno-input1" class="form-label">GST
+                                                        No.</label>
+                                                    <input type="text" class="form-control" id="basicpill-cstno-input1"
+                                                        placeholder="Enter GST Number">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-phoneno-input1" class="form-label">Worked
+                                                        Phone</label>
+                                                    <input type="text" class="form-control"
+                                                        id="basicpill-phoneno-input1" placeholder="Enter Worked Phone">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Material Quality</label>
+                                                    <select class="form-select">
+                                                        <option selected>Select Material Quality</option>
+                                                        <option value="q1">Q1</option>
+                                                        <option value="q2">Q2</option>
+                                                        <option value="q3">Q3</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-address-input"
+                                                        class="form-label">Address</label>
+                                                    <textarea id="basicpill-address-input" class="form-control" rows="2"
+                                                        placeholder="Enter Company Address"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <ul class="list-inline wizard mb-0">
+                                    <li class="previous list-inline-item"><button class="btn btn-primary"
+                                            awPreviousStep>Previous</button>
+                                    </li>
+                                    <li class="next list-inline-item float-end"><button class="btn btn-primary"
+                                            awNextStep>Next</button>
+                                    </li>
+                                </ul>
+                            </aw-wizard-step>
+                            <aw-wizard-step stepTitle="Bank Details">
+                                <ng-template awWizardStepSymbol>
+                                    <i class="bx bxs-bank"></i>
+                                </ng-template>
+                                <div class="row">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-pancard-input1" class="form-label">Account
+                                                        Holder's
+                                                        Name.</label>
+                                                    <input type="text" class="form-control"
+                                                        id="basicpill-pancard-input1"
+                                                        placeholder="Enter A/C Holder's Name">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-vatno-input1" class="form-label">Bank Name
+                                                    </label>
+                                                    <input type="text" class="form-control" id="basicpill-vatno-input1"
+                                                        placeholder="Enter Bankname">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-cstno-input1" class="form-label">Bank A/c
+                                                        No.</label>
+                                                    <input type="number" class="form-control"
+                                                        id="basicpill-cstno-input1" placeholder="Enter Account Number">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-phoneno-input1" class="form-label">Branch
+                                                        Name</label>
+                                                    <input type="text" class="form-control"
+                                                        id="basicpill-phoneno-input1" placeholder="Enter Branch Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-phoneno-input1" class="form-label">IFSC</label>
+                                                    <input type="text" class="form-control"
+                                                        id="basicpill-phoneno-input1" placeholder="Enter IFSC Code">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-cstno-input1" class="form-label">Bank Registered Number</label>
+                                                    <input type="number" class="form-control"
+                                                        id="basicpill-cstno-input1" placeholder="Enter Registered Number">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <ul class="list-inline wizard mb-0">
+                                    <li class="previous list-inline-item"><button class="btn btn-primary"
+                                            awPreviousStep>Previous</button>
+                                    </li>
+                                    <li class="next list-inline-item float-end"><button class="btn btn-primary"
+                                            awNextStep>Next</button>
+                                    </li>
+                                </ul>
+                            </aw-wizard-step>
+                        </aw-wizard>
+                    </div>
+                    <!-- end card body -->
+                </div>
+                <!-- end card -->
+            </div>
+            <!-- end col -->
+        </div>
+    </div>
+</div>
