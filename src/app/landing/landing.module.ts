@@ -18,6 +18,7 @@ import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { SellerTradeComponent } from './seller-trade/seller-trade.component';
 import { SellerTradeSummaryComponent } from './seller-trade-summary/seller-trade-summary.component';
 import { SellerTradePaymentComponent } from './seller-trade-payment/seller-trade-payment.component';
+import { CustomerPaymentComponent } from './customer-payment/customer-payment.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -27,6 +28,7 @@ import { SellerTradePaymentComponent } from './seller-trade-payment/seller-trade
     SellerTradeComponent,
     SellerTradeSummaryComponent,
     SellerTradePaymentComponent,
+    CustomerPaymentComponent,
     
   ],
   imports: [
