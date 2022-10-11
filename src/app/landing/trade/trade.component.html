@@ -57,7 +57,21 @@
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
-                                    <label>Payment Terms (Days)</label>
+                                    <label class="form-label">Payment Terms</label>
+                                    <select required class="form-control form-select" formControlName="selectP"
+                                        [ngClass]="{'is-invalid': submitted && f.selectP.errors}"
+                                        [ngModel]="selectedValue" (ngModelChange)="onPaymentChange($event)">
+                                        <option value disabled>Select Payment Terms</option>
+                                        <option *ngFor="let p of paymentTerms" [ngValue]="p.id">{{p.name}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.selectP.errors" class="invalid-feedback">
+                                        <span *ngIf="f.selectP.errors.required">This Field is required.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6" *ngIf="paymentOpen">
+                                <div class="form-group mb-3">
+                                    <label>Payment Days</label>
                                     <input type="number" formControlName="terms"
                                         [ngClass]="{ 'is-invalid': submitted && f.terms.errors }" class="form-control"
                                         id="terms" placeholder="Enter Payment Terms (days)">

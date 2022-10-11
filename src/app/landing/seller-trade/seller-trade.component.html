@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Trade Request</h5>
+                <h5 class="card-title">Seller Trade Request</h5>
                 <!-- <p class="card-title-desc">
                    
                 </p> -->
@@ -13,7 +13,8 @@
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
-                                <th>SELLER NAME</th>
+                                <th>BUYER NAME</th>
+                                <th>BUYER LOCATION</th>
                                 <th>QUALITY</th>
                                 <th>QUANTITY (mt)</th>
                                 <th>RATE (rs/pmt)</th>
@@ -26,6 +27,7 @@
                             <tr *ngFor="let s of sellerTrade">
                                 <th scope="row">{{s.id}}</th>
                                 <td>{{s.sname}}</td>
+                                <td>{{s.address}}</td>
                                 <td>{{s.quality}}</td>
                                 <td>{{s.quantity}} (mt)</td>
                                 <td>{{s.rate}} ₹</td>
@@ -119,6 +121,13 @@
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
+                                    <label>Buyer Location</label>
+                                    <input type="text" formControlName="address" class="form-control" id="address"
+                                        placeholder="Enter Buyer Location" [(ngModel)]="tradeModel.address">
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
                                     <label>Quantity (Metric Ton)</label>
                                     <input type="number" formControlName="sellquantity"
                                         [ngClass]="{ 'is-invalid': submitted && f.sellquantity.errors }"
@@ -144,6 +153,12 @@
                                             characters.
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Upload Material Image</label>
+                                    <dropzone class="dropzone"></dropzone>
                                 </div>
                             </div>
                         </div>

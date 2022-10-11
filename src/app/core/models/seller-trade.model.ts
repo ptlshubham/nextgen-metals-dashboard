@@ -4,6 +4,7 @@ export class SellerTrade {
     sname?: string;
     quality?: string;
     quantity?: number;
+    address?: string;
     validity?: string;
     rate?: number;
     terms?: number;

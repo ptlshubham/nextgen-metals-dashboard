@@ -18,9 +18,6 @@ import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { SellerTradeComponent } from './seller-trade/seller-trade.component';
 import { SellerTradeSummaryComponent } from './seller-trade-summary/seller-trade-summary.component';
 import { SellerTradePaymentComponent } from './seller-trade-payment/seller-trade-payment.component';
-
-
-
 @NgModule({
   declarations: [
     HomeComponent,
@@ -29,7 +26,8 @@ import { SellerTradePaymentComponent } from './seller-trade-payment/seller-trade
     TradePaymentComponent,
     SellerTradeComponent,
     SellerTradeSummaryComponent,
-    SellerTradePaymentComponent
+    SellerTradePaymentComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -44,7 +42,6 @@ import { SellerTradePaymentComponent } from './seller-trade-payment/seller-trade
     DropzoneModule,
     CountToModule,
     FeatherModule.pick(allIcons),
-
     NgbPaginationModule,
     NgbTypeaheadModule
   ],

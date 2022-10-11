@@ -1,11 +1,8 @@
-<div class="row">
+<div class="row" *ngIf="isBuyerOpen">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Trade Summary</h5>
-                <!-- <p class="card-title-desc">
-                   
-                </p> -->
+                <h5 class="card-title">Buyer Trade Summary</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -15,6 +12,8 @@
                                 <th>#</th>
                                 <th>ORDER ID</th>
                                 <th>SELLER NAME</th>
+                                <th>LOCATION</th>
+                                <th>Image</th>
                                 <th>QUALITY</th>
                                 <th>QUANTITY (mt)</th>
                                 <th>RATE (rs/pmt)</th>
@@ -23,55 +22,150 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>1001</td>
-                                <td>Nextgen Metals</td>
-                                <td>Q1</td>
-                                <td>10 (mt)</td>
-                                <td>30000 ₹</td>
-                                <td>7 days</td>
-                                <td>SUBMIT</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>1002</td>
-                                <td>Xyz Metals</td>
-                                <td>Q1</td>
-                                <td>30 (mt)</td>
-                                <td>45000 ₹</td>
-                                <td>5 days</td>
-                                <td>SUBMIT</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>1003</td>
-                                <td>Abc Metals</td>
-                                <td>Q1</td>
-                                <td>15 (mt)</td>
-                                <td>25000 ₹</td>
-                                <td>4 days</td>
-                                <td>SUBMIT</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>1004</td>
-                                <td>Planet Metals</td>
-                                <td>Q2</td>
-                                <td>25 (mt)</td>
-                                <td>15000 ₹</td>
-                                <td>6 days</td>
-                                <td>SUBMIT</td>
+                            <tr *ngFor="let s of byuerTrade">
+                                <th scope="row">{{s.id}}</th>
+                                <td>{{s.oid}}</td>
+                                <td>{{s.sname}}</td>
+                                <td>{{s.location}}</td>
+                                <td>
+                                    <img src="{{s.image}}" alt="" class="rounded avatar-lg">
+                                </td>
+                                <td>{{s.quality}}</td>
+                                <td>{{s.quantity}} (mt)</td>
+                                <td>{{s.rate}} ₹</td>
+                                <td>{{s.terms}} days</td>
+                                <td>
+                                    <span class="badge bg-success" *ngIf="s.status=='ACCEPTED'">{{s.status}}</span>
+                                    <span class="badge bg-info" *ngIf="s.status=='IDEAL'">Not Review By Seller</span>
+                                    <span class="badge bg-danger" *ngIf="s.status=='REJECTED'">{{s.status}}</span>
+                                    <br>
+                                    <div *ngIf="s.status=='PENDING'">
+                                        <button type="button" class="btn btn-primary waves-effect waves-light"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"
+                                            (click)="viewAcceptOrReject(s)"><i
+                                                class="bx bx-edit font-size-16 align-middle me-2"></i> View &
+                                            Accept</button>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
             </div>
-            <!-- end card body -->
         </div>
-        <!-- end card -->
     </div>
-    <!-- end col -->
+
+</div>
+<div class="row" *ngIf="isAccept">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-11">
+                        <h5 class="card-title">Accept Or Reject Trade</h5>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-danger waves-effect waves-light"
+                            (click)="backToSummary()"><i class="bx bx-left-arrow-alt"></i>back</button>
+                    </div>
+                </div>
+
+                <!-- <p class="card-title-desc">New Trade Request</p> -->
+            </div>
+            <!-- end card header -->
+
+            <div class="card-body">
+                <div>
+                    <form>
+                        <input type="hidden" />
+                        <div class="row">
+
+                            <div class="col-xl-3 col-md-3">
+                                <div class="form-group mb-3">
+                                    <label>Seller Name</label>
+                                    <input type="text" disabled class="form-control" id="buyer"
+                                        placeholder="Enter Buyer" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="buyerModel.sname">
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-3">
+                                <div class="form-group mb-3">
+                                    <label>Seller Location</label>
+                                    <input type="text" disabled class="form-control" id="location"
+                                        placeholder="Enter Buyer" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="buyerModel.location">
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-3">
+                                <label>Quality</label>
+                                <input type="text" class="form-control" id="quality" placeholder="Enter quality"
+                                    disabled [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.quality">
+                            </div>
+                            <div class="col-xl-3 col-md-3">
+                                <div class="form-group mb-3">
+                                    <label>Required Quantity (Metric Ton)</label>
+                                    <input type="number" disabled class="form-control" id="quantity"
+                                        placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="buyerModel.quantity">
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-3">
+                                <div class="form-group mb-3">
+                                    <label>Quantity From Seller (Metric Ton)</label>
+                                    <input type="number" disabled class="form-control" id="quantity"
+                                        placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="buyerModel.quantity">
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-3">
+                                <div class="form-group mb-3">
+                                    <label>Rate (Rupees / Per Metric Ton)</label>
+                                    <input type="number" disabled class="form-control" id="rate"
+                                        placeholder="Enter Rate (rs/pmt)" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="buyerModel.rate">
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-3">
+                                <div class="form-group mb-3">
+                                    <label>Delivery Terms (Days)</label>
+                                    <input type="number" disabled class="form-control" id="terms"
+                                        placeholder="Enter Payment Terms (days)" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="buyerModel.terms">
+
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-3">
+                                <div class="form-group mb-3">
+                                    <img class="img-thumbnail" alt="200x200" width="200" src="{{buyerModel.image}}"
+                                        data-holder-rendered="true">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                        <div class="form-group mt-3 mb-3 form-check">
+                            <input id="term-check01" type="checkbox" class="form-check-input" name="future" required
+                                data-pristine-required-message="You must accept the terms and conditions" />
+                            <label class="form-check-label" for="term-check01">I accept the terms and
+                                conditions</label><br />
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-1 offset-10">
+                                    <button type="submit" class="btn btn-success"
+                                        (click)="acceptOrderAndPay()">Accept</button>
+                                </div>
+                                <div class="col-1">
+                                    <button type="submit" class="btn btn-danger" (click)="recjectTrade()">Reject</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="openPayment">
+    <!-- <app-customer-payment [buyer]="buyerModel"></app-customer-payment> -->
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,11 +11,19 @@ import { Component, OnInit } from '@angular/core';
  * User Profile Component
  */
 export class UserProfileComponent implements OnInit {
+  role: any;
+  validationForm!: FormGroup;
+  isPwdOpen: boolean = false;
 
+  submitted = false;
   // bread crumb items
   breadCrumbItems!: Array<{}>;
 
-  constructor() { }
+  constructor(
+    public formBuilder: FormBuilder
+  ) { 
+    this.role = localStorage.getItem('role');
+  }
 
   ngOnInit(): void {
     /**
@@ -24,6 +33,22 @@ export class UserProfileComponent implements OnInit {
       { label: 'Contacts' },
       { label: 'Profile', active: true }
     ];
+  }
+  get f() { return this.validationForm.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.validationForm.invalid) {
+      return;
+    }
+  }
+  openPasswordEdit() {
+    this.isPwdOpen = true;
+  }
+  closePasswordEdit() {
+    this.isPwdOpen = false;
   }
 
 }

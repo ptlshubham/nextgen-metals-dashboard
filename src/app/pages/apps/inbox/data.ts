@@ -30,6 +30,7 @@ const emailData = [
     },
     {
         id: 5,
+        unread: true,
         title: 'Batz, Abbott and Jakubowski',
         subject: 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nEtiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.',
         date: '12-Oct'

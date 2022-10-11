@@ -15,6 +15,9 @@ const routes: Routes = [
     path: 'pages', loadChildren: () => import('./extraspages/extraspages.module').then(m => m.ExtraspagesModule)
   },
   {
+    path: 'trade-list', loadChildren: () => import('./trading-list/trading-list.module').then(m => m.TradingListModule)
+  },
+  {
     path: 'ui', loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule)
   },
   {

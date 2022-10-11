@@ -16,11 +16,11 @@ export class SellerTradeComponent implements OnInit {
   public tradeModel: SellerTrade = new SellerTrade;
 
   sellerTrade: any = [
-    { "id": 1, "oid": "001", 'sname': 'Xyz', "quality": 'Q1', "quantity": 50, "rate": 45000, "terms": 7, validity: 'Valid till 4 pm, 25th July' },
-    { "id": 2, "oid": "002", 'sname': 'abc', "quality": 'Q1', "quantity": 40, "rate": 40000, "terms": 5, validity: 'Valid till 4 pm, 25th July' },
-    { "id": 3, "oid": "003", 'sname': 'cdf', "quality": 'Q2', "quantity": 30, "rate": 4000, "terms": 6, validity: 'Valid till 4 pm, 25th July' },
-    { "id": 4, "oid": "004", 'sname': 'fhg', "quality": 'Q3', "quantity": 20, "rate": 5000, "terms": 3, validity: 'Valid till 4 pm, 25th July' },
-    { "id": 5, "oid": "005", 'sname': 'shu', "quality": 'Q1', "quantity": 10, "rate": 30000, "terms": 5, validity: 'Valid till 4 pm, 25th July' }
+    { "id": 1, "oid": "001", 'sname': 'Xyz', "quality": 'Q1', "quantity": 50, "rate": 45000, "terms": 7, validity: 'Valid till 4 pm, 25th July', "address": 'Delhi Gurgaon' },
+    { "id": 2, "oid": "002", 'sname': 'abc', "quality": 'Q1', "quantity": 40, "rate": 40000, "terms": 5, validity: 'Valid till 4 pm, 25th July', "address": 'Delhi Gurgaon' },
+    { "id": 3, "oid": "003", 'sname': 'cdf', "quality": 'Q2', "quantity": 30, "rate": 4000, "terms": 6, validity: 'Valid till 4 pm, 25th July', "address": 'Delhi Gurgaon' },
+    { "id": 4, "oid": "004", 'sname': 'fhg', "quality": 'Q3', "quantity": 20, "rate": 5000, "terms": 3, validity: 'Valid till 4 pm, 25th July', "address": 'Delhi Gurgaon' },
+    { "id": 5, "oid": "005", 'sname': 'shu', "quality": 'Q1', "quantity": 10, "rate": 30000, "terms": 5, validity: 'Valid till 4 pm, 25th July', "address": 'Delhi Gurgaon' }
 
   ]
   constructor(
@@ -30,6 +30,7 @@ export class SellerTradeComponent implements OnInit {
   ngOnInit(): void {
     this.validationForm = this.formBuilder.group({
       validity: ['', Validators.required],
+      address: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       quantity: [0, [Validators.required, Validators.min(1)]],
       sellquantity: [0, [Validators.required, Validators.min(1)]],
@@ -64,6 +65,8 @@ export class SellerTradeComponent implements OnInit {
     this.validationForm.controls['rate'].disable();
     this.validationForm.controls['validity'].disable();
     this.validationForm.controls['buyer'].disable();
+    this.validationForm.controls['address'].disable();
+
 
   }
   backToSummary() {

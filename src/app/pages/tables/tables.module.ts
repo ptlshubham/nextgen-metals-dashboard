@@ -23,6 +23,10 @@ import { dataTableSortableDirective } from './datatable/datatable-sortable.direc
     TablesRoutingModule,
     NgbPaginationModule,
     NgbTypeaheadModule
+  ],
+  exports:[
+    dataTableSortableDirective,
+    DatatableComponent
   ]
 })
 export class TablesModule { }

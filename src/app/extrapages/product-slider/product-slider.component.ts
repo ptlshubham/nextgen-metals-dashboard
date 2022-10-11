@@ -14,8 +14,10 @@ export class ProductSliderComponent implements OnInit {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
+    margin:10,
     pullDrag: true,
     dots: false,
+    autoplay:true,
     navSpeed: 700,
     navText: ["", ""],
     responsive: {

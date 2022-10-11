@@ -1,8 +1,8 @@
-<div class="row" *ngIf="!paymentOpen">
+<div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Seller Trade Summary</h5>
+                <h5 class="card-title">Seller Trade List</h5>
                 <!-- <p class="card-title-desc">
                    
                 </p> -->
@@ -13,37 +13,34 @@
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
-                                <th>ORDER ID</th>
-                                <th>BUYER NAME</th>
+                                <th>SELLER NAME</th>
                                 <th>LOCATION</th>
                                 <th>QUALITY</th>
                                 <th>QUANTITY (mt)</th>
                                 <th>RATE (rs/pmt)</th>
-                                <th>PAYMENT TERMS</th>
-                                <th>STATUS</th>
+                                <th>Validity</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let s of sellerTrade">
                                 <th scope="row">{{s.id}}</th>
-                                <td>{{s.oid}}</td>
                                 <td>{{s.sname}}</td>
                                 <td>{{s.location}}</td>
                                 <td>{{s.quality}}</td>
                                 <td>{{s.quantity}} (mt)</td>
                                 <td>{{s.rate}} ₹</td>
                                 <td>{{s.terms}} days</td>
+
                                 <td>
-                                    <span class="badge bg-success" *ngIf="s.status=='ACCEPTED'">{{s.status}}</span>
-                                    <span class="badge bg-info" *ngIf="s.status=='IDEAL'">Not Review By Buyer</span>
-                                    <span class="badge bg-danger" *ngIf="s.status=='REJECTED'">{{s.status}}</span>
-                                    <br>
-                                    <div *ngIf="s.status=='PENDING'">
-                                        <button type="button" class="btn btn-primary waves-effect waves-light"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Download" (click)="acceptAndPay(s)"><i
-                                                class="bx bx-edit font-size-16 align-middle me-2"></i> View Invoice</button>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <!-- <button type="button" class="btn btn-soft-primary waves-effect waves-light"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"
+                                            (click)="editAcceptOrder(s)"><i
+                                                class="bx bx-edit font-size-16 align-middle"></i></button> -->
                                     </div>
                                 </td>
+
                             </tr>
                         </tbody>
                     </table>
@@ -55,7 +52,4 @@
         <!-- end card -->
     </div>
     <!-- end col -->
-</div>
-<div  *ngIf="paymentOpen">
-    <!-- <app-customer-payment [buyer]="sellerModel"></app-customer-payment> -->
 </div>
