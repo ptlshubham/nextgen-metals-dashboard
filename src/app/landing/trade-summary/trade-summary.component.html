@@ -11,7 +11,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>ORDER ID</th>
-                                <th>SELLER NAME</th>
+                                <!-- <th>SELLER NAME</th> -->
                                 <th>LOCATION</th>
                                 <th>Image</th>
                                 <th>QUALITY</th>
@@ -26,7 +26,7 @@
                             <tr *ngFor="let s of byuerTrade">
                                 <th scope="row">{{s.id}}</th>
                                 <td>{{s.oid}}</td>
-                                <td>{{s.sname}}</td>
+                                <!-- <td>{{s.sname}}</td> -->
                                 <td>{{s.location}}</td>
                                 <td>
                                     <img src="{{s.image}}" alt="" class="rounded avatar-lg">
@@ -82,14 +82,14 @@
                         <input type="hidden" />
                         <div class="row">
 
-                            <div class="col-xl-3 col-md-3">
+                            <!-- <div class="col-xl-3 col-md-3">
                                 <div class="form-group mb-3">
                                     <label>Seller Name</label>
                                     <input type="text" disabled class="form-control" id="buyer"
                                         placeholder="Enter Buyer" [ngModelOptions]="{standalone: true}"
                                         [(ngModel)]="buyerModel.sname">
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-xl-3 col-md-3">
                                 <div class="form-group mb-3">
                                     <label>Seller Location</label>

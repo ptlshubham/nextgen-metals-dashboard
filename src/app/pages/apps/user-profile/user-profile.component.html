@@ -11,22 +11,22 @@
                         <div class="d-flex align-items-start mt-3 mt-sm-0">
                             <div class="flex-shrink-0">
                                 <div class="avatar-xl me-3">
-                                    <img src="assets/images/users/avatar-2.jpg" alt=""
+                                    <img src="assets/images/users/userv.png" alt=""
                                         class="img-fluid rounded-circle d-block">
                                 </div>
                             </div>
                             <div class="flex-grow-1">
                                 <div>
-                                    <h5 class="font-size-16 mb-1">Phyllis Gatlin</h5>
+                                    <h5 class="font-size-16 mb-1">Shubham Patel</h5>
                                     <p class="text-muted font-size-13">Full Stack Developer</p>
 
                                     <div
                                         class="d-flex flex-wrap align-items-start gap-2 gap-lg-3 text-muted font-size-13">
-                                        <div><i
-                                                class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Development
+                                        <div><i class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Metals
+                                            Trade
                                         </div>
                                         <div><i
-                                                class="mdi mdi-circle-medium me-1 text-success align-middle"></i>phyllisgatlin@minia.com
+                                                class="mdi mdi-circle-medium me-1 text-success align-middle"></i>info@nextgenmetals.com
                                         </div>
                                     </div>
                                 </div>
@@ -397,70 +397,87 @@
                                     </div>
                                     <div class="card-body">
                                         <div>
-                                            <div class="pb-3">
-                                                <h5 class="font-size-15">Bio :</h5>
-                                                <div class="text-muted">
-                                                    <p class="mb-2">Hi I'm Phyllis Gatlin, Lorem Ipsum is simply dummy
-                                                        text of the printing and typesetting industry. Lorem Ipsum has
-                                                        been the industry's standard dummy text ever since the 1500s,
-                                                        when an unknown printer took a galley of type and scrambled it
-                                                        to make a type specimen book. It has survived not only five
-                                                        centuries, but also the leap into electronic typesetting,
-                                                        remaining essentially unchanged. It was popularised in the 1960s
-                                                        with the release of Letraset sheets containing Lorem Ipsum
-                                                        passages</p>
-                                                    <p class="mb-2">It is a long established fact that a reader will be
-                                                        distracted by the readable content of a page when looking at it
-                                                        has a more-or-less normal distribution of letters</p>
-                                                    <p>It will be as simple as Occidental; in fact, it will be
-                                                        Occidental. To an English person, it will seem like simplified
-                                                        English, as a skeptical Cambridge friend of mine told me what
-                                                        Occidental is. The European languages are members of the same
-                                                        family. Their separate existence is a myth.</p>
+                                            <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
+                                                <input type="hidden" />
+                                                <div class="row">
 
-                                                    <ul class="list-unstyled mb-0">
-                                                        <li class="py-1"><i
-                                                                class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Donec
-                                                            vitae sapien ut libero venenatis faucibus</li>
-                                                        <li class="py-1"><i
-                                                                class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Quisque
-                                                            rutrum aenean imperdiet</li>
-                                                        <li class="py-1"><i
-                                                                class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Integer
-                                                            ante a consectetuer eget</li>
-                                                    </ul>
+                                                    <div class="col-xl-4 col-md-6">
+                                                        <div class="form-group mb-3">
+                                                            <label for="fname" class="form-label">First
+                                                                name</label>
+                                                            <input type="text" class="form-control" id="fname"
+                                                                formControlName="fname"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.fname.errors }"
+                                                                placeholder="Enter First Name">
+                                                            <div *ngIf="submitted && f.fname.errors"
+                                                                class="invalid-feedback">
+                                                                <div *ngIf="f.fname.errors.required">First Name
+                                                                    is required</div>
+                                                                <div *ngIf="f.fname.errors.min">Only characters
+                                                                    allowed.</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-md-6">
+                                                        <div class="form-group mb-3">
+                                                            <label for="lname" class="form-label">Last
+                                                                name</label>
+                                                            <input type="text" class="form-control" id="lname"
+                                                                formControlName="lname"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.lname.errors }"
+                                                                placeholder="Enter Last Name">
+                                                            <div *ngIf="submitted && f.lname.errors"
+                                                                class="invalid-feedback">
+                                                                <div *ngIf="f.lname.errors.required">Last Name
+                                                                    is required</div>
+                                                                <div *ngIf="f.lname.errors.min">Only characters
+                                                                    allowed.</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-md-6">
+                                                        <div class="form-group mb-3">
+                                                            <label for="basicpill-phoneno-input1"
+                                                                class="form-label">Phone
+                                                                Number</label>
+                                                            <input type="text" class="form-control" id="contact"
+                                                                formControlName="contact"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.contact.errors }"
+                                                                placeholder="Enter Phone Number">
+                                                            <div *ngIf="submitted && f.contact.errors"
+                                                                class="invalid-feedback">
+                                                                <div *ngIf="f.contact.errors.required">Contact
+                                                                    Number is required</div>
+                                                                <div *ngIf="f.contact.errors.min">Only numbers
+                                                                    allowed.</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-md-6">
+                                                        <div class="form-group mb-3">
+                                                            <label for="basicpill-email-input1"
+                                                                class="form-label">Email</label>
+                                                            <input type="email" class="form-control" id="email"
+                                                                formControlName="email"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                                                                placeholder="Enter Email">
+                                                            <div *ngIf="submitted && f.email.errors"
+                                                                class="invalid-feedback">
+                                                                <div *ngIf="f.email.errors.required">Email is
+                                                                    required</div>
+                                                                <div *ngIf="f.email.errors.email">Email must be
+                                                                    a valid email address
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
                                                 </div>
-                                            </div>
-
-                                            <div class="pt-3">
-                                                <h5 class="font-size-15">Experience :</h5>
-                                                <div class="text-muted">
-                                                    <p>If several languages coalesce, the grammar of the resulting
-                                                        language is more simple and regular than that of the individual
-                                                        languages. The new common language will be more simple and
-                                                        regular than the existing European languages. It will be as
-                                                        simple as Occidental; in fact, it will be Occidental. To an
-                                                        English person, it will seem like simplified English, as a
-                                                        skeptical Cambridge friend of mine told me what Occidental is.
-                                                        The European languages are members of the same family. Their
-                                                        separate existence is a myth. For science, music, sport, etc</p>
-
-                                                    <ul class="list-unstyled mb-0">
-                                                        <li class="py-1"><i
-                                                                class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Donec
-                                                            vitae sapien ut libero venenatis faucibus</li>
-                                                        <li class="py-1"><i
-                                                                class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Quisque
-                                                            rutrum aenean imperdiet</li>
-                                                        <li class="py-1"><i
-                                                                class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Integer
-                                                            ante a consectetuer eget</li>
-                                                        <li class="py-1"><i
-                                                                class="mdi mdi-circle-medium me-1 text-success align-middle"></i>Phasellus
-                                                            nec sem in justo pellentesque</li>
-                                                    </ul>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                     <!-- end card body -->
@@ -605,8 +622,94 @@
                             <div class="tab-pane" id="manage" role="tabpanel">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5 class="card-title mb-0">Manage</h5>
+                                        <h5 class="card-title mb-0">Manage Admin</h5>
                                     </div>
+                                    <div class="card-body">
+                                        <div>
+                                            <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
+                                                <input type="hidden" />
+                                                <div class="row">
+
+                                                    <div class="col-xl-4 col-md-6">
+                                                        <div class="form-group mb-3">
+                                                            <label for="fname" class="form-label">First
+                                                                name</label>
+                                                            <input type="text" class="form-control" id="fname"
+                                                                formControlName="fname"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.fname.errors }"
+                                                                placeholder="Enter First Name">
+                                                            <div *ngIf="submitted && f.fname.errors"
+                                                                class="invalid-feedback">
+                                                                <div *ngIf="f.fname.errors.required">First Name
+                                                                    is required</div>
+                                                                <div *ngIf="f.fname.errors.min">Only characters
+                                                                    allowed.</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-md-6">
+                                                        <div class="form-group mb-3">
+                                                            <label for="lname" class="form-label">Last
+                                                                name</label>
+                                                            <input type="text" class="form-control" id="lname"
+                                                                formControlName="lname"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.lname.errors }"
+                                                                placeholder="Enter Last Name">
+                                                            <div *ngIf="submitted && f.lname.errors"
+                                                                class="invalid-feedback">
+                                                                <div *ngIf="f.lname.errors.required">Last Name
+                                                                    is required</div>
+                                                                <div *ngIf="f.lname.errors.min">Only characters
+                                                                    allowed.</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-md-6">
+                                                        <div class="form-group mb-3">
+                                                            <label for="basicpill-phoneno-input1"
+                                                                class="form-label">Phone
+                                                                Number</label>
+                                                            <input type="text" class="form-control" id="contact"
+                                                                formControlName="contact"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.contact.errors }"
+                                                                placeholder="Enter Phone Number">
+                                                            <div *ngIf="submitted && f.contact.errors"
+                                                                class="invalid-feedback">
+                                                                <div *ngIf="f.contact.errors.required">Contact
+                                                                    Number is required</div>
+                                                                <div *ngIf="f.contact.errors.min">Only numbers
+                                                                    allowed.</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-md-6">
+                                                        <div class="form-group mb-3">
+                                                            <label for="basicpill-email-input1"
+                                                                class="form-label">Email</label>
+                                                            <input type="email" class="form-control" id="email"
+                                                                formControlName="email"
+                                                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                                                                placeholder="Enter Email">
+                                                            <div *ngIf="submitted && f.email.errors"
+                                                                class="invalid-feedback">
+                                                                <div *ngIf="f.email.errors.required">Email is
+                                                                    required</div>
+                                                                <div *ngIf="f.email.errors.email">Email must be
+                                                                    a valid email address
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </ng-template>

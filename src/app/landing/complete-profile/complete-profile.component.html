@@ -170,6 +170,16 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
+                                                    <label class="form-label">Account Type</label>
+                                                    <select class="form-select">
+                                                        <option selected>Select Account Type</option>
+                                                        <option value="saving">Saving Account</option>
+                                                        <option value="current">Current Account</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
                                                     <label for="basicpill-pancard-input1" class="form-label">Account
                                                         Holder's
                                                         Name.</label>
@@ -187,8 +197,7 @@
                                                         placeholder="Enter Bankname">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
+
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label for="basicpill-cstno-input1" class="form-label">Bank A/c
@@ -208,18 +217,20 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-phoneno-input1" class="form-label">IFSC</label>
+                                                    <label for="basicpill-phoneno-input1"
+                                                        class="form-label">IFSC</label>
                                                     <input type="text" class="form-control"
                                                         id="basicpill-phoneno-input1" placeholder="Enter IFSC Code">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-4">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-cstno-input1" class="form-label">Bank Registered Number</label>
-                                                    <input type="number" class="form-control"
-                                                        id="basicpill-cstno-input1" placeholder="Enter Registered Number">
+                                                    <label for="basicpill-phoneno-input1"
+                                                    class="form-label">Upload Cancelled Cheque</label>
+                                                    <dropzone class="dropzone"></dropzone>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </form>
                                 </div>
