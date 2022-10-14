@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserProfileService } from 'src/app/core/services/user.service';
 import { MustMatch } from 'src/app/pages/form/validation/validation.mustmatch';
 
 @Component({
@@ -12,7 +13,8 @@ export class UserRegisterComponent implements OnInit {
 
   submitted = false;
   constructor(
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public userservice:UserProfileService
   ) { }
 
   ngOnInit(): void {
@@ -35,10 +37,11 @@ export class UserRegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
+    this.validationForm.value;
+    debugger
     // stop here if form is invalid
-    if (this.validationForm.invalid) {
-      return;
+    if (!this.validationForm.invalid) {
+      this.userservice.registerUser(this.validationForm.value)
     }
   }
 }
