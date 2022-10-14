@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SellerListComponent } from './seller-list/seller-list.component';
 import { BuyerListComponent } from './buyer-list/buyer-list.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { NgbDropdownModule, NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbNavModule, NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { CountToModule } from 'angular-count-to';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
@@ -16,16 +16,17 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
 import { dataTableSortableDirective } from '../tables/datatable/datatable-sortable.directive';
 import { TablesModule } from '../tables/tables.module';
 import { CustomerTradeSummaryComponent } from './customer-trade-summary/customer-trade-summary.component';
+import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 
 
 
 @NgModule({
   declarations: [
-
     SellerListComponent,
     BuyerListComponent,
     CustomerListComponent,
     CustomerTradeSummaryComponent,
+    CustomerDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +40,7 @@ import { CustomerTradeSummaryComponent } from './customer-trade-summary/customer
     TablesModule,
     DropzoneModule,
     CountToModule,
+    NgbNavModule,
     FeatherModule.pick(allIcons),
     NgbPaginationModule,
     NgbTypeaheadModule

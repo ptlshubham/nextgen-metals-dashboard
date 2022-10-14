@@ -10,6 +10,7 @@ export class Customer {
         public workPhone?:number,
         public role?: string,
         public comname?: string,
+        public location?: string,
         public quality?: string,
         public status?:Boolean,
         public isactive?: Boolean,
