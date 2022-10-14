@@ -17,6 +17,7 @@ import { dataTableSortableDirective } from '../tables/datatable/datatable-sortab
 import { TablesModule } from '../tables/tables.module';
 import { CustomerTradeSummaryComponent } from './customer-trade-summary/customer-trade-summary.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
+import { CommissionListComponent } from './commission-list/commission-list.component';
 
 
 
@@ -27,6 +28,7 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
     CustomerListComponent,
     CustomerTradeSummaryComponent,
     CustomerDetailsComponent,
+    CommissionListComponent,
   ],
   imports: [
     CommonModule,
