@@ -17,11 +17,12 @@ export class SellerTradeComponent implements OnInit {
   public tradeModel: SellerTrade = new SellerTrade;
 
   @ViewChild('fileInput') el!: ElementRef;
-  imageUrl: any = "https://i.ibb.co/fDWsn3G/buck.jpg";
+  imageUrl: any = "assets/images/buck.jpg";
   editFile: boolean = true;
   removeUpload: boolean = false;
   cardImageBase64: any;
   materialImage: any;
+
   sellerTrade: any = [
     { "id": 1, "oid": "001", 'sname': 'Xyz', "quality": 'Q1', "quantity": 50, "rate": 45000, "terms": 7, validity: 'Valid till 4 pm, 25th July', "address": 'Delhi Gurgaon' },
     { "id": 2, "oid": "002", 'sname': 'abc', "quality": 'Q1', "quantity": 40, "rate": 40000, "terms": 5, validity: 'Valid till 4 pm, 25th July', "address": 'Delhi Gurgaon' },
