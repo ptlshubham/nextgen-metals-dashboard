@@ -16,7 +16,7 @@ export class ApiService {
       'Content-Type': 'application/json'
     })
   }
-  public static RegisterNewCustomer: string = ApiService.HOST_URL + '/admin/GetProductMasterTag';
+  public static RegisterNewCustomerURL: string = ApiService.HOST_URL + '/admin/RegisterNewUser';
   public static saveMainURL: string = ApiService.HOST_URL + '/admin/SaveMainCategory';
   public static getMainURL: string = ApiService.HOST_URL + '/admin/GetMainCategory/';
   public static saveCatURL: string = ApiService.HOST_URL + '/admin/SaveMainCategory';

@@ -19,12 +19,12 @@
                                     <i class=" bx bxs-user"></i>
                                 </ng-template>
                                 <div class="row">
-                                    <form>
+                                    <form [formGroup]="validationForm">
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Salutation</label>
-                                                    <select required class="form-control form-select"
+                                                    <select required class="form-control form-select" required
                                                         formControlName="select"
                                                         [ngClass]="{'is-invalid': submitted && f.select.errors}">
                                                         <option selected>Select Salutation</option>
@@ -32,7 +32,7 @@
                                                         <option value="Mrs">Mrs.</option>
                                                         <option value="Ms">Ms.</option>
                                                     </select>
-                                                    <div *ngIf="submitted && f.select.errors" class="invalid-feedback">
+                                                    <div *ngIf=" f.select.errors" class="invalid-feedback">
                                                         <span *ngIf="f.select.errors.required">This Field is
                                                             required.</span>
                                                     </div>

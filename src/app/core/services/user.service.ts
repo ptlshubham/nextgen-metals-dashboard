@@ -20,6 +20,6 @@ export class UserProfileService {
         return this.http.post(`/users/register`, user);
     }
     registerUser(data:any){
-     return  this.http.post(ApiService.RegisterNewCustomer,data);
+     return  this.http.post(ApiService.RegisterNewCustomerURL,data);
     }
 }
