@@ -158,7 +158,23 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Upload Material Image</label>
-                                    <dropzone class="dropzone"></dropzone>
+                                    <div class="avatar-upload">
+                                        <div class="avatar-edit">
+                                            <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
+                                                (change)="uploadFile($event)" />
+                                        </div>
+                                        <div class="avatar-preview">
+                                            <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+                                            </div>
+                                        </div>
+                                        <div style="margin-top: 10px;">
+                                            <button type="submit" class="btn btn-primary btn-sm btn-block"
+                                                (click)="fileInput.click()">Upload
+                                                Image</button>
+                                            <button type="submit" class="btn btn-warning btn-sm btn-block">Remove
+                                                Image</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

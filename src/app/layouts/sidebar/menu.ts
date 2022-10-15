@@ -13,13 +13,13 @@ export const MENU: MenuItem[] = [
         link: '/',
     },
     {
-        id: 87,
+        id: 3,
         label: 'Customer List',
         icon: 'users',
         link: '/trade-list/customer',
     },
     {
-        id: 88,
+        id: 4,
         label: 'Trade Summary',
         icon: 'repeat',
         link: '/trade-list/trade',
@@ -31,10 +31,23 @@ export const MENU: MenuItem[] = [
     //     link:'/trade-list/buyer'
     // },
     {
-        id: 7,
+        id: 5,
         label: 'MENUITEMS.APPS.LIST.INBOX',
         icon: 'message-circle',
         link: '/apps/inbox',
+        // parentId: 6
+    },
+    {
+        id: 6,
+        label: 'Commission Summary',
+        icon: 'activity',
+        link: '/trade-list/commission',
+    },
+    {
+        id: 7,
+        label: 'Grievance Redressal',
+        icon: 'message-circle',
+        link: '/apps/grievance-inbox',
         // parentId: 6
     },
     // {
