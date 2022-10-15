@@ -31,7 +31,23 @@
                                 <td>1234 ABC</td>
                                 <td>8484181991</td>
                                 <td>
-                                    <dropzone class="dropzone"></dropzone>
+                                    <div class="avatar-upload">
+                                        <div class="avatar-edit">
+                                            <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
+                                                (change)="uploadFile($event)" />
+                                        </div>
+                                        <div class="avatar-preview">
+                                            <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+                                            </div>
+                                        </div>
+                                        <div style="margin-top: 10px;">
+                                            <button type="submit" class="btn btn-primary btn-sm btn-block"
+                                                (click)="fileInput.click()">Upload
+                                                Image</button>
+                                            <button type="submit" class="btn btn-warning btn-sm btn-block">Remove
+                                                Image</button>
+                                        </div>
+                                    </div>
                                 </td>
 
                             </tr>
@@ -43,7 +59,23 @@
                                 <td>1234 ABC</td>
                                 <td>1949519515</td>
                                 <td>
-                                    <dropzone class="dropzone"></dropzone>
+                                    <div class="avatar-upload">
+                                        <div class="avatar-edit">
+                                            <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
+                                                (change)="uploadFile($event)" />
+                                        </div>
+                                        <div class="avatar-preview">
+                                            <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+                                            </div>
+                                        </div>
+                                        <div style="margin-top: 10px;">
+                                            <button type="submit" class="btn btn-primary btn-sm btn-block"
+                                                (click)="fileInput.click()">Upload
+                                                Image</button>
+                                            <button type="submit" class="btn btn-warning btn-sm btn-block">Remove
+                                                Image</button>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -54,7 +86,23 @@
                                 <td>1234 ABC</td>
                                 <td>51191914194</td>
                                 <td>
-                                    <dropzone class="dropzone"></dropzone>
+                                    <div class="avatar-upload">
+                                        <div class="avatar-edit">
+                                            <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
+                                                (change)="uploadFile($event)" />
+                                        </div>
+                                        <div class="avatar-preview">
+                                            <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+                                            </div>
+                                        </div>
+                                        <div style="margin-top: 10px;">
+                                            <button type="submit" class="btn btn-primary btn-sm btn-block"
+                                                (click)="fileInput.click()">Upload
+                                                Image</button>
+                                            <button type="submit" class="btn btn-warning btn-sm btn-block">Remove
+                                                Image</button>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -65,7 +113,23 @@
                                 <td>15000 ₹</td>
                                 <td>59184981911</td>
                                 <td>
-                                    <dropzone class="dropzone"></dropzone>
+                                    <div class="avatar-upload">
+                                        <div class="avatar-edit">
+                                            <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
+                                                (change)="uploadFile($event)" />
+                                        </div>
+                                        <div class="avatar-preview">
+                                            <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+                                            </div>
+                                        </div>
+                                        <div style="margin-top: 10px;">
+                                            <button type="submit" class="btn btn-primary btn-sm btn-block"
+                                                (click)="fileInput.click()">Upload
+                                                Image</button>
+                                            <button type="submit" class="btn btn-warning btn-sm btn-block">Remove
+                                                Image</button>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
