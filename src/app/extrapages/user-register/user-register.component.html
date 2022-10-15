@@ -19,7 +19,7 @@
                                     <i class=" bx bxs-user"></i>
                                 </ng-template>
                                 <div class="row">
-                                    <form [formGroup]="validationForm">
+                                    <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
@@ -40,18 +40,31 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-firstname-input1" class="form-label">First
+                                                    <label class="form-label">First
                                                         name</label>
-                                                    <input type="text" class="form-control"
-                                                        id="basicpill-firstname-input1" placeholder="Enter First Name">
+                                                    <input type="text" formControlName="fname" class="form-control"
+                                                        id="fname"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.fname.errors }"
+                                                        placeholder="Enter First Name">
+                                                    <div *ngIf="submitted && f.fname.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.fname.errors.required">First name is required
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-lastname-input1" class="form-label">Last
+                                                    <label class="form-label">Last
                                                         name</label>
-                                                    <input type="text" class="form-control"
-                                                        id="basicpill-lastname-input1" placeholder="Enter Last Name">
+                                                    <input type="text" formControlName="lname" class="form-control"
+                                                        id="lname"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.lname.errors }"
+                                                        placeholder="Enter Last Name">
+                                                    <div *ngIf="submitted && f.lname.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.lname.errors.required">Last name is required
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -59,38 +72,65 @@
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-phoneno-input1"
-                                                        class="form-label">Phone</label>
-                                                    <input type="text" class="form-control"
-                                                        id="basicpill-phoneno-input1" placeholder="Enter Phone Number">
+                                                    <label class="form-label">Phone Number</label>
+                                                    <input type="number" formControlName="contact"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.contact.errors }"
+                                                        class="form-control" id="contact"
+                                                        placeholder="Enter Phone Number">
+                                                    <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.contact.errors.required">Phone Number is required.
+                                                        </div>
+                                                        <div *ngIf="f.contact.errors.min">Only Numbers allowed & Do not
+                                                            enter
+                                                            characters.
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-email-input1" class="form-label">Email</label>
-                                                    <input type="email" class="form-control" id="basicpill-email-input1"
-                                                        placeholder="Enter Email Address">
+                                                    <label class="form-label">Email Address</label>
+                                                    <input type="email" formControlName="email"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                                                        class="form-control" id="useremail" placeholder="Enter email">
+                                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                                        <div *ngIf="f.email.errors.email">Email must be a valid email
+                                                            address</div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Register As.</label>
-                                                    <select class="form-select">
+                                                    <select required class="form-control form-select"
+                                                        formControlName="regAs"
+                                                        [ngClass]="{'is-invalid': submitted && f.regAs.errors}">
                                                         <option selected>Select Role</option>
                                                         <option value="Mr">Seller</option>
                                                         <option value="Mrs">Buyer</option>
                                                     </select>
+                                                    <div *ngIf="submitted && f.regAs.errors" class="invalid-feedback">
+                                                        <span *ngIf="f.regAs.errors.required">This Field is
+                                                            required.</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <ul class="list-inline wizard mb-0">
+                                                <li class="next list-inline-item float-end"><button type="submit"
+                                                        class="btn btn-primary" awNextStep>Next</button>
+                                                </li>
+                                                <li class="next list-inline-item float-end" style="margin-right: 10px;">
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                </li>
 
+                                            </ul>
+                                        </div>
                                     </form>
                                 </div>
-                                <ul class="list-inline wizard mb-0">
-                                    <li class="next list-inline-item float-end"><button class="btn btn-primary"
-                                            awNextStep>Next</button>
-                                    </li>
-                                </ul>
+
                             </aw-wizard-step>
 
                             <aw-wizard-step stepTitle="Comapny Details">
@@ -98,14 +138,22 @@
                                     <i class="bx bx-buildings"></i>
                                 </ng-template>
                                 <div class="row">
-                                    <form>
+                                    <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label for="basicpill-pancard-input1" class="form-label">Company
                                                         Name.</label>
-                                                    <input type="text" class="form-control"
-                                                        id="basicpill-pancard-input1" placeholder="Enter Company Name">
+                                                    <input type="text" formControlName="companyname"
+                                                        class="form-control" id="companyname"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.companyname.errors }"
+                                                        placeholder="Enter Company Name">
+                                                    <div *ngIf="submitted && f.companyname.errors"
+                                                        class="invalid-feedback">
+                                                        <div *ngIf="f.companyname.errors.required">Company name is
+                                                            required
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -113,8 +161,16 @@
                                                 <div class="mb-3">
                                                     <label for="basicpill-vatno-input1"
                                                         class="form-label">Desgination</label>
-                                                    <input type="text" class="form-control" id="basicpill-vatno-input1"
+                                                    <input type="text" formControlName="desgination"
+                                                        class="form-control" id="desgination"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.desgination.errors }"
                                                         placeholder="Enter Desgination">
+                                                    <div *ngIf="submitted && f.desgination.errors"
+                                                        class="invalid-feedback">
+                                                        <div *ngIf="f.desgination.errors.required">Desgination is
+                                                            required
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -123,8 +179,15 @@
                                                 <div class="mb-3">
                                                     <label for="basicpill-cstno-input1" class="form-label">GST
                                                         No.</label>
-                                                    <input type="text" class="form-control" id="basicpill-cstno-input1"
+                                                    <input type="text" formControlName="gstno" class="form-control"
+                                                        id="gstno"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.gstno.errors }"
                                                         placeholder="Enter GST Number">
+                                                    <div *ngIf="submitted && f.gstno.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.gstno.errors.required">GST Number is
+                                                            required
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -132,19 +195,38 @@
                                                 <div class="mb-3">
                                                     <label for="basicpill-phoneno-input1" class="form-label">Worked
                                                         Phone</label>
-                                                    <input type="text" class="form-control"
-                                                        id="basicpill-phoneno-input1" placeholder="Enter Worked Phone">
+                                                    <input type="number" formControlName="workphone"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.workphone.errors }"
+                                                        class="form-control" id="workphone"
+                                                        placeholder="Enter Workphone Number">
+                                                    <div *ngIf="submitted && f.workphone.errors"
+                                                        class="invalid-feedback">
+                                                        <div *ngIf="f.workphone.errors.required">Workphone is required.
+                                                        </div>
+                                                        <div *ngIf="f.workphone.errors.min">Only Numbers allowed & Do
+                                                            not
+                                                            enter
+                                                            characters.
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Material Quality</label>
-                                                    <select class="form-select">
+                                                    <select required class="form-control form-select"
+                                                        formControlName="selectMaterial"
+                                                        [ngClass]="{'is-invalid': submitted && f.selectMaterial.errors}">
                                                         <option selected>Select Material Quality</option>
                                                         <option value="q1">Q1</option>
                                                         <option value="q2">Q2</option>
                                                         <option value="q3">Q3</option>
                                                     </select>
+                                                    <div *ngIf="submitted && f.selectMaterial.errors"
+                                                        class="invalid-feedback">
+                                                        <span *ngIf="f.selectMaterial.errors.required">This Field is
+                                                            required.</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -152,20 +234,28 @@
                                                     <label for="basicpill-address-input"
                                                         class="form-label">Address</label>
                                                     <textarea id="basicpill-address-input" class="form-control" rows="2"
+                                                        id="address"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
                                                         placeholder="Enter Company Address"></textarea>
+                                                    <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.address.errors.required">Address is
+                                                            required
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <ul class="list-inline wizard mb-0">
+                                            <li class="previous list-inline-item"><button class="btn btn-primary"
+                                                    awPreviousStep>Previous</button>
+                                            </li>
+                                            <li class="next list-inline-item float-end"><button (click)="onSubmit()"
+                                                    class="btn btn-primary" awNextStep>submit</button>
+                                            </li>
+                                        </ul>
                                     </form>
                                 </div>
-                                <ul class="list-inline wizard mb-0">
-                                    <li class="previous list-inline-item"><button class="btn btn-primary"
-                                            awPreviousStep>Previous</button>
-                                    </li>
-                                    <li class="next list-inline-item float-end"><button (click)="onSubmit()" class="btn btn-primary"
-                                            awNextStep>submit</button>
-                                    </li>
-                                </ul>
+                                
                             </aw-wizard-step>
                         </aw-wizard>
                     </div>

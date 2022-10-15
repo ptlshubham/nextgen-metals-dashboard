@@ -10,6 +10,8 @@ import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.componen
 import { UserGridComponent } from './user-grid/user-grid.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { GrievanceInboxComponent } from './grievance-inbox/grievance-inbox.component';
+import { GrievanceReadmailComponent } from './grievance-readmail/grievance-readmail.component';
 
 const routes: Routes = [
   {
@@ -27,6 +29,14 @@ const routes: Routes = [
   {
     path: 'read/:id',
     component: ReademailComponent
+  },
+  {
+    path: 'grievance-inbox',
+    component: GrievanceInboxComponent
+  },
+  {
+    path: 'grivance-read/:id',
+    component: GrievanceReadmailComponent
   },
   {
     path: 'invoice-list',

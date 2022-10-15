@@ -54,8 +54,9 @@ const routes: Routes = [
         path: '404',
         component: Page404Component
     },
+    // for wild card routing
     {
-        path: '500',
+        path: "**",
         component: Page500Component
     }
 ];

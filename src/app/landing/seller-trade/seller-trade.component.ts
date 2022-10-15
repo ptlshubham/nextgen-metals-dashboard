@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SellerTrade } from 'src/app/core/models/seller-trade.model';
+import { SellerTradeService } from 'src/app/core/services/seller-trade.service';
 import { MustMatch } from 'src/app/pages/form/validation/validation.mustmatch';
 
 @Component({
@@ -15,6 +16,12 @@ export class SellerTradeComponent implements OnInit {
 
   public tradeModel: SellerTrade = new SellerTrade;
 
+  @ViewChild('fileInput') el!: ElementRef;
+  imageUrl: any = "https://i.ibb.co/fDWsn3G/buck.jpg";
+  editFile: boolean = true;
+  removeUpload: boolean = false;
+  cardImageBase64: any;
+  materialImage: any;
   sellerTrade: any = [
     { "id": 1, "oid": "001", 'sname': 'Xyz', "quality": 'Q1', "quantity": 50, "rate": 45000, "terms": 7, validity: 'Valid till 4 pm, 25th July', "address": 'Delhi Gurgaon' },
     { "id": 2, "oid": "002", 'sname': 'abc', "quality": 'Q1', "quantity": 40, "rate": 40000, "terms": 5, validity: 'Valid till 4 pm, 25th July', "address": 'Delhi Gurgaon' },
@@ -24,7 +31,8 @@ export class SellerTradeComponent implements OnInit {
 
   ]
   constructor(
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private sellerTradeService: SellerTradeService
   ) { }
 
   ngOnInit(): void {
@@ -73,5 +81,43 @@ export class SellerTradeComponent implements OnInit {
     this.isAccept = false;
 
   }
+  uploadFile(event: any) {
+    let reader = new FileReader(); // HTML5 FileReader API
+    let file = event.target.files[0];
+    if (event.target.files && event.target.files[0]) {
+      reader.readAsDataURL(file);
+
+      // When file uploads set it to file formcontrol
+      reader.onload = () => {
+        this.imageUrl = reader.result;
+        const imgBase64Path = reader.result;
+        this.cardImageBase64 = imgBase64Path;
+        const formdata = new FormData();
+        formdata.append('file', file);
+        debugger
+
+        this.sellerTradeService.uploadMaterialImage(formdata).subscribe((response) => {
+          this.materialImage = response;
+          debugger
+          //   this.isImageSaved = true;
+          this.editFile = false;
+          this.removeUpload = true;
+        })
+      }
+      // ChangeDetectorRef since file is loading outside the zone
+      // this.cd.markForCheck();
+
+    }
+  }
+
+  // Function to remove uploaded file
+  removeUploadedFile() {
+    let newFileList = Array.from(this.el.nativeElement.files);
+    this.imageUrl = 'https://i.pinimg.com/236x/d6/27/d9/d627d9cda385317de4812a4f7bd922e9--man--iron-man.jpg';
+    this.editFile = true;
+    this.removeUpload = false;
+
+  }
 
 }
+

@@ -6,7 +6,7 @@ declare var $: any;
   providedIn: 'root'
 })
 export class ApiService {
-  public static HOST_URL: string = "http://localhost:8090";
+  public static HOST_URL: string = "http://localhost:9000";
 
   constructor(
     private http: HttpClient,
@@ -16,6 +16,7 @@ export class ApiService {
       'Content-Type': 'application/json'
     })
   }
+  public static uploadMaterialImageURL: string = ApiService.HOST_URL + '/admin/UploadMaterialImage';
   public static RegisterNewCustomerURL: string = ApiService.HOST_URL + '/admin/RegisterNewUser';
   public static saveMainURL: string = ApiService.HOST_URL + '/admin/SaveMainCategory';
   public static getMainURL: string = ApiService.HOST_URL + '/admin/GetMainCategory/';
@@ -42,7 +43,6 @@ export class ApiService {
   public static removeProductListItemURL: string = ApiService.HOST_URL + '/admin/RemoveProduct/';
   public static GetFilterProductsURL: string = ApiService.HOST_URL + '/admin/GetAllFilterProduct/';
   public static saveAdminLoginURL: string = ApiService.HOST_URL + '/admin/login';
-  public static uploadBannersImageURL: string = ApiService.HOST_URL + '/admin/UploadBannersImage';
   public static saveWebBannersURL: string = ApiService.HOST_URL + '/admin/SaveWebBanners';
   public static getWebBannersURL: string = ApiService.HOST_URL + '/admin/GetWebBanners/';
   public static removeWebBannersURL: string = ApiService.HOST_URL + '/admin/RemoveWebBanners';

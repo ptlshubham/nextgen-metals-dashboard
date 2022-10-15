@@ -22,6 +22,8 @@ import { UserGridComponent } from './user-grid/user-grid.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserSortableDirective } from './user-list/user-list-sortable.directive';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { GrievanceInboxComponent } from './grievance-inbox/grievance-inbox.component';
+import { GrievanceReadmailComponent } from './grievance-readmail/grievance-readmail.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -39,7 +41,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     UserGridComponent,
     UserListComponent,
     UserSortableDirective,
-    UserProfileComponent
+    UserProfileComponent,
+    GrievanceInboxComponent,
+    GrievanceReadmailComponent
   ],
   imports: [
     CommonModule,
