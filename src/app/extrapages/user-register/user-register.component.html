@@ -19,7 +19,7 @@
                                     <i class=" bx bxs-user"></i>
                                 </ng-template>
                                 <div class="row">
-                                    <form>
+                                    <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
@@ -83,14 +83,19 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <ul class="list-inline wizard mb-0">
+                                                <li class="next list-inline-item float-end"><button type="submit"
+                                                        class="btn btn-primary" awNextStep>Next</button>
+                                                </li>
+                                                <li class="next list-inline-item float-end" style="margin-right: 10px;">
+                                                    <button type="submit" class="btn btn-primary" >Save</button></li>
 
+                                            </ul>
+                                        </div>
                                     </form>
                                 </div>
-                                <ul class="list-inline wizard mb-0">
-                                    <li class="next list-inline-item float-end"><button class="btn btn-primary"
-                                            awNextStep>Next</button>
-                                    </li>
-                                </ul>
+
                             </aw-wizard-step>
 
                             <aw-wizard-step stepTitle="Comapny Details">

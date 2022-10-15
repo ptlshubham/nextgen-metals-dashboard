@@ -18,24 +18,31 @@ export class UserRegisterComponent implements OnInit {
   ngOnInit(): void {
     this.validationForm = this.formBuilder.group({
       select: ['', [Validators.required]],
-      selectR:['', [Validators.required]],
-      selectM:['', [Validators.required]],
+      regAs: ['', [Validators.required]],
       fname: ['', [Validators.required]],
       lname: ['', [Validators.required]],
       contact: ['', [Validators.required, Validators.min(1)]],
       email: ['', [Validators.required, Validators.email]],
+
       companyname: ['', [Validators.required]],
       desgination: ['', [Validators.required]],
       gstno: ['', [Validators.required]],
       workphone: ['', [Validators.required, Validators.min(1)]],
       address: ['', [Validators.required]],
+      selectMaterial: ['', [Validators.required]],
+
+      selectAcc:['',[Validators.required]],
+      acHolder: ['', [Validators.required]],
+      bankName: ['', [Validators.required]],
+      bankACNo: ['', [Validators.required, Validators.min(1)]],
+      branchName: ['', [Validators.required]],
     });
   }
   get f() { return this.validationForm.controls; }
 
   onSubmit() {
     this.submitted = true;
-
+    debugger
     // stop here if form is invalid
     if (this.validationForm.invalid) {
       return;
