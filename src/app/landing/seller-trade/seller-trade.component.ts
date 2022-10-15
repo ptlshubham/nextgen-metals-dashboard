@@ -32,7 +32,7 @@ export class SellerTradeComponent implements OnInit {
   ]
   constructor(
     public formBuilder: FormBuilder,
-    private sellerTradeService: SellerTradeService
+    public sellerTradeService: SellerTradeService
   ) { }
 
   ngOnInit(): void {
