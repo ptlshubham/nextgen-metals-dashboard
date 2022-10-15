@@ -17,7 +17,7 @@ export class SellerTradeComponent implements OnInit {
   public tradeModel: SellerTrade = new SellerTrade;
 
   @ViewChild('fileInput') el!: ElementRef;
-  imageUrl: any = "assets/images/buck.jpg";
+  imageUrl: any = "assets/images/file-upload-image.jpg";
   editFile: boolean = true;
   removeUpload: boolean = false;
   cardImageBase64: any;

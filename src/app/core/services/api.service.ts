@@ -17,6 +17,7 @@ export class ApiService {
     })
   }
   public static uploadMaterialImageURL: string = ApiService.HOST_URL + '/admin/UploadMaterialImage';
+  
   public static RegisterNewCustomerURL: string = ApiService.HOST_URL + '/admin/RegisterNewUser';
   public static saveMainURL: string = ApiService.HOST_URL + '/admin/SaveMainCategory';
   public static getMainURL: string = ApiService.HOST_URL + '/admin/GetMainCategory/';
