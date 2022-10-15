@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/auth.models';
+import { ApiService } from './api.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserProfileService {
@@ -17,5 +18,8 @@ export class UserProfileService {
      */
     register(user: User) {
         return this.http.post(`/users/register`, user);
+    }
+    registerUser(data:any){
+     return  this.http.post(ApiService.RegisterNewCustomer,data);
     }
 }
