@@ -4,6 +4,7 @@ import { circle, latLng, tileLayer } from 'leaflet';
 
 import { walletOverview, investedOverview, marketOverview, walletlineChart, tradeslineChart, investedlineChart, profitlineChart, recentActivity, News, transactionsAll, transactionsBuy, transactionsSell } from './data';
 import { ChartType } from './dashboard.model';
+import { DashboardService } from 'src/app/core/services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +19,10 @@ export class DashboardComponent implements OnInit {
 
   // bread crumb items
   breadCrumbItems!: Array<{}>;
+
+  buyerList : any=[];
+  sellerList : any=[];
+  pendingKycUserList : any=[];
   title!: string;
   dataSource!: Object;
   walletOverview!: ChartType;
@@ -48,7 +53,9 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  constructor() {
+  constructor(
+    private dashboardService : DashboardService
+  ) {
   }
 
   /**
@@ -73,6 +80,11 @@ export class DashboardComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+
+    this.getBuyer();
+    this.getSeller();
+    this.getPendingKycUser();
+    // this.getBuyer();
     /**
      * BreadCrumb 
      */
@@ -86,6 +98,23 @@ export class DashboardComponent implements OnInit {
      */
     this.fetchData();
   }
+
+  getBuyer(){
+    this.dashboardService.getBuyerList().subscribe((res:any)=>{
+      this.buyerList = res;
+    })
+  }
+  getSeller(){
+    this.dashboardService.getSellerList().subscribe((res:any)=>{
+      this.sellerList = res;
+    })
+  }
+  getPendingKycUser(){
+    this.dashboardService.getKycPendingList().subscribe((res:any)=>{
+      this.pendingKycUserList = res;
+    })
+  }
+
 
   /**
    * Fetches the data

@@ -19,7 +19,7 @@
                                     <i class=" bx bxs-user"></i>
                                 </ng-template>
                                 <div class="row">
-                                    <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
+                                    <form [formGroup]="validationForm" >
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
@@ -107,8 +107,8 @@
                                                         formControlName="regAs"
                                                         [ngClass]="{'is-invalid': submitted && f.regAs.errors}">
                                                         <option selected>Select Role</option>
-                                                        <option value="Mr">Seller</option>
-                                                        <option value="Mrs">Buyer</option>
+                                                        <option value="seller">Seller</option>
+                                                        <option value="buyer">Buyer</option>
                                                     </select>
                                                     <div *ngIf="submitted && f.regAs.errors" class="invalid-feedback">
                                                         <span *ngIf="f.regAs.errors.required">This Field is
@@ -234,7 +234,7 @@
                                                     <label for="basicpill-address-input"
                                                         class="form-label">Address</label>
                                                     <textarea id="basicpill-address-input" class="form-control" rows="2"
-                                                        id="address"
+                                                        id="address"   formControlName="address"
                                                         [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
                                                         placeholder="Enter Company Address"></textarea>
                                                     <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
@@ -249,7 +249,7 @@
                                             <li class="previous list-inline-item"><button class="btn btn-primary"
                                                     awPreviousStep>Previous</button>
                                             </li>
-                                            <li class="next list-inline-item float-end"><button (click)="onSubmit()"
+                                            <li class="next list-inline-item float-end" type="submit"><button 
                                                     class="btn btn-primary" awNextStep>submit</button>
                                             </li>
                                         </ul>

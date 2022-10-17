@@ -47,8 +47,10 @@ export class UserRegisterComponent implements OnInit {
     this.validationForm.value;
     debugger
     // stop here if form is invalid
-    if (!this.validationForm.invalid) {
-      this.userservice.registerUser(this.validationForm.value)
-    }
+   
+      this.userservice.registerUser(this.validationForm.value).subscribe((res:any)=>{
+        debugger
+      })
+    
   }
 }
