@@ -13,7 +13,6 @@ export class SellerTradeService {
   ) { }
  
   uploadMaterialImage(img:any): Observable<any>{
-     debugger
     return this.httpClient.post<any>(ApiService.uploadMaterialImageURL, img);
 
   }

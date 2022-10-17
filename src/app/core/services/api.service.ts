@@ -17,6 +17,7 @@ export class ApiService {
     })
   }
   public static uploadMaterialImageURL: string = ApiService.HOST_URL + '/admin/UploadMaterialImage';
+  
   public static RegisterNewCustomerURL: string = ApiService.HOST_URL + '/admin/RegisterNewUser';
   public static getBuyerListURL: string = ApiService.HOST_URL + '/admin/getAllBuyer';
   public static getSellerListURL: string = ApiService.HOST_URL + '/admin/getAllSeller';
