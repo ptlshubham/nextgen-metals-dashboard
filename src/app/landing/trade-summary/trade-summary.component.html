@@ -11,22 +11,23 @@
                             <tr>
                                 <th>#</th>
                                 <th>ORDER ID</th>
-                                <th>SELLER NAME</th>
+                                <!-- <th>SELLER NAME</th>
                                 <th>LOCATION</th>
-                                <th>Image</th>
+                                <th>Image</th> -->
                                 <th>QUALITY</th>
                                 <th>QUANTITY (mt)</th>
                                 <th>RATE (rs/pmt)</th>
                                 <th>PAYMENT TERMS</th>
-                                <th>Date</th>
+                                <th>Validity Date</th>
                                 <th>STATUS</th>
+                                <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let s of byuerTrade">
                                 <th scope="row">{{s.id}}</th>
                                 <td>{{s.oid}}</td>
-                                <td *ngIf="s.status=='ACCEPTED'"><b>{{s.sname}}</b> </td>
+                                <!-- <td *ngIf="s.status=='ACCEPTED'"><b>{{s.sname}}</b> </td>
                                 <td *ngIf="s.status=='PENDING'">
                                     <span class="badge bg-warning" data-bs-toggle="tooltip" data-bs-placement="top"
                                         title="View & Accept">Accept Trade</span>
@@ -43,7 +44,7 @@
                                 <td>{{s.location}}</td>
                                 <td>
                                     <img src="{{s.image}}" alt="" class="rounded avatar-lg">
-                                </td>
+                                </td> -->
                                 <td>{{s.quality}}</td>
                                 <td>{{s.quantity}} (mt)</td>
                                 <td>{{s.rate}} ₹</td>
@@ -58,8 +59,15 @@
                                         <button type="button" class="btn btn-primary waves-effect waves-light"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"
                                             (click)="viewAcceptOrReject(s)"><i
-                                                class="bx bx-edit font-size-16 align-middle me-2"></i> View &
-                                            Accept</button>
+                                                class="bx bx-check-double font-size-16 align-middle me-2"></i>Accept</button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div *ngIf="s.status=='ACCEPTED'">
+                                        <button type="button" class="btn btn-primary waves-effect waves-light"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View Trade Details"
+                                            (click)="viewTradeDetailsByTrade(s)"><i
+                                                class="fa fa-eye font-size-16 align-middle me-2"></i>Details</button>
                                     </div>
                                 </td>
                             </tr>
@@ -184,4 +192,27 @@
 </div>
 <div *ngIf="openPayment">
     <app-customer-payment [buyer]="buyerModel"></app-customer-payment>
+</div>
+
+<div class="row" *ngIf="openDetails">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-11">
+                        <h5 class="card-title">Accept Or Reject Trade</h5>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-danger waves-effect waves-light"
+                            (click)="backToSummary()"><i class="bx bx-left-arrow-alt"></i>back</button>
+                    </div>
+                </div>
+
+                <!-- <p class="card-title-desc">New Trade Request</p> -->
+            </div>
+            <!-- end card header -->
+            <app-trade-summary-details [buyer]="buyerDetails"></app-trade-summary-details>
+
+        </div>
+    </div>
 </div>

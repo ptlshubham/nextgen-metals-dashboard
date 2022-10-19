@@ -16,9 +16,11 @@ export class TradeSummaryComponent implements OnInit {
 
   ]
   isAccept: boolean = false;
+  openDetails: boolean = false;
   isBuyerOpen: boolean = false;
   openPayment: boolean = false;
   buyerModel: any = {};
+  buyerDetails: any = {};
   constructor() {
     this.isBuyerOpen = true;
   }
@@ -31,18 +33,24 @@ export class TradeSummaryComponent implements OnInit {
     this.isAccept = true;
     this.isBuyerOpen = false;
     this.openPayment = false
+    this.openDetails = false;
+
 
   }
   backToSummary() {
     this.isAccept = false;
     this.isBuyerOpen = true;
     this.openPayment = false;
+    this.openDetails = false;
+
 
   }
   acceptOrderAndPay() {
     this.isAccept = false;
     this.isBuyerOpen = false;
     this.openPayment = true;
+    this.openDetails = false;
+
   }
   recjectTrade() {
     Swal.fire({
@@ -60,5 +68,11 @@ export class TradeSummaryComponent implements OnInit {
       }
     });
   }
-
+  viewTradeDetailsByTrade(data: any) {
+    this.buyerDetails = data;
+    this.isAccept = false;
+    this.isBuyerOpen = false;
+    this.openPayment = false;
+    this.openDetails = true;
+  }
 }

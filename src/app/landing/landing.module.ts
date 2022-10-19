@@ -21,6 +21,7 @@ import { SellerTradePaymentComponent } from './seller-trade-payment/seller-trade
 import { CustomerPaymentComponent } from './customer-payment/customer-payment.component';
 import { CompleteProfileComponent } from './complete-profile/complete-profile.component';
 import { ArchwizardModule } from 'angular-archwizard';
+import { TradeSummaryDetailsComponent } from './trade-summary-details/trade-summary-details.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -32,6 +33,7 @@ import { ArchwizardModule } from 'angular-archwizard';
     SellerTradePaymentComponent,
     CustomerPaymentComponent,
     CompleteProfileComponent,
+    TradeSummaryDetailsComponent,
     
   ],
   imports: [

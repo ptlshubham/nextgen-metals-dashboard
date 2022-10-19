@@ -1,0 +1,86 @@
+<div class="card-body">
+    <div>
+        <form>
+            <input type="hidden" />
+            <div class="row">
+
+                <!-- <div class="col-xl-3 col-md-3">
+                        <div class="form-group mb-3">
+                            <label>Seller Name</label>
+                            <input type="text" disabled class="form-control" id="buyer"
+                                placeholder="Enter Buyer" [ngModelOptions]="{standalone: true}"
+                                [(ngModel)]="buyerModel.sname">
+                        </div>
+                    </div> -->
+                <div class="col-xl-3 col-md-3">
+                    <div class="form-group mb-3">
+                        <label>Seller Location</label>
+                        <input type="text" disabled class="form-control" id="location" placeholder="Enter Buyer"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.location">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3">
+                    <label>Quality</label>
+                    <input type="text" class="form-control" id="quality" placeholder="Enter quality" disabled
+                        [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.quality">
+                </div>
+                <div class="col-xl-3 col-md-3">
+                    <div class="form-group mb-3">
+                        <label>Required Quantity (Metric Ton)</label>
+                        <input type="number" disabled class="form-control" id="quantity"
+                            placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="buyerModel.quantity">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3">
+                    <div class="form-group mb-3">
+                        <label>Quantity From Seller (Metric Ton)</label>
+                        <input type="number" disabled class="form-control" id="quantity"
+                            placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="buyerModel.quantity">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3">
+                    <div class="form-group mb-3">
+                        <label>Rate (Rupees / Per Metric Ton)</label>
+                        <input type="number" disabled class="form-control" id="rate" placeholder="Enter Rate (rs/pmt)"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.rate">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3">
+                    <div class="form-group mb-3">
+                        <label>Delivery Terms (Days)</label>
+                        <input type="number" disabled class="form-control" id="terms"
+                            placeholder="Enter Payment Terms (days)" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="buyerModel.terms">
+
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3">
+                    <div class="form-group mb-3">
+                        <img class="img-thumbnail" alt="200x200" width="200" src="{{buyerModel.image}}"
+                            data-holder-rendered="true">
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <div class="form-group mt-3 mb-3 form-check">
+                <input id="term-check01" type="checkbox" class="form-check-input" name="future" required
+                    data-pristine-required-message="You must accept the terms and conditions" />
+                <label class="form-check-label" for="term-check01">I accept the terms and
+                    conditions</label><br />
+            </div>
+            <div class="form-group">
+                <!-- <div class="row">
+                    <div class="col-1 offset-10">
+                        <button type="submit" class="btn btn-success" (click)="acceptOrderAndPay()">Accept</button>
+                    </div>
+                    <div class="col-1">
+                        <button type="submit" class="btn btn-danger" (click)="recjectTrade()">Reject</button>
+                    </div>
+                </div> -->
+            </div>
+        </form>
+    </div>
+</div>
