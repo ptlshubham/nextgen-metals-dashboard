@@ -54,7 +54,9 @@ export class UserRegisterComponent implements OnInit {
       if (res == 'sucess') {
         Swal.fire('Successfully!', 'Regsitration completed and wait for KYC updation.Password will mail to you shortly', 'success');
         this.router.navigate(['pages/home']);
-      } else {
+      } else if(res == 'duplicate email') {
+        this.apiservice.show('This email is already register, Please use another email', { classname: 'bg-danger text-center text-white', delay: 10000 });
+      }else{
         this.apiservice.show('Something went wrong! try after sometime', { classname: 'bg-danger text-center text-white', delay: 10000 });
       }
     })

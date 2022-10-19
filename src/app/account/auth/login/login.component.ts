@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from 'src/app/core/services/api.service';
 import { UserProfileService } from 'src/app/core/services/user.service';
+import { NotificationsComponent } from 'src/app/pages/extended/notifications/notifications.component';
+import { ToastService } from 'src/app/pages/extended/notifications/toast-service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +33,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService:UserProfileService,
     private router:Router,
-    private apiservice:ApiService
+    private apiservice:ToastService
     ) { }
 
   ngOnInit(): void {
@@ -65,7 +67,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('UserName', res[0].firstName + res[0].lastName);
           localStorage.setItem('Email', res[0].email);
           localStorage.setItem('UserId', res[0].id);
-          this.router.navigate(['landing/user-home']);
+          this.router.navigate(['/']);
           this.apiservice.show('Admin Login Successfully', { classname: 'bg-success text-center text-white', delay: 10000 });
         }else if(res ==1){
           this.apiservice.show('Incorrect Email !....please check your Email', { classname: 'bg-danger text-center text-white', delay: 10000 });

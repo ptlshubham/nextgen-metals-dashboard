@@ -42,6 +42,7 @@ export class ApiService {
  
 
   show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
+    debugger
     this.toasts.push({ textOrTpl, ...options });
   }
 
