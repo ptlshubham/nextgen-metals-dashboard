@@ -3,15 +3,20 @@
         <form>
             <input type="hidden" />
             <div class="row">
-
-                <!-- <div class="col-xl-3 col-md-3">
-                        <div class="form-group mb-3">
-                            <label>Seller Name</label>
-                            <input type="text" disabled class="form-control" id="buyer"
-                                placeholder="Enter Buyer" [ngModelOptions]="{standalone: true}"
-                                [(ngModel)]="buyerModel.sname">
-                        </div>
-                    </div> -->
+                <div class="col-xl-3 col-md-3">
+                    <div class="form-group mb-3">
+                        <label>Order ID</label>
+                        <input type="text" disabled class="form-control" id="buyer" placeholder="Enter Buyer"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.oid">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3">
+                    <div class="form-group mb-3">
+                        <label>Seller Name</label>
+                        <input type="text" disabled class="form-control" id="buyer" placeholder="Enter Buyer"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.sname">
+                    </div>
+                </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
                         <label>Seller Location</label>
@@ -51,13 +56,53 @@
                     <div class="form-group mb-3">
                         <label>Delivery Terms (Days)</label>
                         <input type="number" disabled class="form-control" id="terms"
-                            placeholder="Enter Payment Terms (days)" [ngModelOptions]="{standalone: true}"
+                            placeholder="Enter Delivery Terms (days)" [ngModelOptions]="{standalone: true}"
                             [(ngModel)]="buyerModel.terms">
-
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
+                        <label>Payment Terms (Days)</label>
+                        <input type="number" disabled class="form-control" id="terms"
+                            placeholder="Enter Payment Terms (days)" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="buyerModel.terms">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3">
+                    <div class="form-group mb-3">
+                        <label>Trade Date</label>
+                        <input type="text" disabled class="form-control" id="tradeDate"
+                            placeholder="Enter Trade date" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="buyerModel.tradeDate">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3">
+                    <div class="form-group mb-3">
+                        <label>Validity Date</label>
+                        <input type="text" disabled class="form-control" id="validity"
+                            placeholder="Enter Validity date" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="buyerModel.validity">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3">
+                    <div class="form-group mb-3">
+                        <label>Delivery Status</label>
+                        <input type="text" disabled class="form-control" id="terms"
+                            placeholder="Enter Delivery Status" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="buyerModel.deliveryStatus">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3">
+                    <div class="form-group mb-3">
+                        <label>Trade Status</label>
+                        <input type="text" disabled class="form-control" id="terms"
+                            placeholder="Enter Trade Status" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="buyerModel.status">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3">
+                    <div class="form-group mb-3">
+                        <label>Material Details</label> <br>
                         <img class="img-thumbnail" alt="200x200" width="200" src="{{buyerModel.image}}"
                             data-holder-rendered="true">
                     </div>
