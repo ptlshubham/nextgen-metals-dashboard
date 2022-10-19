@@ -9,6 +9,7 @@ import { environment } from '../../../environments/environment';
 import { LAYOUT_MODE } from '../../layouts/layouts.model';
 import { UserListService } from 'src/app/pages/apps/user-list/user-list.service';
 import { UserProfileService } from 'src/app/core/services/user.service';
+import { ApiService } from 'src/app/core/services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -38,7 +39,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private authFackservice: AuthfakeauthenticationService,
-    private userService:UserProfileService
+    private userService:UserProfileService,
+    private apiservice:ApiService
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -53,7 +55,7 @@ export class LoginComponent implements OnInit {
     }
     //Validation Set
     this.loginForm = this.formBuilder.group({
-      email: ['admin@themesbrand.com', [Validators.required, Validators.email]],
+      email: ['Enter your Email', [Validators.required, Validators.email]],
       password: ['123456', [Validators.required]],
     });
     // get return url from route parameters or default to '/'
@@ -78,14 +80,6 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     } else {
-      if (environment.defaultauth === 'firebase') {
-        this.authenticationService.login(this.f.email.value, this.f.password.value).then((res: any) => {
-          this.router.navigate(['landing/user-home']);
-        })
-          .catch(error => {
-            this.error = error ? error : '';
-          });
-      } else {
         this.userService.userLogin(this.f.email.value, this.f.password.value, this.role).subscribe((res:any)=>{
           debugger
           if(res.length >0){
@@ -94,12 +88,13 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('Email', res[0].email);
             localStorage.setItem('UserId', res[0].id);
             this.router.navigate(['landing/user-home']);
+            this.apiservice.show('Admin Login Successfully', { classname: 'bg-success text-center text-white', delay: 10000 });
+          }else if(res ==1){
+            this.apiservice.show('Incorrect Email !....please check your Email', { classname: 'bg-danger text-center text-white', delay: 10000 });
           }else{
-
+            this.apiservice.show('Incorrect Password !....please check your Password', { classname: 'bg-danger text-center text-white', delay: 10000 });
           }
         })
-         
-      }
     }
   }
 

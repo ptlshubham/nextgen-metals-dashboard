@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ApiService } from 'src/app/core/services/api.service';
+import { UserProfileService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +27,12 @@ export class LoginComponent implements OnInit {
   showNavigationArrows: any;
   fieldTextType!: boolean;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService:UserProfileService,
+    private router:Router,
+    private apiservice:ApiService
+    ) { }
 
   ngOnInit(): void {
     /**
@@ -49,6 +57,22 @@ export class LoginComponent implements OnInit {
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
+    }else{
+      this.userService.adminLogin(this.f.email.value, this.f.password.value).subscribe((res:any)=>{
+        debugger
+        if(res.length >0){
+          localStorage.setItem('Role', res[0].role);
+          localStorage.setItem('UserName', res[0].firstName + res[0].lastName);
+          localStorage.setItem('Email', res[0].email);
+          localStorage.setItem('UserId', res[0].id);
+          this.router.navigate(['landing/user-home']);
+          this.apiservice.show('Admin Login Successfully', { classname: 'bg-success text-center text-white', delay: 10000 });
+        }else if(res ==1){
+          this.apiservice.show('Incorrect Email !....please check your Email', { classname: 'bg-danger text-center text-white', delay: 10000 });
+        }else{
+          this.apiservice.show('Incorrect Password !....please check your Password', { classname: 'bg-danger text-center text-white', delay: 10000 });
+        }
+    });
     }
   }
 
