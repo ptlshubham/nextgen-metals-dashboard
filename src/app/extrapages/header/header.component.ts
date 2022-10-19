@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.isUser = localStorage.getItem('currentUser');
+    this.isUser = localStorage.getItem('UserId');
   }
   /**
   * Toggle the menu bar when having mobile screen
