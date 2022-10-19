@@ -231,6 +231,25 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
+                                                    <label for="basicpill-phoneno-input1" class="form-label">Average Monthly Trade (Ton.)</label>
+                                                    <input type="number" formControlName="avg_mnth_trade"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.avg_mnth_trade.errors }"
+                                                        class="form-control" id="avg_mnth_trade"
+                                                        placeholder="Enter Average Monthly Trade (Approx)">
+                                                    <div *ngIf="submitted && f.avg_mnth_trade.errors"
+                                                        class="invalid-feedback">
+                                                        <div *ngIf="f.avg_mnth_trade.errors.required">Average Monthly Trade is required.
+                                                        </div>
+                                                        <div *ngIf="f.avg_mnth_trade.errors.min">Only Numbers allowed & Do
+                                                            not
+                                                            enter
+                                                            characters.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
                                                     <label for="basicpill-address-input"
                                                         class="form-label">Address</label>
                                                     <textarea id="basicpill-address-input" class="form-control" rows="2"
