@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('UserId', res[0].id);
             localStorage.setItem('isProfile',res[0].profileUpdation);
             if(res[0].profileUpdation){
-              this.apiservice.show('Admin Login Successfully', { classname: 'bg-success text-center text-white', delay: 10000 });
+              this.apiservice.show('Login Successfully', { classname: 'bg-success text-center text-white', delay: 10000 });
               this.router.navigate(['landing/user-home']);
             }else{
               this.router.navigate(['landing/complete-profile']);
