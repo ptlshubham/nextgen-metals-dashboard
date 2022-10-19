@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.openNewRequest = true;
     this.role = localStorage.getItem('role');
+    debugger
   }
   openNewTrade() {
     this.openNewRequest = true;

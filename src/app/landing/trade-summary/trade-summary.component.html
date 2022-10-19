@@ -11,13 +11,13 @@
                             <tr>
                                 <th>#</th>
                                 <th>ORDER ID</th>
-                                <!-- <th>SELLER NAME</th> -->
+                                <th>SELLER NAME</th>
                                 <th>LOCATION</th>
                                 <th>Image</th>
                                 <th>QUALITY</th>
                                 <th>QUANTITY (mt)</th>
                                 <th>RATE (rs/pmt)</th>
-                                <th>DELIVERY TERMS</th>
+                                <th>PAYMENT TERMS</th>
                                 <th>Date</th>
                                 <th>STATUS</th>
                             </tr>
@@ -26,7 +26,20 @@
                             <tr *ngFor="let s of byuerTrade">
                                 <th scope="row">{{s.id}}</th>
                                 <td>{{s.oid}}</td>
-                                <!-- <td>{{s.sname}}</td> -->
+                                <td *ngIf="s.status=='ACCEPTED'"><b>{{s.sname}}</b> </td>
+                                <td *ngIf="s.status=='PENDING'">
+                                    <span class="badge bg-warning" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="View & Accept">Accept Trade</span>
+                                </td>
+                                <td *ngIf="s.status=='REJECTED'">
+                                    <span class="badge bg-danger" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Doesn't Show details">Rejected</span>
+                                </td>
+                                <td *ngIf="s.status=='IDEAL'">
+                                    <span class="badge bg-info" data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="Proposal pending from seller side">Not Review By Seller</span>
+                                </td>
+
                                 <td>{{s.location}}</td>
                                 <td>
                                     <img src="{{s.image}}" alt="" class="rounded avatar-lg">
@@ -158,7 +171,8 @@
                                         (click)="acceptOrderAndPay()">Accept</button>
                                 </div>
                                 <div class="col-1">
-                                    <button type="submit" class="btn btn-danger" (click)="recjectTrade()">Reject</button>
+                                    <button type="submit" class="btn btn-danger"
+                                        (click)="recjectTrade()">Reject</button>
                                 </div>
                             </div>
                         </div>

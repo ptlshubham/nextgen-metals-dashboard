@@ -85,9 +85,10 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Validity</label>
-                                    <input type="text" formControlName="validity" class="form-control" id="validity"
+                                    <input class="form-control" formControlName="validity" type="date"
+                                        value="2019-08-19" id="validity"
                                         [ngClass]="{ 'is-invalid': submitted && f.validity.errors }"
-                                        placeholder="Enter Validity">
+                                        placeholder="Select Validity">
                                     <div *ngIf="submitted && f.validity.errors" class="invalid-feedback">
                                         <div *ngIf="f.validity.errors.required">Validity is required</div>
                                     </div>

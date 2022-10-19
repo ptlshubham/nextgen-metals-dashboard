@@ -79,9 +79,11 @@
                         <input type="hidden" />
                         <div class="row">
                             <div class="col-xl-4 col-md-6">
-                                <label>Quality</label>
-                                <input type="text" formControlName="quality" class="form-control" id="quality"
-                                    placeholder="Enter quality" [(ngModel)]="tradeModel.quality">
+                                <div class="form-group mb-3">
+                                    <label>Quality</label>
+                                    <input type="text" formControlName="quality" class="form-control" id="quality"
+                                        placeholder="Enter quality" [(ngModel)]="tradeModel.quality">\
+                                </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">

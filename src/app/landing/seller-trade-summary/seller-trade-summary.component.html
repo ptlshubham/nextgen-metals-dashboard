@@ -20,7 +20,8 @@
                                 <th>QUANTITY (mt)</th>
                                 <th>RATE (rs/pmt)</th>
                                 <th>PAYMENT TERMS</th>
-                                <th>DATE</th>
+                                <th>ORDER DATE</th>
+                                <th>DISPACTH DATE</th>
                                 <th>STATUS</th>
                             </tr>
                         </thead>
@@ -35,6 +36,7 @@
                                 <td>{{s.rate}} ₹</td>
                                 <td>{{s.terms}} days</td>
                                 <td>{{s.tradeDate}}</td>
+                                <td>{{s.dispacthDate}}</td>
                                 <td>
                                     <span class="badge bg-success" *ngIf="s.status=='ACCEPTED'">{{s.status}}</span>
                                     <span class="badge bg-info" *ngIf="s.status=='IDEAL'">Not Review By Buyer</span>
