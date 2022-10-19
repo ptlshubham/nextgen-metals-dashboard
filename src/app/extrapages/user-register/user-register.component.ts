@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserProfileService } from 'src/app/core/services/user.service';
 import { MustMatch } from 'src/app/pages/form/validation/validation.mustmatch';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
@@ -14,7 +15,8 @@ export class UserRegisterComponent implements OnInit {
   submitted = false;
   constructor(
     public formBuilder: FormBuilder,
-    public userservice:UserProfileService
+    public userservice:UserProfileService,
+    public router:Router
   ) { }
 
   ngOnInit(): void {
@@ -45,12 +47,14 @@ export class UserRegisterComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.validationForm.value;
-    debugger
     // stop here if form is invalid
-   
       this.userservice.registerUser(this.validationForm.value).subscribe((res:any)=>{
-        debugger
+        if(res == 'sucess'){
+          Swal.fire('Successfully!', 'Regsitration completed and wait for KYC updation.Password will mail to you shortly', 'success');
+          this.router.navigate(['pages/home']);
+        }else{
+          Swal.fire('oops!', 'Try after sometime', 'success');
+        }
       })
-    
   }
 }

@@ -25,7 +25,7 @@
                                                         <div class="col-xl-3 col-md-3">
                                                             <div class="form-group mb-3">
                                                                 <label class="form-label">Salutation</label>
-                                                                <select required class="form-control form-select"
+                                                                <select [disabled]="disabled" required class="form-control form-select" [(ngModel)]="customerDetails.salutation"
                                                                     formControlName="select"
                                                                     [ngClass]="{'is-invalid': submitted && f.select.errors}">
                                                                     <option value="" disabled>Select Salutation</option>
@@ -48,7 +48,7 @@
                                                                     formControlName="fname"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.fname.errors }"
                                                                     placeholder="Enter First Name"
-                                                                    [(ngModel)]="customerModel.cname">
+                                                                    [(ngModel)]="customerDetails.firstName">
                                                                 <div *ngIf="submitted && f.fname.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.fname.errors.required">First Name is
@@ -66,7 +66,7 @@
                                                                     formControlName="lname"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.lname.errors }"
                                                                     placeholder="Enter Last Name"
-                                                                    [(ngModel)]="customerModel.cname">
+                                                                    [(ngModel)]="customerDetails.lastName">
                                                                 <div *ngIf="submitted && f.lname.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.lname.errors.required">Last Name is
@@ -83,7 +83,7 @@
                                                                     Number</label>
                                                                 <input type="text" class="form-control" id="contact"
                                                                     formControlName="contact"
-                                                                    [(ngModel)]="customerModel.contact"
+                                                                    [(ngModel)]="customerDetails.phone"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.contact.errors }"
                                                                     placeholder="Enter Phone Number">
                                                                 <div *ngIf="submitted && f.contact.errors"
@@ -103,7 +103,7 @@
                                                                     formControlName="email"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
                                                                     placeholder="Enter Email"
-                                                                    [(ngModel)]="customerModel.email">
+                                                                    [(ngModel)]="customerDetails.email">
                                                                 <div *ngIf="submitted && f.email.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.email.errors.required">Email is
@@ -117,11 +117,11 @@
                                                         <div class="col-xl-3 col-md-3">
                                                             <div class="form-group mb-3">
                                                                 <label class="form-label">Register As.</label>
-                                                                <input type="email" class="form-control" id="email"
-                                                                    formControlName="email"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                                                                <input type="text" class="form-control" id="role"
+                                                                    formControlName="selectR"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.selectR.errors }"
                                                                     placeholder="Register As"
-                                                                    [(ngModel)]="customerModel.email">
+                                                                    [(ngModel)]="customerDetails.role">
                                                                 <div *ngIf="submitted && f.selectR.errors"
                                                                     class="invalid-feedback">
                                                                     <span *ngIf="f.selectR.errors.required">This Field
@@ -142,7 +142,7 @@
                                                                     formControlName="companyname"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.companyname.errors }"
                                                                     placeholder="Enter Company Name"
-                                                                    [(ngModel)]="customerModel.comname">
+                                                                    [(ngModel)]="customerDetails.companyName">
                                                                 <div *ngIf="submitted && f.companyname.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.companyname.errors.required">Company
@@ -162,7 +162,7 @@
                                                                     formControlName="desgination"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.desgination.errors }"
                                                                     placeholder="Enter Desgination"
-                                                                    [(ngModel)]="customerModel.desigination">
+                                                                    [(ngModel)]="customerDetails.desigination">
                                                                 <div *ngIf="submitted && f.desgination.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.desgination.errors.required">Company
@@ -182,7 +182,7 @@
                                                                     formControlName="gstno"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.gstno.errors }"
                                                                     placeholder="Enter GST Number"
-                                                                    [(ngModel)]="customerModel.gst">
+                                                                    [(ngModel)]="customerDetails.GST_no">
                                                                 <div *ngIf="submitted && f.gstno.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.gstno.errors.required">Company Name is
@@ -203,7 +203,7 @@
                                                                     formControlName="workphone"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.workphone.errors }"
                                                                     placeholder="Enter Worked Phone"
-                                                                    [(ngModel)]="customerModel.workPhone">
+                                                                    [(ngModel)]="customerDetails.companyName">
                                                                 <div *ngIf="submitted && f.workphone.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.workphone.errors.required">Work Phone
@@ -243,7 +243,7 @@
                                                                     class="form-control" rows="3"
                                                                     placeholder="Enter Company Address"
                                                                     [ngModelOptions]="{standalone: true}"
-                                                                    [(ngModel)]="customerModel.address"></textarea>
+                                                                    [(ngModel)]="customerDetails.address"></textarea>
                                                             </div>
                                                         </div>
                                                         <!-- <div class="row">
