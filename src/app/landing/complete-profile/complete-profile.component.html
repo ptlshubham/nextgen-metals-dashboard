@@ -45,7 +45,8 @@
                                                     <input type="text" formControlName="fname" class="form-control"
                                                         id="fname"
                                                         [ngClass]="{ 'is-invalid': submitted && f.fname.errors }"
-                                                        placeholder="Enter First Name">
+                                                        placeholder="Enter First Name"
+                                                        [(ngModel)]="customerModel.firstName">
                                                     <div *ngIf="submitted && f.fname.errors" class="invalid-feedback">
                                                         <div *ngIf="f.fname.errors.required">First name is required
                                                         </div>
@@ -60,7 +61,8 @@
                                                     <input type="text" formControlName="lname" class="form-control"
                                                         id="lname"
                                                         [ngClass]="{ 'is-invalid': submitted && f.lname.errors }"
-                                                        placeholder="Enter Last Name">
+                                                        placeholder="Enter Last Name"
+                                                        [(ngModel)]="customerModel.lastName">
                                                     <div *ngIf="submitted && f.lname.errors" class="invalid-feedback">
                                                         <div *ngIf="f.lname.errors.required">Last name is required
                                                         </div>
@@ -76,7 +78,8 @@
                                                     <input type="number" formControlName="contact"
                                                         [ngClass]="{ 'is-invalid': submitted && f.contact.errors }"
                                                         class="form-control" id="contact"
-                                                        placeholder="Enter Phone Number">
+                                                        placeholder="Enter Phone Number"
+                                                        [(ngModel)]="customerModel.phone">
                                                     <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
                                                         <div *ngIf="f.contact.errors.required">Phone Number is required.
                                                         </div>
@@ -92,7 +95,8 @@
                                                     <label class="form-label">Email Address</label>
                                                     <input type="email" formControlName="email"
                                                         [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-                                                        class="form-control" id="useremail" placeholder="Enter email">
+                                                        class="form-control" id="useremail" placeholder="Enter email"
+                                                        [(ngModel)]="customerModel.email">
                                                     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                                                         <div *ngIf="f.email.errors.required">Email is required</div>
                                                         <div *ngIf="f.email.errors.email">Email must be a valid email
@@ -103,13 +107,11 @@
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Register As.</label>
-                                                    <select required class="form-control form-select"
+                                                    <input type="text" required class="form-control"
                                                         formControlName="regAs"
-                                                        [ngClass]="{'is-invalid': submitted && f.regAs.errors}">
-                                                        <option selected>Select Role</option>
-                                                        <option value="seller">Seller</option>
-                                                        <option value="buyer">Buyer</option>
-                                                    </select>
+                                                        [ngClass]="{'is-invalid': submitted && f.regAs.errors}"
+                                                        [(ngModel)]="customerModel.role">
+
                                                     <div *ngIf="submitted && f.regAs.errors" class="invalid-feedback">
                                                         <span *ngIf="f.regAs.errors.required">This Field is
                                                             required.</span>
@@ -143,7 +145,8 @@
                                                     <input type="text" formControlName="companyname"
                                                         class="form-control" id="companyname"
                                                         [ngClass]="{ 'is-invalid': submitted && f.companyname.errors }"
-                                                        placeholder="Enter Company Name">
+                                                        placeholder="Enter Company Name"
+                                                        [(ngModel)]="customerModel.companyName">
                                                     <div *ngIf="submitted && f.companyname.errors"
                                                         class="invalid-feedback">
                                                         <div *ngIf="f.companyname.errors.required">Company name is
@@ -160,7 +163,8 @@
                                                     <input type="text" formControlName="desgination"
                                                         class="form-control" id="desgination"
                                                         [ngClass]="{ 'is-invalid': submitted && f.desgination.errors }"
-                                                        placeholder="Enter Desgination">
+                                                        placeholder="Enter Desgination"
+                                                        [(ngModel)]="customerModel.desigination">
                                                     <div *ngIf="submitted && f.desgination.errors"
                                                         class="invalid-feedback">
                                                         <div *ngIf="f.desgination.errors.required">Desgination is
@@ -178,7 +182,8 @@
                                                     <input type="text" formControlName="gstno" class="form-control"
                                                         id="gstno"
                                                         [ngClass]="{ 'is-invalid': submitted && f.gstno.errors }"
-                                                        placeholder="Enter GST Number">
+                                                        placeholder="Enter GST Number"
+                                                        [(ngModel)]="customerModel.GST_no">
                                                     <div *ngIf="submitted && f.gstno.errors" class="invalid-feedback">
                                                         <div *ngIf="f.gstno.errors.required">GST Number is
                                                             required
@@ -194,7 +199,8 @@
                                                     <input type="number" formControlName="workphone"
                                                         [ngClass]="{ 'is-invalid': submitted && f.workphone.errors }"
                                                         class="form-control" id="workphone"
-                                                        placeholder="Enter Workphone Number">
+                                                        placeholder="Enter Workphone Number"
+                                                        [(ngModel)]="customerModel.companyName">
                                                     <div *ngIf="submitted && f.workphone.errors"
                                                         class="invalid-feedback">
                                                         <div *ngIf="f.workphone.errors.required">Workphone is required.
@@ -254,7 +260,8 @@
                                                     <textarea id="basicpill-address-input" class="form-control" rows="2"
                                                         id="address" formControlName="address"
                                                         [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
-                                                        placeholder="Enter Company Address"></textarea>
+                                                        placeholder="Enter Company Address"
+                                                        [(ngModel)]="customerModel.address"></textarea>
                                                     <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
                                                         <div *ngIf="f.address.errors.required">Address is
                                                             required

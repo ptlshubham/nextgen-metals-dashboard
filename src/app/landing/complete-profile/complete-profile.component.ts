@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Customer } from 'src/app/core/models/customer.model';
 import { ApiService } from 'src/app/core/services/api.service';
 import { UserProfileService } from 'src/app/core/services/user.service';
 import Swal from 'sweetalert2';
@@ -19,6 +20,9 @@ export class CompleteProfileComponent implements OnInit {
   removeUpload: boolean = false;
   cardImageBase64: any;
   materialImage: any;
+
+  public customerModel: Customer = new Customer;
+
   constructor(
     public formBuilder: FormBuilder,
     public userservice: UserProfileService,
@@ -99,5 +103,19 @@ export class CompleteProfileComponent implements OnInit {
       // this.cd.markForCheck();
 
     }
+  }
+  getSavedCustomerProfile(){
+        // this.customerModel.status = this.customer.status;
+    // this.customerModel.cname = this.customer.cname;
+    // this.customerModel.email = this.customer.email;
+    // this.customerModel.location = this.customer.location;
+    // this.customerModel.contact = this.customer.contact;
+    // this.customerModel.role = this.customer.role;
+    // this.customerModel.comname = this.customer.comname;
+    // this.customerModel.quality = this.customer.quality;
+    // this.customerModel.address = this.customer.address;
+    // this.customerModel.gst = this.customer.gst;
+    // this.customerModel.desigination = this.customer.desigination;
+    // this.customerModel.workPhone = this.customer.workPhone;
   }
 }
