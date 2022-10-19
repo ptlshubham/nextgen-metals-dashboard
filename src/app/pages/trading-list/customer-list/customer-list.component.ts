@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Customer } from 'src/app/core/models/customer.model';
+import { DashboardService } from 'src/app/core/services/dashboard.service';
 import Swal from 'sweetalert2';
 import { customerData } from './customerdata';
 
@@ -20,19 +22,52 @@ export class CustomerListComponent implements OnInit {
   page = 1;
   pageSize = 5;
   custData: any = {};
-  customerData!: Array<Customer>;
+  typeOfUser:any;
+  customerData: Customer[] = [];
+  customer!: Array<Customer>;
   public customerModel: Customer = new Customer;
-  public customer: Customer[] = [];
+  public customers: Customer[] = [];
   constructor(
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public activatedRoute:ActivatedRoute,
+    public dashboardService:DashboardService
 
-  ) { }
+  ) { 
+    
+  }
 
   ngOnInit(): void {
-    this.customerData = customerData;
-    this.totalRecords = customerData.length;
-
-
+    this.customers=[];
+    this.customerData=[];
+    this.dashboardService.getAllUserList().subscribe((res:any)=>{
+      this.customers = res;
+      debugger
+    })
+    this.activatedRoute.queryParams.subscribe((res: any) => {
+      this.typeOfUser = res.type;
+    });
+    setTimeout(() => {
+      if(this.typeOfUser == 'pendingKyc'){
+        debugger
+        this.customers.forEach((element:any)=>{
+          if(element.KYC_status == false){
+            this.customerData.push(element);
+          }
+        })
+      }else if(this.typeOfUser == 'buyer'){
+        this.customers.forEach((element:any)=>{
+          if(element.KYC_status == true && element.role=='buyer'){
+            this.customerData.push(element);
+          }
+        })
+      }else{
+        this.customers.forEach((element:any)=>{
+          if(element.KYC_status == true && element.role=='seller'){
+            this.customerData.push(element);
+          }
+        })
+      }
+    }, 600);
   }
 
 
@@ -50,20 +85,8 @@ export class CustomerListComponent implements OnInit {
   }
   viewCustomerDetails(data: any) {
     this.custData = data;
-    debugger
-    this.customerModel.status = data.status;
-    this.customerModel.cname = data.cname;
-    this.customerModel.email = data.email;
-    this.customerModel.location = data.location;
-    this.customerModel.contact = data.contact;
-    this.customerModel.role = data.role;
-    this.customerModel.comname = data.comname;
-    this.customerModel.quality = data.quality;
-    this.customerModel.address = data.address;
-    this.customerModel.gst = data.gst;
-    this.customerModel.desigination = data.desigination;
-    this.customerModel.workPhone = data.workPhone;
-    this.kyc = data.status;
+    this.customerModel = data;
+    this.kyc = data.KYC_status;
     this.openCustDetails = true;
   }
   confirm() {
@@ -78,7 +101,21 @@ export class CustomerListComponent implements OnInit {
     }).then(result => {
       if (result.value) {
         // this.deleteMail();
-        Swal.fire('Successfully!', 'Verification has been Completed.', 'success');
+        let data={
+          id:this.custData.id
+        }
+        this.dashboardService.updateKycUser(data).subscribe((res:any)=>{
+          debugger
+          if(res == 'success'){
+            Swal.fire('Successfully!', 'Verification has been Completed.', 'success');
+            this.openCustDetails = false;
+            this.ngOnInit();
+          }else{
+            Swal.fire('oops!', 'Try after sometime', 'success');
+          }
+          
+        })
+        // Swal.fire('Successfully!', 'Verification has been Completed.', 'success');
       }
     });
   }

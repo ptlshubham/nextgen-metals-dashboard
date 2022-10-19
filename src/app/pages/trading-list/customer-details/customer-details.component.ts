@@ -11,11 +11,12 @@ export class CustomerDetailsComponent implements OnInit {
   validationForm!: FormGroup;
   submitted = false;
 
-  @Input() customerDetails:any;
+  @Input() public customerDetails!: Customer;
   public customerModel: Customer = new Customer;
   // public customer: Customer[] = [];
   dateString = '2012-11-01';
   dateString1 = '2018-10-01';
+  disabled:boolean = true;
   role: any = '';
   tradeList: any = [
     {
@@ -106,14 +107,13 @@ export class CustomerDetailsComponent implements OnInit {
   constructor(
     public formBuilder: FormBuilder
   ) {
-    this.customerDetails;
-    debugger
+   
     this.getCustomerDetails();
   }
 
   ngOnInit(): void {
     this.validationForm = this.formBuilder.group({
-      select: ['', [Validators.required]],
+      select: [{value: '', disabled: true}, [Validators.required ] ],
       selectR: ['', [Validators.required]],
       selectM: ['', [Validators.required]],
       fname: ['', [Validators.required]],

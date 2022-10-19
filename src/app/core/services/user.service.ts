@@ -22,4 +22,13 @@ export class UserProfileService {
     registerUser(data:any){
      return  this.http.post(ApiService.RegisterNewCustomerURL,data);
     }
+
+    userLogin(email:any,pass:any,role:any){
+        let data={
+            email:email,
+            pass:pass,
+            role:role
+        };
+        return this.http.post(ApiService.userLoginURL,data);
+    }
 }

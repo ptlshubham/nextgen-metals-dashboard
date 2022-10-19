@@ -22,14 +22,14 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let s of customerData | slice:0:5; let i = index;">
-                                <th scope="row">{{s.id}}</th>
-                                <td>{{s.cname}}</td>
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{s.firstName }} {{ s.lastName}}</td>
                                 <td>{{s.location}}</td>
                                 <td style="text-transform: uppercase;">{{s.role}}</td>
-                                <td>{{s.quality}}</td>
+                                <td>{{s.material_quality}}</td>
                                 <td>
-                                    <span class="bg-warning badge me-2" *ngIf="s.status==false">Pending</span>
-                                    <span class="bg-info badge me-2" *ngIf="s.status==true">Done</span>
+                                    <span class="bg-warning badge me-2" *ngIf="s.KYC_status==false">Pending</span>
+                                    <span class="bg-info badge me-2" *ngIf="s.KYC_status==true">Done</span>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-wrap gap-2">
@@ -47,11 +47,11 @@
                 </div>
                 <div class="row mt-4">
                     <div class="col-7">
-                        Showing {{startIndex}} - {{endIndex}} of {{totalRecords}}
+                        Showing {{startIndex}} - {{endIndex}} of {{customerData.length}}
                     </div>
                     <div class="col-5">
                         <div class="btn-group float-end">
-                            <ngb-pagination class="pagination-rounded" [collectionSize]="totalRecords"
+                            <ngb-pagination class="pagination-rounded" [collectionSize]="customerData.length"
                                 (pageChange)="onPageChange($event)" [(page)]="page" [pageSize]="pageSize">
                             </ngb-pagination>
                             <!--Pagination-->
@@ -85,7 +85,10 @@
                     </div>
                 </div>
             </div>
-            <app-customer-details [customerDetails]="customerModel"></app-customer-details>
+            <div *ngIf="customerModel != 'undefined'">
+                <app-customer-details [customerDetails]="customerModel" ></app-customer-details>
+            </div>
+          
 
         </div>
     </div>

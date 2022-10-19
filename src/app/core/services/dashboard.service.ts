@@ -21,10 +21,16 @@ export class DashboardService {
     getBuyerList(){
         return  this.http.get(ApiService.getBuyerListURL);
     }
+    getAllUserList(){
+        return  this.http.get(ApiService.getAllUserListURL);
+    }
     getSellerList(){
         return  this.http.get(ApiService.getSellerListURL);
     }
     getKycPendingList(){
         return  this.http.get(ApiService.getKycPendingListURL);
+    }
+    updateKycUser(data:any){
+        return this.http.post(ApiService.updateKYCURL , data)
     }
 }

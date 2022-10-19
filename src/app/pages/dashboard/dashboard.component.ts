@@ -5,6 +5,7 @@ import { circle, latLng, tileLayer } from 'leaflet';
 import { walletOverview, investedOverview, marketOverview, walletlineChart, tradeslineChart, investedlineChart, profitlineChart, recentActivity, News, transactionsAll, transactionsBuy, transactionsSell } from './data';
 import { ChartType } from './dashboard.model';
 import { DashboardService } from 'src/app/core/services/dashboard.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -54,7 +55,8 @@ export class DashboardComponent implements OnInit {
   }
 
   constructor(
-    private dashboardService : DashboardService
+    private dashboardService : DashboardService,
+    private router:Router
   ) {
   }
 
@@ -132,6 +134,29 @@ export class DashboardComponent implements OnInit {
     this.transactionsAll = transactionsAll;
     this.transactionsBuy = transactionsBuy;
     this.transactionsSell = transactionsSell;
+  }
+
+  openUserList(val:any){
+    if(val =='pendingKyc'){
+      this.router.navigate(['trade-list/customer'],{
+        queryParams:{
+          type:'pendingKyc'
+        }
+      });
+    }else if(val == 'buyer'){
+      this.router.navigate(['trade-list/customer'],{
+        queryParams:{
+          type:'buyer'
+        }
+      });
+    }else{
+      this.router.navigate(['trade-list/customer'],{
+        queryParams:{
+          type:'seller'
+        }
+      });
+    }
+   
   }
   
 

@@ -7,6 +7,8 @@ import { AuthenticationService } from '../../core/services/auth.service';
 import { AuthfakeauthenticationService } from '../../core/services/authfake.service';
 import { environment } from '../../../environments/environment';
 import { LAYOUT_MODE } from '../../layouts/layouts.model';
+import { UserListService } from 'src/app/pages/apps/user-list/user-list.service';
+import { UserProfileService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private authFackservice: AuthfakeauthenticationService,
+    private userService:UserProfileService
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -68,7 +71,7 @@ export class LoginComponent implements OnInit {
     this.role = val.value;
   }
   onSubmit() {
-    localStorage.setItem('role', this.role);
+    
     this.submitted = true;
 
     // stop here if form is invalid
@@ -83,15 +86,19 @@ export class LoginComponent implements OnInit {
             this.error = error ? error : '';
           });
       } else {
-        this.authFackservice.login(this.f.email.value, this.f.password.value)
-          .pipe(first())
-          .subscribe(
-            data => {
-              this.router.navigate(['landing/user-home']);
-            },
-            error => {
-              this.error = error ? error : '';
-            });
+        this.userService.userLogin(this.f.email.value, this.f.password.value, this.role).subscribe((res:any)=>{
+          debugger
+          if(res.length >0){
+            localStorage.setItem('Role', res[0].role);
+            localStorage.setItem('UserName', res[0].firstName + res[0].lastName);
+            localStorage.setItem('Email', res[0].email);
+            localStorage.setItem('UserId', res[0].id);
+            this.router.navigate(['landing/user-home']);
+          }else{
+
+          }
+        })
+         
       }
     }
   }

@@ -78,14 +78,14 @@
             </div>
         </div>
     </div>
-    <div class="col-xl-4 col-md-6">
+    <div class="col-xl-4 col-md-6" (click)="openUserList('buyer')">
         <div class="card card-h-100">
             <div class="card-body">
                 <div class="row align-items-center">
                     <div class="col-6">
-                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Customer</span>
+                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Buyer</span>
                         <h4 class="mb-3">
-                            <span [CountTo]="15653" class="counter-value" [from]="0" [duration]="1"></span>
+                            <span [CountTo]="buyerList.length" class="counter-value" [from]="0" [duration]="1"></span>
                         </h4>
                     </div>
                     <div class="col-6">
@@ -96,7 +96,58 @@
                     </div>
                 </div>
                 <div class="text-nowrap">
-                    <span class="badge bg-soft-success text-success">+329 Trades</span>
+                    <span class="badge bg-soft-success text-success">{{buyerList.length}} Buyer</span>
+                    <span class="ms-1 text-muted font-size-13">Since Last Month</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6" (click)="openUserList('seller')">
+        <div class="card card-h-100">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Seller</span>
+                        <h4 class="mb-3">
+                            <span [CountTo]="sellerList.length" class="counter-value" [from]="0" [duration]="1"></span>
+                        </h4>
+                    </div>
+                    <div class="col-6">
+                        <apx-chart class="apex-charts" dir="ltr" [series]="tradeslineChart.series"
+                            [chart]="tradeslineChart.chart" [colors]="tradeslineChart.colors"
+                            [stroke]="tradeslineChart.stroke" [tooltip]="tradeslineChart.tooltip">
+                        </apx-chart>
+                    </div>
+                </div>
+                <div class="text-nowrap">
+                    <span class="badge bg-soft-success text-success">{{sellerList.length}} Seller</span>
+                    <span class="ms-1 text-muted font-size-13">Since Last Month</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-xl-4 col-md-6" (click)="openUserList('pendingKyc')">
+        <div class="card card-h-100">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Pending KYC User</span>
+                        <h4 class="mb-3">
+                            <span [CountTo]="pendingKycUserList.length" class="counter-value" [from]="0" [duration]="1"></span>
+                        </h4>
+                    </div>
+                    <div class="col-6">
+                        <apx-chart class="apex-charts" dir="ltr" [series]="tradeslineChart.series"
+                            [chart]="tradeslineChart.chart" [colors]="tradeslineChart.colors"
+                            [stroke]="tradeslineChart.stroke" [tooltip]="tradeslineChart.tooltip">
+                        </apx-chart>
+                    </div>
+                </div>
+                <div class="text-nowrap">
+                    <span class="badge bg-soft-success text-success">{{pendingKycUserList.length}} KYC Pending</span>
                     <span class="ms-1 text-muted font-size-13">Since Last Month</span>
                 </div>
             </div>

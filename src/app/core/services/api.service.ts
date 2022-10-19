@@ -16,12 +16,16 @@ export class ApiService {
       'Content-Type': 'application/json'
     })
   }
-  public static uploadMaterialImageURL: string = ApiService.HOST_URL + '/admin/UploadMaterialImage';
   
+  public static userLoginURL: string = ApiService.HOST_URL + '/authenticate/userLogin';
   public static RegisterNewCustomerURL: string = ApiService.HOST_URL + '/admin/RegisterNewUser';
   public static getBuyerListURL: string = ApiService.HOST_URL + '/admin/getAllBuyer';
+  public static getAllUserListURL: string = ApiService.HOST_URL + '/admin/getAllUser';
   public static getSellerListURL: string = ApiService.HOST_URL + '/admin/getAllSeller';
   public static getKycPendingListURL: string = ApiService.HOST_URL + '/admin/getAllKYCPendingUser';
+  public static updateKYCURL: string = ApiService.HOST_URL + '/admin/updateKYCUser';
+  public static uploadMaterialImageURL: string = ApiService.HOST_URL + '/admin/UploadMaterialImage';
+  
  
  
  

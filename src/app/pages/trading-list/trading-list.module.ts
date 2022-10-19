@@ -46,6 +46,9 @@ import { CommissionListComponent } from './commission-list/commission-list.compo
     FeatherModule.pick(allIcons),
     NgbPaginationModule,
     NgbTypeaheadModule
+  ],
+  providers:[
+    CustomerDetailsComponent
   ]
 })
 export class TradingListModule { }
