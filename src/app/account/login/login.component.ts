@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs/operators';
-
 import { AuthenticationService } from '../../core/services/auth.service';
 import { AuthfakeauthenticationService } from '../../core/services/authfake.service';
 import { environment } from '../../../environments/environment';
@@ -55,8 +53,8 @@ export class LoginComponent implements OnInit {
     }
     //Validation Set
     this.loginForm = this.formBuilder.group({
-      email: ['Enter your Email', [Validators.required, Validators.email]],
-      password: ['123456', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
     });
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
