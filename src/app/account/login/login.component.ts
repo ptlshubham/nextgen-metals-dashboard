@@ -90,7 +90,11 @@ export class LoginComponent implements OnInit {
               this.apiservice.show('Login Successfully', { classname: 'bg-success text-center text-white', delay: 10000 });
               this.router.navigate(['landing/user-home']);
             }else{
-              this.router.navigate(['landing/complete-profile']);
+              this.router.navigate(['landing/complete-profile'],{
+                queryParams:{
+                  data:res[0].id
+                }
+              });
             }
             
             

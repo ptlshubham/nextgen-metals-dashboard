@@ -12,20 +12,20 @@
                     <div class="card-header">
                         <h4 class="card-title mb-0">Complete Your Profile</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" *ngIf="customerModel != 'undefined'">
                         <aw-wizard [navBarLayout]="'large-empty-symbols'">
                             <aw-wizard-step stepTitle="Personal Details">
                                 <ng-template awWizardStepSymbol>
                                     <i class=" bx bxs-user"></i>
                                 </ng-template>
                                 <div class="row">
-                                    <form [formGroup]="validationForm">
+                                    <form [formGroup]="validationForm" >
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label class="form-label">Salutation</label>
                                                     <select required class="form-control form-select" required
-                                                        formControlName="select"
+                                                        formControlName="select" [(ngModel)]="customerModel.salutation"
                                                         [ngClass]="{'is-invalid': submitted && f.select.errors}">
                                                         <option selected>Select Salutation</option>
                                                         <option value="Mr">Mr.</option>
@@ -159,15 +159,15 @@
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label for="basicpill-vatno-input1"
-                                                        class="form-label">Desgination</label>
-                                                    <input type="text" formControlName="desgination"
-                                                        class="form-control" id="desgination"
-                                                        [ngClass]="{ 'is-invalid': submitted && f.desgination.errors }"
-                                                        placeholder="Enter Desgination"
-                                                        [(ngModel)]="customerModel.desigination">
-                                                    <div *ngIf="submitted && f.desgination.errors"
+                                                        class="form-label">designation</label>
+                                                    <input type="text" formControlName="designation"
+                                                        class="form-control" id="designation"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.designation.errors }"
+                                                        placeholder="Enter designation"
+                                                        [(ngModel)]="customerModel.designation">
+                                                    <div *ngIf="submitted && f.designation.errors"
                                                         class="invalid-feedback">
-                                                        <div *ngIf="f.desgination.errors.required">Desgination is
+                                                        <div *ngIf="f.designation.errors.required">designation is
                                                             required
                                                         </div>
                                                     </div>
@@ -200,7 +200,7 @@
                                                         [ngClass]="{ 'is-invalid': submitted && f.workphone.errors }"
                                                         class="form-control" id="workphone"
                                                         placeholder="Enter Workphone Number"
-                                                        [(ngModel)]="customerModel.companyName">
+                                                        [(ngModel)]="customerModel.company_contact">
                                                     <div *ngIf="submitted && f.workphone.errors"
                                                         class="invalid-feedback">
                                                         <div *ngIf="f.workphone.errors.required">Workphone is required.
@@ -217,7 +217,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Material Quality</label>
                                                     <select required class="form-control form-select"
-                                                        formControlName="selectMaterial"
+                                                        formControlName="selectMaterial" [(ngModel)]="customerModel.material_quality"
                                                         [ngClass]="{'is-invalid': submitted && f.selectMaterial.errors}">
                                                         <option selected>Select Material Quality</option>
                                                         <option value="q1">Q1</option>
@@ -237,7 +237,7 @@
                                                         Monthly Trade (Ton.)</label>
                                                     <input type="number" formControlName="avg_mnth_trade"
                                                         [ngClass]="{ 'is-invalid': submitted && f.avg_mnth_trade.errors }"
-                                                        class="form-control" id="avg_mnth_trade"
+                                                        class="form-control" id="avg_mnth_trade"  [(ngModel)]="customerModel.avg_mnth_trade"
                                                         placeholder="Enter Average Monthly Trade (Approx)">
                                                     <div *ngIf="submitted && f.avg_mnth_trade.errors"
                                                         class="invalid-feedback">
@@ -292,7 +292,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Account Type</label>
                                                     <select required class="form-control form-select"
-                                                        formControlName="selectAcc"
+                                                        formControlName="selectAcc" [(ngModel)]="customerModel.acc_type"
                                                         [ngClass]="{'is-invalid': submitted && f.selectAcc.errors}">
                                                         <option selected>Select Account Type</option>
                                                         <option value="saving">Saving Account</option>
@@ -311,7 +311,7 @@
                                                         Holder's
                                                         Name.</label>
                                                     <input type="text" formControlName="acHolder" class="form-control"
-                                                        id="acHolder"
+                                                        id="acHolder" [(ngModel)]="customerModel.acc_holder_name"
                                                         [ngClass]="{ 'is-invalid': submitted && f.acHolder.errors }"
                                                         placeholder="Enter A/C Holder's Name">
                                                     <div *ngIf="submitted && f.acHolder.errors"
@@ -328,7 +328,7 @@
                                                     <label for="basicpill-vatno-input1" class="form-label">Bank Name
                                                     </label>
                                                     <input type="text" formControlName="bankName" class="form-control"
-                                                        id="bankName"
+                                                        id="bankName" [(ngModel)]="customerModel.bank_name"
                                                         [ngClass]="{ 'is-invalid': submitted && f.bankName.errors }"
                                                         placeholder="Enter Bankname">
                                                     <div *ngIf="submitted && f.bankName.errors"
@@ -344,7 +344,7 @@
                                                     <label for="basicpill-cstno-input1" class="form-label">Bank A/c
                                                         No.</label>
                                                     <input type="number" formControlName="bankACNo" class="form-control"
-                                                        id="bankACNo"
+                                                        id="bankACNo" [(ngModel)]="customerModel.bank_acc_no"
                                                         [ngClass]="{ 'is-invalid': submitted && f.bankACNo.errors }"
                                                         placeholder="Enter Account Number">
                                                     <div *ngIf="submitted && f.bankACNo.errors"
@@ -361,7 +361,7 @@
                                                     <label for="basicpill-phoneno-input1" class="form-label">Branch
                                                         Name</label>
                                                     <input type="text" formControlName="branchName" class="form-control"
-                                                        id="branchName"
+                                                        id="branchName" [(ngModel)]="customerModel.branch_name"
                                                         [ngClass]="{ 'is-invalid': submitted && f.branchName.errors }"
                                                         placeholder="Enter Branch Name">
                                                     <div *ngIf="submitted && f.branchName.errors"
@@ -377,7 +377,7 @@
                                                     <label for="basicpill-phoneno-input1"
                                                         class="form-label">IFSC</label>
                                                     <input type="text" formControlName="IFSC" class="form-control"
-                                                        id="IFSC"
+                                                        id="IFSC" [(ngModel)]="customerModel.isfc_code"
                                                         [ngClass]="{ 'is-invalid': submitted && f.IFSC.errors }"
                                                         placeholder="Enter IFSC Code">
                                                     <div *ngIf="submitted && f.IFSC.errors" class="invalid-feedback">

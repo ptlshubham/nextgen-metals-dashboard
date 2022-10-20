@@ -39,4 +39,12 @@ export class UserProfileService {
         };
         return this.http.post(ApiService.adminLoginURL,data);
     }
+
+    completeProfile(data:any){
+        return this.http.post(ApiService.completeProfileURL,data);
+    }
+
+    getUserDetail(id:any){
+        return this.http.get(ApiService.getUserDetailById+id)
+    }
 }

@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from 'src/app/core/models/customer.model';
 import { ApiService } from 'src/app/core/services/api.service';
 import { UserProfileService } from 'src/app/core/services/user.service';
@@ -21,29 +21,37 @@ export class CompleteProfileComponent implements OnInit {
   cardImageBase64: any;
   materialImage: any;
 
-  public customerModel: Customer = new Customer;
-
+  public customerModel: any;
+  userId:any;
   constructor(
     public formBuilder: FormBuilder,
     public userservice: UserProfileService,
     public router: Router,
-    public apiservice: ApiService
+    public apiservice: ApiService,
+    public activatedRoute:ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe((res: any) => {
+      this.userId= res.data;
+      this.userservice.getUserDetail(this.userId).subscribe((res:any)=>{
+        this.customerModel = res[0];
+        
+      })
+    });
     this.validationForm = this.formBuilder.group({
-      select: ['', [Validators.required]],
-      regAs: ['', [Validators.required]],
+      select: [{value: '', disabled: true}, [Validators.required]],
+      regAs: [{value: '', disabled: true}, [Validators.required]],
       fname: ['', [Validators.required]],
       lname: ['', [Validators.required]],
       contact: ['', [Validators.required, Validators.min(1)]],
       email: ['', [Validators.required, Validators.email]],
 
       companyname: ['', [Validators.required]],
-      desgination: ['', [Validators.required]],
+      designation: ['', [Validators.required]],
       gstno: ['', [Validators.required]],
       workphone: ['', [Validators.required, Validators.min(1)]],
-      address: ['', [Validators.required]],
+      address: ['' ],
       avg_mnth_trade: ['0', [Validators.required, Validators.min(1)]],
       selectMaterial: ['', [Validators.required]],
 
@@ -59,18 +67,17 @@ export class CompleteProfileComponent implements OnInit {
 
   get f() { return this.validationForm.controls; }
   onSubmit() {
+    this.customerModel
+    debugger
     this.submitted = true;
     if (this.validationForm.valid) {
-      //   this.userservice.registerUser(this.validationForm.value).subscribe((res: any) => {
-      //   if (res == 'sucess') {
-      //     Swal.fire('Successfully!', 'Regsitration completed and wait for KYC updation.Password will mail to you shortly', 'success');
-      //     this.router.navigate(['pages/home']);
-      //   } else if(res == 'duplicate email') {
-      //     this.apiservice.show('This email is already register, Please use another email', { classname: 'bg-danger text-center text-white', delay: 10000 });
-      //   }else{
-      //     this.apiservice.show('Something went wrong! try after sometime', { classname: 'bg-danger text-center text-white', delay: 10000 });
-      //   }
-      // })
+        this.userservice.completeProfile(this.customerModel).subscribe((res: any) => {
+        if (res == 'sucess') {
+          this.router.navigate(['landing/user-home']);
+        }else{
+          this.apiservice.show('Something went wrong! try after sometime', { classname: 'bg-danger text-center text-white', delay: 10000 });
+        }
+      })
     }
     else {
       this.apiservice.show('Please Fill Details Properly', { classname: 'bg-danger text-center text-white', delay: 10000 });
