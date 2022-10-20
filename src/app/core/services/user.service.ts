@@ -41,7 +41,7 @@ export class UserProfileService {
         return this.http.post(ApiService.adminLoginURL, data);
     }
     uploadCancelCheckImage(img: any): Observable<any> {
-        return this.http.post<any>(ApiService.uploadMaterialImageURL, img);
+        return this.http.post<any>(ApiService.uploadCancelCheckImageURL, img);
 
     }
 }

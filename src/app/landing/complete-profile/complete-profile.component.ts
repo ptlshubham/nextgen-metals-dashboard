@@ -87,6 +87,7 @@ export class CompleteProfileComponent implements OnInit {
       // When file uploads set it to file formcontrol
       reader.onload = () => {
         this.imageUrl = reader.result;
+        debugger
         const imgBase64Path = reader.result;
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
