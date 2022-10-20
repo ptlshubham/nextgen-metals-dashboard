@@ -69,6 +69,15 @@ export class HeaderComponent implements OnInit {
   userLogin() {
     this.islogin = true;
   }
+  routeUserLogin() {
+    if (this.islogin = true){
+      this.router.navigate(['/landing/user-home']);
+    }
+    else{
+      this.router.navigate(['/pages/home']);
+    }
+
+  }
 
 }
 
