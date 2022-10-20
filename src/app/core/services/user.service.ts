@@ -44,4 +44,12 @@ export class UserProfileService {
         return this.http.post<any>(ApiService.uploadCancelCheckImageURL, img);
 
     }
+
+    completeProfile(data:any){
+        return this.http.post(ApiService.completeProfileURL,data);
+    }
+
+    getUserDetail(id:any){
+        return this.http.get(ApiService.getUserDetailById+id)
+    }
 }

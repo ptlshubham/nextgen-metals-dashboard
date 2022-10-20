@@ -13,6 +13,7 @@ export class Customer {
         public company_contact?:string,
         public material_quality?: string,
         public bank_name?:string,
+        public avg_mnth_trade?:number,
         public bank_acc_no?: string,
         public acc_type?: string,
         public acc_holder_name?: string,

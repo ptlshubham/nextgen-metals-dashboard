@@ -132,17 +132,6 @@ export class CustomerDetailsComponent implements OnInit {
 
   getCustomerDetails() {
     this.customerDetails;
-    // this.customerModel.status = this.customer.status;
-    // this.customerModel.cname = this.customer.cname;
-    // this.customerModel.email = this.customer.email;
-    // this.customerModel.location = this.customer.location;
-    // this.customerModel.contact = this.customer.contact;
-    // this.customerModel.role = this.customer.role;
-    // this.customerModel.comname = this.customer.comname;
-    // this.customerModel.quality = this.customer.quality;
-    // this.customerModel.address = this.customer.address;
-    // this.customerModel.gst = this.customer.gst;
-    // this.customerModel.desigination = this.customer.desigination;
-    // this.customerModel.workPhone = this.customer.workPhone;
+   
   }
 }
