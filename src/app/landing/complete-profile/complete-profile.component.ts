@@ -100,11 +100,11 @@ export class CompleteProfileComponent implements OnInit {
         formdata.append('file', file);
         debugger
 
-        // this.sellerTradeService.uploadMaterialImage(formdata).subscribe((response) => {
-        //   this.materialImage = response;
-        //   this.editFile = false;
-        //   this.removeUpload = true;
-        // })
+        this.userservice.uploadCancelCheckImage(formdata).subscribe((response) => {
+          this.materialImage = response;
+          this.editFile = false;
+          this.removeUpload = true;
+        })
       }
       // ChangeDetectorRef since file is loading outside the zone
       // this.cd.markForCheck();

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/auth.models';
 import { ApiService } from './api.service';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserProfileService {
@@ -19,25 +20,29 @@ export class UserProfileService {
     register(user: User) {
         return this.http.post(`/users/register`, user);
     }
-    registerUser(data:any){
-     return  this.http.post(ApiService.RegisterNewCustomerURL,data);
+    registerUser(data: any) {
+        return this.http.post(ApiService.RegisterNewCustomerURL, data);
     }
 
-    userLogin(email:any,pass:any,role:any){
-        let data={
-            email:email,
-            pass:pass,
-            role:role
+    userLogin(email: any, pass: any, role: any) {
+        let data = {
+            email: email,
+            pass: pass,
+            role: role
         };
-        return this.http.post(ApiService.userLoginURL,data);
+        return this.http.post(ApiService.userLoginURL, data);
     }
 
-    adminLogin(email:any,pass:any){
-        let data={
-            email:email,
-            pass:pass
+    adminLogin(email: any, pass: any) {
+        let data = {
+            email: email,
+            pass: pass
         };
-        return this.http.post(ApiService.adminLoginURL,data);
+        return this.http.post(ApiService.adminLoginURL, data);
+    }
+    uploadCancelCheckImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.uploadMaterialImageURL, img);
+
     }
 
     completeProfile(data:any){
