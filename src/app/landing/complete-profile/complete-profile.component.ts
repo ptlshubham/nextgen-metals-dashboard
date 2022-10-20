@@ -67,12 +67,10 @@ export class CompleteProfileComponent implements OnInit {
 
   get f() { return this.validationForm.controls; }
   onSubmit() {
-    this.customerModel
-    debugger
     this.submitted = true;
     if (this.validationForm.valid) {
         this.userservice.completeProfile(this.customerModel).subscribe((res: any) => {
-        if (res == 'sucess') {
+        if (res == 'success') {
           this.router.navigate(['landing/user-home']);
         }else{
           this.apiservice.show('Something went wrong! try after sometime', { classname: 'bg-danger text-center text-white', delay: 10000 });
@@ -82,15 +80,13 @@ export class CompleteProfileComponent implements OnInit {
     else {
       this.apiservice.show('Please Fill Details Properly', { classname: 'bg-danger text-center text-white', delay: 10000 });
     }
-
-
   }
   uploadFile(event: any) {
+    debugger
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
       reader.readAsDataURL(file);
-
       // When file uploads set it to file formcontrol
       reader.onload = () => {
         this.imageUrl = reader.result;
@@ -98,31 +94,14 @@ export class CompleteProfileComponent implements OnInit {
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
         formdata.append('file', file);
-        debugger
-
         this.userservice.uploadCancelCheckImage(formdata).subscribe((response) => {
           this.materialImage = response;
+          this.customerModel.cancel_cheque = this.materialImage;
           this.editFile = false;
           this.removeUpload = true;
         })
       }
-      // ChangeDetectorRef since file is loading outside the zone
-      // this.cd.markForCheck();
-
     }
   }
-  getSavedCustomerProfile(){
-        // this.customerModel.status = this.customer.status;
-    // this.customerModel.cname = this.customer.cname;
-    // this.customerModel.email = this.customer.email;
-    // this.customerModel.location = this.customer.location;
-    // this.customerModel.contact = this.customer.contact;
-    // this.customerModel.role = this.customer.role;
-    // this.customerModel.comname = this.customer.comname;
-    // this.customerModel.quality = this.customer.quality;
-    // this.customerModel.address = this.customer.address;
-    // this.customerModel.gst = this.customer.gst;
-    // this.customerModel.desigination = this.customer.desigination;
-    // this.customerModel.workPhone = this.customer.workPhone;
-  }
+ 
 }
