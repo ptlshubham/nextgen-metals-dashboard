@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TradeService } from 'src/app/core/services/trade.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -7,25 +8,31 @@ import Swal from 'sweetalert2';
   styleUrls: ['./trade-summary.component.scss']
 })
 export class TradeSummaryComponent implements OnInit {
-  byuerTrade: any = [
-    { id: 1, oid: 'A02501', 'sname': 'Xyz', quality: 'Q1', quantity: 50, rate: 45000, terms: 7, validity: 'Valid till 4 pm, 25th July', image: 'assets/images/users/avatar-5.jpg', location: 'Delhi Gurgaon', status: 'IDEAL', tradeDate: '11-10-2020' },
-    { id: 2, oid: 'A02502', 'sname': 'abc', quality: 'Q1', quantity: 40, rate: 40000, terms: 5, validity: 'Valid till 4 pm, 25th July', image: 'assets/images/users/avatar-5.jpg', location: 'Delhi Gurgaon', status: 'ACCEPTED', tradeDate: '09-10-2022' },
-    { id: 3, oid: 'A02503', 'sname': 'cdf', quality: 'Q2', quantity: 30, rate: 4000, terms: 6, validity: 'Valid till 4 pm, 25th July', image: 'assets/images/users/avatar-5.jpg', location: 'Delhi Gurgaon', status: 'PENDING', tradeDate: '06-05-2022' },
-    { id: 4, oid: 'A02504', 'sname': 'fhg', quality: 'Q3', quantity: 20, rate: 5000, terms: 3, validity: 'Valid till 4 pm, 25th July', image: 'assets/images/users/avatar-5.jpg', location: 'Delhi Gurgaon', status: 'REJECTED', tradeDate: '08-05-2021' },
-    { id: 5, oid: 'A02505', 'sname': 'shu', quality: 'Q1', quantity: 10, rate: 30000, terms: 5, validity: 'Valid till 4 pm, 25th July', image: 'assets/images/users/avatar-5.jpg', location: 'Delhi Gurgaon', status: 'PENDING', tradeDate: '06-05-2022' }
-
-  ]
+  byuerTrade: any = [ ];
   isAccept: boolean = false;
   openDetails: boolean = false;
   isBuyerOpen: boolean = false;
   openPayment: boolean = false;
   buyerModel: any = {};
   buyerDetails: any = {};
-  constructor() {
+  constructor(
+    public tradingService:TradeService
+  ) {
     this.isBuyerOpen = true;
   }
 
   ngOnInit(): void {
+    this.tradingService.getAllTradingDatabyIdForBuyer(localStorage.getItem('UserId')).subscribe((res:any)=>{
+      debugger
+       if(res.length ==0){
+        this.byuerTrade.length=0;
+       }else{
+        this.byuerTrade = res;
+        debugger
+      
+       }
+      
+    })
   }
 
   viewAcceptOrReject(data: any) {
@@ -34,23 +41,18 @@ export class TradeSummaryComponent implements OnInit {
     this.isBuyerOpen = false;
     this.openPayment = false
     this.openDetails = false;
-
-
   }
   backToSummary() {
     this.isAccept = false;
     this.isBuyerOpen = true;
     this.openPayment = false;
     this.openDetails = false;
-
-
   }
   acceptOrderAndPay() {
     this.isAccept = false;
     this.isBuyerOpen = false;
     this.openPayment = true;
     this.openDetails = false;
-
   }
   recjectTrade() {
     Swal.fire({

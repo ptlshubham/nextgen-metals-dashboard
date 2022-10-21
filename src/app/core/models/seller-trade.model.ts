@@ -1,11 +1,19 @@
 export class SellerTrade {
     id?: number;
     oid?: number;
-    sname?: string;
-    quality?: string;
-    quantity?: number;
+    buyFirstName?: string;
+    buyLastName?: string;
+    req_quality?: string;
+    req_quantity?: number;
     address?: string;
-    validity?: string;
-    rate?: number;
-    terms?: number;
+    payment_validity?: string;
+    buyerRate?: number;
+    payment_terms?: string;
+    diliveryTerms?:number;
+    sell_quantity?:number;
+    payment_days?:number;
+    materialImage?:string;
+    tradeStatus?:string;
+    sellerId?:string;
+    sellerName?:string;
 }

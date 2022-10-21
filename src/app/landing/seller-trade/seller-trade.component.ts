@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SellerTrade } from 'src/app/core/models/seller-trade.model';
 import { SellerTradeService } from 'src/app/core/services/seller-trade.service';
+import { TradeService } from 'src/app/core/services/trade.service';
 import { MustMatch } from 'src/app/pages/form/validation/validation.mustmatch';
 
 @Component({
@@ -23,46 +24,56 @@ export class SellerTradeComponent implements OnInit {
   cardImageBase64: any;
   materialImage: any;
 
-  sellerTrade: any = [
-    { "id": 1, "oid": "001", 'sname': 'Xyz', "quality": 'Q1', "quantity": 50, "rate": 45000, "terms": 7, validity: 'Valid till 4 pm, 25th July', "address": 'Delhi Gurgaon' },
-    { "id": 2, "oid": "002", 'sname': 'abc', "quality": 'Q1', "quantity": 40, "rate": 40000, "terms": 5, validity: 'Valid till 4 pm, 25th July', "address": 'Delhi Gurgaon' },
-    { "id": 3, "oid": "003", 'sname': 'cdf', "quality": 'Q2', "quantity": 30, "rate": 4000, "terms": 6, validity: 'Valid till 4 pm, 25th July', "address": 'Delhi Gurgaon' },
-    { "id": 4, "oid": "004", 'sname': 'fhg', "quality": 'Q3', "quantity": 20, "rate": 5000, "terms": 3, validity: 'Valid till 4 pm, 25th July', "address": 'Delhi Gurgaon' },
-    { "id": 5, "oid": "005", 'sname': 'shu', "quality": 'Q1', "quantity": 10, "rate": 30000, "terms": 5, validity: 'Valid till 4 pm, 25th July', "address": 'Delhi Gurgaon' }
-
-  ]
+  sellerTrade: any = []
   constructor(
     public formBuilder: FormBuilder,
-    public sellerTradeService: SellerTradeService
+    public sellerTradeService: SellerTradeService,
+    public tradingService:TradeService
   ) { }
 
   ngOnInit(): void {
+    debugger
+    this.tradingService.newTradeReqForSeller().subscribe((res:any)=>{
+      this.sellerTrade = res;
+      debugger
+    })
     this.validationForm = this.formBuilder.group({
       validity: ['', Validators.required],
       address: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
       quantity: [0, [Validators.required, Validators.min(1)]],
       sellquantity: [0, [Validators.required, Validators.min(1)]],
       terms: [0, [Validators.required, Validators.min(1)]],
       diliveryterms: [0, [Validators.required, Validators.min(1)]],
       rate: [0, [Validators.required, Validators.min(1)]],
-      password: ['', Validators.required], confirmpwd: ['', Validators.required],
-      select: ['', [Validators.required]],
       quality: ['', [Validators.required]],
       buyer: ['', [Validators.required]],
-    }, {
-      validator: MustMatch('password', 'confirmpwd'),
-
+      payment_days:['']
     });
   }
   get f() { return this.validationForm.controls; }
 
   onSubmit() {
+    debugger
     this.submitted = true;
-
+   
     // stop here if form is invalid
     if (this.validationForm.invalid) {
+      debugger
       return;
+    }else{
+      let seller:any,name:any;
+      seller = localStorage.getItem('UserId');
+      name = localStorage.getItem('UserName');
+      this.tradeModel.materialImage = this.materialImage;
+      this.tradeModel.sellerId =seller;
+      this.tradeModel.sellerName=name;
+      this.tradingService.saveSellerTradeRequest(this.tradeModel).subscribe((res:any)=>{
+        if(res =='success'){
+          alert('submitted request');
+        }
+      })
+
+      debugger
     }
   }
   editAcceptOrder(val: any) {
@@ -75,6 +86,7 @@ export class SellerTradeComponent implements OnInit {
     this.validationForm.controls['validity'].disable();
     this.validationForm.controls['buyer'].disable();
     this.validationForm.controls['address'].disable();
+    this.validationForm.controls['payment_days'].disable();
 
 
   }
@@ -95,11 +107,11 @@ export class SellerTradeComponent implements OnInit {
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
         formdata.append('file', file);
-        debugger
+        
 
         this.sellerTradeService.uploadMaterialImage(formdata).subscribe((response) => {
           this.materialImage = response;
-          debugger
+          
           //   this.isImageSaved = true;
           this.editFile = false;
           this.removeUpload = true;

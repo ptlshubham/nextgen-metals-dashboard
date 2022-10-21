@@ -13,13 +13,13 @@
                         <!-- card -->
                         <div class="card card-h-100">
                             <!-- card body -->
-                            <div class="card-body">
+                            <div class="card-body" >
                                 <div class="row align-items-center">
                                     <div class="col-8">
                                         <span class="text-muted mb-3 lh-1 d-block text-truncate">New Trade
                                             Request</span>
                                         <h4 class="mb-3">
-                                            <span [CountTo]="865" class="counter-value" [from]="0"
+                                            <span [CountTo]="newTradingListBuyer.length" class="counter-value" [from]="0"
                                                 [duration]="1"></span>
                                         </h4>
                                     </div>
@@ -42,14 +42,14 @@
 
                     <div class="col-xl-3 col-md-6" (click)="openTradeSummary()">
                         <!-- card -->
-                        <div class="card card-h-100">
+                        <div class="card card-h-100" >
                             <!-- card body -->
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-8">
                                         <span class="text-muted mb-3 lh-1 d-block text-truncate">Trade Summary</span>
                                         <h4 class="mb-3">
-                                            <span [CountTo]="6258" class="counter-value" [from]="0"
+                                            <span [CountTo]="allTradingListBuyer.length" class="counter-value" [from]="0"
                                                 [duration]="1"></span>
                                         </h4>
                                     </div>
@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                                 <div class="text-nowrap">
-                                    <span class="badge bg-soft-danger text-danger">-29 Trades</span>
+                                    <span class="badge bg-soft-danger text-danger">{{weekTradeCountBuyer}} Trades</span>
                                     <span class="ms-1 text-muted font-size-13">Since last week</span>
                                 </div>
                             </div><!-- end card body -->
@@ -135,7 +135,7 @@
                     <app-trade></app-trade>
                 </div>
                 <div style="margin-bottom: 60px !important;" *ngIf="openTSummary">
-                    <app-trade-summary></app-trade-summary>
+                    <app-trade-summary ></app-trade-summary>
                 </div>
                 <div style="margin-bottom: 60px !important;" *ngIf="openPaymentSumm">
                     <app-trade-payment></app-trade-payment>
@@ -145,7 +145,7 @@
                 <div class="row">
                     <div class="col-xl-3 col-md-6" (click)="openNewTrade()">
                         <!-- card -->
-                        <div class="card card-h-100">
+                        <div class="card card-h-100" >
                             <!-- card body -->
                             <div class="card-body">
                                 <div class="row align-items-center">
@@ -153,7 +153,7 @@
                                         <span class="text-muted mb-3 lh-1 d-block text-truncate">New Trade
                                             Request</span>
                                         <h4 class="mb-3">
-                                            <span [CountTo]="865" class="counter-value" [from]="0"
+                                            <span [CountTo]="newTradingListSeller.length" class="counter-value" [from]="0"
                                                 [duration]="1"></span>
                                         </h4>
                                     </div>
@@ -176,14 +176,14 @@
 
                     <div class="col-xl-3 col-md-6" (click)="openTradeSummary()">
                         <!-- card -->
-                        <div class="card card-h-100">
+                        <div class="card card-h-100" >
                             <!-- card body -->
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-8">
                                         <span class="text-muted mb-3 lh-1 d-block text-truncate">Trade Summary</span>
                                         <h4 class="mb-3">
-                                            <span [CountTo]="6258" class="counter-value" [from]="0"
+                                            <span [CountTo]="allTradingListSeller.length" class="counter-value" [from]="0"
                                                 [duration]="1"></span>
                                         </h4>
                                     </div>
@@ -197,7 +197,7 @@
                                     </div>
                                 </div>
                                 <div class="text-nowrap">
-                                    <span class="badge bg-soft-danger text-danger">-29 Trades</span>
+                                    <span class="badge bg-soft-danger text-danger">{{weekTradeCountSeller}} Trades</span>
                                     <span class="ms-1 text-muted font-size-13">Since last week</span>
                                 </div>
                             </div><!-- end card body -->

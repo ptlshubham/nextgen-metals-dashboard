@@ -29,7 +29,7 @@ export class SellerTradePaymentComponent implements OnInit {
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
         formdata.append('file', file);
-        debugger
+        
 
         // this.sellerTradeService.uploadMaterialImage(formdata).subscribe((response) => {
         //   this.materialImage = response;

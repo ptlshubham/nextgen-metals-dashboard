@@ -53,7 +53,7 @@ export class DatatableComponent implements OnInit {
    */
   _fetchData() {
     this.tableData = this.tableData;
-    debugger
+    
   }
 
   /**

@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
       return;
     }else{
       this.userService.adminLogin(this.f.email.value, this.f.password.value).subscribe((res:any)=>{
-        debugger
+        
         if(res.length >0){
           localStorage.setItem('Role', res[0].role);
           localStorage.setItem('UserName', res[0].firstName + res[0].lastName);

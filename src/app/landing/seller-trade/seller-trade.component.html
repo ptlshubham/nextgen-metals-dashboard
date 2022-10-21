@@ -9,7 +9,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table mb-0">
+                    <table class="table mb-0" *ngIf="sellerTrade.length >0">
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
@@ -24,15 +24,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let s of sellerTrade">
-                                <th scope="row">{{s.id}}</th>
-                                <td>{{s.sname}}</td>
-                                <td>{{s.address}}</td>
-                                <td>{{s.quality}}</td>
-                                <td>{{s.quantity}} (mt)</td>
-                                <td>{{s.rate}} ₹</td>
-                                <td>{{s.terms}} days</td>
-                                <td>{{s.validity}}</td>
+                            <tr *ngFor="let s of sellerTrade;let i=index">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{s.buyFirstName}} {{s.buyLastName}}</td>
+                                <td>{{s.buyerLocation}}</td>
+                                <td>{{s.req_quality}}</td>
+                                <td>{{s.req_quantity}} (mt)</td>
+                                <td>{{s.buyerRate}} ₹</td>
+                                <td>{{s.payment_days}} days</td>
+                                <td>{{s.payment_validity | date:'yyyy-MM-dd'}}</td>
 
                                 <td>
                                     <div class="d-flex flex-wrap gap-2">
@@ -82,45 +82,53 @@
                                 <div class="form-group mb-3">
                                     <label>Quality</label>
                                     <input type="text" formControlName="quality" class="form-control" id="quality"
-                                        placeholder="Enter quality" [(ngModel)]="tradeModel.quality">\
+                                        placeholder="Enter quality" [(ngModel)]="tradeModel.req_quality">
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Buyer Name + Location</label>
                                     <input type="text" formControlName="buyer" class="form-control" id="buyer"
-                                        placeholder="Enter Buyer" [(ngModel)]="tradeModel.sname">
+                                        placeholder="Enter Buyer" [(ngModel)]="tradeModel.buyFirstName">
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Required Quantity (Metric Ton)</label>
                                     <input type="number" formControlName="quantity" class="form-control" id="quantity"
-                                        placeholder="Enter Quantity (mt)" [(ngModel)]="tradeModel.quantity">
+                                        placeholder="Enter Quantity (mt)" [(ngModel)]="tradeModel.req_quantity">
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Rate (Rupees / Per Metric Ton)</label>
                                     <input type="number" formControlName="rate" class="form-control" id="rate"
-                                        placeholder="Enter Rate (rs/pmt)" [(ngModel)]="tradeModel.rate">
+                                        placeholder="Enter Rate (rs/pmt)" [(ngModel)]="tradeModel.buyerRate">
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
-                                    <label>Payment Terms (Days)</label>
-                                    <input type="number" formControlName="terms" class="form-control" id="terms"
-                                        placeholder="Enter Payment Terms (days)" [(ngModel)]="tradeModel.terms">
+                                    <label>Payment Terms </label>
+                                    <input type="text" formControlName="terms" class="form-control" id="terms"
+                                        placeholder="Enter Payment Terms " [(ngModel)]="tradeModel.payment_terms">
 
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6" *ngIf="tradeModel.payment_terms =='After Delivery'">
+                                <div class="form-group mb-3">
+                                    <label>Payment Terms(Days)</label>
+                                    <input type="text" formControlName="payment_days" class="form-control" id="payment_days"
+                                        placeholder="Enter Payment Days" [(ngModel)]="tradeModel.payment_days">
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Validity</label>
                                     <input type="text" formControlName="validity" class="form-control" id="validity"
-                                        placeholder="Enter Validity" [(ngModel)]="tradeModel.validity">
+                                        placeholder="Enter Validity" [(ngModel)]="tradeModel.payment_validity">
                                 </div>
                             </div>
+                           
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Buyer Location</label>
@@ -131,7 +139,7 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Quantity (Metric Ton)</label>
-                                    <input type="number" formControlName="sellquantity"
+                                    <input type="number" formControlName="sellquantity" [(ngModel)]="tradeModel.sell_quantity"
                                         [ngClass]="{ 'is-invalid': submitted && f.sellquantity.errors }"
                                         class="form-control" id="sellquantity" placeholder="Enter Quantity (mt)">
                                     <div *ngIf="submitted && f.sellquantity.errors" class="invalid-feedback">
@@ -145,7 +153,7 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Delivery Terms (Days)</label>
-                                    <input type="number" formControlName="diliveryterms"
+                                    <input type="number" formControlName="diliveryterms" [(ngModel)]="tradeModel.diliveryTerms"
                                         [ngClass]="{ 'is-invalid': submitted && f.diliveryterms.errors }"
                                         class="form-control" id="diliveryterms"
                                         placeholder="Enter Delivery Terms (days)">

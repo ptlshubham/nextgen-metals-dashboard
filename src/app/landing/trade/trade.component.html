@@ -16,8 +16,8 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Material Quality</label>
-                                    <select required class="form-control form-select" formControlName="select"
-                                        [ngClass]="{'is-invalid': submitted && f.select.errors}">
+                                    <select required class="form-control form-select" formControlName="selectMaterial"
+                                        [ngClass]="{'is-invalid': submitted && f.select.errors}" [(ngModel)]="tradeModel.material_quality">
                                         <option value disabled>Select Material Quality</option>
                                         <option value="q1">Q1</option>
                                         <option value="q2">Q2</option>
@@ -31,7 +31,7 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Quantity (Metric Ton)</label>
-                                    <input type="number" formControlName="quantity"
+                                    <input type="number" formControlName="quantity" [(ngModel)]="tradeModel.quantity"
                                         [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }"
                                         class="form-control" id="quantity" placeholder="Enter Quantity (mt)">
                                     <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
@@ -45,7 +45,7 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Rate (Rupees / Per Metric Ton)</label>
-                                    <input type="number" formControlName="rate"
+                                    <input type="number" formControlName="rate" [(ngModel)]="tradeModel.buyerRate"
                                         [ngClass]="{ 'is-invalid': submitted && f.rate.errors }" class="form-control"
                                         id="rate" placeholder="Enter Rate (rs/pmt)">
                                     <div *ngIf="submitted && f.rate.errors" class="invalid-feedback">
@@ -59,10 +59,10 @@
                                 <div class="form-group mb-3">
                                     <label class="form-label">Payment Terms</label>
                                     <select required class="form-control form-select" formControlName="selectP"
-                                        [ngClass]="{'is-invalid': submitted && f.selectP.errors}"
-                                        [ngModel]="selectedValue" (ngModelChange)="onPaymentChange($event)">
-                                        <option value disabled>Select Payment Terms</option>
-                                        <option *ngFor="let p of paymentTerms" [ngValue]="p.id">{{p.name}}</option>
+                                        [ngClass]="{'is-invalid': submitted && f.selectP.errors}" [(ngModel)]="selectedValue"
+                                       (ngModelChange)="onPaymentChange($event)">
+                                        <option value disabled >Select Payment Terms</option>
+                                        <option *ngFor="let p of paymentTerms" [ngValue]="p.name">{{p.name}}</option>
                                     </select>
                                     <div *ngIf="submitted && f.selectP.errors" class="invalid-feedback">
                                         <span *ngIf="f.selectP.errors.required">This Field is required.</span>
@@ -72,7 +72,7 @@
                             <div class="col-xl-4 col-md-6" *ngIf="paymentOpen">
                                 <div class="form-group mb-3">
                                     <label>Payment Days</label>
-                                    <input type="number" formControlName="terms"
+                                    <input type="number" formControlName="terms" [(ngModel)]="payment_days"
                                         [ngClass]="{ 'is-invalid': submitted && f.terms.errors }" class="form-control"
                                         id="terms" placeholder="Enter Payment Terms (days)">
                                     <div *ngIf="submitted && f.terms.errors" class="invalid-feedback">
@@ -86,9 +86,10 @@
                                 <div class="form-group mb-3">
                                     <label>Validity</label>
                                     <input class="form-control" formControlName="validity" type="date"
-                                        value="2019-08-19" id="validity"
+                                        id="validity" [(ngModel)]="tradeModel.payment_validity" value="{{dt | date:'yyyy-MM-dd'}}"
                                         [ngClass]="{ 'is-invalid': submitted && f.validity.errors }"
-                                        placeholder="Select Validity">
+                                        placeholder="Select Validity" [ngModel]="dt | date:'yyyy-MM-dd'"
+                                        (ngModelChange)="dt = $event">
                                     <div *ngIf="submitted && f.validity.errors" class="invalid-feedback">
                                         <div *ngIf="f.validity.errors.required">Validity is required</div>
                                     </div>

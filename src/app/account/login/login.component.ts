@@ -79,13 +79,14 @@ export class LoginComponent implements OnInit {
       return;
     } else {
         this.userService.userLogin(this.f.email.value, this.f.password.value, this.role).subscribe((res:any)=>{
-          debugger
+          
           if(res.length >0){
             localStorage.setItem('Role', res[0].role);
             localStorage.setItem('UserName', res[0].firstName + res[0].lastName);
             localStorage.setItem('Email', res[0].email);
             localStorage.setItem('UserId', res[0].id);
             localStorage.setItem('isProfile',res[0].profileUpdation);
+            localStorage.setItem('material_quality',res[0].material_quality);
             if(res[0].profileUpdation){
               this.apiservice.show('Login Successfully', { classname: 'bg-success text-center text-white', delay: 10000 });
               this.router.navigate(['landing/user-home']);

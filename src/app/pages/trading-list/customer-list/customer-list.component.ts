@@ -41,14 +41,14 @@ export class CustomerListComponent implements OnInit {
     this.customerData=[];
     this.dashboardService.getAllUserList().subscribe((res:any)=>{
       this.customers = res;
-      debugger
+      
     })
     this.activatedRoute.queryParams.subscribe((res: any) => {
       this.typeOfUser = res.type;
     });
     setTimeout(() => {
       if(this.typeOfUser == 'pendingKyc'){
-        debugger
+        
         this.customers.forEach((element:any)=>{
           if(element.KYC_status == false){
             this.customerData.push(element);
@@ -105,7 +105,7 @@ export class CustomerListComponent implements OnInit {
           id:this.custData.id
         }
         this.dashboardService.updateKycUser(data).subscribe((res:any)=>{
-          debugger
+          
           if(res == 'success'){
             Swal.fire('Successfully!', 'Verification has been Completed.', 'success');
             this.openCustDetails = false;

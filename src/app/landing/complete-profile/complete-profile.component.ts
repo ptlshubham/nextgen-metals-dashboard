@@ -82,7 +82,7 @@ export class CompleteProfileComponent implements OnInit {
     }
   }
   uploadFile(event: any) {
-    debugger
+    
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
@@ -90,7 +90,7 @@ export class CompleteProfileComponent implements OnInit {
       // When file uploads set it to file formcontrol
       reader.onload = () => {
         this.imageUrl = reader.result;
-        debugger
+        
         const imgBase64Path = reader.result;
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
