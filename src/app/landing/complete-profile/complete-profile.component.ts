@@ -71,7 +71,7 @@ export class CompleteProfileComponent implements OnInit {
     if (this.validationForm.valid) {
         this.userservice.completeProfile(this.customerModel).subscribe((res: any) => {
         if (res == 'success') {
-          this.router.navigate(['landing/user-home']);
+          this.router.navigate(['/landing/user-home']);
         }else{
           this.apiservice.show('Something went wrong! try after sometime', { classname: 'bg-danger text-center text-white', delay: 10000 });
         }

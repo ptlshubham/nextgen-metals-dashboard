@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit {
      * Form Validatyion
      */
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      email: ['admin@nextgen', [Validators.required, Validators.email]],
+      password: ['123456', Validators.required],
     });
     document.body.setAttribute('data-layout', 'vertical');
   }
