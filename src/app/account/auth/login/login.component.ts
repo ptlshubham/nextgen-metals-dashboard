@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('UserName', res[0].firstName + res[0].lastName);
           localStorage.setItem('Email', res[0].email);
           localStorage.setItem('UserId', res[0].id);
+          localStorage.setItem('authenticationAdminToken',res[0].token);
           this.router.navigate(['/']);
           this.apiservice.show('Admin Login Successfully', { classname: 'bg-success text-center text-white', delay: 10000 });
         }else if(res ==1){

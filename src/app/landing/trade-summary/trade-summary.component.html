@@ -151,7 +151,7 @@
                             <div class="col-xl-3 col-md-3">
                                 <div class="form-group mb-3">
                                     <label>Payment Terms </label>
-                                    <input type="number" disabled class="form-control" id="terms"
+                                    <input type="text" disabled class="form-control" id="terms"
                                         placeholder="Enter Payment Terms" [ngModelOptions]="{standalone: true}"
                                         [(ngModel)]="buyerModel.payment_terms">
 
@@ -160,7 +160,7 @@
                             <div class="col-xl-3 col-md-3" *ngIf="buyerModel.payment_terms =='After Delivery'">
                                 <div class="form-group mb-3">
                                     <label>Delivery Terms (Days)</label>
-                                    <input type="number" disabled class="form-control" id="terms"
+                                    <input type="number" disabled class="form-control" id="payment_days"
                                         placeholder="Enter Payment Terms (days)" [ngModelOptions]="{standalone: true}"
                                         [(ngModel)]="buyerModel.payment_days">
 
