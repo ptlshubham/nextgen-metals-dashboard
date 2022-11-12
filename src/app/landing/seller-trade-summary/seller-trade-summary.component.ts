@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TradeService } from 'src/app/core/services/trade.service';
 
 @Component({
   selector: 'app-seller-trade-summary',
@@ -16,9 +17,23 @@ export class SellerTradeSummaryComponent implements OnInit {
   ]
   sellerModel: any = {};
   paymentOpen: boolean = false;
-  constructor() { }
+  constructor(
+    private tradingService:TradeService
+  ) { }
 
   ngOnInit(): void {
+    this.tradingService.getAllTradingDatabyIdForSeller(localStorage.getItem('UserId')).subscribe((res:any)=>{
+       if(res.length ==0){
+        this.sellerTrade.length=0;
+       }else{
+        this.sellerTrade = res;
+        this.sellerTrade.forEach((element:any)=>{
+          element.location = element.street+' '+element.city+' '+element.state;
+          
+        })
+       }
+      
+    })
   }
   acceptAndPay(data: any) {
     this.sellerModel = data;

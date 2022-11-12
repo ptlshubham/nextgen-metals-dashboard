@@ -32,10 +32,11 @@ export class SellerTradeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    debugger
     this.tradingService.newTradeReqForSeller().subscribe((res:any)=>{
       this.sellerTrade = res;
-      debugger
+      this.sellerTrade.forEach((element:any)=>{
+        element.buyerLocation = element.street+' '+element.city+' '+element.state;
+      })
     })
     this.validationForm = this.formBuilder.group({
       validity: ['', Validators.required],
@@ -55,7 +56,6 @@ export class SellerTradeComponent implements OnInit {
   onSubmit() {
     debugger
     this.submitted = true;
-   
     // stop here if form is invalid
     if (this.validationForm.invalid) {
       debugger
@@ -72,8 +72,6 @@ export class SellerTradeComponent implements OnInit {
           alert('submitted request');
         }
       })
-
-      debugger
     }
   }
   editAcceptOrder(val: any) {

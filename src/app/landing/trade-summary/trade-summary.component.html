@@ -6,28 +6,26 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-nowrap mb-0">
+                    <table class="table mb-0">
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
                                 <th>ORDER ID</th>
-                                <!-- <th>SELLER NAME</th>
-                                <th>LOCATION</th>
-                                <th>Image</th> -->
+                                <th>ORDER STATUS</th>
+                                <th>SELLER LOCATION</th>
                                 <th>QUALITY</th>
                                 <th>QUANTITY (mt)</th>
                                 <th>RATE (rs/pmt)</th>
-                                <th>PAYMENT TERMS</th>
-                                <th>Validity Date</th>
+                                <th>DELIVERY STATUS</th>
                                 <th>STATUS</th>
-                                <th>ACTION</th>
+                                <th >ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let s of byuerTrade;let i=index">
                                 <th scope="row">{{i+1}}</th>
                                 <td>{{s.id}}</td>
-                                <!-- <td *ngIf="s.status=='ACCEPTED'"><b>{{s.sname}}</b> </td>
+                                <td *ngIf="s.status=='ACCEPTED'"><b>{{s.sname}}</b> </td>
                                 <td *ngIf="s.status=='PENDING'">
                                     <span class="badge bg-warning" data-bs-toggle="tooltip" data-bs-placement="top"
                                         title="View & Accept">Accept Trade</span>
@@ -41,27 +39,13 @@
                                         title="Proposal pending from seller side">Not Review By Seller</span>
                                 </td>
 
-                                <td>{{s.location}}</td>
-                                <td>
-                                    <img src="{{s.image}}" alt="" class="rounded avatar-lg">
-                                </td> -->
+                                <td width="20">{{s.location}}</td>
                                 <td>{{s.req_quality}}</td>
                                 <td>{{s.req_quantity}} (mt)</td>
                                 <td>{{s.buyerRate}} ₹</td>
                                 <td>{{s.payment_terms}}</td>
                                 <td>{{s.payment_validity | date:'yyyy-MM-dd'}}</td>
-                                <td>
-                                    <span class="badge bg-success" *ngIf="s.tradeStatus=='ACCEPTED'">{{s.tradeStatus}}</span>
-                                    <span class="badge bg-info" *ngIf="s.tradeStatus=='IDEAL'">Not Review By Seller</span>
-                                    <span class="badge bg-danger" *ngIf="s.tradeStatus=='REJECTED'">{{s.tradeStatus}}</span>
-                                    <br>
-                                    <div *ngIf="s.tradeStatus=='PENDING'">
-                                        <button type="button" class="btn btn-primary waves-effect waves-light"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"
-                                            (click)="viewAcceptOrReject(s)"><i
-                                                class="bx bx-check-double font-size-16 align-middle me-2"></i>Accept</button>
-                                    </div>
-                                </td>
+                                <td>pending</td>
                                 <td>
                                     <div *ngIf="s.tradeStatus=='ACCEPTED'">
                                         <button type="button" class="btn btn-primary waves-effect waves-light"
@@ -103,14 +87,7 @@
                         <input type="hidden" />
                         <div class="row">
 
-                            <!-- <div class="col-xl-3 col-md-3">
-                                <div class="form-group mb-3">
-                                    <label>Seller Name</label>
-                                    <input type="text" disabled class="form-control" id="buyer"
-                                        placeholder="Enter Buyer" [ngModelOptions]="{standalone: true}"
-                                        [(ngModel)]="buyerModel.sname">
-                                </div>
-                            </div> -->
+                         
                             <div class="col-xl-3 col-md-3">
                                 <div class="form-group mb-3">
                                     <label>Seller Location</label>

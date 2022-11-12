@@ -16,4 +16,5 @@ export class SellerTrade {
     tradeStatus?:string;
     sellerId?:string;
     sellerName?:string;
+    buyerLocation?:string;
 }

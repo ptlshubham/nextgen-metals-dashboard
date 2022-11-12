@@ -28,8 +28,10 @@ export class TradeSummaryComponent implements OnInit {
         this.byuerTrade.length=0;
        }else{
         this.byuerTrade = res;
-        debugger
-      
+        this.byuerTrade.forEach((element:any)=>{
+          element.location = element.street+' '+element.city+' '+element.state;
+          debugger
+        })
        }
       
     })

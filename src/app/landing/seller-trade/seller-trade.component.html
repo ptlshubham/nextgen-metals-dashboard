@@ -23,11 +23,11 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr *ngFor="let s of sellerTrade;let i=index">
+                        <tbody >
+                            <tr *ngFor="let s of sellerTrade;let i=index" >
                                 <th scope="row">{{i+1}}</th>
                                 <td>{{s.buyFirstName}} {{s.buyLastName}}</td>
-                                <td>{{s.buyerLocation}}</td>
+                                <td width="1">{{s.buyerLocation}}</td>
                                 <td>{{s.req_quality}}</td>
                                 <td>{{s.req_quantity}} (mt)</td>
                                 <td>{{s.buyerRate}} ₹</td>
@@ -132,8 +132,8 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Buyer Location</label>
-                                    <input type="text" formControlName="address" class="form-control" id="address"
-                                        placeholder="Enter Buyer Location" [(ngModel)]="tradeModel.address">
+                                    <textarea type="text" formControlName="address" class="form-control" id="address"
+                                        placeholder="Enter Buyer Location" [(ngModel)]="tradeModel.buyerLocation"></textarea>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">

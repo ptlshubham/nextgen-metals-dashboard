@@ -9,40 +9,39 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-nowrap mb-0">
+                    <table class="table mb-0">
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
                                 <th>ORDER ID</th>
-                                <!-- <th>BUYER NAME</th> -->
-                                <th>LOCATION</th>
+                                <th>ORDER STATUS</th>
+                                <th>BUYER NAME</th>
+                                <th>BUYER LOCATION</th>
                                 <th>QUALITY</th>
                                 <th>QUANTITY (mt)</th>
                                 <th>RATE (rs/pmt)</th>
-                                <th>PAYMENT TERMS</th>
-                                <th>ORDER DATE</th>
-                                <th>DISPACTH DATE</th>
                                 <th>STATUS</th>
+                                <th>PAYMENT STATUS</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr *ngFor="let s of sellerTrade">
-                                <th scope="row">{{s.id}}</th>
-                                <td>{{s.oid}}</td>
-                                <!-- <td>{{s.sname}}</td> -->
-                                <td>{{s.location}}</td>
-                                <td>{{s.quality}}</td>
-                                <td>{{s.quantity}} (mt)</td>
-                                <td>{{s.rate}} ₹</td>
-                                <td>{{s.terms}} days</td>
-                                <td>{{s.tradeDate}}</td>
-                                <td>{{s.dispacthDate}}</td>
+                        <tbody >
+                            <tr *ngFor="let s of sellerTrade;let i=index">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{s.id}}</td>
+                                <td>{{s.tradeStatus}}</td>
+                                <td>{{s.firstName}} {{s.lastName}}</td>
+                                <td width="1">{{s.location}}</td>
+                                <td>{{s.req_quality}} (mt)</td>
+                                <td>{{s.req_quantity}} (mt)</td>
+                                <td>{{s.buyerRate}} ₹</td>
+                                <td>{{s.tradeStatus}}</td>
+                                <td>PENDING</td>
                                 <td>
-                                    <span class="badge bg-success" *ngIf="s.status=='ACCEPTED'">{{s.status}}</span>
-                                    <span class="badge bg-info" *ngIf="s.status=='IDEAL'">Not Review By Buyer</span>
-                                    <span class="badge bg-danger" *ngIf="s.status=='REJECTED'">{{s.status}}</span>
+                                    <span class="badge bg-success" *ngIf="s.tradeStatus=='ACCEPTED'">{{s.tradeStatus}}</span>
+                                    <span class="badge bg-info" *ngIf="s.tradeStatus=='IDEAL'">Not Review By Buyer</span>
+                                    <span class="badge bg-danger" *ngIf="s.tradeStatus=='REJECTED'">{{s.tradeStatus}}</span>
                                     <br>
-                                    <div *ngIf="s.status=='PENDING'">
+                                    <div *ngIf="s.tradeStatus=='PENDING'">
                                         <button type="button" class="btn btn-primary waves-effect waves-light"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="View & Download" (click)="acceptAndPay(s)"><i
                                                 class="bx bx-edit font-size-16 align-middle me-2"></i> View Invoice</button>
