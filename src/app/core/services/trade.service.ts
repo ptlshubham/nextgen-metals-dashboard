@@ -6,37 +6,45 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TradeService {
-    constructor(private http: HttpClient) { }
-    
+    constructor(
+        private http: HttpClient
+    ) { }
 
 
-
-    newTraderequest(data:any){
-       return  this.http.post(ApiService.newTradeRequestURL , data);
+    newTraderequest(data: any) {
+        return this.http.post(ApiService.newTradeRequestURL, data);
     }
 
-    saveSellerTradeRequest(data:any){
-        return this.http.post(ApiService.saveSellerTradeRequestURL,data);
+    saveSellerTradeRequest(data: any) {
+        return this.http.post(ApiService.saveSellerTradeRequestURL, data);
     }
-    
-    getAllTradingDatabyIdForSeller(id:any){
-        let data={
-            uid:id
+
+    getAllTradingDatabyIdForSeller(id: any) {
+        let data = {
+            uid: id
         };
-        return  this.http.post(ApiService.getAllTradingDatabyIdForSellerURL,data);
+        return this.http.post(ApiService.getAllTradingDatabyIdForSellerURL, data);
     }
 
-    getAllTradingDatabyIdForBuyer(id:any){
-        let data={
-            uid:id
+    getAllTradingDatabyIdForBuyer(id: any) {
+        let data = {
+            uid: id
         };
-        return  this.http.post(ApiService.getAllTradingDatabyIdForBuyerURL,data);
+        return this.http.post(ApiService.getAllTradingDatabyIdForBuyerURL, data);
     }
-    newTradeReqForSeller(){
-        let data={
-            mat_qlty:localStorage.getItem('material_quality')
+    newTradeReqForSeller() {
+        let data = {
+            mat_qlty: localStorage.getItem('material_quality')
         };
-        return this.http.post(ApiService.getNewTradingReqForSellerURL,data);
+        return this.http.post(ApiService.getNewTradingReqForSellerURL, data);
+    }
+    comissionPaymentForBuyer(data: any) {
+        return this.http.post(ApiService.newComissionPaymentForBuyerURL, data);
+
+    }
+    comissionPaymentForSeller(data: any) {
+        return this.http.post(ApiService.newComissionPaymentForSellerURL, data);
+
     }
 
 }

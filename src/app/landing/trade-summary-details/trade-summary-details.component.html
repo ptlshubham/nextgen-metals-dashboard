@@ -6,35 +6,35 @@
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
                         <label>Order ID</label>
-                        <input type="text" disabled class="form-control" id="buyer" placeholder="Enter Buyer"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.oid">
+                        <input type="text" disabled class="form-control" id="buyer" placeholder="Order Id"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.id">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
                         <label>Seller Name</label>
                         <input type="text" disabled class="form-control" id="buyer" placeholder="Enter Buyer"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.sname">
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.sellerName">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
                         <label>Seller Location</label>
                         <input type="text" disabled class="form-control" id="location" placeholder="Enter Buyer"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.location">
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.sellerLocation">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <label>Quality</label>
                     <input type="text" class="form-control" id="quality" placeholder="Enter quality" disabled
-                        [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.quality">
+                        [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.req_quality">
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
                         <label>Required Quantity (Metric Ton)</label>
                         <input type="number" disabled class="form-control" id="quantity"
                             placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.quantity">
+                            [(ngModel)]="buyerModel.req_quantity">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
@@ -42,14 +42,14 @@
                         <label>Quantity From Seller (Metric Ton)</label>
                         <input type="number" disabled class="form-control" id="quantity"
                             placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.quantity">
+                            [(ngModel)]="buyerModel.sellerQuantity">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
                         <label>Rate (Rupees / Per Metric Ton)</label>
                         <input type="number" disabled class="form-control" id="rate" placeholder="Enter Rate (rs/pmt)"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.rate">
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.buyerRate">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
@@ -57,7 +57,7 @@
                         <label>Delivery Terms (Days)</label>
                         <input type="number" disabled class="form-control" id="terms"
                             placeholder="Enter Delivery Terms (days)" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.terms">
+                            [(ngModel)]="buyerModel.deliveryTerms">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
@@ -65,7 +65,7 @@
                         <label>Payment Terms (Days)</label>
                         <input type="number" disabled class="form-control" id="terms"
                             placeholder="Enter Payment Terms (days)" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.terms">
+                            [(ngModel)]="buyerModel.payment_terms">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
@@ -73,7 +73,7 @@
                         <label>Trade Date</label>
                         <input type="text" disabled class="form-control" id="tradeDate"
                             placeholder="Enter Trade date" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.tradeDate">
+                            [(ngModel)]="buyerModel.createdDate">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
@@ -81,7 +81,7 @@
                         <label>Validity Date</label>
                         <input type="text" disabled class="form-control" id="validity"
                             placeholder="Enter Validity date" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.validity">
+                            [(ngModel)]="buyerModel.payment_validity">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
@@ -97,13 +97,13 @@
                         <label>Trade Status</label>
                         <input type="text" disabled class="form-control" id="terms"
                             placeholder="Enter Trade Status" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.status">
+                            [(ngModel)]="buyerModel.tradeStatus">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
                         <label>Material Details</label> <br>
-                        <img class="img-thumbnail" alt="200x200" width="200" src="{{buyerModel.image}}"
+                        <img class="img-thumbnail" alt="200x200" width="200" src="{{buyerModel.materialImage}}"
                             data-holder-rendered="true">
                     </div>
                 </div>

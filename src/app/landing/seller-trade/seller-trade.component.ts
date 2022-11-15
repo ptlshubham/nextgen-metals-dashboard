@@ -67,6 +67,7 @@ export class SellerTradeComponent implements OnInit {
       this.tradeModel.materialImage = this.materialImage;
       this.tradeModel.sellerId =seller;
       this.tradeModel.sellerName=name;
+      debugger
       this.tradingService.saveSellerTradeRequest(this.tradeModel).subscribe((res:any)=>{
         if(res =='success'){
           alert('submitted request');

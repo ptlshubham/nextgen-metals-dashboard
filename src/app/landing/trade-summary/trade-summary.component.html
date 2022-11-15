@@ -11,47 +11,65 @@
                             <tr>
                                 <th>#</th>
                                 <th>ORDER ID</th>
-                                <th>ORDER STATUS</th>
+                                <!-- <th>ORDER STATUS</th> -->
                                 <th>SELLER LOCATION</th>
                                 <th>QUALITY</th>
                                 <th>QUANTITY (mt)</th>
                                 <th>RATE (rs/pmt)</th>
                                 <th>DELIVERY STATUS</th>
                                 <th>STATUS</th>
-                                <th >ACTION</th>
+                                <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let s of byuerTrade;let i=index">
-                                <th scope="row">{{i+1}}</th>
-                                <td>{{s.id}}</td>
-                                <td *ngIf="s.status=='ACCEPTED'"><b>{{s.sname}}</b> </td>
-                                <td *ngIf="s.status=='PENDING'">
+                                <th scope="row" class="text-left">{{i+1}}</th>
+                                <td class="text-center">{{s.id}}</td>
+                                <!-- <td *ngIf="s.tradeStatus=='ACCEPTED'"><b>{{s.sname}}</b> </td> -->
+                                <!-- <td *ngIf="s.tradeStatus=='PENDING'">
                                     <span class="badge bg-warning" data-bs-toggle="tooltip" data-bs-placement="top"
                                         title="View & Accept">Accept Trade</span>
                                 </td>
-                                <td *ngIf="s.status=='REJECTED'">
+                                <td *ngIf="s.tradeStatus=='REJECTED'">
                                     <span class="badge bg-danger" data-bs-toggle="tooltip" data-bs-placement="top"
                                         title="Doesn't Show details">Rejected</span>
                                 </td>
-                                <td *ngIf="s.status=='IDEAL'">
+                                <td *ngIf="s.tradeStatus=='IDEAL'">
                                     <span class="badge bg-info" data-bs-toggle="tooltip" data-bs-placement="top"
                                         title="Proposal pending from seller side">Not Review By Seller</span>
-                                </td>
+                                </td> -->
 
-                                <td width="20">{{s.location}}</td>
-                                <td>{{s.req_quality}}</td>
-                                <td>{{s.req_quantity}} (mt)</td>
-                                <td>{{s.buyerRate}} ₹</td>
-                                <td>{{s.payment_terms}}</td>
-                                <td>{{s.payment_validity | date:'yyyy-MM-dd'}}</td>
-                                <td>pending</td>
-                                <td>
-                                    <div *ngIf="s.tradeStatus=='ACCEPTED'">
+                                <td class="text-center" *ngIf="s.tradeStatus!='ACCEPTED'"> <b>-</b></td>
+                                <td class="text-center" *ngIf="s.tradeStatus=='ACCEPTED'">{{s.location}}</td>
+                                <td class="text-center">{{s.req_quality}}</td>
+                                <td class="text-center">{{s.req_quantity}} (mt)</td>
+                                <td class="text-center">{{s.buyerRate}} ₹</td>
+                                <td class="text-center">{{s.payment_terms}}</td>
+                                <!-- <td>pending</td> -->
+                                <td class="text-center">
+                                    <span class="badge bg-success"
+                                        *ngIf="s.tradeStatus=='ACCEPTED'">{{s.tradeStatus}}</span>
+                                    <span class="badge bg-info" *ngIf="s.tradeStatus=='IDEAL'">Not Review By
+                                        Seller</span>
+                                    <span class="badge bg-danger"
+                                        *ngIf="s.tradeStatus=='REJECTED'">{{s.tradeStatus}}</span>
+                                    <br>
+                                    <div *ngIf="s.tradeStatus=='PENDING'">
+                                        <button type="button" class="btn btn-primary waves-effect waves-light"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"
+                                            (click)="viewAcceptOrReject(s)"><i
+                                                class="bx bx-check-double font-size-16 align-middle me-2"></i>Accept</button>
+                                    </div>
+                                </td>
+                                <td class="text-end">
+                                    <div *ngIf="s.buyerComissionPay==true">
                                         <button type="button" class="btn btn-primary waves-effect waves-light"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="View Trade Details"
                                             (click)="viewTradeDetailsByTrade(s)"><i
                                                 class="fa fa-eye font-size-16 align-middle me-2"></i>Details</button>
+                                    </div>
+                                    <div *ngIf="s.buyerComissionPay==false">
+                                        <b>-</b>
                                     </div>
                                 </td>
                             </tr>
@@ -87,7 +105,7 @@
                         <input type="hidden" />
                         <div class="row">
 
-                         
+
                             <div class="col-xl-3 col-md-3">
                                 <div class="form-group mb-3">
                                     <label>Seller Location</label>
@@ -145,7 +163,8 @@
                             </div>
                             <div class="col-xl-3 col-md-3">
                                 <div class="form-group mb-3" style="height: 200px;width: 200px;">
-                                    <img class="img-thumbnail" style="height: 200px;width: 200px;" alt="200x200" width="200" src="http://localhost:9000{{buyerModel.materialImage}}"
+                                    <img class="img-thumbnail" style="height: 200px;width: 200px;" alt="200x200"
+                                        width="200" src="http://localhost:9000{{buyerModel.materialImage}}"
                                         data-holder-rendered="true">
                                 </div>
                             </div>
@@ -176,10 +195,32 @@
         </div>
     </div>
 </div>
-<div *ngIf="openPayment">
-    <app-customer-payment [buyer]="buyerModel"></app-customer-payment>
-</div>
+<div class="row" *ngIf="openPayment">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-11">
+                        <h5 class="card-title">Accept Or Reject Trade</h5>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-danger waves-effect waves-light"
+                            (click)="backToViewReject()"><i class="bx bx-left-arrow-alt"></i>back</button>
+                    </div>
+                </div>
 
+                <!-- <p class="card-title-desc">New Trade Request</p> -->
+            </div>
+            <div class="card-body">
+                <app-customer-payment [buyer]="buyerModel"></app-customer-payment>
+
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row" *ngIf="openDetails">
     <div class="col-lg-12">
         <div class="card">

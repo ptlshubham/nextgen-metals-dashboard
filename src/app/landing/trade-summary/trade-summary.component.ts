@@ -50,6 +50,12 @@ export class TradeSummaryComponent implements OnInit {
     this.openPayment = false;
     this.openDetails = false;
   }
+  backToViewReject(){
+    this.isAccept = true;
+    this.isBuyerOpen = false;
+    this.openPayment = false;
+    this.openDetails = false;
+  }
   acceptOrderAndPay() {
     this.isAccept = false;
     this.isBuyerOpen = false;
@@ -74,6 +80,7 @@ export class TradeSummaryComponent implements OnInit {
   }
   viewTradeDetailsByTrade(data: any) {
     this.buyerDetails = data;
+    debugger
     this.isAccept = false;
     this.isBuyerOpen = false;
     this.openPayment = false;

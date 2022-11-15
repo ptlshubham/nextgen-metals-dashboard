@@ -20,28 +20,35 @@ export class CompleteProfileComponent implements OnInit {
   removeUpload: boolean = false;
   cardImageBase64: any;
   materialImage: any;
+  stateData: any = [];
+  selectedState: any;
 
   public customerModel: any;
-  userId:any;
+  userId: any;
   constructor(
     public formBuilder: FormBuilder,
     public userservice: UserProfileService,
     public router: Router,
     public apiservice: ApiService,
-    public activatedRoute:ActivatedRoute
-  ) { }
+    public activatedRoute: ActivatedRoute
+  ) { 
+    this.getStateList();
+
+  }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((res: any) => {
-      this.userId= res.data;
-      this.userservice.getUserDetail(this.userId).subscribe((res:any)=>{
+      this.userId = res.data;
+      this.userservice.getUserDetail(this.userId).subscribe((res: any) => {
         this.customerModel = res[0];
-        
+        this.selectedState = this.customerModel.state;
+        debugger
+
       })
     });
     this.validationForm = this.formBuilder.group({
-      select: [{value: '', disabled: true}, [Validators.required]],
-      regAs: [{value: '', disabled: true}, [Validators.required]],
+      select: [{ value: '', disabled: true }, [Validators.required]],
+      regAs: [{ value: '', disabled: true }, [Validators.required]],
       fname: ['', [Validators.required]],
       lname: ['', [Validators.required]],
       contact: ['', [Validators.required, Validators.min(1)]],
@@ -51,7 +58,11 @@ export class CompleteProfileComponent implements OnInit {
       designation: ['', [Validators.required]],
       gstno: ['', [Validators.required]],
       workphone: ['', [Validators.required, Validators.min(1)]],
-      address: ['' ],
+      address: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      selectState: ['', [Validators.required]],
+      landmark: [''],
+      pincode: ['', [Validators.required, Validators.min(6)]],
       avg_mnth_trade: ['0', [Validators.required, Validators.min(1)]],
       selectMaterial: ['', [Validators.required]],
 
@@ -69,10 +80,10 @@ export class CompleteProfileComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.validationForm.valid) {
-        this.userservice.completeProfile(this.customerModel).subscribe((res: any) => {
+      this.userservice.completeProfile(this.customerModel).subscribe((res: any) => {
         if (res == 'success') {
           this.router.navigate(['/landing/user-home']);
-        }else{
+        } else {
           this.apiservice.show('Something went wrong! try after sometime', { classname: 'bg-danger text-center text-white', delay: 10000 });
         }
       })
@@ -82,7 +93,7 @@ export class CompleteProfileComponent implements OnInit {
     }
   }
   uploadFile(event: any) {
-    
+
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
@@ -90,7 +101,7 @@ export class CompleteProfileComponent implements OnInit {
       // When file uploads set it to file formcontrol
       reader.onload = () => {
         this.imageUrl = reader.result;
-        
+
         const imgBase64Path = reader.result;
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
@@ -104,5 +115,13 @@ export class CompleteProfileComponent implements OnInit {
       }
     }
   }
- 
+  getStateList() {
+    this.userservice.getStateFromJson().subscribe((res: any) => {
+      this.stateData = res;
+    })
+  }
+  selectStateData(e: any): void {
+    this.selectedState = e.target.value;
+  }
+
 }

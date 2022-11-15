@@ -21,6 +21,7 @@ export class UserProfileService {
         return this.http.post(`/users/register`, user);
     }
     registerUser(data: any) {
+        debugger
         return this.http.post(ApiService.RegisterNewCustomerURL, data);
     }
 
@@ -45,11 +46,14 @@ export class UserProfileService {
 
     }
 
-    completeProfile(data:any){
-        return this.http.post(ApiService.completeProfileURL,data);
+    completeProfile(data: any) {
+        return this.http.post(ApiService.completeProfileURL, data);
     }
 
-    getUserDetail(id:any){
-        return this.http.get(ApiService.getUserDetailById+id)
+    getUserDetail(id: any) {
+        return this.http.get(ApiService.getUserDetailById + id)
+    }
+    public getStateFromJson(): Observable<any[]> {
+        return this.http.get<any[]>('assets/json/state.json');
     }
 }

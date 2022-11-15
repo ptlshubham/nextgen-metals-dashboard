@@ -19,7 +19,7 @@
                                     <i class=" bx bxs-user"></i>
                                 </ng-template>
                                 <div class="row">
-                                    <form [formGroup]="validationForm" >
+                                    <form [formGroup]="validationForm">
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="mb-3">
@@ -231,16 +231,19 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
-                                                    <label for="basicpill-phoneno-input1" class="form-label">Average Monthly Trade (Ton.)</label>
+                                                    <label for="basicpill-phoneno-input1" class="form-label">Average
+                                                        Monthly Trade (Ton.)</label>
                                                     <input type="number" formControlName="avg_mnth_trade"
                                                         [ngClass]="{ 'is-invalid': submitted && f.avg_mnth_trade.errors }"
                                                         class="form-control" id="avg_mnth_trade"
                                                         placeholder="Enter Average Monthly Trade (Approx)">
                                                     <div *ngIf="submitted && f.avg_mnth_trade.errors"
                                                         class="invalid-feedback">
-                                                        <div *ngIf="f.avg_mnth_trade.errors.required">Average Monthly Trade is required.
+                                                        <div *ngIf="f.avg_mnth_trade.errors.required">Average Monthly
+                                                            Trade is required.
                                                         </div>
-                                                        <div *ngIf="f.avg_mnth_trade.errors.min">Only Numbers allowed & Do
+                                                        <div *ngIf="f.avg_mnth_trade.errors.min">Only Numbers allowed &
+                                                            Do
                                                             not
                                                             enter
                                                             characters.
@@ -248,14 +251,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-4">
                                                 <div class="mb-3">
                                                     <label for="basicpill-address-input"
                                                         class="form-label">Address</label>
                                                     <textarea id="basicpill-address-input" class="form-control" rows="2"
-                                                        id="address"   formControlName="address"
+                                                        id="address" formControlName="address"
                                                         [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
-                                                        placeholder="Enter Company Address"></textarea>
+                                                        placeholder="Address (Area and Street)"></textarea>
                                                     <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
                                                         <div *ngIf="f.address.errors.required">Address is
                                                             required
@@ -263,18 +266,77 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-vatno-input1" class="form-label">Enter
+                                                        City/District/Town</label>
+                                                    <input type="text" formControlName="city" class="form-control"
+                                                        id="city"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
+                                                        placeholder="City/District/Town">
+                                                    <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.city.errors.required">City/District/Town is
+                                                            required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-phoneno-input1" class="form-label">Enter Pincode</label>
+                                                    <input type="number" formControlName="pincode"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }"
+                                                        class="form-control" id="pincode"
+                                                        placeholder="Enter Pincode Number">
+                                                    <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.pincode.errors.required">Pincode is required.
+                                                        </div>
+                                                        <div *ngIf="f.pincode.errors.min">Only Numbers allowed & Do
+                                                            not
+                                                            enter
+                                                            characters.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group mb-3">
+                                                    <label for="Selct State" class="form-label">Select
+                                                        State</label>
+                                                    <select required class="form-select" formControlName="selectState"
+                                                        [(ngModel)]="selectedState" (change)="selectStateData($event)"
+                                                        [ngClass]="{'is-invalid': submitted && f.selectState.errors}">
+                                                        <option>Select State</option>
+                                                        <option *ngFor="let c of stateData">{{c.name}}
+                                                        </option>
+                                                    </select>
+                                                    <div *ngIf="submitted && f.selectState.errors"
+                                                        class="invalid-feedback">
+                                                        <span *ngIf="f.selectState.errors.required">This Field is
+                                                            required.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label for="basicpill-vatno-input1" class="form-label">Enter
+                                                        Landmark</label>
+                                                    <input type="text" formControlName="landmark" class="form-control"
+                                                        id="landmark" placeholder="Landmark (Optional)">
+                                                </div>
+                                            </div>
                                         </div>
                                         <ul class="list-inline wizard mb-0">
                                             <li class="previous list-inline-item"><button class="btn btn-primary"
                                                     awPreviousStep>Previous</button>
                                             </li>
-                                            <li class="next list-inline-item float-end" type="submit"><button 
+                                            <li class="next list-inline-item float-end" type="submit"><button
                                                     class="btn btn-primary" awNextStep>submit</button>
                                             </li>
                                         </ul>
                                     </form>
                                 </div>
-                                
+
                             </aw-wizard-step>
                         </aw-wizard>
                     </div>

@@ -28,17 +28,19 @@ export class ApiService {
   public static updateKYCURL: string = ApiService.HOST_URL + '/admin/updateKYCUser';
   public static uploadMaterialImageURL: string = ApiService.HOST_URL + '/admin/UploadMaterialImage';
   public static completeProfileURL: string = ApiService.HOST_URL + '/admin/completeProfile';
-  public static getUserDetailById:string = ApiService.HOST_URL+'/admin/getUserDetailById/'
+  public static getUserDetailById: string = ApiService.HOST_URL + '/admin/getUserDetailById/'
   public static uploadCancelCheckImageURL: string = ApiService.HOST_URL + '/admin/UploadCancelCheckImage';
 
-//trading
+  //trading
 
-public static newTradeRequestURL: string = ApiService.HOST_URL + '/trading/newTradeRequest';
-public static getAllTradingDatabyIdForBuyerURL: string = ApiService.HOST_URL + '/trading/getAllTradingDatabyIdForBuyer';
-public static getAllTradingDatabyIdForSellerURL: string = ApiService.HOST_URL+'/trading/getAllTradingDatabyIdForSeller';
-public static getAllTradingDatabyIdURL:string = ApiService.HOST_URL+'/trading/getAllTradingDatabyId';
-public static getNewTradingReqForSellerURL:string = ApiService.HOST_URL+'/trading/getNewTradingReqForSeller';
-public static saveSellerTradeRequestURL:string = ApiService.HOST_URL+'/trading/saveSellerTradeRequest'
+  public static newTradeRequestURL: string = ApiService.HOST_URL + '/trading/newTradeRequest';
+  public static getAllTradingDatabyIdForBuyerURL: string = ApiService.HOST_URL + '/trading/getAllTradingDatabyIdForBuyer';
+  public static getAllTradingDatabyIdForSellerURL: string = ApiService.HOST_URL + '/trading/getAllTradingDatabyIdForSeller';
+  public static getAllTradingDatabyIdURL: string = ApiService.HOST_URL + '/trading/getAllTradingDatabyId';
+  public static getNewTradingReqForSellerURL: string = ApiService.HOST_URL + '/trading/getNewTradingReqForSeller';
+  public static saveSellerTradeRequestURL: string = ApiService.HOST_URL + '/trading/saveSellerTradeRequest';
+  public static newComissionPaymentForBuyerURL: string = ApiService.HOST_URL + '/trading/NewComissionPaymentForBuyer';
+  public static newComissionPaymentForSellerURL: string = ApiService.HOST_URL + '/trading/NewComissionPaymentForSeller';
 
 
 
@@ -51,7 +53,7 @@ public static saveSellerTradeRequestURL:string = ApiService.HOST_URL+'/trading/s
 
 
   show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
-    
+
     this.toasts.push({ textOrTpl, ...options });
   }
 

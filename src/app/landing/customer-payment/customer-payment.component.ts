@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TradeService } from 'src/app/core/services/trade.service';
 
 @Component({
   selector: 'app-customer-payment',
@@ -7,6 +9,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CustomerPaymentComponent implements OnInit {
   @Input() buyer: any;
+  @Input() seller: any;
+
   comRate: number = 50;
   comTotal: number = 0;
   withoutTax: number = 0;
@@ -15,7 +19,10 @@ export class CustomerPaymentComponent implements OnInit {
   TDSAmount: number = 0;
   GST: number = 18;
   TDS: number = 1;
-  constructor() { }
+  constructor(
+    private tradingService: TradeService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.comTotal = this.comRate * this.buyer.quantity;
@@ -24,6 +31,27 @@ export class CustomerPaymentComponent implements OnInit {
     this.TDSAmount = (+this.comTotal * +this.TDS / 100);
 
     // this.restock.discountPrice = +this.restock.productPrice - (+this.restock.productPrice * +this.restock.productPer / 100);
+
+  }
+  tradeComissionPayment() {
+    if (this.buyer != undefined) {
+      debugger
+      this.tradingService.comissionPaymentForBuyer(this.buyer).subscribe((res: any) => {
+        if (res == 'success') {
+          window.location.reload();
+          alert('Payment Completed Successfully');
+        }
+      })
+    }
+    else {
+      debugger
+      this.tradingService.comissionPaymentForSeller(this.seller).subscribe((res: any) => {
+        if (res == 'success') {
+          window.location.reload();
+          alert('Payment Completed Successfully');
+        }
+      })
+    }
 
   }
 

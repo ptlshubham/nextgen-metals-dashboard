@@ -12,6 +12,7 @@ export class TradeSummaryDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.buyerModel = this.buyer;
+    debugger
     
   }
 
