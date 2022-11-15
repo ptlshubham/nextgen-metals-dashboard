@@ -22,6 +22,7 @@ import { CustomerPaymentComponent } from './customer-payment/customer-payment.co
 import { CompleteProfileComponent } from './complete-profile/complete-profile.component';
 import { ArchwizardModule } from 'angular-archwizard';
 import { TradeSummaryDetailsComponent } from './trade-summary-details/trade-summary-details.component';
+import { SellerTradeSummaryDetailsComponent } from './seller-trade-summary-details/seller-trade-summary-details.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -34,6 +35,7 @@ import { TradeSummaryDetailsComponent } from './trade-summary-details/trade-summ
     CustomerPaymentComponent,
     CompleteProfileComponent,
     TradeSummaryDetailsComponent,
+    SellerTradeSummaryDetailsComponent,
     
   ],
   imports: [
@@ -54,7 +56,8 @@ import { TradeSummaryDetailsComponent } from './trade-summary-details/trade-summ
     ArchwizardModule
   ],
   exports:[
-    TradeComponent
+    TradeComponent,
+    SellerTradeSummaryDetailsComponent
   ]
 })
 export class LandingModule { }

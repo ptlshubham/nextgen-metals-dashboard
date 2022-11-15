@@ -1,4 +1,4 @@
-<div class="row" *ngIf="!paymentOpen">
+<div class="row" *ngIf="isTradeOpen">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
@@ -44,7 +44,7 @@
                                         *ngIf="s.tradeStatus=='REJECTED'">{{s.tradeStatus}}</span>
                                 </td>
                                 <td class="text-end">
-                                    <div *ngIf="s.sellerComissionPay==false">
+                                    <div *ngIf="s.sellerComissionPay==false && s.tradeStatus=='ACCEPTED' ">
                                         <button type="button" class="btn btn-primary waves-effect waves-light"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="View & Download"
                                             (click)="acceptAndPay(s)"><i
@@ -53,6 +53,12 @@
                                     </div>
                                     <div *ngIf="s.tradeStatus!='ACCEPTED'">
                                         <b>-</b>
+                                    </div>
+                                    <div *ngIf="s.sellerComissionPay==true ">
+                                        <button type="button" class="btn btn-primary waves-effect waves-light"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Download"
+                                            (click)="viewTradeDetails(s)"><i
+                                                class="fa fa-eye font-size-16 align-middle me-2"></i> View</button>
                                     </div>
                                 </td>
                             </tr>
@@ -91,6 +97,28 @@
             <div class="card-footer">
 
             </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="openDetails">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-11">
+                        <h5 class="card-title">Trade Details</h5>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-danger waves-effect waves-light"
+                            (click)="backToSummary()"><i class="bx bx-left-arrow-alt"></i>back</button>
+                    </div>
+                </div>
+
+                <!-- <p class="card-title-desc">New Trade Request</p> -->
+            </div>
+            <!-- end card header -->
+            <app-seller-trade-summary-details [seller]="sellerDetails"></app-seller-trade-summary-details>
+
         </div>
     </div>
 </div>

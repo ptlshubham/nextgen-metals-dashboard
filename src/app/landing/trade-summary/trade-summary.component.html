@@ -154,10 +154,18 @@
                             </div>
                             <div class="col-xl-3 col-md-3" *ngIf="buyerModel.payment_terms =='After Delivery'">
                                 <div class="form-group mb-3">
-                                    <label>Delivery Terms (Days)</label>
+                                    <label>Payment Terms (Days)</label>
                                     <input type="number" disabled class="form-control" id="payment_days"
                                         placeholder="Enter Payment Terms (days)" [ngModelOptions]="{standalone: true}"
                                         [(ngModel)]="buyerModel.payment_days">
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-3" >
+                                <div class="form-group mb-3">
+                                    <label>Delivery Terms (Days)</label>
+                                    <input type="number" disabled class="form-control" id="payment_days"
+                                        placeholder="Enter Payment Terms (days)" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="buyerModel.deliveryTerms">
 
                                 </div>
                             </div>
@@ -201,7 +209,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-11">
-                        <h5 class="card-title">Accept Or Reject Trade</h5>
+                        <h5 class="card-title">Payment For Trade</h5>
                     </div>
                     <div class="col-md-1">
                         <button type="button" class="btn btn-danger waves-effect waves-light"

@@ -3,13 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TradeService } from 'src/app/core/services/trade.service';
 
 @Component({
-  selector: 'app-trade-summary-details',
-  templateUrl: './trade-summary-details.component.html',
-  styleUrls: ['./trade-summary-details.component.scss']
+  selector: 'app-seller-trade-summary-details',
+  templateUrl: './seller-trade-summary-details.component.html',
+  styleUrls: ['./seller-trade-summary-details.component.scss']
 })
-export class TradeSummaryDetailsComponent implements OnInit {
-  @Input() buyer: any;
-  buyerModel: any = {};
+export class SellerTradeSummaryDetailsComponent implements OnInit {
+  @Input() seller: any;
+  sellerModel: any = {};
   validationForm!: FormGroup;
   submitted = false;
 
@@ -20,19 +20,22 @@ export class TradeSummaryDetailsComponent implements OnInit {
   cardImageBase64: any;
   materialImage: any;
   constructor(
-    private tradingService: TradeService,
     public formBuilder: FormBuilder,
+    private tradingService: TradeService
 
   ) { }
 
   ngOnInit(): void {
-    this.buyerModel = this.buyer;
+    this.sellerModel = this.seller;
     debugger
     this.validationForm = this.formBuilder.group({
       selectStatus: ['', [Validators.required]],
+      vehicle: ['', [Validators.required]],
+      contact: [0, [Validators.required, Validators.min(10)]],
     });
   }
   get f() { return this.validationForm.controls; }
+
   onSubmit() {
     this.submitted = true;
     debugger
@@ -67,7 +70,7 @@ export class TradeSummaryDetailsComponent implements OnInit {
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
         formdata.append('file', file);
-        this.tradingService.uploadrDeliveryRecieptImage(formdata).subscribe((response) => {
+        this.tradingService.uploadWeightSlipImage(formdata).subscribe((response) => {
           this.materialImage = response;
           this.editFile = false;
           this.removeUpload = true;
@@ -77,6 +80,6 @@ export class TradeSummaryDetailsComponent implements OnInit {
       // this.cd.markForCheck();
 
     }
-
   }
+
 }

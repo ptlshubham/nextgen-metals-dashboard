@@ -46,5 +46,13 @@ export class TradeService {
         return this.http.post(ApiService.newComissionPaymentForSellerURL, data);
 
     }
+    uploadWeightSlipImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.uploadWeightSlipImageURL, img);
+
+    }
+    uploadrDeliveryRecieptImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.uploadDeliveryRecieptImageURL, img);
+
+    }
 
 }

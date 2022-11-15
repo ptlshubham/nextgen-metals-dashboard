@@ -39,6 +39,7 @@ export class TradeSummaryComponent implements OnInit {
 
   viewAcceptOrReject(data: any) {
     this.buyerModel = data;
+    debugger
     this.isAccept = true;
     this.isBuyerOpen = false;
     this.openPayment = false

@@ -7,34 +7,34 @@
                     <div class="form-group mb-3">
                         <label>Order ID</label>
                         <input type="text" disabled class="form-control" id="buyer" placeholder="Order Id"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.id">
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.id">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
-                        <label>Seller Name</label>
+                        <label>Buyer Name</label>
                         <input type="text" disabled class="form-control" id="buyer" placeholder="Enter Buyer"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.sellerName">
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.buyerName">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
-                        <label>Seller Location</label>
+                        <label>Buyer Location</label>
                         <input type="text" disabled class="form-control" id="location" placeholder="Enter Buyer"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.sellerLocation">
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.buyerLocation">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <label>Quality</label>
                     <input type="text" class="form-control" id="quality" placeholder="Enter quality" disabled
-                        [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.req_quality">
+                        [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.req_quality">
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
                         <label>Required Quantity (Metric Ton)</label>
                         <input type="number" disabled class="form-control" id="quantity"
                             placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.req_quantity">
+                            [(ngModel)]="sellerModel.req_quantity">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
@@ -42,14 +42,14 @@
                         <label>Quantity From Seller (Metric Ton)</label>
                         <input type="number" disabled class="form-control" id="quantity"
                             placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.sellerQuantity">
+                            [(ngModel)]="sellerModel.sellerQuantity">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
                         <label>Rate (Rupees / Per Metric Ton)</label>
                         <input type="number" disabled class="form-control" id="rate" placeholder="Enter Rate (rs/pmt)"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.buyerRate">
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.buyerRate">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
@@ -57,7 +57,7 @@
                         <label>Delivery Terms (Days)</label>
                         <input type="number" disabled class="form-control" id="terms"
                             placeholder="Enter Delivery Terms (days)" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.deliveryTerms">
+                            [(ngModel)]="sellerModel.deliveryTerms">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
@@ -65,74 +65,88 @@
                         <label>Payment Terms (Days)</label>
                         <input type="text" disabled class="form-control" id="terms"
                             placeholder="Enter Payment Terms (days)" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.payment_days">
+                            [(ngModel)]="sellerModel.payment_days">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
                         <label>Trade Date</label>
-                        <input type="text" disabled class="form-control" id="tradeDate"
-                            placeholder="Enter Trade date" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.createdDate">
+                        <input type="text" disabled class="form-control" id="tradeDate" placeholder="Enter Trade date"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.createdDate">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
                         <label>Validity Date</label>
-                        <input type="text" disabled class="form-control" id="validity"
-                            placeholder="Enter Validity date" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.payment_validity">
+                        <input type="text" disabled class="form-control" id="validity" placeholder="Enter Validity date"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.payment_validity">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
                         <label>Delivery Status</label>
-                        <input type="text" disabled class="form-control" id="terms"
-                            placeholder="Enter Delivery Status" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.tradeStatus">
+                        <input type="text" disabled class="form-control" id="terms" placeholder="Enter Delivery Status"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.tradeStatus">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
                         <label>Trade Status</label>
-                        <input type="text" disabled class="form-control" id="terms"
-                            placeholder="Enter Trade Status" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.tradeStatus">
+                        <input type="text" disabled class="form-control" id="terms" placeholder="Enter Trade Status"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.tradeStatus">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
                         <label>Material Images</label> <br>
-                        <img class="img-thumbnail" alt="200x200" width="200" src="http://localhost:9000{{buyerModel.materialImage}}"
-                            data-holder-rendered="true">
+                        <img class="img-thumbnail" alt="200x200" width="200"
+                            src="http://localhost:9000{{sellerModel.materialImage}}" data-holder-rendered="true">
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
-                        <label>Transporter Vehicle No</label>
-                        <input type="text" disabled class="form-control" id="terms"
-                            placeholder="Transporter Vehicle No:" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.trans_vehicle">
+                        <label class="form-label">Delivery Status</label>
+                        <select required class="form-control form-select" formControlName="selectStatus"
+                            [ngClass]="{'is-invalid': submitted && f.selectStatus.errors}" [(ngModel)]="sellerModel.delivery_status">
+                            <option value disabled>Select Delivery Status</option>
+                            <option value="DISPACHED">DISPACHED</option>
+                            <option value="DELIVERED">DELIVERED</option>
+                        </select>
+                        <div *ngIf="submitted && f.selectStatus.errors" class="invalid-feedback">
+                            <span *ngIf="f.selectStatus.errors.required">Select Delivery Status is required.</span>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
-                        <label>Transporter Contact NO</label>
-                        <input type="text" disabled class="form-control" id="terms"
-                            placeholder="Transporter Contact No" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.trans_Contact">
+                        <label>Transporter Vehicle No:</label>
+                        <input type="text" formControlName="vehicle" [(ngModel)]="sellerModel.buyervehicle"
+                            [ngClass]="{ 'is-invalid': submitted && f.vehicle.errors }" class="form-control"
+                            id="vehicle" placeholder="Enter Vehicle Number">
+                        <div *ngIf="submitted && f.vehicle.errors" class="invalid-feedback">
+                            <div *ngIf="f.vehicle.errors.required">Vehicle Number is required</div>
+                            <div *ngIf="f.vehicle.errors.min">Only Numbers allowed & Do not enter characters.
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
-                        <label>Weight Proof From Seller</label> <br>
-                        <img class="img-thumbnail" alt="weightProofFromSeller" width="200" 
-                            data-holder-rendered="true">
+                        <label>Transporter Contact No:</label>
+                        <input type="number" formControlName="contact" [(ngModel)]="sellerModel.contact"
+                            [ngClass]="{ 'is-invalid': submitted && f.contact.errors }" class="form-control"
+                            id="contact" placeholder="Enter Transporter Contact">
+                        <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
+                            <div *ngIf="f.contact.errors.required">Transporter Contact Number is required</div>
+                            <div *ngIf="f.contact.errors.min">Only Numbers allowed & Do not enter
+                                characters.
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
-                        <label>Delivery Reciept Image Uploader</label>
+                        <label>Weight Proof Image Uploader</label>
                         <div class="avatar-upload">
                             <div class="avatar-edit">
                                 <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
@@ -154,16 +168,9 @@
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="form-group mb-3">
-                        <label class="form-label">Delivery Status</label>
-                        <select required class="form-control form-select" formControlName="selectStatus"
-                            [ngClass]="{'is-invalid': submitted && f.selectStatus.errors}" [(ngModel)]="buyerModel.delivery_status">
-                            <option value disabled>Select Delivery Status</option>
-                            <option value="DISPACHED">DISPACHED</option>
-                            <option value="DELIVERED">DELIVERED</option>
-                        </select>
-                        <div *ngIf="submitted && f.selectStatus.errors" class="invalid-feedback">
-                            <span *ngIf="f.selectStatus.errors.required">Select Delivery Status is required.</span>
-                        </div>
+                        <label>Delivery Reciept/Proof Images</label> <br>
+                        <img class="img-thumbnail" alt="Delivery Reciept" width="200"
+                             data-holder-rendered="true">
                     </div>
                 </div>
             </div>
@@ -175,6 +182,7 @@
                 <label class="form-check-label" for="term-check01">I accept the terms and
                     conditions</label><br />
             </div>
+
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>

@@ -16,12 +16,16 @@ export class SellerTradeSummaryComponent implements OnInit {
 
   ]
   sellerModel: any = {};
+  sellerDetails: any = {};
+  isTradeOpen: boolean = false;
   paymentOpen: boolean = false;
+  openDetails: boolean = false;
   constructor(
     private tradingService: TradeService
   ) { }
 
   ngOnInit(): void {
+    this.isTradeOpen = true;
     this.tradingService.getAllTradingDatabyIdForSeller(localStorage.getItem('UserId')).subscribe((res: any) => {
       if (res.length == 0) {
         this.sellerTrade.length = 0;
@@ -39,8 +43,19 @@ export class SellerTradeSummaryComponent implements OnInit {
   acceptAndPay(data: any) {
     this.sellerModel = data;
     this.paymentOpen = true;
+    this.isTradeOpen = false;
+    this.openDetails = false;
+
   }
   backToSummary() {
     this.paymentOpen = false;
+    this.isTradeOpen = true;
+    this.openDetails = false;
+  }
+  viewTradeDetails(data: any) {
+    this.sellerDetails = data
+    this.paymentOpen = false;
+    this.isTradeOpen = false;
+    this.openDetails = true;
   }
 }

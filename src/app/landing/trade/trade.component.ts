@@ -12,7 +12,6 @@ export class TradeComponent implements OnInit {
   validationForm!: FormGroup;
   paymentOpen: boolean = false;
   submitted = false;
-  selectedValue: any='Select Payment Terms';
   dt = new Date().toDateString();
   tradeModel:any={};
   payment_days:number=0;
@@ -31,13 +30,13 @@ export class TradeComponent implements OnInit {
   ngOnInit(): void {
     this.dt;
     debugger
-    this.tradeModel.payment_terms='Select Payment Terms';
+    // this.tradeModel.payment_terms='Select Payment Terms';
     this.validationForm = this.formBuilder.group({
       selectMaterial:['', [Validators.required]],
-      selectP:['', [Validators.required]],
+      selectPayment:['', [Validators.required]],
       quantity: [0, [Validators.required, Validators.min(1)]],
       rate: [0, [Validators.required, Validators.min(1)]],
-      terms:[],
+      terms:[[Validators.required]],
       validity:[]
     });
   }
@@ -45,13 +44,14 @@ export class TradeComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    debugger
     if (this.validationForm.invalid) {
       return;
     }else{
        this.tradeModel.buyerId = localStorage.getItem('UserId');
        this.tradeModel.buyerName = localStorage.getItem('UserName');
        this.tradeModel.payment_validity = this.dt;
-       this.tradeModel.payment_terms = this.selectedValue;
+       this.tradeModel.payment_terms ;
        this.tradeModel.tradeStatus = 'IDEAL';
        this.tradeModel.payment_days = this.payment_days;
        debugger
@@ -63,18 +63,18 @@ export class TradeComponent implements OnInit {
       
     }
   }
-  onPaymentChange(event: any) {
-    this.selectedValue = event;
-    if (this.selectedValue == 'After Delivery')
-    {
-      this.paymentOpen = true;
-      this.tradeModel.payment_terms='After Delivery';
+  // onPaymentChange(event: any) {
+  //   this.selectedValue = event;
+  //   if (this.selectedValue == 'After Delivery')
+  //   {
+  //     this.paymentOpen = true;
+  //     this.tradeModel.payment_terms='After Delivery';
       
-    }
-    else{
-      this.paymentOpen = false;
-      this.tradeModel.payment_terms='Advance Payment';
-    }
-  }
+  //   }
+  //   else{
+  //     this.paymentOpen = false;
+  //     this.tradeModel.payment_terms='Advance Payment';
+  //   }
+  // }
 
 }
