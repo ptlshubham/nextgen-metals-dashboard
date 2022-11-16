@@ -16,9 +16,9 @@
                                 <th class="text-center">ORDER ID</th>
                                 <th class="text-center">BUYER NAME</th>
                                 <th class="text-center">BUYER LOCATION</th>
-                                <th class="text-center">QUALITY</th>
+                                <!-- <th class="text-center">QUALITY</th>
                                 <th class="text-center">QUANTITY (mt)</th>
-                                <th class="text-center">RATE (rs/pmt)</th>
+                                <th class="text-center">RATE (rs/pmt)</th> -->
                                 <th class="text-center">STATUS</th>
                                 <th class="text-end">Action</th>
                             </tr>
@@ -29,10 +29,10 @@
                                 <td class="text-center">{{s.id}}</td>
                                 <!-- <td class="text-center">{{s.tradeStatus}}</td> -->
                                 <td class="text-center">{{s.buyerName}}</td>
-                                <td width="1">{{s.location}}</td>
-                                <td class="text-center">{{s.req_quality}} (mt)</td>
+                                <td class="text-center">{{s.location}}</td>
+                                <!-- <td class="text-center">{{s.req_quality}} (mt)</td>
                                 <td class="text-center">{{s.req_quantity}} (mt)</td>
-                                <td class="text-center">{{s.buyerRate}} ₹</td>
+                                <td class="text-center">{{s.buyerRate}} ₹</td> -->
                                 <td class="text-center">
                                     <span class="badge bg-warning"
                                         *ngIf="s.tradeStatus=='PENDING'">{{s.tradeStatus}}</span>

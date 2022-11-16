@@ -9,16 +9,16 @@
                     <table class="table mb-0">
                         <thead class="table-light">
                             <tr>
-                                <th>#</th>
-                                <th>ORDER ID</th>
-                                <!-- <th>ORDER STATUS</th> -->
-                                <th>SELLER LOCATION</th>
-                                <th>QUALITY</th>
-                                <th>QUANTITY (mt)</th>
-                                <th>RATE (rs/pmt)</th>
-                                <th>DELIVERY STATUS</th>
-                                <th>STATUS</th>
-                                <th>ACTION</th>
+                                <th class="text-left">#</th>
+                                <th class="text-center">ORDER ID</th>
+                                <!-- <th class="text-center">ORDER STATUS</th> -->
+                                <th class="text-center">SELLER LOCATION</th>
+                                <!-- <th class="text-center">QUALITY</th>
+                                <th class="text-center">QUANTITY (mt)</th>
+                                <th class="text-center">RATE (rs/pmt)</th>
+                                <th class="text-center">DELIVERY STATUS</th> -->
+                                <th class="text-center">STATUS</th>
+                                <th class="text-end">ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,10 +41,10 @@
 
                                 <td class="text-center" *ngIf="s.tradeStatus!='ACCEPTED'"> <b>-</b></td>
                                 <td class="text-center" *ngIf="s.tradeStatus=='ACCEPTED'">{{s.location}}</td>
-                                <td class="text-center">{{s.req_quality}}</td>
+                                <!-- <td class="text-center">{{s.req_quality}}</td>
                                 <td class="text-center">{{s.req_quantity}} (mt)</td>
                                 <td class="text-center">{{s.buyerRate}} ₹</td>
-                                <td class="text-center">{{s.payment_terms}}</td>
+                                <td class="text-center">{{s.payment_terms}}</td> -->
                                 <!-- <td>pending</td> -->
                                 <td class="text-center">
                                     <span class="badge bg-success"

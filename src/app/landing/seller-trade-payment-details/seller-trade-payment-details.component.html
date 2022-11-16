@@ -25,6 +25,13 @@
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>GST NO</label>
+                        <input type="text" disabled class="form-control" id="buyer" placeholder="GST NO"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.gstnumber">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <label>Quality</label>
                     <input type="text" class="form-control" id="quality" placeholder="Enter quality" disabled
                         [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.req_quality">
@@ -54,6 +61,13 @@
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
+                        <label>Invoice Total Amount</label>
+                        <input type="number" disabled class="form-control" id="rate" placeholder="Enter Rate (rs/pmt)"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.invoiceAmount">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
                         <label>Delivery Terms (Days)</label>
                         <input type="number" disabled class="form-control" id="terms"
                             placeholder="Enter Delivery Terms (days)" [ngModelOptions]="{standalone: true}"
@@ -75,13 +89,7 @@
                             [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.createdDate">
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
-                        <label>Validity Date</label>
-                        <input type="text" disabled class="form-control" id="validity" placeholder="Enter Validity date"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.payment_validity">
-                    </div>
-                </div>
+                
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Delivery Status</label>
@@ -96,14 +104,7 @@
                             [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.tradeStatus">
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
-                        <label>Material Images</label> <br>
-                        <img class="img-thumbnail" alt="200x200" width="200"
-                            src="http://localhost:9000{{sellerModel.materialImage}}" data-holder-rendered="true">
-                    </div>
-                </div>
-               
+                              
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Transporter Vehicle No</label>
