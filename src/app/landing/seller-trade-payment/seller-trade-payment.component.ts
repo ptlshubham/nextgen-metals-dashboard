@@ -10,9 +10,14 @@ export class SellerTradePaymentComponent implements OnInit {
   imageUrl: any = "assets/images/file-upload-image.jpg";
   editFile: boolean = true;
   removeUpload: boolean = false;
+  openBilling: boolean = false;
+  openDetails: boolean = false;
   cardImageBase64: any;
   materialImage: any;
-  constructor() { }
+  sellerPaymentDetails: any = {};
+  constructor() {
+    this.openBilling = true;
+  }
 
   ngOnInit(): void {
   }
@@ -29,7 +34,7 @@ export class SellerTradePaymentComponent implements OnInit {
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
         formdata.append('file', file);
-        
+
 
         // this.sellerTradeService.uploadMaterialImage(formdata).subscribe((response) => {
         //   this.materialImage = response;
@@ -50,6 +55,16 @@ export class SellerTradePaymentComponent implements OnInit {
     this.editFile = true;
     this.removeUpload = false;
 
+  }
+  viewPaymentDetails() {
+
+    this.sellerPaymentDetails
+    this.openDetails = true;
+    this.openBilling = false;
+  }
+  backToSummary() {
+    this.openBilling = true;
+    this.openDetails = false;
   }
 
 }

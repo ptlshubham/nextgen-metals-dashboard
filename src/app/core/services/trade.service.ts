@@ -54,5 +54,8 @@ export class TradeService {
         return this.http.post<any>(ApiService.uploadDeliveryRecieptImageURL, img);
 
     }
+    saveTransporterDetails(data:any){
+        return this.http.post(ApiService.saveTransporterDetailsURL, data);  
+    }
 
 }

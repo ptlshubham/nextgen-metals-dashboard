@@ -4,7 +4,7 @@ import { LandingRoutingModule } from './landing-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ExtrapagesModule } from '../extrapages/extrapages.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { NgbDropdownModule, NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import {  NgbCollapseModule, NgbDropdownModule, NgbPaginationModule, NgbPopoverModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { FeatherModule } from 'angular-feather';
 import { allIcons } from 'angular-feather/icons';
 import { SimplebarAngularModule } from 'simplebar-angular';
@@ -23,6 +23,8 @@ import { CompleteProfileComponent } from './complete-profile/complete-profile.co
 import { ArchwizardModule } from 'angular-archwizard';
 import { TradeSummaryDetailsComponent } from './trade-summary-details/trade-summary-details.component';
 import { SellerTradeSummaryDetailsComponent } from './seller-trade-summary-details/seller-trade-summary-details.component';
+import { SellerTradePaymentDetailsComponent } from './seller-trade-payment-details/seller-trade-payment-details.component';
+import { TradePaymentDetailsComponent } from './trade-payment-details/trade-payment-details.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -36,6 +38,8 @@ import { SellerTradeSummaryDetailsComponent } from './seller-trade-summary-detai
     CompleteProfileComponent,
     TradeSummaryDetailsComponent,
     SellerTradeSummaryDetailsComponent,
+    SellerTradePaymentDetailsComponent,
+    TradePaymentDetailsComponent
     
   ],
   imports: [
@@ -53,7 +57,10 @@ import { SellerTradeSummaryDetailsComponent } from './seller-trade-summary-detai
     FeatherModule.pick(allIcons),
     NgbPaginationModule,
     NgbTypeaheadModule,
-    ArchwizardModule
+    ArchwizardModule,
+
+    NgbCollapseModule,
+    NgbPopoverModule,
   ],
   exports:[
     TradeComponent,

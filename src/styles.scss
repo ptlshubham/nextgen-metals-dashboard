@@ -1,4 +1,7 @@
-
+.main-bg-card-active{
+  box-shadow: 0 3px 0 3px rgb(61 207 41 / 37%);
+  transition: 0.3s;
+}
 .avatar-upload {
     position: relative;
     max-width: 205px;

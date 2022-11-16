@@ -1,50 +1,47 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TradeService } from 'src/app/core/services/trade.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PaymentTradeService } from 'src/app/core/services/paymenttrade.service';
 
 @Component({
-  selector: 'app-seller-trade-summary-details',
-  templateUrl: './seller-trade-summary-details.component.html',
-  styleUrls: ['./seller-trade-summary-details.component.scss']
+  selector: 'app-trade-payment-details',
+  templateUrl: './trade-payment-details.component.html',
+  styleUrls: ['./trade-payment-details.component.scss']
 })
-export class SellerTradeSummaryDetailsComponent implements OnInit {
-  @Input() seller: any;
-  sellerModel: any = {};
+export class TradePaymentDetailsComponent implements OnInit {
+  @Input() PaymentDetails: any;
+  buyerModel: any = {};
+
   validationForm!: FormGroup;
   submitted = false;
-
   @ViewChild('fileInput') el!: ElementRef;
   imageUrl: any = "assets/images/file-upload-image.jpg";
   editFile: boolean = true;
   removeUpload: boolean = false;
   cardImageBase64: any;
-  weightSlip: any;
+  paymentSlip: any;
+
   constructor(
     public formBuilder: FormBuilder,
-    private tradingService: TradeService
-
+    private paymentTradeService:PaymentTradeService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
-    this.sellerModel = this.seller;
-    debugger
     this.validationForm = this.formBuilder.group({
-      selectStatus: ['', [Validators.required]],
-      vehicle: ['', [Validators.required]],
-      contact: [0, [Validators.required, Validators.min(10)]],
+      utr: ['', [Validators.required]],
     });
   }
   get f() { return this.validationForm.controls; }
-
+  
   onSubmit() {
     this.submitted = true;
     if (this.validationForm.invalid) {
       return;
     } else {
-      this.sellerModel.materialWeightSlip = this.weightSlip;
+      this.buyerModel.materialPaymentSlip = this.paymentSlip;
       debugger
-
-      this.tradingService.saveTransporterDetails(this.sellerModel).subscribe((res: any) => {
+      this.paymentTradeService.saveBuyerPaymentDetails(this.buyerModel).subscribe((res: any) => {
         if (res == 'success') {
 
         }
@@ -65,8 +62,8 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
         formdata.append('file', file);
-        this.tradingService.uploadWeightSlipImage(formdata).subscribe((response) => {
-          this.weightSlip = response;
+        this.paymentTradeService.uploadPaymentSlipImage(formdata).subscribe((response) => {
+          this.paymentSlip = response;
           this.editFile = false;
           this.removeUpload = true;
         })
@@ -77,4 +74,7 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
     }
   }
 
+  openBankDetails(scrollDataModal: any) {
+    this.modalService.open(scrollDataModal, { windowClass: 'modal-holder' });
+  }
 }
