@@ -16,6 +16,7 @@ export class TradeService {
     }
 
     saveSellerTradeRequest(data: any) {
+        debugger
         return this.http.post(ApiService.saveSellerTradeRequestURL, data);
     }
 
@@ -57,5 +58,12 @@ export class TradeService {
     saveTransporterDetails(data:any){
         return this.http.post(ApiService.saveTransporterDetailsURL, data);  
     }
+    getTransporterDetailsbyIdForSeller(id: any) {
+        let data = {
+            tradeId: id
+        };
+        return this.http.post(ApiService.getTransporterDetailsbyIdForSellerURL, data);
+    }
+
 
 }

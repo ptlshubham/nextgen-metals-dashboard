@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TradeService } from 'src/app/core/services/trade.service';
@@ -12,6 +13,7 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
   sellerModel: any = {};
   validationForm!: FormGroup;
   submitted = false;
+  transportDetails: any = [];
 
   @ViewChild('fileInput') el!: ElementRef;
   imageUrl: any = "assets/images/file-upload-image.jpg";
@@ -23,11 +25,19 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
     public formBuilder: FormBuilder,
     private tradingService: TradeService
 
-  ) { }
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.sellerModel = this.seller;
     debugger
+    if (this.sellerModel.transportDetailsStatus == true) {
+      this.tradingService.getAllTradingDatabyIdForSeller(this.sellerModel.tradeId).subscribe((res: any) => {
+        this.transportDetails = res;
+        debugger
+      })
+    }
     this.validationForm = this.formBuilder.group({
       selectStatus: ['', [Validators.required]],
       vehicle: ['', [Validators.required]],
@@ -46,7 +56,6 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
 
       this.tradingService.saveTransporterDetails(this.sellerModel).subscribe((res: any) => {
         if (res == 'success') {
-
         }
       })
 
