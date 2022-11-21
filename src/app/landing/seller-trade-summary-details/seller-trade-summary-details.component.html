@@ -29,17 +29,10 @@
                     <input type="text" class="form-control" id="quality" placeholder="Enter quality" disabled
                         [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.req_quality">
                 </div>
+               
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
-                        <label>Required Quantity (Metric Ton)</label>
-                        <input type="number" disabled class="form-control" id="quantity"
-                            placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="sellerModel.req_quantity">
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
-                        <label>Quantity From Seller (Metric Ton)</label>
+                        <label>Quantity (Metric Ton)</label>
                         <input type="number" disabled class="form-control" id="quantity"
                             placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
                             [(ngModel)]="sellerModel.sellerQuantity">
@@ -77,13 +70,6 @@
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
-                        <label>Validity Date</label>
-                        <input type="text" disabled class="form-control" id="validity" placeholder="Enter Validity date"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.payment_validity">
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
                         <label>Trade Status</label>
                         <input type="text" disabled class="form-control" id="terms" placeholder="Enter Trade Status"
                             [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.tradeStatus">
@@ -115,8 +101,8 @@
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="sellerModel.transportDetailsStatus!=false">
                     <div class="form-group mb-3">
                         <label>Transporter Contact No:</label>
-                        <input type="number" disabled [(ngModel)]="sellerModel.transporterContact"
-                            class="form-control" id="contact" placeholder="Enter Transporter Contact">
+                        <input type="number" disabled [(ngModel)]="sellerModel.transporterContact" class="form-control"
+                            id="contact" placeholder="Enter Transporter Contact">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="sellerModel.transportDetailsStatus!=false">
@@ -134,7 +120,7 @@
                             [(ngModel)]="sellerModel.deliveryStatus">
                             <option value disabled>Select Delivery Status</option>
                             <option value="DISPACHED">DISPACHED</option>
-                            <option value="DELIVERED">DELIVERED</option>
+                            <!-- <option value="DELIVERED">DELIVERED</option> -->
                         </select>
                         <div *ngIf="submitted && f.selectStatus.errors" class="invalid-feedback">
                             <span *ngIf="f.selectStatus.errors.required">Select Delivery Status is required.</span>

@@ -1,15 +1,4 @@
 <div class="card-body">
-    <div class="row ">
-        <div class="">
-        </div>
-
-        <div class="offset-xl-10 offset-lg-10 offset-md-9 offset-sm-8 col-xl-2 col-lg-2 col-md-3 col-sm-4">
-            <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal"
-                data-bs-target=".bs-example-modal-center" (click)="openBankDetails(scrollDataModal)"><i
-                    class="bx bxs-bank font-size-14 align-middle"></i> Seller Bank Details</button>
-        </div>
-
-    </div>
     <ng-template #scrollDataModal let-modal>
         <div class="modal-header">
             <h5 class="modal-title mt-0">Bank Details</h5>
@@ -31,7 +20,7 @@
                 <dd class="col-sm-8">HDFC00233BC</dd>
                 <dt class="col-sm-4 text-truncate">Invoice Total Amount</dt>
                 <dd class="col-sm-8">45000 ₹</dd>
-                
+
             </dl>
         </div>
     </ng-template>
@@ -67,14 +56,7 @@
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
-                        <label>Required Quantity (Metric Ton)</label>
-                        <input type="number" disabled class="form-control" id="quantity" placeholder="Quantity (mt)"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.req_quantity">
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
-                        <label>Quantity From Seller (Metric Ton)</label>
+                        <label>Quantity (Metric Ton)</label>
                         <input type="number" disabled class="form-control" id="quantity" placeholder="Quantity (mt)"
                             [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.sellerQuantity">
                     </div>
@@ -93,41 +75,15 @@
                             [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.deliveryTerms">
                     </div>
                 </div>
-
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
-                        <label>Trade Date</label>
-                        <input type="text" disabled class="form-control" id="tradeDate" placeholder="Trade date"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.createdDate">
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
-                        <label>Delivery Status</label>
-                        <input type="text" disabled class="form-control" id="terms" placeholder="Delivery Status"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.tradeStatus">
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
-                        <label>Trade Status</label>
-                        <input type="text" disabled class="form-control" id="terms" placeholder="Trade Status"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.tradeStatus">
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
-                        <label>Weight Proof Image From Seller</label>
-                        <img class="img-thumbnail" alt="Weight Proof Reciept" width="200" data-holder-rendered="true">
-
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
-                        <label>Delivery Reciept/Proof Images</label> <br>
-                        <img class="img-thumbnail" alt="Delivery Reciept" width="200" data-holder-rendered="true">
+                        <label>Seller Bank Details</label> <br>
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-primary waves-effect waves-light"
+                                data-bs-toggle="modal" data-bs-target=".bs-example-modal-center"
+                                (click)="openBankDetails(scrollDataModal)"><i
+                                    class="bx bxs-bank font-size-14 align-middle"></i>View Details</button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">

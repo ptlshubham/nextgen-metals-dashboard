@@ -7,7 +7,7 @@
                     <div class="form-group mb-3">
                         <label>Order ID</label>
                         <input type="text" disabled class="form-control" id="buyer" placeholder="Order Id"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.id">
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.tradeId">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -21,7 +21,7 @@
                     <div class="form-group mb-3">
                         <label>Seller Location</label>
                         <input type="text" disabled class="form-control" id="location" placeholder="Enter Buyer"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.sellerLocation">
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.location">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -31,15 +31,7 @@
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
-                        <label>Required Quantity (Metric Ton)</label>
-                        <input type="number" disabled class="form-control" id="quantity"
-                            placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.req_quantity">
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
-                        <label>Quantity From Seller (Metric Ton)</label>
+                        <label>Quantity</label>
                         <input type="number" disabled class="form-control" id="quantity"
                             placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
                             [(ngModel)]="buyerModel.sellerQuantity">
@@ -78,28 +70,20 @@
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
-                        <label>Validity Date</label>
-                        <input type="text" disabled class="form-control" id="validity"
-                            placeholder="Enter Validity date" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.payment_validity">
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
-                        <label>Delivery Status</label>
-                        <input type="text" disabled class="form-control" id="terms"
-                            placeholder="Enter Delivery Status" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.tradeStatus">
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
                         <label>Trade Status</label>
                         <input type="text" disabled class="form-control" id="terms"
                             placeholder="Enter Trade Status" [ngModelOptions]="{standalone: true}"
                             [(ngModel)]="buyerModel.tradeStatus">
                     </div>
                 </div>
+                <!-- <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Delivery Status</label>
+                        <input type="text" disabled class="form-control" id="terms"
+                            placeholder="Enter Delivery Status" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="buyerModel.tradeStatus">
+                    </div>
+                </div> -->
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Material Images</label> <br>
@@ -158,7 +142,7 @@
                         <select required class="form-control form-select" formControlName="selectStatus"
                             [ngClass]="{'is-invalid': submitted && f.selectStatus.errors}" [(ngModel)]="buyerModel.delivery_status">
                             <option value disabled>Select Delivery Status</option>
-                            <option value="DISPACHED">DISPACHED</option>
+                            <!-- <option value="DISPACHED">DISPACHED</option> -->
                             <option value="DELIVERED">DELIVERED</option>
                         </select>
                         <div *ngIf="submitted && f.selectStatus.errors" class="invalid-feedback">

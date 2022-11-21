@@ -11,12 +11,7 @@
                             <tr>
                                 <th class="text-left">#</th>
                                 <th class="text-center">ORDER ID</th>
-                                <!-- <th class="text-center">ORDER STATUS</th> -->
                                 <th class="text-center">SELLER LOCATION</th>
-                                <!-- <th class="text-center">QUALITY</th>
-                                <th class="text-center">QUANTITY (mt)</th>
-                                <th class="text-center">RATE (rs/pmt)</th>
-                                <th class="text-center">DELIVERY STATUS</th> -->
                                 <th class="text-center">STATUS</th>
                                 <th class="text-end">ACTION</th>
                             </tr>
@@ -25,27 +20,8 @@
                             <tr *ngFor="let s of buyerTrade;let i=index">
                                 <th scope="row" class="text-left">{{i+1}}</th>
                                 <td class="text-center">{{s.tradeId}}</td>
-                                <!-- <td *ngIf="s.tradeStatus=='ACCEPTED'"><b>{{s.sname}}</b> </td> -->
-                                <!-- <td *ngIf="s.tradeStatus=='PENDING'">
-                                    <span class="badge bg-warning" data-bs-toggle="tooltip" data-bs-placement="top"
-                                        title="View & Accept">Accept Trade</span>
-                                </td>
-                                <td *ngIf="s.tradeStatus=='REJECTED'">
-                                    <span class="badge bg-danger" data-bs-toggle="tooltip" data-bs-placement="top"
-                                        title="Doesn't Show details">Rejected</span>
-                                </td>
-                                <td *ngIf="s.tradeStatus=='IDEAL'">
-                                    <span class="badge bg-info" data-bs-toggle="tooltip" data-bs-placement="top"
-                                        title="Proposal pending from seller side">Not Review By Seller</span>
-                                </td> -->
-
                                 <td class="text-center" *ngIf="s.tradeStatus!='ACCEPTED'"> <b>-</b></td>
                                 <td class="text-center" *ngIf="s.tradeStatus=='ACCEPTED'">{{s.location}}</td>
-                                <!-- <td class="text-center">{{s.req_quality}}</td>
-                                <td class="text-center">{{s.req_quantity}} (mt)</td>
-                                <td class="text-center">{{s.buyerRate}} ₹</td>
-                                <td class="text-center">{{s.payment_terms}}</td> -->
-                                <!-- <td>pending</td> -->
                                 <td class="text-center">
                                     <span class="badge bg-success"
                                         *ngIf="s.tradeStatus=='ACCEPTED'">{{s.tradeStatus}}</span>
@@ -53,13 +29,6 @@
                                         Seller</span>
                                     <span class="badge bg-danger"
                                         *ngIf="s.tradeStatus=='REJECTED'">{{s.tradeStatus}}</span>
-                                    <!-- <br>
-                                    <div *ngIf="s.tradeStatus=='PENDING'">
-                                        <button type="button" class="btn btn-primary waves-effect waves-light"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"
-                                            (click)="viewAcceptOrReject(s)"><i
-                                                class="bx bx-check-double font-size-16 align-middle me-2"></i>Accept</button>
-                                    </div> -->
                                 </td>
                                 <td class="text-end">
                                     <div *ngIf="s.buyerComissionPay==true">
@@ -67,9 +36,6 @@
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="View Trade Details"
                                             (click)="viewTradeDetailsByTrade(s)"><i
                                                 class="fa fa-eye font-size-16 align-middle me-2"></i>Details</button>
-                                    </div>
-                                    <div *ngIf="s.buyerComissionPay==false">
-                                        <b>-</b>
                                     </div>
                                 </td>
                             </tr>
@@ -79,7 +45,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <div class="row" *ngIf="openDetails">
