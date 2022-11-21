@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.openNewRequest = true;
     this.role = localStorage.getItem('Role');
     if(this.role =='buyer'){
       this.tradingService.getAllTradingDatabyIdForBuyer(localStorage.getItem('UserId')).subscribe((res:any)=>{
@@ -78,6 +77,10 @@ export class HomeComponent implements OnInit {
     this.openNewRequest = true;
     this.openTSummary = false;
     this.openPaymentSumm = false;
+    if(localStorage.getItem('Role')=='buyer'){
+      this.router.navigate(['/landing/trade-active']);
+    }
+    
   }
   openTradeSummary() {
     this.openTSummary = true;

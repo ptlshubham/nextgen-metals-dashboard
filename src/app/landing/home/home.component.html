@@ -9,14 +9,14 @@
             </div>
             <div *ngIf="role=='buyer'">
                 <div class="row">
-                    <div class="col-xl-3 col-md-6" (click)="openNewTrade()">
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12" (click)="openNewTrade()">
                         <!-- card -->
-                        <div class="card card-h-100" [ngClass]="{'main-bg-card-active ':openNewRequest==true}">
+                        <div class="card card-h-100" [ngClass]="{'main-bg-card-active':openNewRequest==true}">
                             <!-- card body -->
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <div class="col-8">
-                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">New Trade
+                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Trade
                                             Request</span>
                                         <h4 class="mb-3">
                                             <span [CountTo]="newTradingListBuyer.length" class="counter-value"
@@ -40,7 +40,7 @@
                         </div><!-- end card -->
                     </div><!-- end col -->
 
-                    <div class="col-xl-3 col-md-6" (click)="openTradeSummary()">
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12" (click)="openTradeSummary()">
                         <!-- card -->
                         <div class="card card-h-100" [ngClass]="{'main-bg-card-active ':openTSummary==true}">
                             <!-- card body -->
@@ -70,7 +70,7 @@
                         </div><!-- end card -->
                     </div><!-- end col-->
 
-                    <div class="col-xl-3 col-md-6" (click)="openPaymentSummary()">
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12" (click)="openPaymentSummary()">
                         <!-- card -->
                         <div class="card card-h-100" [ngClass]="{'main-bg-card-active ':openPaymentSumm==true}">
                             <!-- card body -->
@@ -101,7 +101,7 @@
                         </div><!-- end card -->
                     </div><!-- end col -->
 
-                    <div class="col-xl-3 col-md-6" (click)="openHelpSupport()">
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12" (click)="openHelpSupport()">
                         <!-- card -->
                         <div class="card card-h-100">
                             <!-- card body -->
@@ -131,9 +131,9 @@
                         </div><!-- end card -->
                     </div><!-- end col -->
                 </div>
-                <div style="margin-bottom: 60px !important;" *ngIf="openNewRequest">
+                <!-- <div style="margin-bottom: 60px !important;" *ngIf="openNewRequest">
                     <app-trade></app-trade>
-                </div>
+                </div> -->
                 <div style="margin-bottom: 60px !important;" *ngIf="openTSummary">
                     <app-trade-summary></app-trade-summary>
                 </div>
@@ -143,7 +143,7 @@
             </div>
             <div *ngIf="role=='seller'">
                 <div class="row">
-                    <div class="col-xl-3 col-md-6" (click)="openNewTrade()">
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12" (click)="openNewTrade()">
                         <!-- card -->
                         <div class="card card-h-100" [ngClass]="{'main-bg-card-active ':openNewRequest==true}">
                             <!-- card body -->
@@ -174,7 +174,7 @@
                         </div><!-- end card -->
                     </div><!-- end col -->
 
-                    <div class="col-xl-3 col-md-6" (click)="openTradeSummary()">
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12" (click)="openTradeSummary()">
                         <!-- card -->
                         <div class="card card-h-100" [ngClass]="{'main-bg-card-active ':openTSummary==true}">
                             <!-- card body -->
@@ -205,7 +205,7 @@
                         </div><!-- end card -->
                     </div><!-- end col-->
 
-                    <div class="col-xl-3 col-md-6" (click)="openPaymentSummary()">
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12" (click)="openPaymentSummary()">
                         <!-- card -->
                         <div class="card card-h-100" [ngClass]="{'main-bg-card-active ':openPaymentSumm==true}">
                             <!-- card body -->
@@ -236,7 +236,7 @@
                         </div><!-- end card -->
                     </div><!-- end col -->
 
-                    <div class="col-xl-3 col-md-6" (click)="openHelpSupport()">
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12" (click)="openHelpSupport()">
                         <!-- card -->
                         <div class="card card-h-100">
                             <!-- card body -->

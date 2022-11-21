@@ -1,129 +1,476 @@
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">BUYER Request</h5>
+<div class="bg-soft-light">
+    <app-header-main></app-header-main>
+    <div style="margin-top: 5% !important; margin-bottom: 4%;">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-lg-11 col-md-11 col-xl-11 col-sm-10"></div>
+                <div class="col-lg-1 col-md-1 col-xl-1 col-sm-2">
+                    <button type="button" class="btn btn-danger waves-effect waves-light" (click)="backToDashboard()"><i
+                            class="bx bx-left-arrow-alt"></i>back</button>
+                </div>
 
-                <p class="card-title-desc">New Trade Request</p>
             </div>
-            <!-- end card header -->
+            <div class="row">
+                <div class="col-xl-3 col-md-6">
+                    <!-- card -->
+                    <div class="card card-h-100" [ngClass]="{'main-bg-card-active ':openNewRequest==false}"
+                        (click)="newTradeRequest()">
+                        <!-- card body -->
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-12">
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">New Trade Request</span>
+                                    <h4 class="mb-3">
+                                        <span [CountTo]="500" class="counter-value" [from]="0" [duration]="1"></span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="text-nowrap">
+                                <span class="badge bg-soft-success text-success">+₹20.9k</span>
+                                <span class="ms-1 text-muted font-size-13">Since last week</span>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
 
-            <div class="card-body">
-                <div>
-                    <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
-                        <input type="hidden" />
-                        <div class="row">
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Material Quality</label>
-                                    <select required class="form-control form-select" formControlName="selectMaterial"
-                                        [ngClass]="{'is-invalid': submitted && f.selectMaterial.errors}" [(ngModel)]="tradeModel.material_quality">
-                                        <option value disabled>Select Material Quality</option>
-                                        <option value="q1">Q1</option>
-                                        <option value="q2">Q2</option>
-                                        <option value="q3">Q3</option>
-                                    </select>
-                                    <div *ngIf="submitted && f.selectMaterial.errors" class="invalid-feedback">
-                                        <span *ngIf="f.selectMaterial.errors.required">This Field is required.</span>
-                                    </div>
+                <div class="col-xl-3 col-md-6">
+                    <!-- card -->
+                    <div class="card card-h-100" [ngClass]="{'main-bg-card-active ':openActive==true}"
+                        (click)="openActiveRequest()">
+                        <!-- card body -->
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-12">
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Active Request</span>
+                                    <h4 class="mb-3">
+                                        <span [CountTo]="buyerTrade.length" class="counter-value" [from]="0"
+                                            [duration]="1"></span>
+                                    </h4>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label>Quantity (Metric Ton)</label>
-                                    <input type="number" formControlName="quantity" [(ngModel)]="tradeModel.quantity"
-                                        [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }"
-                                        class="form-control" id="quantity" placeholder="Enter Quantity (mt)">
-                                    <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
-                                        <div *ngIf="f.quantity.errors.required">Quantity is required</div>
-                                        <div *ngIf="f.quantity.errors.min">Only Numbers allowed & Do not enter
-                                            characters.
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="text-nowrap">
+                                <span class="badge bg-soft-danger text-danger">15 Trades</span>
+                                <span class="ms-1 text-muted font-size-13">Since last week</span>
                             </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label>Rate (Rupees / Per Metric Ton)</label>
-                                    <input type="number" formControlName="rate" [(ngModel)]="tradeModel.buyerRate"
-                                        [ngClass]="{ 'is-invalid': submitted && f.rate.errors }" class="form-control"
-                                        id="rate" placeholder="Enter Rate (rs/pmt)">
-                                    <div *ngIf="submitted && f.rate.errors" class="invalid-feedback">
-                                        <div *ngIf="f.rate.errors.required">Rate is required</div>
-                                        <div *ngIf="f.rate.errors.min">Only Numbers allowed & Do not enter characters.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Payment Terms</label>
-                                    <select required class="form-control form-select" formControlName="selectPayment"
-                                        [ngClass]="{'is-invalid': submitted && f.selectPayment.errors}" [(ngModel)]="tradeModel.payment_terms">
-                                        <option value disabled>Select Payment Terms</option>
-                                        <option value="Advance Payment">Advance Payment</option>
-                                        <option value="After Delivery">After Delivery</option>
-                                    </select>
-                                    <div *ngIf="submitted && f.selectPayment.errors" class="invalid-feedback">
-                                        <span *ngIf="f.selectPayment.errors.required">This Field is required.</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Payment Terms</label>
-                                    <select required class="form-control form-select" formControlName="selectP"
-                                        [ngClass]="{'is-invalid': submitted && f.selectP.errors}" [(ngModel)]="selectedValue"
-                                       (ngModelChange)="onPaymentChange($event)">
-                                        <option value disabled >Select Payment Terms</option>
-                                        <option *ngFor="let p of paymentTerms" [ngValue]="p.name">{{p.name}}</option>
-                                    </select>
-                                    <div *ngIf="submitted && f.selectP.errors" class="invalid-feedback">
-                                        <span *ngIf="f.selectP.errors.required">This Field is required.</span>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <div class="col-xl-4 col-md-6" *ngIf="tradeModel.payment_terms=='After Delivery'">
-                                <div class="form-group mb-3">
-                                    <label>Payment Days</label>
-                                    <input type="number" formControlName="terms" [(ngModel)]="payment_days"
-                                        [ngClass]="{ 'is-invalid': submitted && f.terms.errors }" class="form-control"
-                                        id="terms" placeholder="Enter Payment Terms (days)">
-                                    <div *ngIf="submitted && f.terms.errors" class="invalid-feedback">
-                                        <div *ngIf="f.terms.errors.required">Payment Terms is required</div>
-                                        <div *ngIf="f.terms.errors.min">Only Numbers allowed & Do not enter characters.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label>Validity</label>
-                                    <input class="form-control" formControlName="validity" type="date"
-                                        id="validity" [(ngModel)]="tradeModel.payment_validity" value="{{dt | date:'yyyy-MM-dd'}}"
-                                        [ngClass]="{ 'is-invalid': submitted && f.validity.errors }"
-                                        placeholder="Select Validity" [ngModel]="dt | date:'yyyy-MM-dd'"
-                                        (ngModelChange)="dt = $event">
-                                    <div *ngIf="submitted && f.validity.errors" class="invalid-feedback">
-                                        <div *ngIf="f.validity.errors.required">Validity is required</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end row -->
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col-->
 
-                        <div class="form-group mt-3 mb-3 form-check">
-                            <input id="term-check01" type="checkbox" class="form-check-input" name="future" required
-                                data-pristine-required-message="You must accept the terms and conditions" />
-                            <label class="form-check-label" for="term-check01">I accept the terms and
-                                conditions</label><br />
+            </div>
+            <div class="row" *ngIf="openNewRequest==false">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">BUYER Request</h5>
+                            <p class="card-title-desc">New Trade Request</p>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="card-body">
+                            <div>
+                                <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
+                                    <input type="hidden" />
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label">Material Quality</label>
+                                                <select required class="form-control form-select"
+                                                    formControlName="selectMaterial"
+                                                    [ngClass]="{'is-invalid': submitted && f.selectMaterial.errors}"
+                                                    [(ngModel)]="tradeModel.material_quality">
+                                                    <option value disabled>Select Material Quality</option>
+                                                    <option value="q1">Q1</option>
+                                                    <option value="q2">Q2</option>
+                                                    <option value="q3">Q3</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.selectMaterial.errors"
+                                                    class="invalid-feedback">
+                                                    <span *ngIf="f.selectMaterial.errors.required">This Field is
+                                                        required.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Quantity (Metric Ton)</label>
+                                                <input type="number" formControlName="quantity"
+                                                    [(ngModel)]="tradeModel.quantity"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }"
+                                                    class="form-control" id="quantity"
+                                                    placeholder="Enter Quantity (mt)">
+                                                <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.quantity.errors.required">Quantity is required</div>
+                                                    <div *ngIf="f.quantity.errors.min">Only Numbers allowed & Do not
+                                                        enter
+                                                        characters.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Rate (Rupees / Per Metric Ton)</label>
+                                                <input type="number" formControlName="rate"
+                                                    [(ngModel)]="tradeModel.buyerRate"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.rate.errors }"
+                                                    class="form-control" id="rate" placeholder="Enter Rate (rs/pmt)">
+                                                <div *ngIf="submitted && f.rate.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.rate.errors.required">Rate is required</div>
+                                                    <div *ngIf="f.rate.errors.min">Only Numbers allowed & Do not enter
+                                                        characters.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label">Payment Terms</label>
+                                                <select required class="form-control form-select"
+                                                    formControlName="selectPayment"
+                                                    [ngClass]="{'is-invalid': submitted && f.selectPayment.errors}"
+                                                    [(ngModel)]="tradeModel.payment_terms">
+                                                    <option value disabled>Select Payment Terms</option>
+                                                    <option value="Advance Payment">Advance Payment</option>
+                                                    <option value="After Delivery">After Delivery</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.selectPayment.errors"
+                                                    class="invalid-feedback">
+                                                    <span *ngIf="f.selectPayment.errors.required">This Field is
+                                                        required.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6"
+                                            *ngIf="tradeModel.payment_terms=='After Delivery'">
+                                            <div class="form-group mb-3">
+                                                <label>Payment Days</label>
+                                                <input type="number" formControlName="terms" [(ngModel)]="payment_days"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.terms.errors }"
+                                                    class="form-control" id="terms"
+                                                    placeholder="Enter Payment Terms (days)">
+                                                <div *ngIf="submitted && f.terms.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.terms.errors.required">Payment Terms is required</div>
+                                                    <div *ngIf="f.terms.errors.min">Only Numbers allowed & Do not enter
+                                                        characters.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Validity</label>
+                                                <input class="form-control" formControlName="validity" type="date"
+                                                    id="validity" [(ngModel)]="tradeModel.payment_validity"
+                                                    value="{{dt | date:'yyyy-MM-dd'}}"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.validity.errors }"
+                                                    placeholder="Select Validity" [ngModel]="dt | date:'yyyy-MM-dd'"
+                                                    (ngModelChange)="dt = $event">
+                                                <div *ngIf="submitted && f.validity.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.validity.errors.required">Validity is required</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end row -->
+
+                                    <div class="form-group mt-3 mb-3 form-check">
+                                        <input id="term-check01" type="checkbox" class="form-check-input" name="future"
+                                            required
+                                            data-pristine-required-message="You must accept the terms and conditions" />
+                                        <label class="form-check-label" for="term-check01">I accept the terms and
+                                            conditions</label><br />
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="isBuyerOpen">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Active Trade Request</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th class="text-left">#</th>
+                                            <th class="text-center">ORDER ID</th>
+                                            <th class="text-center">SELLER LOCATION</th>
+                                            <th class="text-center">STATUS</th>
+                                            <th class="text-end">ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let s of buyerTrade;let i=index">
+                                            <th scope="row" class="text-left">{{i+1}}</th>
+                                            <td class="text-center">{{s.tradeId}}</td>
+                                            <td class="text-center" *ngIf="s.tradeStatus=='IDEAL'"> <b>-</b></td>
+                                            <td class="text-center" *ngIf="s.tradeStatus!='IDEAL'">{{s.location}}</td>
+                                            <td class="text-center">
+                                                <span class="badge bg-info" *ngIf="s.tradeStatus=='IDEAL'">Not Review By
+                                                    Seller</span>
+                                                <span class="badge bg-success" *ngIf="s.tradeStatus=='ACCEPTED'">ACCEPTED</span>
+                                                <div *ngIf="s.tradeStatus=='PENDING'">
+                                                    <button type="button"
+                                                        class="btn btn-primary waves-effect waves-light"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        title="View & Accept" (click)="viewAcceptOrReject(s)"><i
+                                                            class="bx bx-check-double font-size-16 align-middle me-2"></i>Accept</button>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">
+                                                <button type="button" class="btn btn-primary waves-effect waves-light"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="View Trade Details" (click)="viewTradeDetailsByTrade(s)"><i
+                                                        class="fa fa-eye font-size-16 align-middle me-2"></i>Details</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" *ngIf="isAccept">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <h5 class="card-title">Accept Or Reject Trade</h5>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-danger waves-effect waves-light"
+                                        (click)="backToSummary()"><i class="bx bx-left-arrow-alt"></i>back</button>
+                                </div>
+                            </div>
+
+                            <!-- <p class="card-title-desc">New Trade Request</p> -->
+                        </div>
+                        <!-- end card header -->
+
+                        <div class="card-body">
+                            <div>
+                                <form>
+                                    <input type="hidden" />
+                                    <div class="row">
+
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Seller Location</label>
+                                                <input type="text" disabled class="form-control" id="location"
+                                                    placeholder="Enter Buyer" [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="buyerModel.location">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <label>Quality</label>
+                                            <input type="text" class="form-control" id="quality"
+                                                placeholder="Enter quality" disabled
+                                                [ngModelOptions]="{standalone: true}"
+                                                [(ngModel)]="buyerModel.req_quality">
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Required Quantity (Metric Ton)</label>
+                                                <input type="number" disabled class="form-control" id="quantity"
+                                                    placeholder="Enter Quantity (mt)"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="buyerModel.req_quantity">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Quantity From Seller (Metric Ton)</label>
+                                                <input type="number" disabled class="form-control" id="sellerQuantity"
+                                                    placeholder="Enter Quantity (mt)"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="buyerModel.sellerQuantity">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Rate (Rupees / Per Metric Ton)</label>
+                                                <input type="number" disabled class="form-control" id="rate"
+                                                    placeholder="Enter Rate (rs/pmt)"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="buyerModel.buyerRate">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Payment Terms </label>
+                                                <input type="text" disabled class="form-control" id="terms"
+                                                    placeholder="Enter Payment Terms"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="buyerModel.payment_terms">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6"
+                                            *ngIf="buyerModel.payment_terms =='After Delivery'">
+                                            <div class="form-group mb-3">
+                                                <label>Payment Terms (Days)</label>
+                                                <input type="number" disabled class="form-control" id="payment_days"
+                                                    placeholder="Enter Payment Terms (days)"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="buyerModel.payment_days">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Delivery Terms (Days)</label>
+                                                <input type="number" disabled class="form-control" id="payment_days"
+                                                    placeholder="Enter Payment Terms (days)"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="buyerModel.deliveryTerms">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3" style="height: 200px;width: 200px;">
+                                                <img class="img-thumbnail" style="height: 200px;width: 200px;"
+                                                    alt="200x200" width="200"
+                                                    src="http://localhost:9000{{buyerModel.materialImage}}"
+                                                    data-holder-rendered="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end row -->
+
+                                    <div class="form-group mt-3 mb-3 form-check">
+                                        <input id="term-check01" type="checkbox" class="form-check-input" name="future"
+                                            required
+                                            data-pristine-required-message="You must accept the terms and conditions" />
+                                        <label class="form-check-label" for="term-check01">I accept the terms and
+                                            conditions</label><br />
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-1 offset-10">
+                                                <button type="submit" class="btn btn-success"
+                                                    (click)="acceptOrderAndPay()">Accept</button>
+                                            </div>
+                                            <div class="col-1">
+                                                <button type="submit" class="btn btn-danger"
+                                                    (click)="recjectTrade()">Reject</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="openPayment">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <h5 class="card-title">Payment For Trade</h5>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-danger waves-effect waves-light"
+                                        (click)="backToViewReject()"><i class="bx bx-left-arrow-alt"></i>back</button>
+                                </div>
+                            </div>
+
+                            <!-- <p class="card-title-desc">New Trade Request</p> -->
+                        </div>
+                        <div class="card-body">
+                            <app-customer-payment [buyer]="buyerModel"></app-customer-payment>
+
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="isViewDetails">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <h5 class="card-title">Trade Details</h5>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-danger waves-effect waves-light"
+                                        (click)="backToSummary()"><i class="bx bx-left-arrow-alt"></i>back</button>
+                                </div>
+                            </div>
+
+                            <!-- <p class="card-title-desc">New Trade Request</p> -->
+                        </div>
+                        <!-- end card header -->
+
+                        <div class="card-body">
+                            <div>
+                                <form>
+                                    <input type="hidden" />
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6">
+                                            <label>Quality</label>
+                                            <input type="text" class="form-control" id="quality"
+                                                placeholder="Enter quality" disabled
+                                                [ngModelOptions]="{standalone: true}"
+                                                [(ngModel)]="buyerModel.req_quality">
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Required Quantity (Metric Ton)</label>
+                                                <input type="number" disabled class="form-control" id="quantity"
+                                                    placeholder="Enter Quantity (mt)"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="buyerModel.req_quantity">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Rate (Rupees / Per Metric Ton)</label>
+                                                <input type="number" disabled class="form-control" id="rate"
+                                                    placeholder="Enter Rate (rs/pmt)"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="buyerModel.buyerRate">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Payment Terms </label>
+                                                <input type="text" disabled class="form-control" id="terms"
+                                                    placeholder="Enter Payment Terms"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="buyerModel.payment_terms">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6"
+                                            *ngIf="buyerModel.payment_terms =='After Delivery'">
+                                            <div class="form-group mb-3">
+                                                <label>Payment Terms (Days)</label>
+                                                <input type="number" disabled class="form-control" id="payment_days"
+                                                    placeholder="Enter Payment Terms (days)"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="buyerModel.payment_days">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

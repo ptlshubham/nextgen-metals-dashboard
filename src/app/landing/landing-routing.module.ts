@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CompleteProfileComponent } from './complete-profile/complete-profile.component';
 import { HomeComponent } from './home/home.component';
+import { TradeComponent } from './trade/trade.component';
 
 const routes: Routes = [
     {
@@ -12,8 +13,10 @@ const routes: Routes = [
         path: 'complete-profile',
         component: CompleteProfileComponent
     },
-
-
+    {
+        path:'trade-active',
+        component:TradeComponent
+    }
 ];
 
 @NgModule({
