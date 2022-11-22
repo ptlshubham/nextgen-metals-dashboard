@@ -97,6 +97,9 @@ export class HomeComponent implements OnInit {
     if (localStorage.getItem('Role') == 'buyer') {
       this.router.navigate(['/landing/trade-active']);
     }
+    else{
+      this.router.navigate(['/landing/seller-trade-active']);
+    }
 
   }
   openTradeSummary() {

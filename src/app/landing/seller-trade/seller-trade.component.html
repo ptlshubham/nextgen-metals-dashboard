@@ -1,207 +1,447 @@
-<div class="row" *ngIf="!isAccept">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">Seller Trade Request</h5>
-                <!-- <p class="card-title-desc">
-                   
-                </p> -->
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table mb-0" *ngIf="sellerTrade.length >0">
-                        <thead class="table-light">
-                            <tr>
-                                <th>#</th>
-                                <th>BUYER NAME</th>
-                                <th>BUYER LOCATION</th>
-                                <th>QUALITY</th>
-                                <th>QUANTITY (mt)</th>
-                                <th>RATE (rs/pmt)</th>
-                                <th>PAYMENT TERMS</th>
-                                <th>Validity</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody >
-                            <tr *ngFor="let s of sellerTrade;let i=index" >
-                                <th scope="row">{{i+1}}</th>
-                                <td>{{s.buyFirstName}} {{s.buyLastName}}</td>
-                                <td width="1">{{s.buyerLocation}}</td>
-                                <td>{{s.req_quality}}</td>
-                                <td>{{s.req_quantity}} (mt)</td>
-                                <td>{{s.buyerRate}} ₹</td>
-                                <td>{{s.payment_days}} days</td>
-                                <td>{{s.payment_validity | date:'yyyy-MM-dd'}}</td>
-
-                                <td>
-                                    <div class="d-flex flex-wrap gap-2">
-                                        <button type="button" class="btn btn-soft-primary waves-effect waves-light"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"
-                                            (click)="editAcceptOrder(s)"><i
-                                                class="bx bx-edit font-size-16 align-middle"></i></button>
-                                    </div>
-                                </td>
-
-                            </tr>
-                        </tbody>
-                    </table>
+<div class="bg-soft-light">
+    <app-header-main></app-header-main>
+    <div style="margin-top: 5% !important; margin-bottom: 4%;">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-lg-11 col-md-11 col-xl-11 col-sm-10"></div>
+                <div class="col-lg-1 col-md-1 col-xl-1 col-sm-2">
+                    <button type="button" class="btn btn-danger waves-effect waves-light" (click)="backToDashboard()"><i
+                            class="bx bx-left-arrow-alt"></i>back</button>
                 </div>
-
             </div>
-            <!-- end card body -->
-        </div>
-        <!-- end card -->
-    </div>
-    <!-- end col -->
-</div>
-<div class="row" *ngIf="isAccept">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-11">
-                        <h5 class="card-title">SELLER REQUEST</h5>
+            <div class="row">
+                <div class="col-xl-3 col-md-6">
+                    <!-- card -->
+                    <div class="card card-h-100" [ngClass]="{'main-bg-card-active':isPending==true || isAccept==true}"
+                        (click)="openPendingRequest()">
+                        <!-- card body -->
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-12">
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">New Trade Request</span>
+                                    <h4 class="mb-3">
+                                        <span [CountTo]="sellerTrade.length" class="counter-value" [from]="0"
+                                            [duration]="1" *ngIf="sellerTrade.length >0"></span>
+                                        <!-- <span>New Request</span> -->
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="text-nowrap">
+                                <span class="badge bg-soft-success text-success">+₹20.9k</span>
+                                <span class="ms-1 text-muted font-size-13">Since last week</span>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+                <div class="col-xl-3 col-md-6">
+                    <!-- card -->
+                    <div class="card card-h-100"
+                        [ngClass]="{'main-bg-card-active ':isActiveOpen==true ||isOpenDetails==true}"
+                        (click)="openActiveRequestList()">
+                        <!-- card body -->
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-12">
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">Active Request</span>
+                                    <h4 class="mb-3">
+                                        <span [CountTo]="sellerTradeActive.length" class="counter-value" [from]="0"
+                                            [duration]="1" *ngIf="sellerTradeActive.length >0"></span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="text-nowrap">
+                                <span class="badge bg-soft-danger text-danger">15 Trades</span>
+                                <span class="ms-1 text-muted font-size-13">Since last week</span>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col-->
+            </div>
+
+            <div class="row" *ngIf="isPending" style="margin-bottom:60px !important;">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">New Trade Request List</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table mb-0" *ngIf="sellerTrade.length >0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th class="text-left">#</th>
+                                            <th class="text-center">ORDER ID</th>
+                                            <th class="text-center">BUYER NAME</th>
+                                            <th class="text-center">BUYER LOCATION</th>
+                                            <th class="text-right">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let s of sellerTrade;let i=index">
+                                            <td class="text-left">{{i+1}}</td>
+                                            <td class="text-center">{{s.orderId}}</td>
+                                            <td class="text-center">{{s.buyFirstName}} {{s.buyLastName}}</td>
+                                            <td class="text-center">{{s.buyerLocation}}</td>
+                                            <td class="text-right">
+                                                <div class="d-flex flex-wrap gap-2">
+                                                    <button type="button"
+                                                        class="btn btn-soft-primary waves-effect waves-light"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        title="View & Accept" (click)="editAcceptOrder(s)"><i
+                                                            class="bx bx-edit font-size-16 align-middle"></i></button>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <!-- end card body -->
                     </div>
-                    <div class="col-md-1">
-                        <button type="button" class="btn btn-danger waves-effect waves-light"
-                            (click)="backToSummary()"><i class="bx bx-left-arrow-alt"></i>back</button>
-                    </div>
+                    <!-- end card -->
                 </div>
-
-                <p class="card-title-desc">New Trade Request</p>
+                <!-- end col -->
             </div>
-            <!-- end card header -->
+            <div class="row" *ngIf="isAccept" style="margin-bottom:60px !important;">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <h5 class="card-title">SELLER REQUEST</h5>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-danger waves-effect waves-light"
+                                        (click)="backToSummary()"><i class="bx bx-left-arrow-alt"></i>back</button>
+                                </div>
+                            </div>
 
-            <div class="card-body">
-                <div>
-                    <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
-                        <input type="hidden" />
-                        <div class="row">
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label>Quality</label>
-                                    <input type="text" formControlName="quality" class="form-control" id="quality"
-                                        placeholder="Enter quality" [(ngModel)]="tradeModel.req_quality">
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label>Buyer Name</label>
-                                    <input type="text" formControlName="buyer" class="form-control" id="buyer"
-                                        placeholder="Enter Buyer" [(ngModel)]="tradeModel.buyFirstName">
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label>Required Quantity (Metric Ton)</label>
-                                    <input type="number" formControlName="quantity" class="form-control" id="quantity"
-                                        placeholder="Enter Quantity (mt)" [(ngModel)]="tradeModel.req_quantity">
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label>Rate (Rupees / Per Metric Ton)</label>
-                                    <input type="number" formControlName="rate" class="form-control" id="rate"
-                                        placeholder="Enter Rate (rs/pmt)" [(ngModel)]="tradeModel.buyerRate">
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label>Payment Terms </label>
-                                    <input type="text" formControlName="terms" class="form-control" id="terms"
-                                        placeholder="Enter Payment Terms " [(ngModel)]="tradeModel.payment_terms">
+                            <p class="card-title-desc">New Trade Request</p>
+                        </div>
+                        <!-- end card header -->
 
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6" *ngIf="tradeModel.payment_terms =='After Delivery'">
-                                <div class="form-group mb-3">
-                                    <label>Payment Terms(Days)</label>
-                                    <input type="text" formControlName="payment_days" class="form-control" id="payment_days"
-                                        placeholder="Enter Payment Days" [(ngModel)]="tradeModel.payment_days">
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label>Validity</label>
-                                    <input type="text" formControlName="validity" class="form-control" id="validity"
-                                        placeholder="Enter Validity" [(ngModel)]="tradeModel.payment_validity">
-                                </div>
-                            </div>
-                           
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label>Buyer Location</label>
-                                    <textarea type="text" formControlName="address" class="form-control" id="address"
-                                        placeholder="Enter Buyer Location" [(ngModel)]="tradeModel.buyerLocation"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label>Quantity (Metric Ton)</label>
-                                    <input type="number" formControlName="sellquantity" [(ngModel)]="tradeModel.sell_quantity"
-                                        [ngClass]="{ 'is-invalid': submitted && f.sellquantity.errors }"
-                                        class="form-control" id="sellquantity" placeholder="Enter Quantity (mt)">
-                                    <div *ngIf="submitted && f.sellquantity.errors" class="invalid-feedback">
-                                        <div *ngIf="f.sellquantity.errors.required">Quantity is required</div>
-                                        <div *ngIf="f.sellquantity.errors.min">Only Numbers allowed & Do not enter
-                                            characters.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label>Delivery Terms (Days)</label>
-                                    <input type="number" formControlName="diliveryterms" [(ngModel)]="tradeModel.diliveryTerms"
-                                        [ngClass]="{ 'is-invalid': submitted && f.diliveryterms.errors }"
-                                        class="form-control" id="diliveryterms"
-                                        placeholder="Enter Delivery Terms (days)">
-                                    <div *ngIf="submitted && f.diliveryterms.errors" class="invalid-feedback">
-                                        <div *ngIf="f.diliveryterms.errors.required">Delivery Terms is required</div>
-                                        <div *ngIf="f.diliveryterms.errors.min">Only Numbers allowed & Do not enter
-                                            characters.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-md-6">
-                                <div class="form-group mb-3">
-                                    <label>Upload Material Image</label>
-                                    <div class="avatar-upload">
-                                        <div class="avatar-edit">
-                                            <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
-                                                (change)="uploadFile($event)" />
-                                        </div>
-                                        <div class="avatar-preview">
-                                            <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+                        <div class="card-body">
+                            <div>
+                                <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
+                                    <input type="hidden" />
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Quality</label>
+                                                <input type="text" formControlName="quality" class="form-control"
+                                                    id="quality" placeholder="Enter quality"
+                                                    [(ngModel)]="tradeModel.req_quality">
                                             </div>
                                         </div>
-                                        <div style="margin-top: 10px;">
-                                            <button type="submit" class="btn btn-primary btn-sm btn-block"
-                                                (click)="fileInput.click()">Upload
-                                                Image</button>
-                                            <button type="submit" class="btn btn-warning btn-sm btn-block">Remove
-                                                Image</button>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Buyer Name</label>
+                                                <input type="text" formControlName="buyer" class="form-control"
+                                                    id="buyer" placeholder="Enter Buyer"
+                                                    [(ngModel)]="tradeModel.buyFirstName">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Required Quantity (Metric Ton)</label>
+                                                <input type="number" formControlName="quantity" class="form-control"
+                                                    id="quantity" placeholder="Enter Quantity (mt)"
+                                                    [(ngModel)]="tradeModel.req_quantity">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Rate (Rupees / Per Metric Ton)</label>
+                                                <input type="number" formControlName="rate" class="form-control"
+                                                    id="rate" placeholder="Enter Rate (rs/pmt)"
+                                                    [(ngModel)]="tradeModel.buyerRate">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Payment Terms </label>
+                                                <input type="text" formControlName="terms" class="form-control"
+                                                    id="terms" placeholder="Enter Payment Terms "
+                                                    [(ngModel)]="tradeModel.payment_terms">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6"
+                                            *ngIf="tradeModel.payment_terms =='After Delivery'">
+                                            <div class="form-group mb-3">
+                                                <label>Payment Terms(Days)</label>
+                                                <input type="text" formControlName="payment_days" class="form-control"
+                                                    id="payment_days" placeholder="Enter Payment Days"
+                                                    [(ngModel)]="tradeModel.payment_days">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Validity</label>
+                                                <input type="text" formControlName="validity" class="form-control"
+                                                    id="validity" placeholder="Enter Validity"
+                                                    [(ngModel)]="tradeModel.payment_validity">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Buyer Location</label>
+                                                <textarea type="text" formControlName="address" class="form-control"
+                                                    id="address" placeholder="Enter Buyer Location"
+                                                    [(ngModel)]="tradeModel.buyerLocation"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Quantity (Metric Ton)</label>
+                                                <input type="number" formControlName="sellquantity"
+                                                    [(ngModel)]="tradeModel.sell_quantity"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.sellquantity.errors }"
+                                                    class="form-control" id="sellquantity"
+                                                    placeholder="Enter Quantity (mt)">
+                                                <div *ngIf="submitted && f.sellquantity.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="f.sellquantity.errors.required">Quantity is required
+                                                    </div>
+                                                    <div *ngIf="f.sellquantity.errors.min">Only Numbers allowed & Do not
+                                                        enter
+                                                        characters.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Delivery Terms (Days)</label>
+                                                <input type="number" formControlName="diliveryterms"
+                                                    [(ngModel)]="tradeModel.diliveryTerms"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.diliveryterms.errors }"
+                                                    class="form-control" id="diliveryterms"
+                                                    placeholder="Enter Delivery Terms (days)">
+                                                <div *ngIf="submitted && f.diliveryterms.errors"
+                                                    class="invalid-feedback">
+                                                    <div *ngIf="f.diliveryterms.errors.required">Delivery Terms is
+                                                        required</div>
+                                                    <div *ngIf="f.diliveryterms.errors.min">Only Numbers allowed & Do
+                                                        not enter
+                                                        characters.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Upload Material Image</label>
+                                                <div class="avatar-upload">
+                                                    <div class="avatar-edit">
+                                                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"
+                                                            #fileInput (change)="uploadFile($event)" />
+                                                    </div>
+                                                    <div class="avatar-preview">
+                                                        <div id="imagePreview"
+                                                            [style.backgroundImage]="'url('+ imageUrl +')'">
+                                                        </div>
+                                                    </div>
+                                                    <div style="margin-top: 10px;">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-block"
+                                                            (click)="fileInput.click()">Upload
+                                                            Image</button>
+                                                        <button type="submit"
+                                                            class="btn btn-warning btn-sm btn-block">Remove
+                                                            Image</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <!-- end row -->
+
+                                    <div class="form-group mt-3 mb-3 form-check">
+                                        <input id="term-check01" type="checkbox" class="form-check-input" name="future"
+                                            required
+                                            data-pristine-required-message="You must accept the terms and conditions" />
+                                        <label class="form-check-label" for="term-check01">I accept the terms and
+                                            conditions</label><br />
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <!-- end row -->
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="isActiveOpen" style="margin-bottom:60px !important;">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Active Request List</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table mb-0" *ngIf="sellerTradeActive.length >0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th class="text-left">#</th>
+                                            <th class="text-center">ORDER ID</th>
+                                            <th class="text-center">BUYER NAME</th>
+                                            <th class="text-center">BUYER LOCATION</th>
+                                            <th class="text-right">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let s of sellerTradeActive;let i=index">
+                                            <td class="text-left">{{i+1}}</td>
+                                            <td class="text-center">{{s.tradeId}}</td>
+                                            <td class="text-center">{{s.buyerName}}</td>
+                                            <td class="text-center">{{s.location}}</td>
+                                            <td class="text-right">
+                                                <div class="d-flex flex-wrap gap-2">
+                                                    <button type="button"
+                                                        class="btn btn-soft-primary waves-effect waves-light"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        title="View Details" (click)="viewActiveDetails(s)"><i
+                                                            class="fa fa-eye font-size-16 align-middle"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                        <div class="form-group mt-3 mb-3 form-check">
-                            <input id="term-check01" type="checkbox" class="form-check-input" name="future" required
-                                data-pristine-required-message="You must accept the terms and conditions" />
-                            <label class="form-check-label" for="term-check01">I accept the terms and
-                                conditions</label><br />
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                        <!-- end card body -->
+                    </div>
+                    <!-- end card -->
+                </div>
+                <!-- end col -->
+            </div>
+            <div class="row" *ngIf="isOpenDetails" style="margin-bottom:60px !important;">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <h5 class="card-title">View request</h5>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-danger waves-effect waves-light"
+                                        (click)="backToActive()"><i class="bx bx-left-arrow-alt"></i>back</button>
+                                </div>
+                            </div>
+                            <p class="card-title-desc">View Trade Details</p>
                         </div>
-                    </form>
+                        <!-- end card header -->
+
+                        <div class="card-body">
+                            <div>
+                                <form>
+                                    <input type="hidden" />
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Quality</label>
+                                                <input type="text" disabled class="form-control" id="quality"
+                                                    placeholder="Enter quality" [(ngModel)]="sellerModel.req_quality" [ngModelOptions]="{standalone: true}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Buyer Name</label>
+                                                <input type="text" disabled class="form-control" id="buyer"
+                                                    placeholder="Enter Buyer" [(ngModel)]="sellerModel.buyerName" [ngModelOptions]="{standalone: true}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Required Quantity (Metric Ton)</label>
+                                                <input type="number" disabled class="form-control" id="quantity"
+                                                    placeholder="Enter Quantity (mt)"
+                                                    [(ngModel)]="sellerModel.req_quantity" [ngModelOptions]="{standalone: true}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Rate (Rupees / Per Metric Ton)</label>
+                                                <input type="number" disabled class="form-control" id="rate"
+                                                    placeholder="Enter Rate (rs/pmt)"
+                                                    [(ngModel)]="sellerModel.buyerRate" [ngModelOptions]="{standalone: true}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Payment Terms </label>
+                                                <input type="text" disabled class="form-control" id="terms"
+                                                    placeholder="Enter Payment Terms "
+                                                    [(ngModel)]="sellerModel.payment_terms" [ngModelOptions]="{standalone: true}">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6"
+                                            *ngIf="sellerModel.payment_terms =='After Delivery'">
+                                            <div class="form-group mb-3">
+                                                <label>Payment Terms(Days)</label>
+                                                <input type="text" disabled class="form-control" id="payment_days"
+                                                    placeholder="Enter Payment Days"
+                                                    [(ngModel)]="sellerModel.payment_days" [ngModelOptions]="{standalone: true}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Validity</label>
+                                                <input type="text" disabled class="form-control" id="validity"
+                                                    placeholder="Enter Validity"
+                                                    [(ngModel)]="sellerModel.payment_validity" [ngModelOptions]="{standalone: true}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-4 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Buyer Location</label>
+                                                <textarea type="text" disabled class="form-control" id="address"
+                                                    placeholder="Enter Buyer Location"
+                                                    [(ngModel)]="sellerModel.location" [ngModelOptions]="{standalone: true}"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                                            <div class="form-group mb-3">
+                                                <label>Quantity (Metric Ton)</label>
+                                                <input type="number" disabled class="form-control" id="quantity"
+                                                    placeholder="Enter Quantity (mt)"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="sellerModel.sellerQuantity" [ngModelOptions]="{standalone: true}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                                            <div class="form-group mb-3">
+                                                <label>Delivery Terms (Days)</label>
+                                                <input type="number" disabled class="form-control" id="terms"
+                                                    placeholder="Enter Delivery Terms (days)"
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    [(ngModel)]="sellerModel.deliveryTerms" [ngModelOptions]="{standalone: true}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                                            <div class="form-group mb-3">
+                                                <label>Material Images</label> <br>
+                                                <img class="img-thumbnail" alt="200x200" width="200"
+                                                    src="http://localhost:9000{{sellerModel.materialImage}}"
+                                                    data-holder-rendered="true">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- end row -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

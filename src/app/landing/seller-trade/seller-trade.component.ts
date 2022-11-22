@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SellerTrade } from 'src/app/core/models/seller-trade.model';
 import { SellerTradeService } from 'src/app/core/services/seller-trade.service';
 import { TradeService } from 'src/app/core/services/trade.service';
-import { MustMatch } from 'src/app/pages/form/validation/validation.mustmatch';
 
 @Component({
   selector: 'app-seller-trade',
@@ -14,6 +14,11 @@ export class SellerTradeComponent implements OnInit {
   validationForm!: FormGroup;
   submitted = false;
   isAccept: boolean = false;
+  isPending: boolean = false;
+  isActiveOpen: boolean = false;
+  isOpenDetails: boolean = false;
+  sellerModel: any = {};
+
 
   public tradeModel: SellerTrade = new SellerTrade;
 
@@ -24,19 +29,35 @@ export class SellerTradeComponent implements OnInit {
   cardImageBase64: any;
   materialImage: any;
 
-  sellerTrade: any = []
+  sellerTrade: any = [];
+  sellerData: any = [];
+  sellerActiveData: any = [];
+  sellerTradeActive: any = [];
   constructor(
     public formBuilder: FormBuilder,
     public sellerTradeService: SellerTradeService,
-    public tradingService:TradeService
-  ) { }
+    public tradingService: TradeService,
+    private router: Router
+  ) {
+    this.isPending = true;
+
+  }
 
   ngOnInit(): void {
-    this.tradingService.newTradeReqForSeller().subscribe((res:any)=>{
-      this.sellerTrade = res;
-      this.sellerTrade.forEach((element:any)=>{
-        element.buyerLocation = element.street+' '+element.city+' '+element.state;
+    this.tradingService.newTradeReqForSeller().subscribe((res: any) => {
+      this.sellerData = res;
+      this.sellerTrade = [];
+
+      this.sellerData.forEach((element: any) => {
+        element.buyerLocation = element.street + ' ' + element.city + ' ' + element.state;
       })
+      this.sellerData.forEach((element: any) => {
+        if (element.tradeStatus == 'IDEAL')
+          this.sellerTrade.push(element);
+
+      })
+      this.getActiveRequestData();
+
     })
     this.validationForm = this.formBuilder.group({
       validity: ['', Validators.required],
@@ -48,35 +69,59 @@ export class SellerTradeComponent implements OnInit {
       rate: [0, [Validators.required, Validators.min(1)]],
       quality: ['', [Validators.required]],
       buyer: ['', [Validators.required]],
-      payment_days:['']
+      payment_days: ['']
     });
   }
   get f() { return this.validationForm.controls; }
 
   onSubmit() {
-    debugger
+
     this.submitted = true;
     // stop here if form is invalid
     if (this.validationForm.invalid) {
-      debugger
+
       return;
-    }else{
-      let seller:any,name:any;
+    } else {
+      let seller: any, name: any;
       seller = localStorage.getItem('UserId');
       name = localStorage.getItem('UserName');
       this.tradeModel.materialImage = this.materialImage;
-      this.tradeModel.sellerId =seller;
-      this.tradeModel.sellerName=name;
-      debugger
-      this.tradingService.saveSellerTradeRequest(this.tradeModel).subscribe((res:any)=>{
-        if(res =='success'){
+      this.tradeModel.sellerId = seller;
+      this.tradeModel.sellerName = name;
+
+      this.tradingService.saveSellerTradeRequest(this.tradeModel).subscribe((res: any) => {
+        if (res == 'success') {
           alert('submitted request');
         }
       })
     }
   }
+  getActiveRequestData() {
+    this.sellerTradeActive = [];
+    this.tradingService.getAllTradingDatabyIdForSeller(localStorage.getItem('UserId')).subscribe((res: any) => {
+      if (res.length == 0) {
+        this.sellerActiveData.length = 0;
+      } else {
+        this.sellerActiveData = res;
+        this.sellerActiveData.forEach((element: any) => {
+          element.location = element.street + ' ' + element.city + ' ' + element.state;
+
+        })
+        this.sellerActiveData.forEach((element: any) => {
+          if (element.tradeStatus == 'PENDING')
+            this.sellerTradeActive.push(element);
+
+        })
+      }
+
+    })
+  }
   editAcceptOrder(val: any) {
     this.isAccept = true;
+    this.isPending = false;
+    this.isOpenDetails = false;
+    this.isActiveOpen = false;
+
     this.tradeModel = val;
     this.validationForm.controls['quantity'].disable();
     this.validationForm.controls['quality'].disable();
@@ -91,7 +136,40 @@ export class SellerTradeComponent implements OnInit {
   }
   backToSummary() {
     this.isAccept = false;
+    this.isActiveOpen = false;
+    this.isPending = true;
+    this.isOpenDetails = false;
+  }
+  backToActive() {
+    this.isAccept = false;
+    this.isActiveOpen = true;
+    this.isPending = false;
+    this.isOpenDetails = false;
+  }
+  openPendingRequest() {
+    this.isAccept = false;
+    this.isPending = true;
+    this.isActiveOpen = false;
+    this.isOpenDetails = false;
 
+  }
+  openActiveRequestList() {
+    this.isActiveOpen = true;
+    this.isAccept = false;
+    this.isPending = false;
+    this.isOpenDetails = false;
+
+  }
+  viewActiveDetails(data: any) {
+    this.sellerModel = data;
+    debugger
+    this.isAccept = false;
+    this.isPending = false;
+    this.isActiveOpen = false;
+    this.isOpenDetails = true;
+  }
+  backToDashboard() {
+    this.router.navigate(['/landing/user-home']);
   }
   uploadFile(event: any) {
     let reader = new FileReader(); // HTML5 FileReader API
@@ -106,11 +184,11 @@ export class SellerTradeComponent implements OnInit {
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
         formdata.append('file', file);
-        
+
 
         this.sellerTradeService.uploadMaterialImage(formdata).subscribe((response) => {
           this.materialImage = response;
-          
+
           //   this.isImageSaved = true;
           this.editFile = false;
           this.removeUpload = true;

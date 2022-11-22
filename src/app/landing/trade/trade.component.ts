@@ -67,12 +67,13 @@ export class TradeComponent implements OnInit {
       this.tradeModel.payment_terms;
       this.tradeModel.tradeStatus = 'IDEAL';
       this.tradeModel.payment_days = this.payment_days;
-      debugger
       this.tradeService.newTraderequest(this.tradeModel).subscribe((res: any) => {
         if (res == 'success') {
+          debugger
           this.getRequestList();
         }
       })
+      location.reload();
 
     }
   }
