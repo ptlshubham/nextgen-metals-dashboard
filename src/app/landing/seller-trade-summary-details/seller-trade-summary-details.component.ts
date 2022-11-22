@@ -52,8 +52,6 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
       return;
     } else {
       this.sellerModel.materialWeightSlip = this.weightSlip;
-      debugger
-
       this.tradingService.saveTransporterDetails(this.sellerModel).subscribe((res: any) => {
         if (res == 'success') {
         }

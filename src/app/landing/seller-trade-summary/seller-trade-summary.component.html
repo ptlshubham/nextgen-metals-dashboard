@@ -3,9 +3,6 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">Seller Trade Summary</h5>
-                <!-- <p class="card-title-desc">
-                   
-                </p> -->
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -16,9 +13,6 @@
                                 <th class="text-center">ORDER ID</th>
                                 <th class="text-center">BUYER NAME</th>
                                 <th class="text-center">BUYER LOCATION</th>
-                                <!-- <th class="text-center">QUALITY</th>
-                                <th class="text-center">QUANTITY (mt)</th>
-                                <th class="text-center">RATE (rs/pmt)</th> -->
                                 <th class="text-center">STATUS</th>
                                 <th class="text-end">Action</th>
                             </tr>
@@ -27,15 +21,9 @@
                             <tr *ngFor="let s of sellerTrade;let i=index">
                                 <td class="text-left" scope="row">{{i+1}}</td>
                                 <td class="text-center">{{s.tradeId}}</td>
-                                <!-- <td class="text-center">{{s.tradeStatus}}</td> -->
                                 <td class="text-center">{{s.buyerName}}</td>
                                 <td class="text-center">{{s.location}}</td>
-                                <!-- <td class="text-center">{{s.req_quality}} (mt)</td>
-                                <td class="text-center">{{s.req_quantity}} (mt)</td>
-                                <td class="text-center">{{s.buyerRate}} ₹</td> -->
                                 <td class="text-center">
-                                    <span class="badge bg-warning"
-                                        *ngIf="s.tradeStatus=='PENDING'">{{s.tradeStatus}}</span>
                                     <span class="badge bg-success"
                                         *ngIf="s.tradeStatus=='ACCEPTED'">{{s.tradeStatus}}</span>
                                     <span class="badge bg-info" *ngIf="s.tradeStatus=='IDEAL'">Not Review By
@@ -44,7 +32,7 @@
                                         *ngIf="s.tradeStatus=='REJECTED'">{{s.tradeStatus}}</span>
                                 </td>
                                 <td class="text-end">
-                                    <div *ngIf="s.sellerComissionPay==false && s.tradeStatus=='ACCEPTED' ">
+                                    <!-- <div *ngIf="s.sellerComissionPay==false && s.tradeStatus=='ACCEPTED' ">
                                         <button type="button" class="btn btn-primary waves-effect waves-light"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="View & Download"
                                             (click)="acceptAndPay(s)"><i
@@ -53,13 +41,13 @@
                                     </div>
                                     <div *ngIf="s.tradeStatus!='ACCEPTED'">
                                         <b>-</b>
-                                    </div>
-                                    <div *ngIf="s.sellerComissionPay==true ">
-                                        <button type="button" class="btn btn-primary waves-effect waves-light"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Download"
-                                            (click)="viewTradeDetails(s)"><i
-                                                class="fa fa-eye font-size-16 align-middle me-2"></i> View</button>
-                                    </div>
+                                    </div> -->
+                                    <!-- <div *ngIf="s.sellerComissionPay==true "> -->
+                                    <button type="button" class="btn btn-primary waves-effect waves-light"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="View & Download"
+                                        (click)="viewTradeDetails(s)"><i
+                                            class="fa fa-eye font-size-16 align-middle me-2"></i> View</button>
+                                    <!-- </div> -->
                                 </td>
                             </tr>
                         </tbody>

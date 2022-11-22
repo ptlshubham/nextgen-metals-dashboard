@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   newTradingListSeller: any = [];
   weekTradeCountSeller: number = 0;
   tradeSummaryCount: any = [];
+  tradeSummaryLength: any = [];
   constructor(
     private router: Router,
     private tradingService: TradeService
@@ -28,16 +29,17 @@ export class HomeComponent implements OnInit {
     this.role = localStorage.getItem('Role');
     if (this.role == 'buyer') {
       this.tradingService.getAllTradingDatabyIdForBuyer(localStorage.getItem('UserId')).subscribe((res: any) => {
-        debugger
-
+          
+        
         if (res.length == 0) {
           this.allTradingListBuyer.length = 0;
         } else {
+
           this.allTradingListBuyer = res;
           this.tradeSummaryCount = [];
           this.allTradingListBuyer.forEach((element: any) => {
             if (element.tradeStatus == 'ACCEPTED') {
-              debugger
+                
               this.tradeSummaryCount.push(element);
             }
           });
@@ -55,8 +57,14 @@ export class HomeComponent implements OnInit {
       })
     } else {
       this.tradingService.getAllTradingDatabyIdForSeller(localStorage.getItem('UserId')).subscribe((res: any) => {
-        debugger
-     
+          
+        this.tradeSummaryLength = [];
+        res.forEach((element: any) => {
+          if (element.tradeStatus == 'ACCEPTED') {
+              
+            this.tradeSummaryLength.push(element);
+          }
+        });
         if (res.length == 0) {
           this.allTradingListSeller.length = 0;
         } else {
@@ -64,7 +72,7 @@ export class HomeComponent implements OnInit {
           this.tradeSummaryCount = [];
           this.allTradingListBuyer.forEach((element: any) => {
             if (element.tradeStatus == 'ACCEPTED') {
-              debugger
+                
               this.tradeSummaryCount.push(element);
             }
           });
@@ -81,7 +89,7 @@ export class HomeComponent implements OnInit {
 
       })
     }
- 
+
 
   }
   getLastWeeksDate() {
@@ -97,7 +105,7 @@ export class HomeComponent implements OnInit {
     if (localStorage.getItem('Role') == 'buyer') {
       this.router.navigate(['/landing/trade-active']);
     }
-    else{
+    else {
       this.router.navigate(['/landing/seller-trade-active']);
     }
 

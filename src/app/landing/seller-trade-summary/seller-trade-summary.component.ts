@@ -10,6 +10,8 @@ export class SellerTradeSummaryComponent implements OnInit {
   sellerTrade: any = [];
   sellerModel: any = {};
   sellerDetails: any = {};
+  sellerData: any = [];
+
   isTradeOpen: boolean = false;
   paymentOpen: boolean = false;
   openDetails: boolean = false;
@@ -21,15 +23,18 @@ export class SellerTradeSummaryComponent implements OnInit {
     this.isTradeOpen = true;
     this.tradingService.getAllTradingDatabyIdForSeller(localStorage.getItem('UserId')).subscribe((res: any) => {
       if (res.length == 0) {
-        this.sellerTrade.length = 0;
+        this.sellerData.length = 0;
       } else {
-        this.sellerTrade = res;
-        this.sellerTrade.forEach((element: any) => {
+        this.sellerData = res;
+        this.sellerData.forEach((element: any) => {
           element.location = element.street + ' ' + element.city + ' ' + element.state;
+        })
+        this.sellerData.forEach((element: any) => {
+          if (element.tradeStatus == 'ACCEPTED')
+            this.sellerTrade.push(element);
 
         })
       }
-
     })
   }
   acceptAndPay(data: any) {
