@@ -124,7 +124,7 @@
 
                         <div class="card-body">
                             <div>
-                                <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
+                                <form [formGroup]="validationForm" >
                                     <input type="hidden" />
                                     <div class="row">
                                         <div class="col-xl-4 col-md-6">
@@ -250,11 +250,39 @@
                                                             (click)="fileInput.click()">Upload
                                                             Image</button>
                                                         <button type="submit"
-                                                            class="btn btn-warning btn-sm btn-block">Remove
+                                                            class="btn btn-danger btn-sm btn-block">Remove
                                                             Image</button>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6" *ngFor="let i of addMultiImg; let ind=index">
+                                            <div class="form-group mb-3">
+                                                <label>Upload Material Image</label>
+                                                <div class="avatar-upload">
+                                                    <div class="avatar-edit">
+                                                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"
+                                                            #multiFileInput (change)="uploadMultiFile($event,ind)" />
+                                                    </div>
+                                                    <div class="avatar-preview">
+                                                        <div id="imagePreview"
+                                                            [style.backgroundImage]="'url('+ i.multiImageUrl +')'">
+                                                        </div>
+                                                    </div>
+                                                    <div style="margin-top: 10px;">
+                                                        <button type="submit" class="btn btn-primary btn-sm btn-block"
+                                                            (click)="multiFileInput.click()">Upload
+                                                            Image</button>
+                                                        <button type="submit" class="btn btn-danger btn-sm btn-block"
+                                                            (click)="removeServiceList(ind)">Remove
+                                                            Image</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="col-xl-1 col-md-1 d-flex align-items-center justify-content-center">
+                                            <i class="bx bx-plus c-icon" (click)="addServiceList()"></i>
                                         </div>
                                     </div>
                                     <!-- end row -->
@@ -267,7 +295,7 @@
                                             conditions</label><br />
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary" (click)="acceptBuyerRequest()">Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -346,14 +374,16 @@
                                             <div class="form-group mb-3">
                                                 <label>Quality</label>
                                                 <input type="text" disabled class="form-control" id="quality"
-                                                    placeholder="Enter quality" [(ngModel)]="sellerModel.req_quality" [ngModelOptions]="{standalone: true}">
+                                                    placeholder="Enter quality" [(ngModel)]="sellerModel.req_quality"
+                                                    [ngModelOptions]="{standalone: true}">
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
                                             <div class="form-group mb-3">
                                                 <label>Buyer Name</label>
                                                 <input type="text" disabled class="form-control" id="buyer"
-                                                    placeholder="Enter Buyer" [(ngModel)]="sellerModel.buyerName" [ngModelOptions]="{standalone: true}">
+                                                    placeholder="Enter Buyer" [(ngModel)]="sellerModel.buyerName"
+                                                    [ngModelOptions]="{standalone: true}">
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
@@ -361,7 +391,8 @@
                                                 <label>Required Quantity (Metric Ton)</label>
                                                 <input type="number" disabled class="form-control" id="quantity"
                                                     placeholder="Enter Quantity (mt)"
-                                                    [(ngModel)]="sellerModel.req_quantity" [ngModelOptions]="{standalone: true}">
+                                                    [(ngModel)]="sellerModel.req_quantity"
+                                                    [ngModelOptions]="{standalone: true}">
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
@@ -369,7 +400,8 @@
                                                 <label>Rate (Rupees / Per Metric Ton)</label>
                                                 <input type="number" disabled class="form-control" id="rate"
                                                     placeholder="Enter Rate (rs/pmt)"
-                                                    [(ngModel)]="sellerModel.buyerRate" [ngModelOptions]="{standalone: true}">
+                                                    [(ngModel)]="sellerModel.buyerRate"
+                                                    [ngModelOptions]="{standalone: true}">
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
@@ -377,7 +409,8 @@
                                                 <label>Payment Terms </label>
                                                 <input type="text" disabled class="form-control" id="terms"
                                                     placeholder="Enter Payment Terms "
-                                                    [(ngModel)]="sellerModel.payment_terms" [ngModelOptions]="{standalone: true}">
+                                                    [(ngModel)]="sellerModel.payment_terms"
+                                                    [ngModelOptions]="{standalone: true}">
 
                                             </div>
                                         </div>
@@ -387,7 +420,8 @@
                                                 <label>Payment Terms(Days)</label>
                                                 <input type="text" disabled class="form-control" id="payment_days"
                                                     placeholder="Enter Payment Days"
-                                                    [(ngModel)]="sellerModel.payment_days" [ngModelOptions]="{standalone: true}">
+                                                    [(ngModel)]="sellerModel.payment_days"
+                                                    [ngModelOptions]="{standalone: true}">
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
@@ -395,7 +429,8 @@
                                                 <label>Validity</label>
                                                 <input type="text" disabled class="form-control" id="validity"
                                                     placeholder="Enter Validity"
-                                                    [(ngModel)]="sellerModel.payment_validity" [ngModelOptions]="{standalone: true}">
+                                                    [(ngModel)]="sellerModel.payment_validity"
+                                                    [ngModelOptions]="{standalone: true}">
                                             </div>
                                         </div>
 
@@ -404,7 +439,8 @@
                                                 <label>Buyer Location</label>
                                                 <textarea type="text" disabled class="form-control" id="address"
                                                     placeholder="Enter Buyer Location"
-                                                    [(ngModel)]="sellerModel.location" [ngModelOptions]="{standalone: true}"></textarea>
+                                                    [(ngModel)]="sellerModel.location"
+                                                    [ngModelOptions]="{standalone: true}"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -413,7 +449,8 @@
                                                 <input type="number" disabled class="form-control" id="quantity"
                                                     placeholder="Enter Quantity (mt)"
                                                     [ngModelOptions]="{standalone: true}"
-                                                    [(ngModel)]="sellerModel.sellerQuantity" [ngModelOptions]="{standalone: true}">
+                                                    [(ngModel)]="sellerModel.sellerQuantity"
+                                                    [ngModelOptions]="{standalone: true}">
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -422,7 +459,8 @@
                                                 <input type="number" disabled class="form-control" id="terms"
                                                     placeholder="Enter Delivery Terms (days)"
                                                     [ngModelOptions]="{standalone: true}"
-                                                    [(ngModel)]="sellerModel.deliveryTerms" [ngModelOptions]="{standalone: true}">
+                                                    [(ngModel)]="sellerModel.deliveryTerms"
+                                                    [ngModelOptions]="{standalone: true}">
                                             </div>
                                         </div>
 

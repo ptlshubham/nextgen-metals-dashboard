@@ -27,6 +27,7 @@ export class ApiService {
   public static getKycPendingListURL: string = ApiService.HOST_URL + '/admin/getAllKYCPendingUser';
   public static updateKYCURL: string = ApiService.HOST_URL + '/admin/updateKYCUser';
   public static uploadMaterialImageURL: string = ApiService.HOST_URL + '/admin/UploadMaterialImage';
+  public static uploadMaterialMultiImageURL: string = ApiService.HOST_URL + '/admin/UploadMaterialMultiImage';
   public static completeProfileURL: string = ApiService.HOST_URL + '/admin/completeProfile';
   public static getUserDetailById: string = ApiService.HOST_URL + '/admin/getUserDetailById/'
   public static uploadCancelCheckImageURL: string = ApiService.HOST_URL + '/admin/UploadCancelCheckImage';

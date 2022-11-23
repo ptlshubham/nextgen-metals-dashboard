@@ -19,15 +19,22 @@ export class SellerTradeComponent implements OnInit {
   isOpenDetails: boolean = false;
   sellerModel: any = {};
 
-
   public tradeModel: SellerTrade = new SellerTrade;
 
   @ViewChild('fileInput') el!: ElementRef;
+  @ViewChild('multiFileInput') el1!: ElementRef;
+
   imageUrl: any = "assets/images/file-upload-image.jpg";
+  multiImageUrl: any = "assets/images/file-upload-image.jpg";
+
   editFile: boolean = true;
   removeUpload: boolean = false;
   cardImageBase64: any;
   materialImage: any;
+  materialMultiImage: any = [];
+
+  addMultiImg: any = [];
+  val: number = 0;
 
   sellerTrade: any = [];
   sellerData: any = [];
@@ -44,6 +51,8 @@ export class SellerTradeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.val++;
+
     this.tradingService.newTradeReqForSeller().subscribe((res: any) => {
       this.sellerData = res;
       this.sellerTrade = [];
@@ -74,7 +83,15 @@ export class SellerTradeComponent implements OnInit {
   }
   get f() { return this.validationForm.controls; }
 
-  onSubmit() {
+  addServiceList() {
+    this.val++;
+    this.addMultiImg.push({ name: this.val, multiImageUrl: 'assets/images/file-upload-image.jpg' });
+  }
+  removeServiceList(val: any) {
+    this.addMultiImg.splice(val, 1);
+  }
+
+  acceptBuyerRequest() {
 
     this.submitted = true;
     // stop here if form is invalid
@@ -88,6 +105,7 @@ export class SellerTradeComponent implements OnInit {
       this.tradeModel.materialImage = this.materialImage;
       this.tradeModel.sellerId = seller;
       this.tradeModel.sellerName = name;
+      this.tradeModel.materialMultiImage = this.materialMultiImage;
 
       this.tradingService.saveSellerTradeRequest(this.tradeModel).subscribe((res: any) => {
         if (res == 'success') {
@@ -105,7 +123,6 @@ export class SellerTradeComponent implements OnInit {
         this.sellerActiveData = res;
         this.sellerActiveData.forEach((element: any) => {
           element.location = element.street + ' ' + element.city + ' ' + element.state;
-
         })
         this.sellerActiveData.forEach((element: any) => {
           if (element.tradeStatus == 'PENDING')
@@ -123,6 +140,8 @@ export class SellerTradeComponent implements OnInit {
     this.isActiveOpen = false;
 
     this.tradeModel = val;
+    this.materialMultiImage = [];
+    this.addMultiImg = [];
     this.validationForm.controls['quantity'].disable();
     this.validationForm.controls['quality'].disable();
     this.validationForm.controls['terms'].disable();
@@ -162,7 +181,6 @@ export class SellerTradeComponent implements OnInit {
   }
   viewActiveDetails(data: any) {
     this.sellerModel = data;
-    debugger
     this.isAccept = false;
     this.isPending = false;
     this.isActiveOpen = false;
@@ -199,7 +217,35 @@ export class SellerTradeComponent implements OnInit {
 
     }
   }
+  uploadMultiFile(event: any, ind: any) {
+    let reader = new FileReader(); // HTML5 FileReader API
+    let file = event.target.files[0];
+    if (event.target.files && event.target.files[0]) {
+      reader.readAsDataURL(file);
 
+      // When file uploads set it to file formcontrol
+      reader.onload = () => {
+        this.addMultiImg[ind].multiImageUrl = reader.result;
+        // this.multiImageUrl = reader.result;
+        const imgBase64Path = reader.result;
+        this.cardImageBase64 = imgBase64Path;
+        const formdata = new FormData();
+        formdata.append('file', file);
+
+
+        this.sellerTradeService.uploadMaterialMultiImage(formdata).subscribe((response) => {
+          this.materialMultiImage.push(response);
+
+          //   this.isImageSaved = true;
+          this.editFile = false;
+          this.removeUpload = true;
+        })
+      }
+      // ChangeDetectorRef since file is loading outside the zone
+      // this.cd.markForCheck();
+
+    }
+  }
   // Function to remove uploaded file
   removeUploadedFile() {
     let newFileList = Array.from(this.el.nativeElement.files);

@@ -9,12 +9,13 @@ export class SellerTrade {
     payment_validity?: string;
     buyerRate?: number;
     payment_terms?: string;
-    diliveryTerms?:number;
-    sell_quantity?:number;
-    payment_days?:number;
-    materialImage?:string;
-    tradeStatus?:string;
-    sellerId?:string;
-    sellerName?:string;
-    buyerLocation?:string;
+    diliveryTerms?: number;
+    sell_quantity?: number;
+    payment_days?: number;
+    materialImage?: string;
+    tradeStatus?: string;
+    sellerId?: string;
+    sellerName?: string;
+    buyerLocation?: string;
+    materialMultiImage: any = [];
 }

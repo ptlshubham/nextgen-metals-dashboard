@@ -16,6 +16,10 @@ export class SellerTradeService {
     return this.httpClient.post<any>(ApiService.uploadMaterialImageURL, img);
 
   }
+  uploadMaterialMultiImage(img:any): Observable<any>{
+    return this.httpClient.post<any>(ApiService.uploadMaterialMultiImageURL, img);
+
+  }
   }
 
 
