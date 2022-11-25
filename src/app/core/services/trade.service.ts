@@ -56,6 +56,7 @@ export class TradeService {
 
     }
     saveTransporterDetails(data:any){
+        
         return this.http.post(ApiService.saveTransporterDetailsURL, data);  
     }
     getTransporterDetailsbyIdForSeller(id: any) {

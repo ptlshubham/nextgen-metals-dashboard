@@ -11,9 +11,13 @@ import { TradeService } from 'src/app/core/services/trade.service';
 export class SellerTradeSummaryDetailsComponent implements OnInit {
   @Input() seller: any;
   sellerModel: any = {};
+  transportModel: any = [];
   validationForm!: FormGroup;
   submitted = false;
   transportDetails: any = [];
+  addTransporter: any = [];
+  imageArray: any = [];
+  val: number = 0;
 
   @ViewChild('fileInput') el!: ElementRef;
   imageUrl: any = "assets/images/file-upload-image.jpg";
@@ -31,9 +35,11 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.sellerModel = this.seller;
+    this.addTransporter = [{ transportVehicle: '', transporterContact: "", weightProofImage: '', imageUrl: 'assets/images/file-upload-image.jpg', tradeId: this.sellerModel.tradeId }]
+    this.val++;
     debugger
     if (this.sellerModel.transportDetailsStatus == true) {
-      this.tradingService.getAllTradingDatabyIdForSeller(this.sellerModel.tradeId).subscribe((res: any) => {
+      this.tradingService.getTransporterDetailsbyIdForSeller(this.sellerModel.tradeId).subscribe((res: any) => {
         this.transportDetails = res;
         debugger
       })
@@ -45,21 +51,31 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
     });
   }
   get f() { return this.validationForm.controls; }
-
-  onSubmit() {
+  addTransporterList() {
+    this.val++;
+    this.addTransporter.push({ transportVehicle: '', transporterContact: "", weightProofImage: '', imageUrl: 'assets/images/file-upload-image.jpg', tradeId: this.sellerModel.tradeId });
+  }
+  removeTransporterList(val: any) {
+    this.addTransporter.splice(val, 1);
+  }
+  submitTransportData() {
     this.submitted = true;
     if (this.validationForm.invalid) {
       return;
     } else {
-      this.sellerModel.materialWeightSlip = this.weightSlip;
-      this.tradingService.saveTransporterDetails(this.sellerModel).subscribe((res: any) => {
+      this.transportModel = [];
+      this.addTransporter.forEach((element: any,index:any) => {
+        this.transportModel.push({ transportVehicle: element.transportVehicle, transporterContact: element.transporterContact, tradeId: element.tradeId ,transportImage:this.imageArray[index]})
+      });
+      this.tradingService.saveTransporterDetails(this.transportModel).subscribe((res: any) => {
         if (res == 'success') {
+          location.reload();
         }
       })
 
     }
   }
-  uploadFile(event: any) {
+  uploadFile(event: any, ind: any) {
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
@@ -67,13 +83,17 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
 
       // When file uploads set it to file formcontrol
       reader.onload = () => {
-        this.imageUrl = reader.result;
+        this.addTransporter[ind].imageUrl = reader.result;
+        // this.imageUrl = reader.result;
         const imgBase64Path = reader.result;
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
         formdata.append('file', file);
         this.tradingService.uploadWeightSlipImage(formdata).subscribe((response) => {
           this.weightSlip = response;
+          this.imageArray[ind] = this.weightSlip;
+
+          debugger
           this.editFile = false;
           this.removeUpload = true;
         })

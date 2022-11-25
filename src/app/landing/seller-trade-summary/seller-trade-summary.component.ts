@@ -22,6 +22,7 @@ export class SellerTradeSummaryComponent implements OnInit {
   ngOnInit(): void {
     this.isTradeOpen = true;
     this.tradingService.getAllTradingDatabyIdForSeller(localStorage.getItem('UserId')).subscribe((res: any) => {
+      debugger
       if (res.length == 0) {
         this.sellerData.length = 0;
       } else {

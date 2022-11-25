@@ -7,7 +7,7 @@
                     <div class="form-group mb-3">
                         <label>Order ID</label>
                         <input type="text" disabled class="form-control" id="buyer" placeholder="Order Id"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.id">
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.tradeId">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -34,31 +34,59 @@
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <label>Quality</label>
                     <input type="text" class="form-control" id="quality" placeholder="Enter quality" disabled
-                        [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.req_quality">
+                        [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.quality">
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Quantity(Metric Ton)</label>
                         <input type="number" disabled class="form-control" id="quantity"
                             placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="sellerModel.sellerQuantity">
+                            [(ngModel)]="sellerModel.quantity">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
-                        <label>Rate (Rupees / Per Metric Ton)</label>
-                        <input type="number" disabled class="form-control" id="rate" placeholder="Enter Rate (rs/pmt)"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.buyerRate">
+                        <label>Dispach Date</label>
+                        <input type="text" disabled class="form-control" id="rate" placeholder="Enter Rate (rs/pmt)"
+                            value="{{sellerModel.dispachdate|date}}">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Dilevered Date</label>
+                        <input type="text" disabled class="form-control" id="rate" placeholder="Enter Rate (rs/pmt)"
+                            value="{{sellerModel.dilveredDate|date}}">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Vehicle Number</label>
+                        <input type="text" disabled class="form-control" id="rate" placeholder="Enter Rate (rs/pmt)"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.vehicleNo">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Driver Contact NO</label>
+                        <input type="text" disabled class="form-control" id="rate" placeholder="Enter Rate (rs/pmt)"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.driverContact">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Invoice Total Amount</label>
-                        <input type="number" disabled class="form-control" id="rate" placeholder="Enter Rate (rs/pmt)"
+                        <input type="number" disabled class="form-control" id="rate"
                             [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.invoiceAmount">
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                    <div class="form-group mb-3">
+                        <label>Weight Slip</label> <br>
+                        <img class="img-thumbnail" alt="200x200" width="200"
+                            src="http://localhost:9000{{sellerModel.weightSlip}}" data-holder-rendered="true">
+                    </div>
+                </div>
+                <!-- <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Upload Material Image</label>
                         <div class="avatar-upload">
@@ -81,7 +109,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <!-- end row -->
 

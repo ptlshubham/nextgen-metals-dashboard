@@ -20,11 +20,12 @@ export class SellerTradePaymentDetailsComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    private paymentTradeService:PaymentTradeService
+    private paymentTradeService: PaymentTradeService
   ) { }
 
   ngOnInit(): void {
-   
+    this.sellerModel = this.PaymentDetails;
+    debugger
   }
   uploadFile(event: any) {
     let reader = new FileReader(); // HTML5 FileReader API
