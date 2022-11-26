@@ -23,7 +23,9 @@
                                 <td class="text-center">{{s.createdDate|date}}</td>
                                 <td class="text-center">{{s.tradeId}}</td>
                                 <td class="text-center">{{s.buyerName}}</td>
-                                <td class="text-center">{{s.tradeStatus}}</td>
+                                <td class="text-center">
+                                    <span class="badge bg-success">{{s.tradeStatus}}</span>
+                                </td>
                                 <td class="text-end">
                                     <button type="button" class="btn btn-primary waves-effect waves-light"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="View & Download"
@@ -69,7 +71,11 @@
                                 <td class="text-left">{{i+1}}</td>
                                 <td class="text-center">{{s.startDate|date}}</td>
                                 <td class="text-center">{{s.vehicleNo}}</td>
-                                <td class="text-center">Dispached</td>
+                                <td class="text-center">
+                                    <span class="badge bg-warning" *ngIf="s.startDate!=undefined">Dispached</span>
+                                    <span class="badge bg-success"
+                                        *ngIf="s.startDate!=undefined && s.enddate!=undefined">Delivered</span>
+                                </td>
                                 <td class="text-end">
                                     <div>
                                         <button type="button" class="btn btn-primary waves-effect waves-light"
