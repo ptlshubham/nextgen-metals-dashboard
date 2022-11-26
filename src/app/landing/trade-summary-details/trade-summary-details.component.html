@@ -63,17 +63,15 @@
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Trade Date</label>
-                        <input type="text" disabled class="form-control" id="tradeDate"
-                            placeholder="Enter Trade date" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.createdDate">
+                        <input type="text" disabled class="form-control" id="tradeDate" placeholder="Enter Trade date"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.createdDate">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Trade Status</label>
-                        <input type="text" disabled class="form-control" id="terms"
-                            placeholder="Enter Trade Status" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.tradeStatus">
+                        <input type="text" disabled class="form-control" id="terms" placeholder="Enter Trade Status"
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.tradeStatus">
                     </div>
                 </div>
                 <!-- <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -87,31 +85,34 @@
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Material Images</label> <br>
-                        <img class="img-thumbnail" alt="200x200" width="200" src="http://localhost:9000{{buyerModel.materialImage}}"
-                            data-holder-rendered="true">
+                        <img class="img-thumbnail" alt="200x200" width="200"
+                            src="http://localhost:9000{{buyerModel.materialImage}}" data-holder-rendered="true">
                     </div>
                 </div>
+            </div>
+            <div class="row" *ngFor="let s of transportDetails;let i=index">
+                <hr>
+                <h4 class="mb-3">Delivery Vehicle Details : {{i+1}}</h4>
+                <hr>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Transporter Vehicle No</label>
                         <input type="text" disabled class="form-control" id="terms"
-                            placeholder="Transporter Vehicle No:" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.trans_vehicle">
+                            placeholder="Transporter Vehicle No:" value="{{s.vehicleNo}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Transporter Contact NO</label>
-                        <input type="text" disabled class="form-control" id="terms"
-                            placeholder="Transporter Contact No" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.trans_Contact">
+                        <input type="text" disabled class="form-control" id="terms" placeholder="Transporter Contact No"
+                            value="{{s.driverContact}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Weight Proof From Seller</label> <br>
-                        <img class="img-thumbnail" alt="weightProofFromSeller" width="200" 
-                            data-holder-rendered="true">
+                        <img class="img-thumbnail" src="http://localhost:9000{{s.weightSlip}}"
+                            alt="weightProofFromSeller" width="200" data-holder-rendered="true">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -120,7 +121,7 @@
                         <div class="avatar-upload">
                             <div class="avatar-edit">
                                 <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
-                                    (change)="uploadFile($event)" />
+                                    (change)="uploadFile($event,i)" />
                             </div>
                             <div class="avatar-preview">
                                 <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
@@ -140,7 +141,8 @@
                     <div class="form-group mb-3">
                         <label class="form-label">Delivery Status</label>
                         <select required class="form-control form-select" formControlName="selectStatus"
-                            [ngClass]="{'is-invalid': submitted && f.selectStatus.errors}" [(ngModel)]="buyerModel.delivery_status">
+                            [ngClass]="{'is-invalid': submitted && f.selectStatus.errors}"
+                            [(ngModel)]="buyerModel.delivery_status">
                             <option value disabled>Select Delivery Status</option>
                             <!-- <option value="DISPACHED">DISPACHED</option> -->
                             <option value="DELIVERED">DELIVERED</option>

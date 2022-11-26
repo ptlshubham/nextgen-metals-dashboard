@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PaymentTradeService } from 'src/app/core/services/paymenttrade.service';
+import { UserProfileService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-trade-payment-details',
@@ -20,20 +21,23 @@ export class TradePaymentDetailsComponent implements OnInit {
   removeUpload: boolean = false;
   cardImageBase64: any;
   paymentSlip: any;
+  customerModel: any = {};
 
   constructor(
     public formBuilder: FormBuilder,
-    private paymentTradeService:PaymentTradeService,
+    private paymentTradeService: PaymentTradeService,
+    private userService: UserProfileService,
     private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
+    this.buyerModel = this.PaymentDetails;
     this.validationForm = this.formBuilder.group({
       utr: ['', [Validators.required]],
     });
   }
   get f() { return this.validationForm.controls; }
-  
+
   onSubmit() {
     this.submitted = true;
     if (this.validationForm.invalid) {
@@ -75,6 +79,11 @@ export class TradePaymentDetailsComponent implements OnInit {
   }
 
   openBankDetails(scrollDataModal: any) {
+    this.userService.getUserDetail(this.buyerModel.sellerId).subscribe((res: any) => {
+      this.customerModel = res[0];
+      debugger
+
+    })
     this.modalService.open(scrollDataModal, { windowClass: 'modal-holder' });
   }
 }

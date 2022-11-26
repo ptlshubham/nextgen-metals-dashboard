@@ -7,17 +7,17 @@
         <div class="modal-body">
             <dl class="row mb-0">
                 <dt class="col-sm-4">Seller Name</dt>
-                <dd class="col-sm-8">Shubham Patel</dd>
+                <dd class="col-sm-8">{{customerModel.firstName}} {{customerModel.lastName}}</dd>
                 <dt class="col-sm-4">Seller Location</dt>
-                <dd class="col-sm-8">1264, PatelVada, Kapadwanj, Kheda, Gujarat, India, 387620</dd>
+                <dd class="col-sm-8">{{buyerModel.sellerLocation}}</dd>
                 <dt class="col-sm-4 text-truncate">Account NO</dt>
-                <dd class="col-sm-8">20611089931</dd>
+                <dd class="col-sm-8">{{customerModel.bank_acc_no}}</dd>
                 <dt class="col-sm-4 text-truncate">Account Type</dt>
-                <dd class="col-sm-8">CURRENT</dd>
+                <dd class="col-sm-8">{{customerModel.acc_type}}</dd>
                 <dt class="col-sm-4 ">Account Holder's Name</dt>
-                <dd class="col-sm-8">Shubham Kamleshbhai Patel</dd>
+                <dd class="col-sm-8">{{customerModel.acc_holder_name}}</dd>
                 <dt class="col-sm-4 text-truncate">IFSC Code</dt>
-                <dd class="col-sm-8">HDFC00233BC</dd>
+                <dd class="col-sm-8">{{customerModel.isfc_code}}</dd>
                 <dt class="col-sm-4 text-truncate">Invoice Total Amount</dt>
                 <dd class="col-sm-8">45000 ₹</dd>
 
@@ -32,40 +32,40 @@
                     <div class="form-group mb-3">
                         <label>Order ID</label>
                         <input type="text" disabled class="form-control" id="buyer" placeholder="Order Id"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.id">
+                            value="{{buyerModel.tradeId}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Seller Name</label>
                         <input type="text" disabled class="form-control" id="buyer" placeholder="Seller Name"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.buyerName">
+                            value="{{buyerModel.sellerName}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Seller Location</label>
                         <input type="text" disabled class="form-control" id="location" placeholder="Seller Location"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.sellerLocation">
+                            value="{{buyerModel.sellerLocation}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <label>Quality</label>
                     <input type="text" class="form-control" id="quality" placeholder="quality" disabled
-                        [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.req_quality">
+                        value="{{buyerModel.quality}}">
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Quantity (Metric Ton)</label>
                         <input type="number" disabled class="form-control" id="quantity" placeholder="Quantity (mt)"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.sellerQuantity">
+                            value="{{buyerModel.quantity}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Invoice Amount</label>
                         <input type="number" disabled class="form-control" id="rate" placeholder="Invoice Amount"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.invoiceAmount">
+                            value="{{buyerModel.invoiceAmount}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -73,6 +73,26 @@
                         <label>Payment Due Date</label>
                         <input type="text" disabled class="form-control" id="terms" placeholder="Payment Due Date"
                             [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.deliveryTerms">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Dilvery Date</label>
+                        <input type="text" disabled class="form-control" id="rate"
+                            value="{{buyerModel.dilveredDate}}">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Vehicle No</label>
+                        <input type="text" disabled class="form-control" id="rate" value="{{buyerModel.vehicleNo}}">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Weight Proof Images</label> <br>
+                        <img class="img-thumbnail" src="http://localhost:9000{{buyerModel.weightSlip}}" alt="Delivery Reciept"
+                            width="200" data-holder-rendered="true">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">

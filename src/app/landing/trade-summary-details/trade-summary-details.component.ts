@@ -12,6 +12,7 @@ export class TradeSummaryDetailsComponent implements OnInit {
   buyerModel: any = {};
   validationForm!: FormGroup;
   submitted = false;
+  transportDetails: any = [];
 
   @ViewChild('fileInput') el!: ElementRef;
   imageUrl: any = "assets/images/file-upload-image.jpg";
@@ -19,6 +20,7 @@ export class TradeSummaryDetailsComponent implements OnInit {
   removeUpload: boolean = false;
   cardImageBase64: any;
   materialImage: any;
+  deliveryDetails: any = [];
   constructor(
     private tradingService: TradeService,
     public formBuilder: FormBuilder,
@@ -31,8 +33,15 @@ export class TradeSummaryDetailsComponent implements OnInit {
     this.validationForm = this.formBuilder.group({
       selectStatus: ['', [Validators.required]],
     });
+    this.getTransporterDetails();
   }
   get f() { return this.validationForm.controls; }
+  getTransporterDetails() {
+    this.tradingService.getTransporterDetailsbyIdForSeller(this.buyerModel.tradeId).subscribe((res: any) => {
+      this.transportDetails = res;
+      debugger
+    })
+  }
   onSubmit() {
     this.submitted = true;
     debugger
@@ -54,7 +63,7 @@ export class TradeSummaryDetailsComponent implements OnInit {
 
     }
   }
-  uploadFile(event: any) {
+  uploadFile(event: any, ind: any) {
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
@@ -63,6 +72,7 @@ export class TradeSummaryDetailsComponent implements OnInit {
       // When file uploads set it to file formcontrol
       reader.onload = () => {
         this.imageUrl = reader.result;
+        // this.deliveryDetails[ind]
         const imgBase64Path = reader.result;
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
