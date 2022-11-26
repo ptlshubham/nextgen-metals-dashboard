@@ -117,29 +117,36 @@
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
                     <div class="form-group mb-3">
+                        <label>Material Quantity:</label>
+                        <input type="text" disabled value="{{s.materialQuantity}}" class="form-control" id="contact"
+                            placeholder="Enter Transporter Contact">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                    <div class="form-group mb-3">
+                        <label>Invoice Amount:</label>
+                        <input type="text" disabled value="{{s.invoiceAmount}}" class="form-control" id="contact"
+                            placeholder="Enter Transporter Contact">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                    <div class="form-group mb-3">
                         <label>Weight Proof Images</label> <br>
                         <img class="img-thumbnail" src="http://localhost:9000{{s.weightSlip}}" alt="Delivery Reciept"
+                            width="200" data-holder-rendered="true">
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                    <div class="form-group mb-3">
+                        <label>Invoice Images</label> <br>
+                        <img class="img-thumbnail" src="http://localhost:9000{{s.invoiceImage}}" alt="Delivery Reciept"
                             width="200" data-holder-rendered="true">
                     </div>
                 </div>
                 <!-- view transport deails -->
 
             </div>
-            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
-                <div class="form-group mb-3">
-                    <label class="form-label">Delivery Status</label>
-                    <select required class="form-control form-select" formControlName="selectStatus"
-                        [ngClass]="{'is-invalid': submitted && f.selectStatus.errors}"
-                        [(ngModel)]="sellerModel.deliveryStatus">
-                        <option value disabled>Select Delivery Status</option>
-                        <option value="DISPACHED">DISPACHED</option>
-                        <!-- <option value="DELIVERED">DELIVERED</option> -->
-                    </select>
-                    <div *ngIf="submitted && f.selectStatus.errors" class="invalid-feedback">
-                        <span *ngIf="f.selectStatus.errors.required">Select Delivery Status is required.</span>
-                    </div>
-                </div>
-            </div>
+
             <div class="row" *ngFor="let add of addTransporter; let ind = index">
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
                     <div class="form-group mb-3">
@@ -168,6 +175,49 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                    <div class="form-group mb-3">
+                        <label>Material Quantity</label>
+                        <input type="number" formControlName="materialQuantity" [(ngModel)]="add.materialQuantity"
+                            [ngClass]="{ 'is-invalid': submitted && f.materialQuantity.errors }" class="form-control"
+                            id="materialQuantity" placeholder="Enter Material Quantity">
+                        <div *ngIf="submitted && f.materialQuantity.errors" class="invalid-feedback">
+                            <div *ngIf="f.materialQuantity.errors.required">Material Quantity is required</div>
+                            <div *ngIf="f.materialQuantity.errors.min">Only Numbers allowed & Do not enter
+                                characters.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                    <div class="form-group mb-3">
+                        <label>Invoice Amount</label>
+                        <input type="number" formControlName="invoiceAmount" [(ngModel)]="add.invoiceAmount"
+                            [ngClass]="{ 'is-invalid': submitted && f.invoiceAmount.errors }" class="form-control"
+                            id="invoiceAmount" placeholder="Enter Invoice Amount">
+                        <div *ngIf="submitted && f.invoiceAmount.errors" class="invalid-feedback">
+                            <div *ngIf="f.invoiceAmount.errors.required">Invoice Amount is required</div>
+                            <div *ngIf="f.invoiceAmount.errors.min">Only Numbers allowed & Do not enter
+                                characters.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                    <div class="form-group mb-3">
+                        <label class="form-label">Delivery Status</label>
+                        <select required class="form-control form-select" formControlName="selectStatus"
+                            [ngClass]="{'is-invalid': submitted && f.selectStatus.errors}"
+                            [(ngModel)]="sellerModel.deliveryStatus">
+                            <option value disabled>Select Delivery Status</option>
+                            <option value="DISPACHED">DISPACHED</option>
+                            <!-- <option value="DELIVERED">DELIVERED</option> -->
+                        </select>
+                        <div *ngIf="submitted && f.selectStatus.errors" class="invalid-feedback">
+                            <span *ngIf="f.selectStatus.errors.required">Select Delivery Status is required.</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
                     <div class="form-group mb-3">
                         <label>Weight Proof Image Uploader</label>
@@ -183,6 +233,28 @@
                             <div style="margin-top: 10px;">
                                 <button type="submit" class="btn btn-primary btn-sm btn-block"
                                     (click)="fileInput.click()">Upload
+                                    Image</button>
+                                <button type="submit" class="btn btn-warning btn-sm btn-block">Remove
+                                    Image</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
+                    <div class="form-group mb-3">
+                        <label>Invoice Image Uploader</label>
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput1
+                                    (change)="invoiceUploadFile($event,ind)" />
+                            </div>
+                            <div class="avatar-preview">
+                                <div id="imagePreview" [style.backgroundImage]="'url('+ add.invoiceImageUrl +')'">
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <button type="submit" class="btn btn-primary btn-sm btn-block"
+                                    (click)="fileInput1.click()">Upload
                                     Image</button>
                                 <button type="submit" class="btn btn-warning btn-sm btn-block">Remove
                                     Image</button>

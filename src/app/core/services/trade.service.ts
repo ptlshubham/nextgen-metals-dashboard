@@ -51,13 +51,17 @@ export class TradeService {
         return this.http.post<any>(ApiService.uploadWeightSlipImageURL, img);
 
     }
+    inoviceRecieptImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.invoiceRecieptImageUploadURL, img);
+
+    }
     uploadrDeliveryRecieptImage(img: any): Observable<any> {
         return this.http.post<any>(ApiService.uploadDeliveryRecieptImageURL, img);
 
     }
-    saveTransporterDetails(data:any){
-        
-        return this.http.post(ApiService.saveTransporterDetailsURL, data);  
+    saveTransporterDetails(data: any) {
+
+        return this.http.post(ApiService.saveTransporterDetailsURL, data);
     }
     getTransporterDetailsbyIdForSeller(id: any) {
         let data = {

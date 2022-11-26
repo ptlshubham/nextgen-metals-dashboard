@@ -17,14 +17,19 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
   transportDetails: any = [];
   addTransporter: any = [];
   imageArray: any = [];
+  invoiceImageArray: any = [];
   val: number = 0;
 
   @ViewChild('fileInput') el!: ElementRef;
+  @ViewChild('fileInput1') el1!: ElementRef;
   imageUrl: any = "assets/images/file-upload-image.jpg";
+  invoiceImageUrl: any = "assets/images/file-upload-image.jpg";
   editFile: boolean = true;
   removeUpload: boolean = false;
   cardImageBase64: any;
   weightSlip: any;
+  invoiceSlip: any;
+
   constructor(
     public formBuilder: FormBuilder,
     private tradingService: TradeService
@@ -35,7 +40,7 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.sellerModel = this.seller;
-    this.addTransporter = [{ transportVehicle: '', transporterContact: "", weightProofImage: '', imageUrl: 'assets/images/file-upload-image.jpg', tradeId: this.sellerModel.tradeId }]
+    this.addTransporter = [{ transportVehicle: '', transporterContact: "", materialQuantity: '', invoiceAmount: '', imageUrl: 'assets/images/file-upload-image.jpg', invoiceImageUrl: 'assets/images/file-upload-image.jpg', tradeId: this.sellerModel.tradeId }]
     this.val++;
     debugger
     if (this.sellerModel.transportDetailsStatus == true) {
@@ -47,13 +52,15 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
     this.validationForm = this.formBuilder.group({
       selectStatus: ['', [Validators.required]],
       vehicle: ['', [Validators.required]],
+      materialQuantity: [0, [Validators.required]],
+      invoiceAmount: [0, [Validators.required]],
       contact: [0, [Validators.required, Validators.min(10)]],
     });
   }
   get f() { return this.validationForm.controls; }
   addTransporterList() {
     this.val++;
-    this.addTransporter.push({ transportVehicle: '', transporterContact: "", weightProofImage: '', imageUrl: 'assets/images/file-upload-image.jpg', tradeId: this.sellerModel.tradeId });
+    this.addTransporter.push({ transportVehicle: '', transporterContact: "", materialQuantity: '', invoiceAmount: '', imageUrl: 'assets/images/file-upload-image.jpg', invoiceImageUrl: 'assets/images/file-upload-image.jpg', tradeId: this.sellerModel.tradeId });
   }
   removeTransporterList(val: any) {
     this.addTransporter.splice(val, 1);
@@ -64,9 +71,10 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
       return;
     } else {
       this.transportModel = [];
-      this.addTransporter.forEach((element: any,index:any) => {
-        this.transportModel.push({ transportVehicle: element.transportVehicle, transporterContact: element.transporterContact, tradeId: element.tradeId ,transportImage:this.imageArray[index]})
+      this.addTransporter.forEach((element: any, index: any) => {
+        this.transportModel.push({ transportVehicle: element.transportVehicle, transporterContact: element.transporterContact, materialQuantity: element.materialQuantity, invoiceAmount: element.invoiceAmount, tradeId: element.tradeId, deliveryStatus: 'Dispached', transportImage: this.imageArray[index], invoiceImage: this.invoiceImageArray[index] })
       });
+      debugger
       this.tradingService.saveTransporterDetails(this.transportModel).subscribe((res: any) => {
         if (res == 'success') {
           location.reload();
@@ -103,5 +111,32 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
 
     }
   }
+  invoiceUploadFile(event: any, ind: any) {
+    let reader = new FileReader(); // HTML5 FileReader API
+    let file = event.target.files[0];
+    if (event.target.files && event.target.files[0]) {
+      reader.readAsDataURL(file);
 
+      // When file uploads set it to file formcontrol
+      reader.onload = () => {
+        this.addTransporter[ind].invoiceImageUrl = reader.result;
+        // this.imageUrl = reader.result;
+        const imgBase64Path = reader.result;
+        this.cardImageBase64 = imgBase64Path;
+        const formdata = new FormData();
+        formdata.append('file', file);
+        this.tradingService.inoviceRecieptImage(formdata).subscribe((response) => {
+          this.invoiceSlip = response;
+          this.invoiceImageArray[ind] = this.invoiceSlip;
+
+          debugger
+          this.editFile = false;
+          this.removeUpload = true;
+        })
+      }
+      // ChangeDetectorRef since file is loading outside the zone
+      // this.cd.markForCheck();
+
+    }
+  }
 }
