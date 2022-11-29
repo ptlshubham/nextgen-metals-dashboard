@@ -19,13 +19,13 @@
                 <dt class="col-sm-4 text-truncate">IFSC Code</dt>
                 <dd class="col-sm-8">{{customerModel.isfc_code}}</dd>
                 <dt class="col-sm-4 text-truncate">Invoice Total Amount</dt>
-                <dd class="col-sm-8">45000 ₹</dd>
+                <dd class="col-sm-8">{{buyerModel.invoiceAmount}} ₹</dd>
 
             </dl>
         </div>
     </ng-template>
     <div>
-        <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="validationForm">
             <input type="hidden" />
             <div class="row">
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -63,23 +63,16 @@
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
-                        <label>Invoice Amount</label>
-                        <input type="number" disabled class="form-control" id="rate" placeholder="Invoice Amount"
-                            value="{{buyerModel.invoiceAmount}}">
+                        <label>Delivery Date</label>
+                        <input type="text" disabled class="form-control" id="rate"
+                            value="{{buyerModel.dilveredDate|date}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Payment Due Date</label>
                         <input type="text" disabled class="form-control" id="terms" placeholder="Payment Due Date"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.deliveryTerms">
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
-                        <label>Dilvery Date</label>
-                        <input type="text" disabled class="form-control" id="rate"
-                            value="{{buyerModel.dilveredDate}}">
+                            value="{{dueDate}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -90,9 +83,15 @@
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
-                        <label>Weight Proof Images</label> <br>
-                        <img class="img-thumbnail" src="http://localhost:9000{{buyerModel.weightSlip}}" alt="Delivery Reciept"
-                            width="200" data-holder-rendered="true">
+                        <label>Material Quantity</label>
+                        <input type="text" disabled class="form-control" id="rate"
+                            value="{{buyerModel.materialQuantity}}">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Invoice Amount</label>
+                        <input type="text" disabled class="form-control" id="rate" value="{{buyerModel.invoiceAmount}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -109,7 +108,49 @@
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Unique Transaction Reference</label>
-                        <input type="text" formControlName="utr" [(ngModel)]="buyerModel.utrnumber"
+                        <input type="text" disabled class="form-control" id="rate" value="{{buyerModel.utrNo}}">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Payment Date</label>
+                        <input type="text" disabled class="form-control" id="rate"
+                            value="{{buyerModel.paymentDate|date}}">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Weight Proof Images</label> <br>
+                        <img class="img-thumbnail" src="http://localhost:9000{{buyerModel.weightSlip}}"
+                            alt="Delivery Reciept" width="200" data-holder-rendered="true">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Invoice Slip Image</label> <br>
+                        <img class="img-thumbnail" src="http://localhost:9000{{buyerModel.invoiceImage}}"
+                            alt="Delivery Reciept" width="200" data-holder-rendered="true">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.deliveryStatus=='Delivered'">
+                    <div class="form-group mb-3">
+                        <label>Delivery Reciept Image</label> <br>
+                        <img class="img-thumbnail" src="http://localhost:9000{{buyerModel.deliveryReciept}}"
+                            alt="Delivery Reciept" width="200" data-holder-rendered="true">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Payment Slip Image</label> <br>
+                        <img class="img-thumbnail" src="http://localhost:9000{{buyerModel.paymentImage}}"
+                            alt="Delivery Reciept" width="200" data-holder-rendered="true">
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" >
+                    <div class="form-group mb-3">
+                        <label>Unique Transaction Reference</label>
+                        <input type="text" formControlName="utr" [(ngModel)]="buyerModel.utrNo"
                             [ngClass]="{ 'is-invalid': submitted && f.utr.errors }" class="form-control" id="utr"
                             placeholder="Enter UTR Number">
                         <div *ngIf="submitted && f.utr.errors" class="invalid-feedback">
@@ -119,7 +160,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" >
                     <div class="form-group mb-3">
                         <label>Payment Slip Uploader</label>
                         <div class="avatar-upload">
@@ -145,15 +186,15 @@
             </div>
             <!-- end row -->
 
-            <div class="form-group mt-3 mb-3 form-check">
+            <div class="form-group mt-3 mb-3 form-check" >
                 <input id="term-check01" type="checkbox" class="form-check-input" name="future" required
                     data-pristine-required-message="You must accept the terms and conditions" />
                 <label class="form-check-label" for="term-check01">I accept the terms and
                     conditions</label><br />
             </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group" >
+                <button type="submit" class="btn btn-primary" (click)="savePaymentDetails()">Submit</button>
             </div>
         </form>
     </div>

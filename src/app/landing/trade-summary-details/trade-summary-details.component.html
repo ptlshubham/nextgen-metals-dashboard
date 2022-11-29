@@ -1,6 +1,6 @@
 <div class="card-body">
     <div>
-        <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="validationForm">
             <input type="hidden" />
             <div class="row">
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -104,8 +104,36 @@
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Transporter Contact NO</label>
-                        <input type="text" disabled class="form-control" id="terms" placeholder="Transporter Contact No"
+                        <input type="text" disabled class="form-control" id="terms"
                             value="{{s.driverContact}}">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Material Quantity</label>
+                        <input type="text" disabled class="form-control" id="terms"
+                            value="{{s.materialQuantity}}">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Invoice Amount</label>
+                        <input type="text" disabled class="form-control" id="terms"
+                            value="{{s.invoiceAmount}}">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Dispached Date</label>
+                        <input type="text" disabled class="form-control" id="terms"
+                            value="{{s.startDate|date}}">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.deliveryStatus=='Delivered'">
+                    <div class="form-group mb-3">
+                        <label>Delivered Date</label>
+                        <input type="text" disabled class="form-control" id="terms"
+                            value="{{s.endDate|date}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -117,6 +145,20 @@
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
+                        <label>Invoice Slip Image</label> <br>
+                        <img class="img-thumbnail" src="http://localhost:9000{{s.invoiceImage}}"
+                            alt="Invoice" width="200" data-holder-rendered="true">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.deliveryStatus=='Delivered'">
+                    <div class="form-group mb-3">
+                        <label>Delivery Reciept Image</label> <br>
+                        <img class="img-thumbnail" src="http://localhost:9000{{s.deliveryReciept}}"
+                            alt="Delivery" width="200" data-holder-rendered="true">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.deliveryStatus!='Delivered'">
+                    <div class="form-group mb-3">
                         <label>Delivery Reciept Image Uploader</label>
                         <div class="avatar-upload">
                             <div class="avatar-edit">
@@ -124,7 +166,7 @@
                                     (change)="uploadFile($event,i)" />
                             </div>
                             <div class="avatar-preview">
-                                <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
+                                <div id="imagePreview" [style.backgroundImage]="'url('+ s.imageUrl +')'">
                                 </div>
                             </div>
                             <div style="margin-top: 10px;">
@@ -137,12 +179,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.deliveryStatus!='Delivered'">
                     <div class="form-group mb-3">
                         <label class="form-label">Delivery Status</label>
                         <select required class="form-control form-select" formControlName="selectStatus"
                             [ngClass]="{'is-invalid': submitted && f.selectStatus.errors}"
-                            [(ngModel)]="buyerModel.delivery_status">
+                            [(ngModel)]="s.deliveryStatus">
                             <option value disabled>Select Delivery Status</option>
                             <!-- <option value="DISPACHED">DISPACHED</option> -->
                             <option value="DELIVERED">DELIVERED</option>
@@ -152,8 +194,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group mb-3">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="form-group mb-3" *ngIf="s.deliveryStatus!='Delivered'">
+                    <button type="submit" class="btn btn-primary" (click)="saveDeliveryReciept(s)">Submit</button>
                 </div>
             </div>
             <!-- end row -->
@@ -164,7 +206,7 @@
                 <label class="form-check-label" for="term-check01">I accept the terms and
                     conditions</label><br />
             </div> -->
-            
+
         </form>
     </div>
 </div>

@@ -61,7 +61,7 @@ export class TradePaymentComponent implements OnInit {
     this.transport = [];
     this.buyerData.forEach((element: any) => {
       if (element.tradeId == data.orderId)
-        this.transport.push({ tradeId: element.tradeId, sellerId: element.sellerId, sellerName: element.sellerName, sellerLocation: element.location, quality: element.req_quality, quantity: element.sellerQuantity, rate: element.buyerRate, invoiceAmount: element.invoiceAmount, dispachdate: data.startDate, dilveredDate: data.endDate, driverContact: data.driverContact, vehicleNo: data.vehicleNo, weightSlip: data.weightSlip });
+        this.transport.push({ tradeId: element.tradeId, sellerId: element.sellerId, sellerName: element.sellerName, sellerLocation: element.location, quality: element.req_quality, quantity: element.sellerQuantity, rate: element.buyerRate, transportId: data.id, dispachdate: data.startDate, dilveredDate: data.endDate, driverContact: data.driverContact, vehicleNo: data.vehicleNo, weightSlip: data.weightSlip, invoiceImage: data.invoiceImage, materialQuantity: data.materialQuantity, invoiceAmount: data.invoiceAmount, deliveryStatus: data.deliveryStatus, deliveryReciept: data.deliveryReciept, utrNo: data.utrNo, paymentImage: data.paymentImage, paymentDate: data.paymentDate });
     })
     this.buyerPaymentDetails = this.transport[0]
     debugger

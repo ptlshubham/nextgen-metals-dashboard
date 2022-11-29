@@ -22,7 +22,7 @@ export class TradePaymentDetailsComponent implements OnInit {
   cardImageBase64: any;
   paymentSlip: any;
   customerModel: any = {};
-
+  dueDate: any;
   constructor(
     public formBuilder: FormBuilder,
     private paymentTradeService: PaymentTradeService,
@@ -35,15 +35,23 @@ export class TradePaymentDetailsComponent implements OnInit {
     this.validationForm = this.formBuilder.group({
       utr: ['', [Validators.required]],
     });
+    if (this.buyerModel.deliveryStatus == 'Delivered') {
+      var someDate = this.buyerModel.dilveredDate = new Date();
+      debugger
+      var numberOfDaysToAdd = 6;
+      var duedate = someDate.setDate(someDate.getDate() + numberOfDaysToAdd);
+      console.log(new Date(duedate))
+      this.dueDate = duedate;
+    }
   }
   get f() { return this.validationForm.controls; }
 
-  onSubmit() {
+  savePaymentDetails() {
     this.submitted = true;
     if (this.validationForm.invalid) {
       return;
     } else {
-      this.buyerModel.materialPaymentSlip = this.paymentSlip;
+      this.buyerModel.paymentImage = this.paymentSlip;
       debugger
       this.paymentTradeService.saveBuyerPaymentDetails(this.buyerModel).subscribe((res: any) => {
         if (res == 'success') {

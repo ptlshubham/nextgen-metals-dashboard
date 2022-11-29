@@ -55,7 +55,7 @@ export class TradeService {
         return this.http.post<any>(ApiService.invoiceRecieptImageUploadURL, img);
 
     }
-    uploadrDeliveryRecieptImage(img: any): Observable<any> {
+    uploadDeliveryRecieptImage(img: any): Observable<any> {
         return this.http.post<any>(ApiService.uploadDeliveryRecieptImageURL, img);
 
     }
@@ -68,6 +68,10 @@ export class TradeService {
             tradeId: id
         };
         return this.http.post(ApiService.getTransporterDetailsbyIdForSellerURL, data);
+    }
+    SaveDeliveryRecieptData(data: any) {
+
+        return this.http.post(ApiService.saveDileveryRecieptDataURL, data);
     }
 
 

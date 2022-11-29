@@ -19,8 +19,9 @@ export class TradeSummaryDetailsComponent implements OnInit {
   editFile: boolean = true;
   removeUpload: boolean = false;
   cardImageBase64: any;
-  materialImage: any;
+  deliveryReciept: any;
   deliveryDetails: any = [];
+  recieptData: any = {};
   constructor(
     private tradingService: TradeService,
     public formBuilder: FormBuilder,
@@ -40,26 +41,26 @@ export class TradeSummaryDetailsComponent implements OnInit {
     this.tradingService.getTransporterDetailsbyIdForSeller(this.buyerModel.tradeId).subscribe((res: any) => {
       this.transportDetails = res;
       debugger
+      this.transportDetails.forEach((element: any) => {
+        element.imageUrl = 'assets/images/file-upload-image.jpg';
+      })
     })
   }
-  onSubmit() {
+  saveDeliveryReciept(data: any) {
     this.submitted = true;
     debugger
     if (this.validationForm.invalid) {
       return;
     } else {
-      //  this.tradeModel.buyerId = localStorage.getItem('UserId');
-      //  this.tradeModel.buyerName = localStorage.getItem('UserName');
-      //  this.tradeModel.payment_validity = this.dt;
-      //  this.tradeModel.payment_terms ;
-      //  this.tradeModel.tradeStatus = 'IDEAL';
-      //  this.tradeModel.payment_days = this.payment_days;
-      //  debugger
-      //  this.tradeService.newTraderequest(this.tradeModel).subscribe((res:any)=>{
-      //   if(res == 'success'){
+      this.recieptData.id = data.id, 
+      this.recieptData.deliveryReciept = data.deliveryReciept, 
+      this.recieptData.deliveryStatus = data.deliveryStatus;
+      debugger
+      this.tradingService.SaveDeliveryRecieptData(this.recieptData).subscribe((res: any) => {
+        if (res == 'success') {
 
-      //   }
-      //  })
+        }
+      })
 
     }
   }
@@ -71,14 +72,16 @@ export class TradeSummaryDetailsComponent implements OnInit {
 
       // When file uploads set it to file formcontrol
       reader.onload = () => {
-        this.imageUrl = reader.result;
+        // this.imageUrl = reader.result;
+        this.transportDetails[ind].imageUrl = reader.result;
         // this.deliveryDetails[ind]
         const imgBase64Path = reader.result;
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
         formdata.append('file', file);
-        this.tradingService.uploadrDeliveryRecieptImage(formdata).subscribe((response) => {
-          this.materialImage = response;
+        this.tradingService.uploadDeliveryRecieptImage(formdata).subscribe((response) => {
+          this.deliveryReciept = response;
+          this.transportDetails[ind].deliveryReciept = this.deliveryReciept;
           this.editFile = false;
           this.removeUpload = true;
         })

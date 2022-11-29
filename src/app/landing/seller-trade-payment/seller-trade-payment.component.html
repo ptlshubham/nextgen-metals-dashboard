@@ -72,9 +72,10 @@
                                 <td class="text-center">{{s.startDate|date}}</td>
                                 <td class="text-center">{{s.vehicleNo}}</td>
                                 <td class="text-center">
-                                    <span class="badge bg-warning" *ngIf="s.startDate!=undefined">Dispached</span>
+                                    <span class="badge bg-warning"
+                                        *ngIf="s.deliveryStatus=='Dispached'">Dispached</span>
                                     <span class="badge bg-success"
-                                        *ngIf="s.startDate!=undefined && s.enddate!=undefined">Delivered</span>
+                                        *ngIf="s.deliveryStatus=='Delivered'">Delivered</span>
                                 </td>
                                 <td class="text-end">
                                     <div>
