@@ -96,7 +96,7 @@
                 <hr>
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
                     <div class="form-group mb-3">
-                        <label>Dispached Date</label>
+                        <label>Dispatched Date</label>
                         <input type="text" disabled class="form-control" id="terms" value={{s.startDate|date}}>
                     </div>
                 </div>
@@ -146,7 +146,9 @@
                 <!-- view transport deails -->
 
             </div>
-
+            <hr>
+            <h4 class="mb-3">Add New Transport Vehicle Details</h4>
+            <hr>
             <div class="row" *ngFor="let add of addTransporter; let ind = index">
                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
                     <div class="form-group mb-3">
@@ -210,7 +212,7 @@
                             [ngClass]="{'is-invalid': submitted && f.selectStatus.errors}"
                             [(ngModel)]="sellerModel.deliveryStatus">
                             <option value disabled>Select Delivery Status</option>
-                            <option value="DISPACHED">DISPACHED</option>
+                            <option value="Dispatched">Dispatched</option>
                             <!-- <option value="DELIVERED">DELIVERED</option> -->
                         </select>
                         <div *ngIf="submitted && f.selectStatus.errors" class="invalid-feedback">

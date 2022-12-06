@@ -24,13 +24,7 @@
                             [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.buyerLocation">
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
-                        <label>GST NO</label>
-                        <input type="text" disabled class="form-control" id="buyer" placeholder="GST NO"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.gstnumber">
-                    </div>
-                </div>
+
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <label>Quality</label>
                     <input type="text" class="form-control" id="quality" placeholder="Enter quality" disabled
@@ -38,7 +32,7 @@
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
-                        <label>Quantity(Metric Ton)</label>
+                        <label>Total Quantity (Metric Ton)</label>
                         <input type="number" disabled class="form-control" id="quantity"
                             placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
                             [(ngModel)]="sellerModel.quantity">
@@ -46,12 +40,12 @@
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
-                        <label>Dispach Date</label>
+                        <label>Dispatch Date</label>
                         <input type="text" disabled class="form-control" id="rate"
                             value="{{sellerModel.dispachdate|date}}">
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="sellerModel.deliveryStatus=='Delivered'">
                     <div class="form-group mb-3">
                         <label>Delivered Date</label>
                         <input type="text" disabled class="form-control" id="rate"
@@ -61,43 +55,63 @@
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Transport Vehicle Number</label>
-                        <input type="text" disabled class="form-control" id="rate"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.vehicleNo">
+                        <input type="text" disabled class="form-control" id="rate" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="sellerModel.vehicleNo">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
-                        <label>Transporter Driver Contact NO</label>
-                        <input type="text" disabled class="form-control" id="rate"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.driverContact">
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
-                    <div class="form-group mb-3">
-                        <label>Material Quantity</label>
+                        <label>Dispatched Quantity (Metric Ton)</label>
                         <input type="number" disabled class="form-control" id="rate"
                             [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.materialQuantity">
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="sellerModel.paymentDate!=null">
                     <div class="form-group mb-3">
                         <label>Invoice Total Amount</label>
                         <input type="number" disabled class="form-control" id="rate"
                             [ngModelOptions]="{standalone: true}" [(ngModel)]="sellerModel.invoiceAmount">
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="sellerModel.paymentDate!=null">
+                    <div class="form-group mb-3">
+                        <label>Unique Transaction Reference</label>
+                        <input type="text" disabled class="form-control" id="rate" value="{{sellerModel.utrNo}}">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group mb-3">
+                        <label>Payment Date</label>
+                        <input type="text" disabled class="form-control" id="rate"
+                            value="{{sellerModel.paymentDate|date}}">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Weight Slip</label> <br>
                         <img class="img-thumbnail" alt="200x200" width="200"
                             src="http://localhost:9000{{sellerModel.weightSlip}}" data-holder-rendered="true">
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Invoice Slip</label> <br>
                         <img class="img-thumbnail" alt="200x200" width="200"
                             src="http://localhost:9000{{sellerModel.invoiceImage}}" data-holder-rendered="true">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="sellerModel.deliveryStatus=='Delivered'">
+                    <div class="form-group mb-3">
+                        <label>Delivery Reciept Image</label> <br>
+                        <img class="img-thumbnail" alt="200x200" width="200"
+                            src="http://localhost:9000{{sellerModel.deliveryReciept}}" data-holder-rendered="true">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="sellerModel.paymentDate!=null">
+                    <div class="form-group mb-3">
+                        <label>Payment Slip Image</label> <br>
+                        <img class="img-thumbnail" src="http://localhost:9000{{sellerModel.paymentImage}}"
+                            alt="Delivery Reciept" width="200" data-holder-rendered="true">
                     </div>
                 </div>
                 <!-- <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -127,7 +141,7 @@
             </div>
             <!-- end row -->
 
-            <div class="form-group mt-3 mb-3 form-check">
+            <!-- <div class="form-group mt-3 mb-3 form-check">
                 <input id="term-check01" type="checkbox" class="form-check-input" name="future" required
                     data-pristine-required-message="You must accept the terms and conditions" />
                 <label class="form-check-label" for="term-check01">I accept the terms and
@@ -136,7 +150,7 @@
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+            </div> -->
         </form>
     </div>
 </div>

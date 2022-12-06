@@ -124,7 +124,7 @@
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
-                        <label>Dispached Date</label>
+                        <label>Dispatched Date</label>
                         <input type="text" disabled class="form-control" id="terms"
                             value="{{s.startDate|date}}">
                     </div>
@@ -186,7 +186,7 @@
                             [ngClass]="{'is-invalid': submitted && f.selectStatus.errors}"
                             [(ngModel)]="s.deliveryStatus">
                             <option value disabled>Select Delivery Status</option>
-                            <!-- <option value="DISPACHED">DISPACHED</option> -->
+                            <!-- <option value="Dispatched">Dispatched</option> -->
                             <option value="DELIVERED">DELIVERED</option>
                         </select>
                         <div *ngIf="submitted && f.selectStatus.errors" class="invalid-feedback">

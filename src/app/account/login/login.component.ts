@@ -41,12 +41,14 @@ export class LoginComponent implements OnInit {
     private apiservice:ApiService
   ) {
     // redirect to home if already logged in
+    localStorage.clear();
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
     }
   }
 
   ngOnInit(): void {
+
     this.layout_mode = LAYOUT_MODE
     if (this.layout_mode === 'dark') {
       document.body.setAttribute("data-layout-mode", "dark");

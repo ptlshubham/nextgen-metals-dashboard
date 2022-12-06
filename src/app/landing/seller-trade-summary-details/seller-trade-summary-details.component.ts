@@ -72,7 +72,7 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
     } else {
       this.transportModel = [];
       this.addTransporter.forEach((element: any, index: any) => {
-        this.transportModel.push({ transportVehicle: element.transportVehicle, transporterContact: element.transporterContact, materialQuantity: element.materialQuantity, invoiceAmount: element.invoiceAmount, tradeId: element.tradeId, deliveryStatus: 'Dispached', transportImage: this.imageArray[index], invoiceImage: this.invoiceImageArray[index] })
+        this.transportModel.push({ transportVehicle: element.transportVehicle, transporterContact: element.transporterContact, materialQuantity: element.materialQuantity, invoiceAmount: element.invoiceAmount, tradeId: element.tradeId, deliveryStatus: 'Dispatched', transportImage: this.imageArray[index], invoiceImage: this.invoiceImageArray[index] })
       });
       debugger
       this.tradingService.saveTransporterDetails(this.transportModel).subscribe((res: any) => {
