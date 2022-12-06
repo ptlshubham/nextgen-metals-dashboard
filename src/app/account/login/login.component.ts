@@ -91,7 +91,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('material_quality',res[0].material_quality);
             localStorage.setItem('token',res[0].token);
             if(res[0].profileUpdation){
-              this.apiservice.show('Login Successfully', { classname: 'bg-success text-center text-white', delay: 10000 });
+              this.apiservice.showNotification('top', 'right', ' successfully Login.', 'success');
               this.router.navigate(['landing/user-home']);
             }else{
               this.router.navigate(['landing/complete-profile'],{
