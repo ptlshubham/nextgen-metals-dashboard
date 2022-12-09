@@ -1,6 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/core/services/api.service';
 import { TradeService } from 'src/app/core/services/trade.service';
 
 @Component({
@@ -32,8 +33,8 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    private tradingService: TradeService
-
+    private tradingService: TradeService,
+    private apiService:ApiService
   ) {
 
   }
@@ -77,6 +78,7 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
       debugger
       this.tradingService.saveTransporterDetails(this.transportModel).subscribe((res: any) => {
         if (res == 'success') {
+          this.apiService.showNotification('top', 'right', 'Transport details added Successfully.', 'success');
           location.reload();
         }
       })

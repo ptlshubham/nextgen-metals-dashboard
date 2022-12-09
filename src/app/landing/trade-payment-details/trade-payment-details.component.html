@@ -72,7 +72,7 @@
                     <div class="form-group mb-3">
                         <label>Payment Due Date</label>
                         <input type="text" disabled class="form-control" id="terms" placeholder="Payment Due Date"
-                            value="{{dueDate}}">
+                            value="{{buyerModel.dueDate|date}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -91,7 +91,8 @@
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Invoice Amount</label>
-                        <input type="text" disabled class="form-control" id="rate" value="{{buyerModel.invoiceAmount}}">
+                        <input type="text" disabled class="form-control" id="rate"
+                            value="{{buyerModel.invoiceAmount}} ₹">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -147,7 +148,7 @@
                     </div>
                 </div>
 
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.paymentDate==null" >
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.paymentDate==null">
                     <div class="form-group mb-3">
                         <label>Unique Transaction Reference</label>
                         <input type="text" formControlName="utr" [(ngModel)]="buyerModel.utrNo"
@@ -160,7 +161,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.paymentDate==null" >
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.paymentDate==null">
                     <div class="form-group mb-3">
                         <label>Payment Slip Uploader</label>
                         <div class="avatar-upload">
@@ -186,14 +187,14 @@
             </div>
             <!-- end row -->
 
-            <div class="form-group mt-3 mb-3 form-check" *ngIf="buyerModel.paymentDate==null" >
+            <div class="form-group mt-3 mb-3 form-check" *ngIf="buyerModel.paymentDate==null">
                 <input id="term-check01" type="checkbox" class="form-check-input" name="future" required
                     data-pristine-required-message="You must accept the terms and conditions" />
                 <label class="form-check-label" for="term-check01">I accept the terms and
                     conditions</label><br />
             </div>
 
-            <div class="form-group" *ngIf="buyerModel.paymentDate==null" >
+            <div class="form-group" *ngIf="buyerModel.paymentDate==null">
                 <button type="submit" class="btn btn-primary" (click)="savePaymentDetails()">Submit</button>
             </div>
         </form>

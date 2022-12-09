@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/core/services/api.service';
 import { TradeService } from 'src/app/core/services/trade.service';
 import Swal from 'sweetalert2';
 
@@ -34,6 +35,7 @@ export class TradeComponent implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public tradeService: TradeService,
+    private apiService: ApiService,
     private router: Router
   ) {
 
@@ -42,7 +44,6 @@ export class TradeComponent implements OnInit {
   ngOnInit(): void {
     this.getRequestList();
     this.dt;
-    debugger
     // this.tradeModel.payment_terms='Select Payment Terms';
     this.validationForm = this.formBuilder.group({
       selectMaterial: ['', [Validators.required]],
@@ -57,7 +58,6 @@ export class TradeComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    debugger
     if (this.validationForm.invalid) {
       return;
     } else {
@@ -70,10 +70,11 @@ export class TradeComponent implements OnInit {
       this.tradeService.newTraderequest(this.tradeModel).subscribe((res: any) => {
         if (res == 'success') {
           debugger
+          this.apiService.showNotification('top', 'right', 'Trade Request added Successfully.', 'success');
           this.getRequestList();
         }
       })
-      location.reload();
+      // location.reload();
 
     }
   }
@@ -105,7 +106,7 @@ export class TradeComponent implements OnInit {
         this.buyerData = res;
         this.buyerTrade = [];
         this.buyerData.forEach((element: any) => {
-          if (element.tradeStatus === 'IDEAL' || element.tradeStatus==='PENDING' )
+          if (element.tradeStatus === 'IDEAL' || element.tradeStatus === 'PENDING')
             this.buyerTrade.push(element);
         })
         this.buyerData.forEach((element: any) => {
@@ -117,7 +118,6 @@ export class TradeComponent implements OnInit {
   }
   viewAcceptOrReject(data: any) {
     this.buyerModel = data;
-    debugger
     this.isAccept = true;
     this.isBuyerOpen = false;
     this.openPayment = false

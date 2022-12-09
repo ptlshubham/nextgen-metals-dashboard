@@ -64,7 +64,7 @@
                     <div class="form-group mb-3">
                         <label>Trade Date</label>
                         <input type="text" disabled class="form-control" id="tradeDate" placeholder="Enter Trade date"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.createdDate">
+                            value="{{buyerModel.createdDate|date}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -104,36 +104,31 @@
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Transporter Contact NO</label>
-                        <input type="text" disabled class="form-control" id="terms"
-                            value="{{s.driverContact}}">
+                        <input type="text" disabled class="form-control" id="terms" value="{{s.driverContact}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Material Quantity</label>
-                        <input type="text" disabled class="form-control" id="terms"
-                            value="{{s.materialQuantity}}">
+                        <input type="text" disabled class="form-control" id="terms" value="{{s.materialQuantity}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Invoice Amount</label>
-                        <input type="text" disabled class="form-control" id="terms"
-                            value="{{s.invoiceAmount}}">
+                        <input type="text" disabled class="form-control" id="terms" value="{{s.invoiceAmount}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Dispatched Date</label>
-                        <input type="text" disabled class="form-control" id="terms"
-                            value="{{s.startDate|date}}">
+                        <input type="text" disabled class="form-control" id="terms" value="{{s.startDate|date}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.deliveryStatus=='Delivered'">
                     <div class="form-group mb-3">
                         <label>Delivered Date</label>
-                        <input type="text" disabled class="form-control" id="terms"
-                            value="{{s.endDate|date}}">
+                        <input type="text" disabled class="form-control" id="terms" value="{{s.endDate|date}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -146,15 +141,15 @@
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Invoice Slip Image</label> <br>
-                        <img class="img-thumbnail" src="http://localhost:9000{{s.invoiceImage}}"
-                            alt="Invoice" width="200" data-holder-rendered="true">
+                        <img class="img-thumbnail" src="http://localhost:9000{{s.invoiceImage}}" alt="Invoice"
+                            width="200" data-holder-rendered="true">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.deliveryStatus=='Delivered'">
                     <div class="form-group mb-3">
                         <label>Delivery Reciept Image</label> <br>
-                        <img class="img-thumbnail" src="http://localhost:9000{{s.deliveryReciept}}"
-                            alt="Delivery" width="200" data-holder-rendered="true">
+                        <img class="img-thumbnail" src="http://localhost:9000{{s.deliveryReciept}}" alt="Delivery"
+                            width="200" data-holder-rendered="true">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.deliveryStatus!='Delivered'">

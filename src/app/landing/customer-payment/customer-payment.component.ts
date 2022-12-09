@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/core/services/api.service';
 import { TradeService } from 'src/app/core/services/trade.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class CustomerPaymentComponent implements OnInit {
   TDS: number = 1;
   constructor(
     private tradingService: TradeService,
-    private router: Router
+    private router: Router,
+    private apiService:ApiService
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +41,7 @@ export class CustomerPaymentComponent implements OnInit {
       this.tradingService.comissionPaymentForBuyer(this.buyer).subscribe((res: any) => {
         if (res == 'success') {
           window.location.reload();
-          alert('Payment Completed Successfully');
+          this.apiService.showNotification('top', 'right', 'Payment Completed Successfully.', 'success');
         }
       })
     }
@@ -48,7 +50,7 @@ export class CustomerPaymentComponent implements OnInit {
       this.tradingService.comissionPaymentForSeller(this.seller).subscribe((res: any) => {
         if (res == 'success') {
           window.location.reload();
-          alert('Payment Completed Successfully');
+          this.apiService.showNotification('top', 'right', 'Payment Completed Successfully.', 'success');
         }
       })
     }

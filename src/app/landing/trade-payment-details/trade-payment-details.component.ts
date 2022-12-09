@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from 'src/app/core/services/api.service';
 import { PaymentTradeService } from 'src/app/core/services/paymenttrade.service';
 import { UserProfileService } from 'src/app/core/services/user.service';
 
@@ -27,7 +28,8 @@ export class TradePaymentDetailsComponent implements OnInit {
     public formBuilder: FormBuilder,
     private paymentTradeService: PaymentTradeService,
     private userService: UserProfileService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private apiService: ApiService
   ) { }
 
   ngOnInit(): void {
@@ -35,14 +37,6 @@ export class TradePaymentDetailsComponent implements OnInit {
     this.validationForm = this.formBuilder.group({
       utr: ['', [Validators.required]],
     });
-    if (this.buyerModel.deliveryStatus == 'Delivered') {
-      var someDate = this.buyerModel.dilveredDate = new Date();
-      debugger
-      var numberOfDaysToAdd = 6;
-      var duedate = someDate.setDate(someDate.getDate() + numberOfDaysToAdd);
-      console.log(new Date(duedate))
-      this.dueDate = duedate;
-    }
   }
   get f() { return this.validationForm.controls; }
 
@@ -55,7 +49,7 @@ export class TradePaymentDetailsComponent implements OnInit {
       debugger
       this.paymentTradeService.saveBuyerPaymentDetails(this.buyerModel).subscribe((res: any) => {
         if (res == 'success') {
-
+          this.apiService.showNotification('top', 'right', 'Payment details added successfully.', 'success');
         }
       })
 

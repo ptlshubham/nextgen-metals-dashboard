@@ -63,6 +63,7 @@
                                 <th class="text-center">Dispach Date</th>
                                 <th class="text-center">Vehicle No</th>
                                 <th class="text-center">Status</th>
+                                <th class="text-center">Payment Status</th>
                                 <th class="text-end">Action</th>
                             </tr>
                         </thead>
@@ -72,9 +73,16 @@
                                 <td class="text-center">{{s.startDate|date}}</td>
                                 <td class="text-center">{{s.vehicleNo}}</td>
                                 <td class="text-center">
-                                    <span class="badge bg-warning" *ngIf="s.deliveryStatus=='Dispatched'">Dispatched</span>
+                                    <span class="badge bg-warning"
+                                        *ngIf="s.deliveryStatus=='Dispatched'">Dispatched</span>
                                     <span class="badge bg-success"
                                         *ngIf="s.deliveryStatus=='Delivered'">Delivered</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge bg-warning"
+                                        *ngIf="s.paymentImage==null&&s.utrNo==null">Pending</span>
+                                    <span class="badge bg-success"
+                                        *ngIf="s.paymentImage!=null&&s.utrNo!=null">Completed</span>
                                 </td>
                                 <td class="text-end">
                                     <div>

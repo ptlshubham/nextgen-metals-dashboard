@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SellerTrade } from 'src/app/core/models/seller-trade.model';
+import { ApiService } from 'src/app/core/services/api.service';
 import { SellerTradeService } from 'src/app/core/services/seller-trade.service';
 import { TradeService } from 'src/app/core/services/trade.service';
 
@@ -44,6 +45,7 @@ export class SellerTradeComponent implements OnInit {
     public formBuilder: FormBuilder,
     public sellerTradeService: SellerTradeService,
     public tradingService: TradeService,
+    private apiService:ApiService,
     private router: Router
   ) {
     this.isPending = true;
@@ -109,7 +111,8 @@ export class SellerTradeComponent implements OnInit {
 
       this.tradingService.saveSellerTradeRequest(this.tradeModel).subscribe((res: any) => {
         if (res == 'success') {
-          alert('submitted request');
+          this.apiService.showNotification('top', 'right', 'Trade details added Successfully.', 'success');
+
         }
       })
     }

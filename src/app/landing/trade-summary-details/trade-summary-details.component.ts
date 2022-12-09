@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/core/services/api.service';
 import { TradeService } from 'src/app/core/services/trade.service';
 
 @Component({
@@ -25,7 +26,7 @@ export class TradeSummaryDetailsComponent implements OnInit {
   constructor(
     private tradingService: TradeService,
     public formBuilder: FormBuilder,
-
+    private apiService: ApiService
   ) { }
 
   ngOnInit(): void {
@@ -48,17 +49,18 @@ export class TradeSummaryDetailsComponent implements OnInit {
   }
   saveDeliveryReciept(data: any) {
     this.submitted = true;
-    debugger
+    var dt = new Date();
+    dt.setDate(dt.getDate() + this.buyerModel.deliveryTerms);
     if (this.validationForm.invalid) {
       return;
     } else {
-      this.recieptData.id = data.id, 
-      this.recieptData.deliveryReciept = data.deliveryReciept, 
-      this.recieptData.deliveryStatus = data.deliveryStatus;
-      debugger
+      this.recieptData.id = data.id,
+        this.recieptData.deliveryReciept = data.deliveryReciept,
+        this.recieptData.deliveryStatus = data.deliveryStatus;
+      this.recieptData.dueDate = dt;
       this.tradingService.SaveDeliveryRecieptData(this.recieptData).subscribe((res: any) => {
         if (res == 'success') {
-
+          this.apiService.showNotification('top', 'right', 'Delivery details added successfully.', 'success');
         }
       })
 
