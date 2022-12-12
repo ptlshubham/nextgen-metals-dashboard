@@ -114,6 +114,7 @@ export class DashboardComponent implements OnInit {
   getPendingKycUser(){
     this.dashboardService.getKycPendingList().subscribe((res:any)=>{
       this.pendingKycUserList = res;
+      debugger
     })
   }
 

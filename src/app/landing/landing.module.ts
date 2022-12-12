@@ -25,6 +25,7 @@ import { TradeSummaryDetailsComponent } from './trade-summary-details/trade-summ
 import { SellerTradeSummaryDetailsComponent } from './seller-trade-summary-details/seller-trade-summary-details.component';
 import { SellerTradePaymentDetailsComponent } from './seller-trade-payment-details/seller-trade-payment-details.component';
 import { TradePaymentDetailsComponent } from './trade-payment-details/trade-payment-details.component';
+import { SubscripitionComponent } from './subscripition/subscripition.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -39,7 +40,8 @@ import { TradePaymentDetailsComponent } from './trade-payment-details/trade-paym
     TradeSummaryDetailsComponent,
     SellerTradeSummaryDetailsComponent,
     SellerTradePaymentDetailsComponent,
-    TradePaymentDetailsComponent
+    TradePaymentDetailsComponent,
+    SubscripitionComponent
     
   ],
   imports: [

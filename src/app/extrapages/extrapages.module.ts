@@ -27,6 +27,7 @@ import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ProductSliderComponent } from './product-slider/product-slider.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ProductSliderComponent } from './product-slider/product-slider.componen
     NgbCarouselModule,
     NgbDropdownModule,
     NgbNavModule,
+    NgSelectModule,
     SimplebarAngularModule,
     ReactiveFormsModule,
     FormsModule,

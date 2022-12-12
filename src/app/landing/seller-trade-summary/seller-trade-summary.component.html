@@ -11,6 +11,7 @@
                             <tr>
                                 <th class="text-left">#</th>
                                 <th class="text-center">ORDER ID</th>
+                                <th class="text-center">Quality</th>
                                 <th class="text-center">BUYER NAME</th>
                                 <th class="text-center">BUYER LOCATION</th>
                                 <th class="text-center">STATUS</th>
@@ -21,6 +22,7 @@
                             <tr *ngFor="let s of sellerTrade;let i=index">
                                 <td class="text-left" scope="row">{{i+1}}</td>
                                 <td class="text-center">{{s.tradeId}}</td>
+                                <td class="text-center">{{s.req_quality }}</td>
                                 <td class="text-center">{{s.buyerName}}</td>
                                 <td class="text-center">{{s.location}}</td>
                                 <td class="text-center">

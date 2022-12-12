@@ -11,6 +11,7 @@
                             <tr>
                                 <th class="text-left">#</th>
                                 <th class="text-center">ORDER ID</th>
+                                <th class="text-center">Quality</th>
                                 <th class="text-center">SELLER LOCATION</th>
                                 <th class="text-center">STATUS</th>
                                 <th class="text-end">ACTION</th>
@@ -20,6 +21,7 @@
                             <tr *ngFor="let s of buyerTrade;let i=index">
                                 <th scope="row" class="text-left">{{i+1}}</th>
                                 <td class="text-center">{{s.tradeId}}</td>
+                                <td class="text-center">{{s.req_quality }}</td>
                                 <td class="text-center" *ngIf="s.tradeStatus!='ACCEPTED'"> <b>-</b></td>
                                 <td class="text-center" *ngIf="s.tradeStatus=='ACCEPTED'">{{s.location}}</td>
                                 <td class="text-center">

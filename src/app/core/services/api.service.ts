@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { HttpClient, HttpClientModule, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { TemplateRef } from '@angular/core';
 declare var $: any;
 @Injectable({
@@ -55,9 +54,9 @@ export class ApiService {
 
 
   
-  show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
-    this.toasts.push({ textOrTpl, ...options });
-  }
+  // show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
+  //   this.toasts.push({ textOrTpl, ...options });
+  // }
 
   remove(toast: any) {
     this.toasts = this.toasts.filter(t => t !== toast);

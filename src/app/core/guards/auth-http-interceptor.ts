@@ -18,9 +18,6 @@ export class AuthInterceptor implements HttpInterceptor {
     ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-
-
         // this.router.navigate(['home']);
         let token: any = localStorage.getItem('token');
         let adminToken: any = localStorage.getItem('authenticationAdminToken');
@@ -29,19 +26,19 @@ export class AuthInterceptor implements HttpInterceptor {
         //     headers: request.headers.set('rejectUnauthorized', 'false').set('requestCert', 'false')
         //         .set('insecure', 'true')
         // })
-        if (localStorage.getItem('role') == 'Admin') {
+        if (localStorage.getItem('Role') == 'MainAdmin') {
             if (request.url != ApiService.adminLoginURL) {
 
                 if (adminToken == null || adminToken == undefined) {
                     console.log("token is null");
-                    this.router.navigate(['/account/login']);
+                    this.router.navigate(['/account/login1']);
                 }
                  request = request.clone({ headers: request.headers.set('x-access-token', adminToken) });
                  return next.handle(request).pipe(catchError(err => {
                      
                     if (err.status == 401 || err.status ==111) {
                         // auto logout if 401 response returned from api
-                       this.router.navigate(['/account/login']);
+                       this.router.navigate(['/account/login1']);
                     }
                     const error = err.error.statusText || err.statusText;
                     return throwError(error);

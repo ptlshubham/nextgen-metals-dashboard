@@ -71,6 +71,7 @@
                                         <tr>
                                             <th class="text-left">#</th>
                                             <th class="text-center">ORDER ID</th>
+                                            <th class="text-center">Quality</th>
                                             <th class="text-center">BUYER NAME</th>
                                             <th class="text-center">BUYER LOCATION</th>
                                             <th class="text-right">Action</th>
@@ -80,6 +81,7 @@
                                         <tr *ngFor="let s of sellerTrade;let i=index">
                                             <td class="text-left">{{i+1}}</td>
                                             <td class="text-center">{{s.orderId}}</td>
+                                            <td class="text-center">{{s.req_quality}}</td>
                                             <td class="text-center">{{s.buyFirstName}} {{s.buyLastName}}</td>
                                             <td class="text-center">{{s.buyerLocation}}</td>
                                             <td class="text-right">
@@ -98,7 +100,12 @@
                             </div>
 
                         </div>
-                        <!-- end card body -->
+                        <div class="card-footer" *ngIf="sellerTrade.length>0">
+                            <p class="card-text" style="color: red;">* Rates are exclusive of taxes.
+                                18% GST will applicable on the rates.</p>
+                            <p class="card-text" style="color: red;"># Payment days will be counted
+                                after buyer has received the material.</p>
+                        </div>
                     </div>
                     <!-- end card -->
                 </div>
@@ -124,7 +131,7 @@
 
                         <div class="card-body">
                             <div>
-                                <form [formGroup]="validationForm" >
+                                <form [formGroup]="validationForm">
                                     <input type="hidden" />
                                     <div class="row">
                                         <div class="col-xl-4 col-md-6">
@@ -180,9 +187,9 @@
                                         <div class="col-xl-4 col-md-6">
                                             <div class="form-group mb-3">
                                                 <label>Validity</label>
-                                                <input type="text" formControlName="validity" class="form-control"
-                                                    id="validity" placeholder="Enter Validity"
-                                                    [(ngModel)]="tradeModel.payment_validity">
+                                                <input type="text" class="form-control" id="validity" disabled
+                                                    placeholder="Enter Validity"
+                                                    value="{{tradeModel.payment_validity|date}}">
                                             </div>
                                         </div>
 
@@ -280,13 +287,17 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div
-                                            class="col-xl-1 col-md-1 d-flex align-items-center justify-content-center">
+                                        <div class="col-xl-1 col-md-1 d-flex align-items-center justify-content-center">
                                             <i class="bx bx-plus c-icon" (click)="addServiceList()"></i>
                                         </div>
                                     </div>
                                     <!-- end row -->
-
+                                    <div class="form-group mb-3">
+                                        <p class="card-text" style="color: red;">* Rates are exclusive of taxes.
+                                            18% GST will applicable on the rates.</p>
+                                        <p class="card-text" style="color: red;"># Payment days will be counted
+                                            after buyer has received the material.</p>
+                                    </div>
                                     <div class="form-group mt-3 mb-3 form-check">
                                         <input id="term-check01" type="checkbox" class="form-check-input" name="future"
                                             required
@@ -295,7 +306,8 @@
                                             conditions</label><br />
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary" (click)="acceptBuyerRequest()">Submit</button>
+                                        <button type="submit" class="btn btn-primary"
+                                            (click)="acceptBuyerRequest()">Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -316,6 +328,7 @@
                                         <tr>
                                             <th class="text-left">#</th>
                                             <th class="text-center">ORDER ID</th>
+                                            <th class="text-center">Quality</th>
                                             <th class="text-center">BUYER NAME</th>
                                             <th class="text-center">BUYER LOCATION</th>
                                             <th class="text-right">Action</th>
@@ -325,6 +338,7 @@
                                         <tr *ngFor="let s of sellerTradeActive;let i=index">
                                             <td class="text-left">{{i+1}}</td>
                                             <td class="text-center">{{s.tradeId}}</td>
+                                            <td class="text-center">{{s.req_quality}}</td>
                                             <td class="text-center">{{s.buyerName}}</td>
                                             <td class="text-center">{{s.location}}</td>
                                             <td class="text-right">

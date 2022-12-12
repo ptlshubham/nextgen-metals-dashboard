@@ -50,7 +50,7 @@ export class TradeSummaryDetailsComponent implements OnInit {
   saveDeliveryReciept(data: any) {
     this.submitted = true;
     var dt = new Date();
-    dt.setDate(dt.getDate() + this.buyerModel.deliveryTerms);
+    dt.setDate(dt.getDate() + this.buyerModel.payment_days);
     if (this.validationForm.invalid) {
       return;
     } else {

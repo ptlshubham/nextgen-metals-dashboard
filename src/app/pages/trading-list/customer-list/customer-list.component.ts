@@ -41,18 +41,21 @@ export class CustomerListComponent implements OnInit {
     this.customerData=[];
     this.dashboardService.getAllUserList().subscribe((res:any)=>{
       this.customers = res;
-      
+      debugger
     })
     this.activatedRoute.queryParams.subscribe((res: any) => {
       this.typeOfUser = res.type;
+      debugger
     });
     setTimeout(() => {
       if(this.typeOfUser == 'pendingKyc'){
-        
+        debugger
         this.customers.forEach((element:any)=>{
+          debugger
           if(element.KYC_status == false){
             this.customerData.push(element);
           }
+          debugger
         })
       }else if(this.typeOfUser == 'buyer'){
         this.customers.forEach((element:any)=>{
@@ -102,7 +105,7 @@ export class CustomerListComponent implements OnInit {
       if (result.value) {
         // this.deleteMail();
         let data={
-          id:this.custData.id
+          id:this.custData.uid
         }
         this.dashboardService.updateKycUser(data).subscribe((res:any)=>{
           

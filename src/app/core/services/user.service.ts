@@ -47,6 +47,7 @@ export class UserProfileService {
     }
 
     completeProfile(data: any) {
+        debugger
         return this.http.post(ApiService.completeProfileURL, data);
     }
 

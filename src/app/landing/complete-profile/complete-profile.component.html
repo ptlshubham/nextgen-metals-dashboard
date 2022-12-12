@@ -366,7 +366,7 @@
                                     <i class="bx bxs-bank"></i>
                                 </ng-template>
                                 <div class="row">
-                                    <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
+                                    <form [formGroup]="validationForm">
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
@@ -498,7 +498,7 @@
                                                     awPreviousStep>Previous</button>
                                             </li>
                                             <li class="next list-inline-item float-end" type="submit"><button
-                                                    class="btn btn-primary" awNextStep>Submit</button>
+                                                    class="btn btn-primary" awNextStep (click)="onSubmit()">Submit</button>
                                             </li>
                                         </ul>
                                     </form>

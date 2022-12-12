@@ -1,10 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Customer } from 'src/app/core/models/customer.model';
 import { ApiService } from 'src/app/core/services/api.service';
 import { UserProfileService } from 'src/app/core/services/user.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-complete-profile',
@@ -84,12 +82,12 @@ export class CompleteProfileComponent implements OnInit {
         if (res == 'success') {
           this.router.navigate(['/landing/user-home']);
         } else {
-          this.apiservice.show('Something went wrong! try after sometime', { classname: 'bg-danger text-center text-white', delay: 10000 });
+          this.apiservice.showNotification('top', 'right', 'Something went wrong! try after sometime.', 'danger');
         }
       })
     }
     else {
-      this.apiservice.show('Please Fill Details Properly', { classname: 'bg-danger text-center text-white', delay: 10000 });
+      this.apiservice.showNotification('top', 'right', 'Please Fill Details Properly.', 'danger');
     }
   }
   uploadFile(event: any) {

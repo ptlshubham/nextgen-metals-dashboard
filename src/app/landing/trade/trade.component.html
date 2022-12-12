@@ -171,7 +171,12 @@
                                         </div>
                                     </div>
                                     <!-- end row -->
-
+                                    <div class="form-group mb-3">
+                                        <p class="card-text" style="color: red;">* Rates are exclusive of taxes.
+                                            18% GST will applicable on the rates.</p>
+                                        <p class="card-text" style="color: red;"># Payment days will be counted
+                                            after buyer has received the material.</p>
+                                    </div>
                                     <div class="form-group mt-3 mb-3 form-check">
                                         <input id="term-check01" type="checkbox" class="form-check-input" name="future"
                                             required
@@ -201,6 +206,7 @@
                                         <tr>
                                             <th class="text-left">#</th>
                                             <th class="text-center">ORDER ID</th>
+                                            <th class="text-center">Quality</th>
                                             <th class="text-center">SELLER LOCATION</th>
                                             <th class="text-center">STATUS</th>
                                             <th class="text-end">ACTION</th>
@@ -210,6 +216,7 @@
                                         <tr *ngFor="let s of buyerTrade;let i=index">
                                             <th scope="row" class="text-left">{{i+1}}</th>
                                             <td class="text-center">{{s.tradeId}}</td>
+                                            <td class="text-center">{{s.req_quality}}</td>
                                             <td class="text-center" *ngIf="s.tradeStatus=='IDEAL'"> <b>-</b></td>
                                             <td class="text-center" *ngIf="s.tradeStatus!='IDEAL'">{{s.location}}</td>
                                             <td class="text-center">
@@ -221,7 +228,7 @@
                                                         class="btn btn-primary waves-effect waves-light"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         title="View & Accept" (click)="viewAcceptOrReject(s)"><i
-                                                            class="bx bx-check-double font-size-16 align-middle me-2"></i>Accept</button>
+                                                            class="bx bx-check-double font-size-16 align-middle me-2"></i>Review</button>
                                                 </div>
                                             </td>
                                             <td class="text-end">
@@ -234,6 +241,12 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                        <div class="card-footer" *ngIf="buyerTrade.length>0">
+                            <p class="card-text" style="color: red;">* Rates are exclusive of taxes.
+                                18% GST will applicable on the rates.</p>
+                            <p class="card-text" style="color: red;"># Payment days will be counted
+                                after buyer has received the material.</p>
                         </div>
                     </div>
                 </div>

@@ -37,8 +37,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private authFackservice: AuthfakeauthenticationService,
-    private userService:UserProfileService,
-    private apiservice:ApiService
+    private userService: UserProfileService,
+    private apiservice: ApiService
   ) {
     // redirect to home if already logged in
     localStorage.clear();
@@ -73,41 +73,41 @@ export class LoginComponent implements OnInit {
     this.role = val.value;
   }
   onSubmit() {
-    
+
     this.submitted = true;
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     } else {
-        this.userService.userLogin(this.f.email.value, this.f.password.value, this.role).subscribe((res:any)=>{
-          
-          if(res.length >0){
-            localStorage.setItem('Role', res[0].role);
-            localStorage.setItem('UserName', res[0].firstName + res[0].lastName);
-            localStorage.setItem('Email', res[0].email);
-            localStorage.setItem('UserId', res[0].id);
-            localStorage.setItem('isProfile',res[0].profileUpdation);
-            localStorage.setItem('material_quality',res[0].material_quality);
-            localStorage.setItem('token',res[0].token);
-            if(res[0].profileUpdation){
-              this.apiservice.showNotification('top', 'right', ' successfully Login.', 'success');
-              this.router.navigate(['landing/user-home']);
-            }else{
-              this.router.navigate(['landing/complete-profile'],{
-                queryParams:{
-                  data:res[0].id
-                }
-              });
-            }
-            
-            
-          }else if(res ==1){
-            this.apiservice.show('Incorrect Email !....please check your Email', { classname: 'bg-danger text-center text-white', delay: 10000 });
-          }else{
-            this.apiservice.show('Incorrect Password !....please check your Password', { classname: 'bg-danger text-center text-white', delay: 10000 });
+      this.userService.userLogin(this.f.email.value, this.f.password.value, this.role).subscribe((res: any) => {
+
+        if (res.length > 0) {
+          localStorage.setItem('Role', res[0].role);
+          localStorage.setItem('UserName', res[0].firstName + res[0].lastName);
+          localStorage.setItem('Email', res[0].email);
+          localStorage.setItem('UserId', res[0].id);
+          localStorage.setItem('isProfile', res[0].profileUpdation);
+          localStorage.setItem('material_quality', res[0].material_quality);
+          localStorage.setItem('token', res[0].token);
+          if (res[0].profileUpdation) {
+            this.apiservice.showNotification('top', 'right', ' successfully Login.', 'success');
+            this.router.navigate(['landing/user-home']);
+          } else {
+            this.router.navigate(['landing/complete-profile'], {
+              queryParams: {
+                data: res[0].id
+              }
+            });
           }
-        })
+
+
+        } else if (res == 1) {
+          this.apiservice.showNotification('top', 'right', 'Incorrect Email !....please check your Email.', 'danger');
+        } else {
+          this.apiservice.showNotification('top', 'right', 'Incorrect Password !....please check your Password.', 'danger');
+        }
+      })
     }
   }
 

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service';
 import { UserProfileService } from 'src/app/core/services/user.service';
-import { MustMatch } from 'src/app/pages/form/validation/validation.mustmatch';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-user-register',
@@ -15,6 +14,15 @@ export class UserRegisterComponent implements OnInit {
   stateData: any = [];
   selectedState: any;
   submitted = false;
+
+  multiDefaultOption: any = '';
+
+  Default = [
+    { name: 'Q1' },
+    { name: 'Q2' },
+    { name: 'Q3' },
+  ];
+
   constructor(
     public formBuilder: FormBuilder,
     public userservice: UserProfileService,
@@ -38,7 +46,7 @@ export class UserRegisterComponent implements OnInit {
       gstno: ['', [Validators.required]],
       workphone: ['', [Validators.required, Validators.min(1)]],
       avg_mnth_trade: ['0', [Validators.required, Validators.min(1)]],
-      selectMaterial: ['', [Validators.required]],
+      // selectMaterial: ['', [Validators.required]],
       address: ['', [Validators.required]],
       city: ['', [Validators.required]],
       selectState: ['', [Validators.required]],
@@ -58,18 +66,19 @@ export class UserRegisterComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.validationForm.valid) {
+      this.multiDefaultOption;
       this.userservice.registerUser(this.validationForm.value).subscribe((res: any) => {
         if (res == 'sucess') {
           Swal.fire('Successfully!', 'Regsitration completed and wait for KYC updation.Password will mail to you shortly', 'success');
           this.router.navigate(['pages/home']);
         } else if (res == 'duplicate email') {
-          this.apiservice.show('This email is already register, Please use another email', { classname: 'bg-danger text-center text-white', delay: 10000 });
+          this.apiservice.showNotification('top', 'right', 'This email is already register, Please use another email.', 'danger');
         } else {
-          this.apiservice.show('Something went wrong! try after sometime', { classname: 'bg-danger text-center text-white', delay: 10000 });
+          this.apiservice.showNotification('top', 'right', 'Something went wrong! try after sometime.', 'danger');
         }
       })
     } else {
-      this.apiservice.show('Please Fill Details Properly', { classname: 'bg-danger text-center text-white', delay: 10000 });
+      this.apiservice.showNotification('top', 'right', 'Please Fill Details Properly.', 'danger');
     }
 
 
