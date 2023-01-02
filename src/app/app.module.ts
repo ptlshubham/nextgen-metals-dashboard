@@ -19,6 +19,7 @@ import { FakeBackendInterceptor } from './core/helpers/fake-backend';
 import { ErrorInterceptor } from './core/helpers/error.interceptor';
 import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 import { AuthInterceptor } from './core/guards/auth-http-interceptor';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 if (environment.defaultauth === 'firebase') {
   initFirebaseBackend(environment.firebaseConfig);
@@ -52,7 +53,10 @@ export function createTranslateLoader(http: HttpClient): any {
     NgbTooltipModule,
     NgbPopoverModule,
     NgbNavModule,
-    ExtrapagesModule
+    ExtrapagesModule,
+    FormsModule,
+    ReactiveFormsModule,
+   
   ],
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

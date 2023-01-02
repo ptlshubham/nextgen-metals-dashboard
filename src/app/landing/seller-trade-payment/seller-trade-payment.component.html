@@ -20,16 +20,16 @@
                         <tbody>
                             <tr *ngFor="let s of sellerTrade;let i=index">
                                 <td class="text-left">{{i+1}}</td>
-                                <td class="text-center">{{s.createdDate|date}}</td>
-                                <td class="text-center">{{s.tradeId}}</td>
-                                <td class="text-center">{{s.buyerName}}</td>
+                                <td class="text-center">{{s.CreatedDate|date}}</td>
+                                <td class="text-center">{{s.OrderId}}</td>
+                                <td class="text-center">{{s.BuyerName}}</td>
                                 <td class="text-center">
-                                    <span class="badge bg-success">{{s.tradeStatus}}</span>
+                                    <span class="badge bg-success">{{s.TradeStatus}}</span>
                                 </td>
                                 <td class="text-end">
                                     <button type="button" class="btn btn-primary waves-effect waves-light"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="View & Download"
-                                        (click)="viewTransportDetails(s.tradeId)"><i class="fa fa-eye align-middle"></i>
+                                        (click)="viewTransportDetails(s.OrderId)"><i class="fa fa-eye align-middle"></i>
                                         View</button>
                                 </td>
                             </tr>
@@ -69,13 +69,13 @@
                         <tbody>
                             <tr *ngFor="let s of transportDetails;let i=index">
                                 <td class="text-left">{{i+1}}</td>
-                                <td class="text-center">{{s.startDate|date}}</td>
-                                <td class="text-center">{{s.vehicleNo}}</td>
+                                <td class="text-center">{{s.StartDate|date}}</td>
+                                <td class="text-center">{{s.VehicleNo}}</td>
                                 <td class="text-center">
                                     <span class="badge bg-warning"
-                                        *ngIf="s.deliveryStatus=='Dispatched'">Dispatched</span>
+                                        *ngIf="s.DeliveryStatus=='Dispatched'">Dispatched</span>
                                     <span class="badge bg-success"
-                                        *ngIf="s.deliveryStatus=='Delivered'">Delivered</span>
+                                        *ngIf="s.DeliveryStatus=='Delivered'">Delivered</span>
                                 </td>
                                 <td class="text-end">
                                     <div>

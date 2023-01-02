@@ -7,19 +7,19 @@
         <div class="modal-body">
             <dl class="row mb-0">
                 <dt class="col-sm-4">Seller Name</dt>
-                <dd class="col-sm-8">{{customerModel.firstName}} {{customerModel.lastName}}</dd>
+                <dd class="col-sm-8">{{customerModel.FirstName}} {{customerModel.LastName}}</dd>
                 <dt class="col-sm-4">Seller Location</dt>
                 <dd class="col-sm-8">{{buyerModel.sellerLocation}}</dd>
                 <dt class="col-sm-4 text-truncate">Account NO</dt>
-                <dd class="col-sm-8">{{customerModel.bank_acc_no}}</dd>
+                <dd class="col-sm-8">{{customerModel.BankAccNo}}</dd>
                 <dt class="col-sm-4 text-truncate">Account Type</dt>
-                <dd class="col-sm-8">{{customerModel.acc_type}}</dd>
+                <dd class="col-sm-8">{{customerModel.AccType}}</dd>
                 <dt class="col-sm-4 ">Account Holder's Name</dt>
-                <dd class="col-sm-8">{{customerModel.acc_holder_name}}</dd>
+                <dd class="col-sm-8">{{customerModel.AccHolderName}}</dd>
                 <dt class="col-sm-4 text-truncate">IFSC Code</dt>
-                <dd class="col-sm-8">{{customerModel.isfc_code}}</dd>
+                <dd class="col-sm-8">{{customerModel.ISFCCode}}</dd>
                 <dt class="col-sm-4 text-truncate">Invoice Total Amount</dt>
-                <dd class="col-sm-8">{{buyerModel.invoiceAmount}} ₹</dd>
+                <dd class="col-sm-8">{{buyerModel.InvoiceAmount}} ₹</dd>
 
             </dl>
         </div>
@@ -31,68 +31,68 @@
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Order ID</label>
-                        <input type="text" disabled class="form-control" id="buyer" placeholder="Order Id"
-                            value="{{buyerModel.tradeId}}">
+                        <input type="text" disabled class="form-control" id="orderId" placeholder="Order Id"
+                            value="{{buyerModel.OrderId}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Seller Name</label>
-                        <input type="text" disabled class="form-control" id="buyer" placeholder="Seller Name"
-                            value="{{buyerModel.sellerName}}">
+                        <input type="text" disabled class="form-control" id="sellerName" placeholder="Seller Name"
+                            value="{{buyerModel.SellerName}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Seller Location</label>
-                        <input type="text" disabled class="form-control" id="location" placeholder="Seller Location"
-                            value="{{buyerModel.sellerLocation}}">
+                        <input type="text" disabled class="form-control" id="sellerLocation" placeholder="Seller Location"
+                            value="{{buyerModel.SellerLocation}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <label>Quality</label>
                     <input type="text" class="form-control" id="quality" placeholder="quality" disabled
-                        value="{{buyerModel.quality}}">
+                        value="{{buyerModel.BuyerQuality}}">
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Total Quantity (Metric Ton)</label>
                         <input type="number" disabled class="form-control" id="quantity" placeholder="Quantity (mt)"
-                            value="{{buyerModel.quantity}}">
+                            value="{{buyerModel.SellerQuantity}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Delivery Date</label>
-                        <input type="text" disabled class="form-control" id="rate"
-                            value="{{buyerModel.dilveredDate|date}}">
+                        <input type="text" disabled class="form-control" id="deldate"
+                            value="{{buyerModel.DilveredDate|date}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Payment Due Date</label>
-                        <input type="text" disabled class="form-control" id="terms" placeholder="Payment Due Date"
-                            value="{{buyerModel.dueDate|date}}">
+                        <input type="text" disabled class="form-control" id="duedate" placeholder="Payment Due Date"
+                            value="{{buyerModel.DueDate|date}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Vehicle No</label>
-                        <input type="text" disabled class="form-control" id="rate" value="{{buyerModel.vehicleNo}}">
+                        <input type="text" disabled class="form-control" id="vehicleNo" value="{{buyerModel.VehicleNo}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Dispatched Quantity (Metric Ton)</label>
-                        <input type="text" disabled class="form-control" id="rate"
-                            value="{{buyerModel.materialQuantity}}">
+                        <input type="text" disabled class="form-control" id="MaterialQuantity"
+                            value="{{buyerModel.MaterialQuantity}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Invoice Amount</label>
-                        <input type="text" disabled class="form-control" id="rate"
-                            value="{{buyerModel.invoiceAmount}} ₹">
+                        <input type="text" disabled class="form-control" id="InvoiceAmount"
+                            value="{{buyerModel.InvoiceAmount}} ₹">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -106,52 +106,52 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.paymentDate!=null">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.PaymentDate!=null">
                     <div class="form-group mb-3">
                         <label>Unique Transaction Reference</label>
-                        <input type="text" disabled class="form-control" id="rate" value="{{buyerModel.utrNo}}">
+                        <input type="text" disabled class="form-control" id="rate"  value="{{buyerModel.UtrNo}}">
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.paymentDate!=null">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.PaymentDate!=null">
                     <div class="form-group mb-3">
                         <label>Payment Date</label>
                         <input type="text" disabled class="form-control" id="rate"
-                            value="{{buyerModel.paymentDate|date}}">
+                            value="{{buyerModel.PaymentDate|date}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Weight Proof Images</label> <br>
-                        <img class="img-thumbnail" src="http://localhost:9000{{buyerModel.weightSlip}}"
+                        <img class="img-thumbnail" src="http://localhost:9000{{buyerModel.WeightSlip}}"
                             alt="Delivery Reciept" width="200" data-holder-rendered="true">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Invoice Slip Image</label> <br>
-                        <img class="img-thumbnail" src="http://localhost:9000{{buyerModel.invoiceImage}}"
+                        <img class="img-thumbnail" src="http://localhost:9000{{buyerModel.InvoiceImage}}"
                             alt="Delivery Reciept" width="200" data-holder-rendered="true">
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.deliveryStatus=='Delivered'">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.DeliveryStatus=='Delivered'">
                     <div class="form-group mb-3">
                         <label>Delivery Reciept Image</label> <br>
-                        <img class="img-thumbnail" src="http://localhost:9000{{buyerModel.deliveryReciept}}"
+                        <img class="img-thumbnail" src="http://localhost:9000{{buyerModel.DeliveryReceipt}}"
                             alt="Delivery Reciept" width="200" data-holder-rendered="true">
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.paymentDate!=null">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.PaymentDate!=null">
                     <div class="form-group mb-3">
                         <label>Payment Slip Image</label> <br>
-                        <img class="img-thumbnail" src="http://localhost:9000{{buyerModel.paymentImage}}"
+                        <img class="img-thumbnail" src="http://localhost:9000{{buyerModel.PaymentImage}}"
                             alt="Delivery Reciept" width="200" data-holder-rendered="true">
                     </div>
                 </div>
 
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.paymentDate==null">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.PaymentDate==null">
                     <div class="form-group mb-3">
                         <label>Unique Transaction Reference</label>
-                        <input type="text" formControlName="utr" [(ngModel)]="buyerModel.utrNo"
+                        <input type="text" formControlName="utr" [(ngModel)]="buyerModel.UtrNo"
                             [ngClass]="{ 'is-invalid': submitted && f.utr.errors }" class="form-control" id="utr"
                             placeholder="Enter UTR Number">
                         <div *ngIf="submitted && f.utr.errors" class="invalid-feedback">
@@ -161,7 +161,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.paymentDate==null">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="buyerModel.PaymentDate==null">
                     <div class="form-group mb-3">
                         <label>Payment Slip Uploader</label>
                         <div class="avatar-upload">
@@ -187,14 +187,14 @@
             </div>
             <!-- end row -->
 
-            <div class="form-group mt-3 mb-3 form-check" *ngIf="buyerModel.paymentDate==null">
+            <div class="form-group mt-3 mb-3 form-check" *ngIf="buyerModel.PaymentDate==null">
                 <input id="term-check01" type="checkbox" class="form-check-input" name="future" required
                     data-pristine-required-message="You must accept the terms and conditions" />
                 <label class="form-check-label" for="term-check01">I accept the terms and
                     conditions</label><br />
             </div>
 
-            <div class="form-group" *ngIf="buyerModel.paymentDate==null">
+            <div class="form-group" *ngIf="buyerModel.PaymentDate==null">
                 <button type="submit" class="btn btn-primary" (click)="savePaymentDetails()">Submit</button>
             </div>
         </form>

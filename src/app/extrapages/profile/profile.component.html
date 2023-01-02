@@ -21,7 +21,7 @@
                                     </div>
                                     <div class="flex-grow-1">
                                         <div>
-                                            <h5 class="font-size-16 mb-1">Shubham Patel</h5>
+                                            <h5 class="font-size-16 mb-1">{{userDetails.FirstName}} {{userDetails.LastName}}</h5>
                                             <p class="text-muted font-size-13">Nextgen Metals</p>
 
                                             <div
@@ -41,7 +41,7 @@
                                                     </div>
                                                 </div>
                                                 <div><i
-                                                        class="mdi mdi-circle-medium me-1 text-success align-middle"></i>info@nextgenmetals.com
+                                                        class="mdi mdi-circle-medium me-1 text-success align-middle"></i>{{userDetails.Email}}
                                                 </div>
                                             </div>
                                         </div>
@@ -182,269 +182,7 @@
                                         </div>
                                         <!-- end card -->
 
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <div class="d-flex">
-                                                    <div class="flex-grow-1">
-                                                        <h5 class="card-title mb-0">Post</h5>
-                                                    </div>
-                                                    <div class="flex-shrink-0">
-                                                        <a href="javascript:void(0);">View All</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-body">
-                                                <div>
-                                                    <div class="row">
-                                                        <div class="col-xl-4">
-                                                            <div class="card p-1 mb-xl-0">
-                                                                <div class="p-3">
-                                                                    <div class="d-flex align-items-start">
-                                                                        <div class="flex-grow-1 overflow-hidden">
-                                                                            <h5 class="font-size-15 text-truncate"><a
-                                                                                    href="javascript:void(0);"
-                                                                                    class="text-dark">Beautiful Day with
-                                                                                    Friends</a></h5>
-                                                                            <p class="font-size-13 text-muted mb-0">10
-                                                                                Apr, 2020
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="flex-shrink-0 ms-2">
-                                                                            <div class="dropdown" ngbDropdown>
-                                                                                <a class="btn btn-link text-muted font-size-16 p-1 py-0 dropdown-toggle shadow-none"
-                                                                                    href="javascript:void(0);"
-                                                                                    role="button"
-                                                                                    data-bs-toggle="dropdown"
-                                                                                    aria-expanded="false"
-                                                                                    ngbDropdownToggle>
-                                                                                    <i
-                                                                                        class="bx bx-dots-horizontal-rounded"></i>
-                                                                                </a>
-                                                                                <ul class="dropdown-menu dropdown-menu-end"
-                                                                                    ngbDropdownMenu>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);">Action</a>
-                                                                                    </li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);">Another
-                                                                                            action</a></li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);">Something
-                                                                                            else here</a>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="position-relative">
-                                                                    <img src="assets/images/small/img-3.jpg" alt=""
-                                                                        class="img-thumbnail">
-                                                                </div>
-
-                                                                <div class="p-3">
-                                                                    <ul class="list-inline">
-                                                                        <li class="list-inline-item me-3">
-                                                                            <a href="javascript: void(0);"
-                                                                                class="text-muted">
-                                                                                <i
-                                                                                    class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                                                                Project
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="list-inline-item me-3">
-                                                                            <a href="javascript: void(0);"
-                                                                                class="text-muted">
-                                                                                <i
-                                                                                    class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                                                                12 Comments
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                    <p class="text-muted">Neque porro quisquam est, qui
-                                                                        dolorem
-                                                                        ipsum quia dolor sit amet</p>
-
-                                                                    <div>
-                                                                        <a href="javascript: void(0);"
-                                                                            class="text-primary">Read
-                                                                            more <i class="mdi mdi-arrow-right"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- end col -->
-
-                                                        <div class="col-xl-4">
-                                                            <div class="card p-1 mb-xl-0">
-                                                                <div class="p-3">
-                                                                    <div class="d-flex align-items-start">
-                                                                        <div class="flex-grow-1 overflow-hidden">
-                                                                            <h5 class="font-size-15 text-truncate"><a
-                                                                                    href="javascript:void(0);"
-                                                                                    class="text-dark">Drawing a
-                                                                                    sketch</a></h5>
-                                                                            <p class="font-size-13 text-muted mb-0">24
-                                                                                Mar, 2020
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="flex-shrink-0 ms-2">
-                                                                            <div class="dropdown" ngbDropdown>
-                                                                                <a class="btn btn-link text-muted font-size-16 p-1 py-0 dropdown-toggle shadow-none"
-                                                                                    href="javascript:void(0);"
-                                                                                    role="button"
-                                                                                    data-bs-toggle="dropdown"
-                                                                                    aria-expanded="false"
-                                                                                    ngbDropdownToggle>
-                                                                                    <i
-                                                                                        class="bx bx-dots-horizontal-rounded"></i>
-                                                                                </a>
-                                                                                <ul class="dropdown-menu dropdown-menu-end"
-                                                                                    ngbDropdownMenu>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);">Action</a>
-                                                                                    </li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);">Another
-                                                                                            action</a></li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);">Something
-                                                                                            else here</a>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="position-relative">
-                                                                    <img src="assets/images/small/img-1.jpg" alt=""
-                                                                        class="img-thumbnail">
-                                                                </div>
-
-                                                                <div class="p-3">
-                                                                    <ul class="list-inline">
-                                                                        <li class="list-inline-item me-3">
-                                                                            <a href="javascript: void(0);"
-                                                                                class="text-muted">
-                                                                                <i
-                                                                                    class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                                                                Development
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="list-inline-item me-3">
-                                                                            <a href="javascript: void(0);"
-                                                                                class="text-muted">
-                                                                                <i
-                                                                                    class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                                                                08 Comments
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                    <p class="text-muted">At vero eos et accusamus et
-                                                                        iusto odio
-                                                                        dignissimos ducimus quos</p>
-
-                                                                    <div>
-                                                                        <a href="javascript: void(0);"
-                                                                            class="text-primary">Read
-                                                                            more <i class="mdi mdi-arrow-right"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- end card -->
-                                                        </div>
-                                                        <!-- end col -->
-
-                                                        <div class="col-xl-4">
-                                                            <div class="card p-1 mb-sm-0">
-                                                                <div class="p-3">
-                                                                    <div class="d-flex align-items-start">
-                                                                        <div class="flex-grow-1 overflow-hidden">
-                                                                            <h5 class="font-size-15 text-truncate"><a
-                                                                                    href="javascript:void(0);"
-                                                                                    class="text-dark">Project discussion
-                                                                                    with
-                                                                                    team</a></h5>
-                                                                            <p class="font-size-13 text-muted mb-0">20
-                                                                                Mar, 2020
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="flex-shrink-0 ms-2">
-                                                                            <div class="dropdown" ngbDropdown>
-                                                                                <a class="btn btn-link text-muted font-size-16 p-1 py-0 dropdown-toggle shadow-none"
-                                                                                    href="javascript:void(0);"
-                                                                                    role="button"
-                                                                                    data-bs-toggle="dropdown"
-                                                                                    aria-expanded="false"
-                                                                                    ngbDropdownToggle>
-                                                                                    <i
-                                                                                        class="bx bx-dots-horizontal-rounded"></i>
-                                                                                </a>
-                                                                                <ul class="dropdown-menu dropdown-menu-end"
-                                                                                    ngbDropdownMenu>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);">Action</a>
-                                                                                    </li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);">Another
-                                                                                            action</a></li>
-                                                                                    <li><a class="dropdown-item"
-                                                                                            href="javascript:void(0);">Something
-                                                                                            else here</a>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="position-relative">
-                                                                    <img src="assets/images/small/img-5.jpg" alt=""
-                                                                        class="img-thumbnail">
-                                                                </div>
-
-                                                                <div class="p-3">
-                                                                    <ul class="list-inline">
-                                                                        <li class="list-inline-item me-3">
-                                                                            <a href="javascript: void(0);"
-                                                                                class="text-muted">
-                                                                                <i
-                                                                                    class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>
-                                                                                Project
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="list-inline-item me-3">
-                                                                            <a href="javascript: void(0);"
-                                                                                class="text-muted">
-                                                                                <i
-                                                                                    class="bx bx-comment-dots align-middle text-muted me-1"></i>
-                                                                                08 Comments
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                    <p class="text-muted">Itaque earum rerum hic tenetur
-                                                                        a
-                                                                        sapiente delectus ut aut</p>
-
-                                                                    <div>
-                                                                        <a href="javascript: void(0);"
-                                                                            class="text-primary">Read
-                                                                            more <i class="mdi mdi-arrow-right"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- end card -->
-                                                        </div>
-                                                        <!-- end col -->
-                                                    </div>
-                                                    <!-- end row -->
-                                                </div>
-                                            </div>
-                                            <!-- end card body -->
-                                        </div>
-                                        <!-- end card -->
+                                       
                                     </div>
                                 </ng-template>
                             </li>
@@ -471,7 +209,7 @@
                                                                     <label for="fname" class="form-label">First
                                                                         name</label>
                                                                     <input type="text" class="form-control" id="fname"
-                                                                        formControlName="fname"
+                                                                        formControlName="fname" [(ngModel)]="userDetails.FirstName"
                                                                         [ngClass]="{ 'is-invalid': submitted && f.fname.errors }"
                                                                         placeholder="Enter First Name">
                                                                     <div *ngIf="submitted && f.fname.errors"
@@ -488,7 +226,7 @@
                                                                     <label for="lname" class="form-label">Last
                                                                         name</label>
                                                                     <input type="text" class="form-control" id="lname"
-                                                                        formControlName="lname"
+                                                                        formControlName="lname" [(ngModel)]="userDetails.LastName"
                                                                         [ngClass]="{ 'is-invalid': submitted && f.lname.errors }"
                                                                         placeholder="Enter Last Name">
                                                                     <div *ngIf="submitted && f.lname.errors"
@@ -506,7 +244,7 @@
                                                                         class="form-label">Phone
                                                                         Number</label>
                                                                     <input type="text" class="form-control" id="contact"
-                                                                        formControlName="contact"
+                                                                        formControlName="contact" [(ngModel)]="userDetails.Phone"
                                                                         [ngClass]="{ 'is-invalid': submitted && f.contact.errors }"
                                                                         placeholder="Enter Phone Number">
                                                                     <div *ngIf="submitted && f.contact.errors"
@@ -523,7 +261,7 @@
                                                                     <label for="basicpill-email-input1"
                                                                         class="form-label">Email</label>
                                                                     <input type="email" class="form-control" id="email"
-                                                                        formControlName="email"
+                                                                        formControlName="email" [(ngModel)]="userDetails.Email"
                                                                         [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
                                                                         placeholder="Enter Email">
                                                                     <div *ngIf="submitted && f.email.errors"
@@ -542,7 +280,7 @@
                                                                     <label for="basicpill-desgination-input1"
                                                                         class="form-label">Desgination</label>
                                                                     <input type="text" class="form-control"
-                                                                        id="desgination" formControlName="desgination"
+                                                                        id="desgination" formControlName="desgination" [(ngModel)]="userDetails.Designation"
                                                                         [ngClass]="{ 'is-invalid': submitted && f.desgination.errors }"
                                                                         placeholder="Enter Desgination">
                                                                     <div *ngIf="submitted && f.desgination.errors"
@@ -562,7 +300,7 @@
                                                                         class="form-label">GST
                                                                         No.</label>
                                                                     <input type="text" class="form-control" id="gstno"
-                                                                        formControlName="gstno"
+                                                                        formControlName="gstno" [(ngModel)]="userDetails.GSTNo"
                                                                         [ngClass]="{ 'is-invalid': submitted && f.gstno.errors }"
                                                                         placeholder="Enter GST Number">
                                                                     <div *ngIf="submitted && f.gstno.errors"
@@ -582,7 +320,7 @@
                                                                         class="form-label">Worked
                                                                         Phone</label>
                                                                     <input type="text" class="form-control"
-                                                                        id="workphone" formControlName="workphone"
+                                                                        id="workphone" formControlName="workphone" [(ngModel)]="userDetails.CompanyContact"
                                                                         [ngClass]="{ 'is-invalid': submitted && f.workphone.errors }"
                                                                         placeholder="Enter Worked Phone">
                                                                     <div *ngIf="submitted && f.workphone.errors"
@@ -601,7 +339,7 @@
                                                                         class="form-label">Company
                                                                         Address</label>
                                                                     <textarea class="form-control" rows="3" id="address"
-                                                                        formControlName="address"
+                                                                        formControlName="address"   [(ngModel)]="userDetails.address"
                                                                         [ngClass]="{ 'is-invalid': submitted && f.address.errors }"
                                                                         placeholder="Enter Company Address"></textarea>
                                                                     <div *ngIf="submitted && f.address.errors"

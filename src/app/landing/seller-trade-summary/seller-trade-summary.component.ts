@@ -31,9 +31,8 @@ export class SellerTradeSummaryComponent implements OnInit {
           element.location = element.street + ' ' + element.city + ' ' + element.state;
         })
         this.sellerData.forEach((element: any) => {
-          if (element.tradeStatus == 'ACCEPTED')
+          if (element.TradeStatus == 'ACCEPTED')
             this.sellerTrade.push(element);
-
         })
       }
     })

@@ -20,8 +20,9 @@
                                 <div class="col-12">
                                     <span class="text-muted mb-3 lh-1 d-block text-truncate">New Trade Request</span>
                                     <h4 class="mb-3">
-                                        <span [CountTo]="sellerTrade.length" class="counter-value" [from]="0"
+                                        <span [CountTo]="sellerTrade.length" class="counter-value" [from]="-1"
                                             [duration]="1" *ngIf="sellerTrade.length >0"></span>
+                                        <span  class="counter-value" *ngIf="sellerTrade.length ==0">0</span>
                                         <!-- <span>New Request</span> -->
                                     </h4>
                                 </div>
@@ -46,6 +47,7 @@
                                     <h4 class="mb-3">
                                         <span [CountTo]="sellerTradeActive.length" class="counter-value" [from]="0"
                                             [duration]="1" *ngIf="sellerTradeActive.length >0"></span>
+                                        <span  class="counter-value" *ngIf="sellerTradeActive.length ==0">0</span>
                                     </h4>
                                 </div>
                             </div>
@@ -80,8 +82,8 @@
                                     <tbody>
                                         <tr *ngFor="let s of sellerTrade;let i=index">
                                             <td class="text-left">{{i+1}}</td>
-                                            <td class="text-center">{{s.orderId}}</td>
-                                            <td class="text-center">{{s.req_quality}}</td>
+                                            <td class="text-center">{{s.OrderId}}</td>
+                                            <td class="text-center">{{s.BuyerQuality}}</td>
                                             <td class="text-center">{{s.buyFirstName}} {{s.buyLastName}}</td>
                                             <td class="text-center">{{s.buyerLocation}}</td>
                                             <td class="text-right">
@@ -139,7 +141,7 @@
                                                 <label>Quality</label>
                                                 <input type="text" formControlName="quality" class="form-control"
                                                     id="quality" placeholder="Enter quality"
-                                                    [(ngModel)]="tradeModel.req_quality">
+                                                    [(ngModel)]="tradeModel.BuyerQuality">
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
@@ -155,7 +157,7 @@
                                                 <label>Required Quantity (Metric Ton)</label>
                                                 <input type="number" formControlName="quantity" class="form-control"
                                                     id="quantity" placeholder="Enter Quantity (mt)"
-                                                    [(ngModel)]="tradeModel.req_quantity">
+                                                    [(ngModel)]="tradeModel.BuyerQuantity">
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
@@ -163,7 +165,7 @@
                                                 <label>Rate (Rupees / Per Metric Ton)</label>
                                                 <input type="number" formControlName="rate" class="form-control"
                                                     id="rate" placeholder="Enter Rate (rs/pmt)"
-                                                    [(ngModel)]="tradeModel.buyerRate">
+                                                    [(ngModel)]="tradeModel.BuyerRate">
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
@@ -171,17 +173,17 @@
                                                 <label>Payment Terms </label>
                                                 <input type="text" formControlName="terms" class="form-control"
                                                     id="terms" placeholder="Enter Payment Terms "
-                                                    [(ngModel)]="tradeModel.payment_terms">
+                                                    [(ngModel)]="tradeModel.PaymentTerms">
 
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6"
-                                            *ngIf="tradeModel.payment_terms =='After Delivery'">
+                                            *ngIf="tradeModel.PaymentTerms =='After Delivery'">
                                             <div class="form-group mb-3">
                                                 <label>Payment Terms(Days)</label>
                                                 <input type="text" formControlName="payment_days" class="form-control"
                                                     id="payment_days" placeholder="Enter Payment Days"
-                                                    [(ngModel)]="tradeModel.payment_days">
+                                                    [(ngModel)]="tradeModel.PaymentDays">
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
@@ -189,7 +191,7 @@
                                                 <label>Validity</label>
                                                 <input type="text" class="form-control" id="validity" disabled
                                                     placeholder="Enter Validity"
-                                                    value="{{tradeModel.payment_validity|date}}">
+                                                    value="{{tradeModel.PaymentValidity|date}}">
                                             </div>
                                         </div>
 
@@ -321,9 +323,9 @@
                         <div class="card-header">
                             <h5 class="card-title">Active Request List</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" *ngIf="sellerActiveData.length >0">
                             <div class="table-responsive">
-                                <table class="table mb-0" *ngIf="sellerTradeActive.length >0">
+                                <table class="table mb-0" >
                                     <thead class="table-light">
                                         <tr>
                                             <th class="text-left">#</th>
@@ -335,22 +337,55 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let s of sellerTradeActive;let i=index">
+                                        <tr *ngFor="let trd of sellerTradeActive;let i=index">
                                             <td class="text-left">{{i+1}}</td>
-                                            <td class="text-center">{{s.tradeId}}</td>
-                                            <td class="text-center">{{s.req_quality}}</td>
-                                            <td class="text-center">{{s.buyerName}}</td>
-                                            <td class="text-center">{{s.location}}</td>
+                                            <td class="text-center">{{trd.SubOrderId}}</td>
+                                            <td class="text-center">{{trd.SellerQuantity}}</td>
+                                            <td class="text-center">{{trd.BuyerFirstName}} {{ trd.BuyerLastName}}</td>
+                                            <td class="text-center">{{trd.location}}</td>
                                             <td class="text-right">
                                                 <div class="d-flex flex-wrap gap-2">
                                                     <button type="button"
                                                         class="btn btn-soft-primary waves-effect waves-light"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        title="View Details" (click)="viewActiveDetails(s)"><i
+                                                        title="View Details" (click)="viewActiveDetails(trd)"><i
                                                             class="fa fa-eye font-size-16 align-middle"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
+                                        <!-- <tr *ngIf="!subActiveList">
+                                            <table class="table mb-0" >
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th class="text-left">#</th>
+                                                        <th class="text-center">ORDER ID</th>
+                                                        <th class="text-center">Quality</th>
+                                                        <th class="text-center">BUYER NAME</th>
+                                                        <th class="text-center">BUYER LOCATION</th>
+                                                        <th class="text-right">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let trd of sellerActiveData;let i=index">
+                                                        <td class="text-left">{{i+1}}</td>
+                                                        <td class="text-center">{{trd.SubOrderId}}</td>
+                                                        <td class="text-center">{{trd.SellerQuantity}}</td>
+                                                        <td class="text-center">{{trd.BuyerFirstName}} {{ trd.BuyerLastName}}</td>
+                                                        <td class="text-center">{{trd.location}}</td>
+                                                        <td class="text-right">
+                                                            <div class="d-flex flex-wrap gap-2">
+                                                                <button type="button"
+                                                                    class="btn btn-soft-primary waves-effect waves-light"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    title="View Details" (click)="viewActiveDetails(trd)"><i
+                                                                        class="fa fa-eye font-size-16 align-middle"></i></button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr></tr>
+                                                </tbody>
+                                            </table>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -388,25 +423,22 @@
                                             <div class="form-group mb-3">
                                                 <label>Quality</label>
                                                 <input type="text" disabled class="form-control" id="quality"
-                                                    placeholder="Enter quality" [(ngModel)]="sellerModel.req_quality"
-                                                    [ngModelOptions]="{standalone: true}">
+                                                    placeholder="Enter quality" value="{{sellerModel.BuyerQuality}}" [(ngModel)]="sellerModel.BuyerQuality"
+                                                    >
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
                                             <div class="form-group mb-3">
                                                 <label>Buyer Name</label>
                                                 <input type="text" disabled class="form-control" id="buyer"
-                                                    placeholder="Enter Buyer" [(ngModel)]="sellerModel.buyerName"
-                                                    [ngModelOptions]="{standalone: true}">
+                                                    placeholder="Enter Buyer" value="{{sellerModel.buyname}}" [(ngModel)]="sellerModel.BuyerFirstName">
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
                                             <div class="form-group mb-3">
                                                 <label>Required Quantity (Metric Ton)</label>
                                                 <input type="number" disabled class="form-control" id="quantity"
-                                                    placeholder="Enter Quantity (mt)"
-                                                    [(ngModel)]="sellerModel.req_quantity"
-                                                    [ngModelOptions]="{standalone: true}">
+                                                    placeholder="Enter Quantity (mt)" value="{{sellerModel.BuyerQuantity}}">
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
@@ -414,8 +446,8 @@
                                                 <label>Rate (Rupees / Per Metric Ton)</label>
                                                 <input type="number" disabled class="form-control" id="rate"
                                                     placeholder="Enter Rate (rs/pmt)"
-                                                    [(ngModel)]="sellerModel.buyerRate"
-                                                    [ngModelOptions]="{standalone: true}">
+                                                    value="{{sellerModel.BuyerRate}}"
+                                                    >
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
@@ -423,8 +455,7 @@
                                                 <label>Payment Terms </label>
                                                 <input type="text" disabled class="form-control" id="terms"
                                                     placeholder="Enter Payment Terms "
-                                                    [(ngModel)]="sellerModel.payment_terms"
-                                                    [ngModelOptions]="{standalone: true}">
+                                                    value="{{sellerModel.PaymentTerms}}">
 
                                             </div>
                                         </div>
@@ -434,8 +465,7 @@
                                                 <label>Payment Terms(Days)</label>
                                                 <input type="text" disabled class="form-control" id="payment_days"
                                                     placeholder="Enter Payment Days"
-                                                    [(ngModel)]="sellerModel.payment_days"
-                                                    [ngModelOptions]="{standalone: true}">
+                                                   value="{{sellerModel.PaymentDays}}">
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-md-6">
@@ -443,8 +473,7 @@
                                                 <label>Validity</label>
                                                 <input type="text" disabled class="form-control" id="validity"
                                                     placeholder="Enter Validity"
-                                                    [(ngModel)]="sellerModel.payment_validity"
-                                                    [ngModelOptions]="{standalone: true}">
+                                                   value="{{sellerModel.PaymentValidity}}">
                                             </div>
                                         </div>
 
@@ -453,8 +482,8 @@
                                                 <label>Buyer Location</label>
                                                 <textarea type="text" disabled class="form-control" id="address"
                                                     placeholder="Enter Buyer Location"
-                                                    [(ngModel)]="sellerModel.location"
-                                                    [ngModelOptions]="{standalone: true}"></textarea>
+                                                    value="{{sellerModel.location}}"
+                                                    ></textarea>
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -462,30 +491,25 @@
                                                 <label>Quantity (Metric Ton)</label>
                                                 <input type="number" disabled class="form-control" id="quantity"
                                                     placeholder="Enter Quantity (mt)"
-                                                    [ngModelOptions]="{standalone: true}"
-                                                    [(ngModel)]="sellerModel.sellerQuantity"
-                                                    [ngModelOptions]="{standalone: true}">
+                                                    value="{{sellerModel.SellerQuantity}}">
                                             </div>
                                         </div>
                                         <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                                             <div class="form-group mb-3">
                                                 <label>Delivery Terms (Days)</label>
-                                                <input type="number" disabled class="form-control" id="terms"
-                                                    placeholder="Enter Delivery Terms (days)"
-                                                    [ngModelOptions]="{standalone: true}"
-                                                    [(ngModel)]="sellerModel.deliveryTerms"
-                                                    [ngModelOptions]="{standalone: true}">
+                                                <input type="text" disabled class="form-control" id="terms"
+                                                    placeholder="Enter Delivery Terms (days)" value="{{sellerModel.DeliveryTerms}}">
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
+                                        <!-- <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                                             <div class="form-group mb-3">
                                                 <label>Material Images</label> <br>
                                                 <img class="img-thumbnail" alt="200x200" width="200"
                                                     src="http://localhost:9000{{sellerModel.materialImage}}"
                                                     data-holder-rendered="true">
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                     </div>
                                     <!-- end row -->

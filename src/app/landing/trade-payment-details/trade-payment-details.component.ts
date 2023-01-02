@@ -81,10 +81,11 @@ export class TradePaymentDetailsComponent implements OnInit {
   }
 
   openBankDetails(scrollDataModal: any) {
-    this.userService.getUserDetail(this.buyerModel.sellerId).subscribe((res: any) => {
+    this.userService.getUserDetail(this.buyerModel.SellerId).subscribe((res: any) => {
       this.customerModel = res[0];
-      debugger
-
+      this.customerModel.forEach((element:any)=>{
+        element.sellerLocation = element.street+' '+element.city+' '+element.state;
+      })
     })
     this.modalService.open(scrollDataModal, { windowClass: 'modal-holder' });
   }

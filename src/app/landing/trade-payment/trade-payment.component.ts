@@ -21,6 +21,7 @@ export class TradePaymentComponent implements OnInit {
   buyerTrade: any = [];
   transportDetails: any = [];
   transport: any = [];
+  TransportList:any=[];
 
   constructor(
     private tradingService: TradeService
@@ -29,43 +30,57 @@ export class TradePaymentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tradingService.getAllTradingDatabyIdForBuyer(localStorage.getItem('UserId')).subscribe((res: any) => {
+    debugger
+    this.tradingService.getBillTradingDataForBuyer(localStorage.getItem('UserId')).subscribe((res: any) => {
       debugger
       if (res.length == 0) {
         this.buyerData.length = 0;
       } else {
+        this.buyerTrade=[];
         this.buyerData = res;
-        this.buyerData.forEach((element: any) => {
-          element.location = element.street + ' ' + element.city + ' ' + element.state;
-        })
-        this.buyerData.forEach((element: any) => {
-          if (element.transportDetailsStatus == true)
-            this.buyerTrade.push(element);
-          debugger
-        })
+        this.buyerTrade = res;
       }
     })
   }
+
+  
   viewTransportDetails(data: any) {
-    this.tradingService.getTransporterDetailsbyIdForSeller(data).subscribe((res: any) => {
-      this.transportDetails = res;
-      debugger
-    })
+    this.transportDetails = data.TrasnportDetail;
+    // this.tradingService.getTransporterDetailsbyIdForSeller(data).subscribe((res: any) => {
+    //   this.transportDetails = res;
+    //   debugger
+    // })
     this.openDetails = false;
     this.openBilling = false;
     this.openDelivery = true;
 
   }
-  viewPaymentDetails(data: any) {
-
-    this.transport = [];
-    this.buyerData.forEach((element: any) => {
-      if (element.tradeId == data.orderId)
-        this.transport.push({ tradeId: element.tradeId, sellerId: element.sellerId, sellerName: element.sellerName, sellerLocation: element.location, quality: element.req_quality, quantity: element.sellerQuantity, rate: element.buyerRate, transportId: data.id, dispachdate: data.startDate, dilveredDate: data.endDate, driverContact: data.driverContact, vehicleNo: data.vehicleNo, weightSlip: data.weightSlip, invoiceImage: data.invoiceImage, materialQuantity: data.materialQuantity, invoiceAmount: data.invoiceAmount, deliveryStatus: data.deliveryStatus, deliveryReciept: data.deliveryReciept, utrNo: data.utrNo, paymentImage: data.paymentImage, paymentDate: data.paymentDate, dueDate: data.dueDate });
-    })
-    this.buyerPaymentDetails = this.transport[0]
+  viewPaymentDetails(data: any,ind:any) {
     debugger
-
+   this.transport = [];
+    this.transport.push({ OrderId: data.OrderId, SellerId: data.SellerId, 
+      SellerName: data.SellerName, 
+      SellerLocation: data.location, 
+      BuyerQuality: this.buyerData[ind].BuyerQuality, 
+      SellerQuantity: data.SellerQuantity,
+      Rate: data.BuyerRate, 
+      TransportId: data.TransportId, 
+      Dispachdate: data.StartDate,
+      DilveredDate: data.EndDate, 
+      DriverContact: data.DriverContact, 
+      VehicleNo: data.VehicleNo, 
+      WeightSlip: data.WeightSlip, 
+      InvoiceImage: data.InvoiceImage, 
+      MaterialQuantity: data.MaterialQuantity, 
+      InvoiceAmount: data.InvoiceAmount,
+      DeliveryStatus: data.DeliveryStatus, 
+      DeliveryReceipt: data.DeliveryReceipt, 
+      UtrNo: data.UtrNo,
+      PaymentImage: data.PaymentImage, 
+      PaymentDate: data.PaymentDate,
+      DueDate: data.DueDate });
+    this.buyerPaymentDetails = this.transport[0];
+    debugger
     this.openDetails = true;
     this.openBilling = false;
     this.openDelivery = false;

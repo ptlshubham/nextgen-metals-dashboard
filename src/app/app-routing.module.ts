@@ -7,11 +7,13 @@ const routes: Routes = [
   { path: '', component: LayoutComponent, loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule), canActivate: [AuthGuard] },
   { path: 'pages', loadChildren: () => import('./extrapages/extrapages.module').then(m => m.ExtrapagesModule) },
   { path: 'landing', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule), canActivate: [AuthGuard] },
-  { path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) }
+  { path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top', relativeLinkResolution: 'legacy' })],
+  imports: [ RouterModule.forRoot(routes, {
+    useHash: true
+  }),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

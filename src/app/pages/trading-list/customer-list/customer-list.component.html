@@ -2,7 +2,41 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Customer List</h5>
+                <div class="row">
+                    <div class="col-3">
+                        <h5 class="card-title">Customer List</h5>
+                    </div>
+                    <div class="col-5">
+                        <div style="width:50%;float:left;">
+                            <select class="form-select" style="float: left !important;" (change)="onFilterChnage($event.target)">
+                                <option selected value="">Select Filter</option>
+                                <option value="role">Role</option>
+                                <option value="quality">Quality</option>
+                                <option value="kyc">KYC Status</option>
+                            </select>
+                        </div>
+                        <div style="width:50%;float:left;">
+                            <select class="form-select" style="float: left !important;" (change)="getFilterData($event.target)">
+                                <option *ngFor="let op of subfilter" value="{{op.name}}">{{op.name}}</option>
+                               
+                            </select>
+                        </div>
+                       
+                       
+                    </div>
+                    <div class="col-1">
+                       
+                    </div>
+                    <div class="col-3">
+                        <form class="app-search d-none d-lg-block" >
+                            <div class="position-relative" style="margin-top: -5px !important;">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <button class="btn btn-primary" type="button"><i class="bx bx-search-alt align-middle"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+              
                 <!-- <p class="card-title-desc">
                 </p> -->
             </div>
@@ -23,13 +57,13 @@
                         <tbody>
                             <tr *ngFor="let s of customerData | slice:0:5; let i = index;">
                                 <th scope="row">{{i+1}}</th>
-                                <td>{{s.firstName }} {{ s.lastName}}</td>
+                                <td>{{s.FirstName }} {{ s.LastName}}</td>
                                 <td>{{s.location}}</td>
-                                <td style="text-transform: uppercase;">{{s.role}}</td>
-                                <td>{{s.material_quality}}</td>
+                                <td style="text-transform: uppercase;">{{s.Role}}</td>
+                                <td>{{s.MaterialQuality}}</td>
                                 <td>
-                                    <span class="bg-warning badge me-2" *ngIf="s.KYC_status==false">Pending</span>
-                                    <span class="bg-info badge me-2" *ngIf="s.KYC_status==true">Done</span>
+                                    <span class="bg-warning badge me-2" *ngIf="s.KYCStatus==false">Pending</span>
+                                    <span class="bg-info badge me-2" *ngIf="s.KYCStatus==true">Done</span>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-wrap gap-2">
@@ -76,7 +110,7 @@
                     <div class="col-md-2" *ngIf="kyc==true"></div>
                     <div class="col-md-2" *ngIf="kyc==false">
                         <button type="button" class="btn btn-warning waves-effect waves-light" (click)="confirm()"><i
-                                class="mdi mdi-file-lock-outline"></i> KYC Pending</button>
+                                class="mdi mdi-file-lock-outline"></i>KYC Pending</button>
                     </div>
                     <div class="col-md-1">
                         <button type="button" class="btn btn-danger waves-effect waves-light"

@@ -83,20 +83,21 @@ export class LoginComponent implements OnInit {
       this.userService.userLogin(this.f.email.value, this.f.password.value, this.role).subscribe((res: any) => {
 
         if (res.length > 0) {
-          localStorage.setItem('Role', res[0].role);
-          localStorage.setItem('UserName', res[0].firstName + res[0].lastName);
-          localStorage.setItem('Email', res[0].email);
-          localStorage.setItem('UserId', res[0].id);
-          localStorage.setItem('isProfile', res[0].profileUpdation);
-          localStorage.setItem('material_quality', res[0].material_quality);
+          localStorage.setItem('Role', res[0].Role);
+          localStorage.setItem('UserName', res[0].FirstName + res[0].LastName);
+          localStorage.setItem('Email', res[0].Email);
+          localStorage.setItem('UserId', res[0].Id);
+          localStorage.setItem('isProfile', res[0].ProfileUpdation);
+          localStorage.setItem('material_quality', res[0].MaterialQuality);
           localStorage.setItem('token', res[0].token);
-          if (res[0].profileUpdation) {
+          debugger
+          if (res[0].ProfileUpdation) {
             this.apiservice.showNotification('top', 'right', ' successfully Login.', 'success');
             this.router.navigate(['landing/user-home']);
           } else {
             this.router.navigate(['landing/complete-profile'], {
               queryParams: {
-                data: res[0].id
+                data: res[0].Id
               }
             });
           }

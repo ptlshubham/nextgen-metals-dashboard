@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserProfileService } from 'src/app/core/services/user.service';
 import { MustMatch } from '../../form/validation/validation.mustmatch';
 
 @Component({
@@ -15,21 +16,25 @@ export class UserProfileComponent implements OnInit {
   role: any;
   validationForm!: FormGroup;
   isPwdOpen: boolean = false;
+  userDetails:any={};
 
   submitted = false;
   // bread crumb items
   breadCrumbItems!: Array<{}>;
 
   constructor(
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private userservice:UserProfileService
   ) { 
     this.role = localStorage.getItem('role');
+    debugger
   }
 
   ngOnInit(): void {
     /**
      * BreadCrumb Set
      */
+   
     this.breadCrumbItems = [
       { label: 'Contacts' },
       { label: 'Profile', active: true }

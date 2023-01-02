@@ -6,7 +6,9 @@ declare var $: any;
   providedIn: 'root'
 })
 export class ApiService {
-  public static HOST_URL: string = "http://localhost:9000";
+   public static HOST_URL: string = "http://localhost:9000";
+  // public static HOST_URL: string = "http://31.220.111.153:7777";
+  
   toasts: any[] = [];
   constructor(
     private http: HttpClient,
@@ -30,12 +32,15 @@ export class ApiService {
   public static completeProfileURL: string = ApiService.HOST_URL + '/admin/completeProfile';
   public static getUserDetailById: string = ApiService.HOST_URL + '/admin/getUserDetailById/'
   public static uploadCancelCheckImageURL: string = ApiService.HOST_URL + '/admin/UploadCancelCheckImage';
+  public static GetAllTradesByUseridForBuyerURL: string = ApiService.HOST_URL + '/admin/GetAllTradesByUseridForBuyer';
+  
 
   //trading
 
   public static newTradeRequestURL: string = ApiService.HOST_URL + '/trading/newTradeRequest';
   public static getAllTradingDatabyIdForBuyerURL: string = ApiService.HOST_URL + '/trading/getAllTradingDatabyIdForBuyer';
   public static getAllTradingDatabyIdForSellerURL: string = ApiService.HOST_URL + '/trading/getAllTradingDatabyIdForSeller';
+  public static getAllSellerResponseURL: string = ApiService.HOST_URL + '/trading/getAllSellerResponse';
   public static getAllTradingDatabyIdURL: string = ApiService.HOST_URL + '/trading/getAllTradingDatabyId';
   public static getNewTradingReqForSellerURL: string = ApiService.HOST_URL + '/trading/getNewTradingReqForSeller';
   public static saveSellerTradeRequestURL: string = ApiService.HOST_URL + '/trading/saveSellerTradeRequest';
@@ -49,6 +54,11 @@ export class ApiService {
   public static saveBuyerPaymentDetailsURL: string = ApiService.HOST_URL + '/trading/SaveBuyerPaymentDetails';
   public static invoiceRecieptImageUploadURL: string = ApiService.HOST_URL + '/trading/InvoiceRecieptImageUpload';
   public static saveDileveryRecieptDataURL: string = ApiService.HOST_URL + '/trading/SaveDeliveryRecieptData';
+  public static getBillTradingDataForBuyerURL: string = ApiService.HOST_URL + '/trading/getBillTradingDataForBuyer';
+  public static getBillTradingDataForSellerURL: string = ApiService.HOST_URL + '/trading/getBillTradingDataForSeller';
+  
+  
+  
   //Cashfree APIS
   public static createCashfreeOrderURL: string = ApiService.HOST_URL + '/cashfree/createCashfreeOrder';
 

@@ -11,7 +11,7 @@
                             <tr>
                                 <th class="text-left">#</th>
                                 <th class="text-center">ORDER ID</th>
-                                <th class="text-center">Quality</th>
+                                <th class="text-center">QUALITY</th>
                                 <th class="text-center">BUYER NAME</th>
                                 <th class="text-center">BUYER LOCATION</th>
                                 <th class="text-center">STATUS</th>
@@ -21,17 +21,17 @@
                         <tbody>
                             <tr *ngFor="let s of sellerTrade;let i=index">
                                 <td class="text-left" scope="row">{{i+1}}</td>
-                                <td class="text-center">{{s.tradeId}}</td>
-                                <td class="text-center">{{s.req_quality }}</td>
-                                <td class="text-center">{{s.buyerName}}</td>
+                                <td class="text-center">{{s.OrderId}}</td>
+                                <td class="text-center">{{s.BuyerQuality }}</td>
+                                <td class="text-center">{{s.BuyerFirstName}} {{s.BuyerLastName}}</td>
                                 <td class="text-center">{{s.location}}</td>
                                 <td class="text-center">
                                     <span class="badge bg-success"
-                                        *ngIf="s.tradeStatus=='ACCEPTED'">{{s.tradeStatus}}</span>
-                                    <span class="badge bg-info" *ngIf="s.tradeStatus=='IDEAL'">Not Review By
+                                        *ngIf="s.TradeStatus=='ACCEPTED'">{{s.tradeStatus}}</span>
+                                    <span class="badge bg-info" *ngIf="s.TradeStatus=='IDEAL'">Not Review By
                                         Buyer</span>
                                     <span class="badge bg-danger"
-                                        *ngIf="s.tradeStatus=='REJECTED'">{{s.tradeStatus}}</span>
+                                        *ngIf="s.TradeStatus=='REJECTED'">{{s.TradeStatus}}</span>
                                 </td>
                                 <td class="text-end">
                                     <!-- <div *ngIf="s.sellerComissionPay==false && s.tradeStatus=='ACCEPTED' ">

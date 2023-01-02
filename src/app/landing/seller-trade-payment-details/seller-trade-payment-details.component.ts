@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { PaymentTradeService } from 'src/app/core/services/paymenttrade.service';
+import { UserProfileService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-seller-trade-payment-details',
@@ -17,14 +18,18 @@ export class SellerTradePaymentDetailsComponent implements OnInit {
   removeUpload: boolean = false;
   cardImageBase64: any;
   materialImage: any;
-
+  sellerBillingDetails:any={};
   constructor(
     public formBuilder: FormBuilder,
-    private paymentTradeService: PaymentTradeService
+    private paymentTradeService: PaymentTradeService,
+    private userService:UserProfileService
   ) { }
 
   ngOnInit(): void {
     this.sellerModel = this.PaymentDetails;
+    this.userService.getUserDetail(this.sellerModel.BuyerId).subscribe((res:any)=>{
+      this.sellerBillingDetails = res[0];
+    })
     debugger
   }
   uploadFile(event: any) {
@@ -32,7 +37,6 @@ export class SellerTradePaymentDetailsComponent implements OnInit {
     let file = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
       reader.readAsDataURL(file);
-
       // When file uploads set it to file formcontrol
       reader.onload = () => {
         this.imageUrl = reader.result;
@@ -40,11 +44,8 @@ export class SellerTradePaymentDetailsComponent implements OnInit {
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
         formdata.append('file', file);
-
-
         this.paymentTradeService.uploadPaymentSlipImage(formdata).subscribe((response) => {
           this.materialImage = response;
-
           //   this.isImageSaved = true;
           this.editFile = false;
           this.removeUpload = true;

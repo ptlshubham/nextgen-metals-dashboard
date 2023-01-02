@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserProfileService } from 'src/app/core/services/user.service';
 import { MustMatch } from 'src/app/pages/form/validation/validation.mustmatch';
 
 @Component({
@@ -11,15 +12,23 @@ export class ProfileComponent implements OnInit {
   role: any;
   validationForm!: FormGroup;
   isPwdOpen: boolean = false;
+  userDetails:any={};
 
   submitted = false;
   constructor(
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private userservice:UserProfileService
   ) {
-    this.role = localStorage.getItem('role');
+    this.role = localStorage.getItem('Role');
   }
 
   ngOnInit(): void {
+    debugger
+    this.userservice.getUserDetail(localStorage.getItem('UserId')).subscribe((res:any)=>{
+      debugger
+      this.userDetails = res[0];
+      this.userDetails.address = this.userDetails.landmark+' '+this.userDetails.street+' '+this.userDetails.city+'-'+this.userDetails.pincode+' '+this.userDetails.state;
+    })
     this.validationForm = this.formBuilder.group({
       fname: ['Shubham', [Validators.required]],
       lname: ['Patel', [Validators.required]],

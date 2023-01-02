@@ -29,22 +29,19 @@ export class HomeComponent implements OnInit {
     this.role = localStorage.getItem('Role');
     if (this.role == 'buyer') {
       this.tradingService.getAllTradingDatabyIdForBuyer(localStorage.getItem('UserId')).subscribe((res: any) => {
-          
-        
         if (res.length == 0) {
           this.allTradingListBuyer.length = 0;
         } else {
-
           this.allTradingListBuyer = res;
           this.tradeSummaryCount = [];
           this.allTradingListBuyer.forEach((element: any) => {
-            if (element.tradeStatus == 'ACCEPTED') {
-                
+            debugger
+            if (element.TradeStatus == 'ACCEPTED') {
               this.tradeSummaryCount.push(element);
             }
           });
           this.allTradingListBuyer.forEach((element: any) => {
-            if (element.tradeStatus == 'IDEAL') {
+            if (element.isActive) {
               this.newTradingListBuyer.push(element);
             }
             let olddate = this.getLastWeeksDate().toISOString();
@@ -53,15 +50,12 @@ export class HomeComponent implements OnInit {
             }
           });
         }
-
       })
     } else {
       this.tradingService.getAllTradingDatabyIdForSeller(localStorage.getItem('UserId')).subscribe((res: any) => {
-          
         this.tradeSummaryLength = [];
         res.forEach((element: any) => {
-          if (element.tradeStatus == 'ACCEPTED') {
-              
+          if (element.TradeStatus == 'ACCEPTED') {
             this.tradeSummaryLength.push(element);
           }
         });
@@ -71,17 +65,16 @@ export class HomeComponent implements OnInit {
           this.allTradingListSeller = res;
           this.tradeSummaryCount = [];
           this.allTradingListBuyer.forEach((element: any) => {
-            if (element.tradeStatus == 'ACCEPTED') {
-                
+            if (element.TradeStatus == 'ACCEPTED') {
               this.tradeSummaryCount.push(element);
             }
           });
           this.allTradingListSeller.forEach((element: any) => {
-            if (element.tradeStatus == 'IDEAL') {
+            if (element.TradeStatus == 'PENDING') {
               this.newTradingListSeller.push(element);
             }
             let olddate = this.getLastWeeksDate().toISOString();
-            if (element.createdDate >= olddate) {
+            if (element.CreatedDate >= olddate) {
               this.weekTradeCountSeller++;
             }
           });

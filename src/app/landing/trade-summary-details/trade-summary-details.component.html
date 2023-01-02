@@ -7,14 +7,14 @@
                     <div class="form-group mb-3">
                         <label>Order ID</label>
                         <input type="text" disabled class="form-control" id="buyer" placeholder="Order Id"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.tradeId">
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.SubOrderId">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Seller Name</label>
                         <input type="text" disabled class="form-control" id="buyer" placeholder="Enter Buyer"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.sellerName">
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.SellerName">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -27,21 +27,21 @@
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <label>Quality</label>
                     <input type="text" class="form-control" id="quality" placeholder="Enter quality" disabled
-                        [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.req_quality">
+                        [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.BuyerQuality">
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Quantity</label>
                         <input type="number" disabled class="form-control" id="quantity"
                             placeholder="Enter Quantity (mt)" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.sellerQuantity">
+                            [(ngModel)]="buyerModel.SellerQuantity">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Rate (Rupees / Per Metric Ton)</label>
                         <input type="number" disabled class="form-control" id="rate" placeholder="Enter Rate (rs/pmt)"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.buyerRate">
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.BuyerRate">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -49,7 +49,7 @@
                         <label>Delivery Terms (Days)</label>
                         <input type="number" disabled class="form-control" id="terms"
                             placeholder="Enter Delivery Terms (days)" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.deliveryTerms">
+                            [(ngModel)]="buyerModel.DeliveryTerms">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -57,21 +57,21 @@
                         <label>Payment Terms (Days)</label>
                         <input type="text" disabled class="form-control" id="terms"
                             placeholder="Enter Payment Terms (days)" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="buyerModel.payment_days">
+                            [(ngModel)]="buyerModel.PaymentDays">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Trade Date</label>
                         <input type="text" disabled class="form-control" id="tradeDate" placeholder="Enter Trade date"
-                            value="{{buyerModel.createdDate|date}}">
+                            value="{{buyerModel.CreatedDate|date}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Trade Status</label>
                         <input type="text" disabled class="form-control" id="terms" placeholder="Enter Trade Status"
-                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.tradeStatus">
+                            [ngModelOptions]="{standalone: true}" [(ngModel)]="buyerModel.TradeStatus">
                     </div>
                 </div>
                 <!-- <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
@@ -98,61 +98,61 @@
                     <div class="form-group mb-3">
                         <label>Transporter Vehicle No</label>
                         <input type="text" disabled class="form-control" id="terms"
-                            placeholder="Transporter Vehicle No:" value="{{s.vehicleNo}}">
+                            placeholder="Transporter Vehicle No:" value="{{s.VehicleNo}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Transporter Contact NO</label>
-                        <input type="text" disabled class="form-control" id="terms" value="{{s.driverContact}}">
+                        <input type="text" disabled class="form-control" id="terms" value="{{s.DriverContact}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Material Quantity</label>
-                        <input type="text" disabled class="form-control" id="terms" value="{{s.materialQuantity}}">
+                        <input type="text" disabled class="form-control" id="terms" value="{{s.MaterialQuantity}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Invoice Amount</label>
-                        <input type="text" disabled class="form-control" id="terms" value="{{s.invoiceAmount}}">
+                        <input type="text" disabled class="form-control" id="terms" value="{{s.InvoiceAmount}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Dispatched Date</label>
-                        <input type="text" disabled class="form-control" id="terms" value="{{s.startDate|date}}">
+                        <input type="text" disabled class="form-control" id="terms" value="{{s.StartDate|date}}">
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.deliveryStatus=='Delivered'">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.DeliveryStatus=='Delivered'">
                     <div class="form-group mb-3">
                         <label>Delivered Date</label>
-                        <input type="text" disabled class="form-control" id="terms" value="{{s.endDate|date}}">
+                        <input type="text" disabled class="form-control" id="terms" value="{{s.EndDate|date}}">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Weight Proof From Seller</label> <br>
-                        <img class="img-thumbnail" src="http://localhost:9000{{s.weightSlip}}"
+                        <img class="img-thumbnail" src="http://localhost:9000{{s.WeightSlip}}"
                             alt="weightProofFromSeller" width="200" data-holder-rendered="true">
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6">
                     <div class="form-group mb-3">
                         <label>Invoice Slip Image</label> <br>
-                        <img class="img-thumbnail" src="http://localhost:9000{{s.invoiceImage}}" alt="Invoice"
+                        <img class="img-thumbnail" src="http://localhost:9000{{s.InvoiceImage}}" alt="Invoice"
                             width="200" data-holder-rendered="true">
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.deliveryStatus=='Delivered'">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.DeliveryStatus=='Delivered'">
                     <div class="form-group mb-3">
                         <label>Delivery Reciept Image</label> <br>
-                        <img class="img-thumbnail" src="http://localhost:9000{{s.deliveryReciept}}" alt="Delivery"
+                        <img class="img-thumbnail" src="http://localhost:9000{{s.DeliveryReceipt}}" alt="Delivery"
                             width="200" data-holder-rendered="true">
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.deliveryStatus!='Delivered'">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.DeliveryStatus!='Delivered'">
                     <div class="form-group mb-3">
                         <label>Delivery Reciept Image Uploader</label>
                         <div class="avatar-upload">
@@ -174,12 +174,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.deliveryStatus!='Delivered'">
+                <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6" *ngIf="s.DeliveryStatus!='Delivered'">
                     <div class="form-group mb-3">
                         <label class="form-label">Delivery Status</label>
                         <select required class="form-control form-select" formControlName="selectStatus"
                             [ngClass]="{'is-invalid': submitted && f.selectStatus.errors}"
-                            [(ngModel)]="s.deliveryStatus">
+                            [(ngModel)]="s.DeliveryStatus">
                             <option value disabled>Select Delivery Status</option>
                             <!-- <option value="Dispatched">Dispatched</option> -->
                             <option value="DELIVERED">DELIVERED</option>
@@ -189,7 +189,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group mb-3" *ngIf="s.deliveryStatus!='Delivered'">
+                <div class="form-group mb-3" *ngIf="s.DeliveryStatus!='Delivered'">
                     <button type="submit" class="btn btn-primary" (click)="saveDeliveryReciept(s)">Submit</button>
                 </div>
             </div>

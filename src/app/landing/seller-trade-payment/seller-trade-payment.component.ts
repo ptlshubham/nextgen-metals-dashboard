@@ -29,20 +29,19 @@ export class SellerTradePaymentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tradingService.getAllTradingDatabyIdForSeller(localStorage.getItem('UserId')).subscribe((res: any) => {
+    this.tradingService.getBillTradingDataForSeller(localStorage.getItem('UserId')).subscribe((res: any) => {
       debugger
       if (res.length == 0) {
         this.sellerData.length = 0;
       } else {
         this.sellerData = res;
-        this.sellerData.forEach((element: any) => {
+        this.sellerTrade = res;
+        this.sellerTrade.C
+        this.sellerTrade.forEach((element: any) => {
+          element.BuyerName = element.BuyerFirstName+' ' +element.BuyerLastName;
           element.location = element.street + ' ' + element.city + ' ' + element.state;
         })
-        this.sellerData.forEach((element: any) => {
-          if (element.transportDetailsStatus == true)
-            this.sellerTrade.push(element);
-
-        })
+       
       }
     })
   }
@@ -82,6 +81,8 @@ export class SellerTradePaymentComponent implements OnInit {
 
   }
   viewTransportDetails(data: any) {
+    this.transportDetails=data;
+    debugger
     this.tradingService.getTransporterDetailsbyIdForSeller(data).subscribe((res: any) => {
       this.transportDetails = res;
       debugger
@@ -93,9 +94,9 @@ export class SellerTradePaymentComponent implements OnInit {
   }
   viewPaymentDetails(data: any) {
     this.transport = [];
-    this.sellerData.forEach((element: any) => {
-      if (element.tradeId == data.orderId)
-        this.transport.push({ tradeId: element.tradeId, buyerName: element.buyerName, buyerLocation: element.location, quality: element.req_quality, quantity: element.sellerQuantity, rate: element.buyerRate, dispachdate: data.startDate, dilveredDate: data.endDate, driverContact: data.driverContact, vehicleNo: data.vehicleNo, weightSlip: data.weightSlip, invoiceImage: data.invoiceImage, materialQuantity: data.materialQuantity, invoiceAmount: data.invoiceAmount, deliveryStatus: data.deliveryStatus, deliveryReciept: data.deliveryReciept, utrNo: data.utrNo, paymentImage: data.paymentImage, paymentDate: data.paymentDate, dueDate: data.dueDate });
+    this.sellerTrade.forEach((element: any) => {
+      if (element.OrderId == data.OrderId)
+        this.transport.push({ tradeId: element.OrderId, buyerName: element.BuyerName, buyerLocation: element.location, quality: element.BuyerQuality, quantity: element.SellerQuantity, rate: element.BuyerRate, dispachdate: data.StartDate, dilveredDate: data.EndDate, driverContact: data.DriverContact, vehicleNo: data.VehicleNo, weightSlip: data.WeightSlip, invoiceImage: data.InvoiceImage, materialQuantity: data.MaterialQuantity, invoiceAmount: data.InvoiceAmount, deliveryStatus: data.DeliveryStatus, deliveryReciept: data.DeliveryReciept, utrNo: data.UtrNo, paymentImage: data.PaymentImage, paymentDate: data.PaymentDate, dueDate: data.DueDate });
     })
     this.sellerPaymentDetails = this.transport[0]
     debugger

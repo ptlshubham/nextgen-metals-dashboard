@@ -15,7 +15,7 @@ export class UserRegisterComponent implements OnInit {
   selectedState: any;
   submitted = false;
 
-  multiDefaultOption: any = '';
+  multiDefaultOption: any='';
 
   Default = [
     { name: 'Q1' },
@@ -40,7 +40,7 @@ export class UserRegisterComponent implements OnInit {
       lname: ['', [Validators.required]],
       contact: ['', [Validators.required, Validators.min(1)]],
       email: ['', [Validators.required, Validators.email]],
-
+      multiDefaultOption: ['', [Validators.required]],
       companyname: ['', [Validators.required]],
       desgination: ['', [Validators.required]],
       gstno: ['', [Validators.required]],
@@ -66,7 +66,8 @@ export class UserRegisterComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.validationForm.valid) {
-      this.multiDefaultOption;
+      this.multiDefaultOption =this.validationForm.value.multiDefaultOption.toString();;
+      this.validationForm.value.multiDefaultOption = this.multiDefaultOption;
       this.userservice.registerUser(this.validationForm.value).subscribe((res: any) => {
         if (res == 'sucess') {
           Swal.fire('Successfully!', 'Regsitration completed and wait for KYC updation.Password will mail to you shortly', 'success');

@@ -25,7 +25,7 @@
                                                         <div class="col-xl-3 col-md-3">
                                                             <div class="form-group mb-3">
                                                                 <label class="form-label">Salutation</label>
-                                                                <select [disabled]="disabled" required class="form-control form-select" [(ngModel)]="customerDetails.salutation"
+                                                                <select [disabled]="disabled" required class="form-control form-select" [(ngModel)]="customerDetails.Salutation"
                                                                     formControlName="select"
                                                                     [ngClass]="{'is-invalid': submitted && f.select.errors}">
                                                                     <option value="" disabled>Select Salutation</option>
@@ -48,7 +48,7 @@
                                                                     formControlName="fname"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.fname.errors }"
                                                                     placeholder="Enter First Name"
-                                                                    [(ngModel)]="customerDetails.firstName">
+                                                                    [(ngModel)]="customerDetails.FirstName">
                                                                 <div *ngIf="submitted && f.fname.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.fname.errors.required">First Name is
@@ -66,7 +66,7 @@
                                                                     formControlName="lname"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.lname.errors }"
                                                                     placeholder="Enter Last Name"
-                                                                    [(ngModel)]="customerDetails.lastName">
+                                                                    [(ngModel)]="customerDetails.LastName">
                                                                 <div *ngIf="submitted && f.lname.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.lname.errors.required">Last Name is
@@ -83,7 +83,7 @@
                                                                     Number</label>
                                                                 <input type="text" class="form-control" id="contact"
                                                                     formControlName="contact"
-                                                                    [(ngModel)]="customerDetails.phone"
+                                                                    [(ngModel)]="customerDetails.Phone"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.contact.errors }"
                                                                     placeholder="Enter Phone Number">
                                                                 <div *ngIf="submitted && f.contact.errors"
@@ -103,7 +103,7 @@
                                                                     formControlName="email"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
                                                                     placeholder="Enter Email"
-                                                                    [(ngModel)]="customerDetails.email">
+                                                                    [(ngModel)]="customerDetails.Email">
                                                                 <div *ngIf="submitted && f.email.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.email.errors.required">Email is
@@ -121,7 +121,7 @@
                                                                     formControlName="selectR"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.selectR.errors }"
                                                                     placeholder="Register As"
-                                                                    [(ngModel)]="customerDetails.role">
+                                                                    [(ngModel)]="customerDetails.Role">
                                                                 <div *ngIf="submitted && f.selectR.errors"
                                                                     class="invalid-feedback">
                                                                     <span *ngIf="f.selectR.errors.required">This Field
@@ -142,7 +142,7 @@
                                                                     formControlName="companyname"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.companyname.errors }"
                                                                     placeholder="Enter Company Name"
-                                                                    [(ngModel)]="customerDetails.companyName">
+                                                                    [(ngModel)]="customerDetails.CompanyName">
                                                                 <div *ngIf="submitted && f.companyname.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.companyname.errors.required">Company
@@ -158,17 +158,17 @@
                                                             <div class="form-group mb-3">
                                                                 <label for="basicpill-desgination-input1"
                                                                     class="form-label">Desgination</label>
-                                                                <input type="text" class="form-control" id="desgination"
-                                                                    formControlName="desgination"
-                                                                    [ngClass]="{ 'is-invalid': submitted && f.desgination.errors }"
-                                                                    placeholder="Enter Desgination"
-                                                                    [(ngModel)]="customerDetails.desigination">
-                                                                <div *ngIf="submitted && f.desgination.errors"
+                                                                <input type="text" class="form-control" id="designation"
+                                                                    formControlName="designation"
+                                                                    [ngClass]="{ 'is-invalid': submitted && f.designation.errors }"
+                                                                    placeholder="Enter designation"
+                                                                    [(ngModel)]="customerDetails.Designation">
+                                                                <div *ngIf="submitted && f.designation.errors"
                                                                     class="invalid-feedback">
-                                                                    <div *ngIf="f.desgination.errors.required">Company
+                                                                    <div *ngIf="f.designation.errors.required">Company
                                                                         Name is required
                                                                     </div>
-                                                                    <div *ngIf="f.desgination.errors.min">Enter Only
+                                                                    <div *ngIf="f.designation.errors.min">Enter Only
                                                                         characters and numbers.
                                                                     </div>
                                                                 </div>
@@ -182,7 +182,7 @@
                                                                     formControlName="gstno"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.gstno.errors }"
                                                                     placeholder="Enter GST Number"
-                                                                    [(ngModel)]="customerDetails.GST_no">
+                                                                    [(ngModel)]="customerDetails.GSTNo">
                                                                 <div *ngIf="submitted && f.gstno.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.gstno.errors.required">Company Name is
@@ -203,7 +203,7 @@
                                                                     formControlName="workphone"
                                                                     [ngClass]="{ 'is-invalid': submitted && f.workphone.errors }"
                                                                     placeholder="Enter Worked Phone"
-                                                                    [(ngModel)]="customerDetails.companyName">
+                                                                    [(ngModel)]="customerDetails.CompanyContact">
                                                                 <div *ngIf="submitted && f.workphone.errors"
                                                                     class="invalid-feedback">
                                                                     <div *ngIf="f.workphone.errors.required">Work Phone
@@ -253,7 +253,7 @@
                                                             <div class="col-xl-3 col-md-3">
                                                                 <div class="mb-3">
                                                                     <label class="form-label">Account Type</label>
-                                                                    <select class="form-select">
+                                                                    <select class="form-select" formControlName="AccType" [(ngModel)]="customerDetails.AccType">
                                                                         <option selected>Select Account Type</option>
                                                                         <option value="saving">Saving Account</option>
                                                                         <option value="current">Current Account</option>
@@ -266,8 +266,8 @@
                                                                         class="form-label">Account
                                                                         Holder's
                                                                         Name.</label>
-                                                                    <input type="text" class="form-control"
-                                                                        id="basicpill-pancard-input1"
+                                                                    <input type="text" class="form-control"  formControlName="AccHolderName"
+                                                                        id="basicpill-pancard-input1"  [(ngModel)]="customerDetails.AccHolderName"
                                                                         placeholder="Enter A/C Holder's Name">
                                                                 </div>
                                                             </div>
@@ -277,8 +277,8 @@
                                                                     <label for="basicpill-vatno-input1"
                                                                         class="form-label">Bank Name
                                                                     </label>
-                                                                    <input type="text" class="form-control"
-                                                                        id="basicpill-vatno-input1"
+                                                                    <input type="text" class="form-control" formControlName="BankName"
+                                                                        id="basicpill-vatno-input1" [(ngModel)]="customerDetails.BankName"
                                                                         placeholder="Enter Bankname">
                                                                 </div>
                                                             </div>
@@ -288,8 +288,8 @@
                                                                     <label for="basicpill-cstno-input1"
                                                                         class="form-label">Bank A/c
                                                                         No.</label>
-                                                                    <input type="number" class="form-control"
-                                                                        id="basicpill-cstno-input1"
+                                                                    <input type="number" class="form-control" formControlName="BankAccNo"
+                                                                        id="basicpill-cstno-input1" [(ngModel)]="customerDetails.BankAccNo"
                                                                         placeholder="Enter Account Number">
                                                                 </div>
                                                             </div>
@@ -299,8 +299,8 @@
                                                                     <label for="basicpill-phoneno-input1"
                                                                         class="form-label">Branch
                                                                         Name</label>
-                                                                    <input type="text" class="form-control"
-                                                                        id="basicpill-phoneno-input1"
+                                                                    <input type="text" class="form-control" formControlName="BranchName"
+                                                                        id="basicpill-phoneno-input1" [(ngModel)]="customerDetails.BranchName"
                                                                         placeholder="Enter Branch Name">
                                                                 </div>
                                                             </div>
@@ -308,8 +308,8 @@
                                                                 <div class="mb-3">
                                                                     <label for="basicpill-phoneno-input1"
                                                                         class="form-label">IFSC</label>
-                                                                    <input type="text" class="form-control"
-                                                                        id="basicpill-phoneno-input1"
+                                                                    <input type="text" class="form-control" formControlName="ISFCCode"
+                                                                        id="basicpill-phoneno-input1" [(ngModel)]="customerDetails.ISFCCode"
                                                                         placeholder="Enter IFSC Code">
                                                                 </div>
                                                             </div>
@@ -348,7 +348,7 @@
                             </a>
                             <ng-template ngbNavContent>
                                 <div class="tab-pane" id="about" role="tabpanel">
-                                    <div class="card">
+                                    <div class="card" *ngIf="tradeList != undefined">
                                         <div class="card-header">
                                             <h5 class="card-title mb-0">Trade List</h5>
                                         </div>
@@ -360,36 +360,34 @@
                                                             <th>#</th>
                                                             <th>Date</th>
                                                             <th>Order_ID</th>
-                                                            <th *ngIf="customerDetails.role=='seller'">Buyer</th>
-                                                            <th *ngIf="customerDetails.role=='buyer'">Seller</th>
-                                                            <th>Location</th>
+                                                            <!-- <th *ngIf="customerDetails.Role=='seller'">Buyer</th>
+                                                            <th *ngIf="customerDetails.Role=='buyer'">Seller</th> -->
+                                                            <!-- <th>Location</th> -->
                                                             <th>Quality</th>
                                                             <th>Quantity</th>
                                                             <th>Rate</th>
                                                             <th>Validity</th>
-                                                            <th>Delivery_terms</th>
                                                             <th>Payment_terms</th>
                                                             <th>Commission</th>
                                                             <th>Delivery</th>
                                                             <th>Payment</th>
-                                                            <!-- <th>Action</th> -->
+                                                            <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr *ngFor="let s of tradeList">
                                                             <th scope="row">{{s.id}}</th>
-                                                            <td>{{dateString}}</td>
-                                                            <td>{{s.Order_ID}}</td>
-                                                            <td *ngIf="customerDetails.role=='seller'">{{s.Buyer}}</td>
-                                                            <td *ngIf="customerDetails.role=='buyer'">{{s.Seller}}</td>
-                                                            <td>{{s.location}}</td>
-                                                            <td>{{s.Quality}}</td>
-                                                            <td>{{s.Quantity}} ton.</td>
-                                                            <td>{{s.Rate}} ₹</td>
-                                                            <td>{{dateString1}}</td>
-                                                            <td>{{s.Delivery_terms}}</td>
-                                                            <td>{{s.Payment_terms}}</td>
-                                                            <td>
+                                                            <td>{{s.CreatedDate |date}}</td>
+                                                            <td>{{s.OrderId}}</td>
+                                                            <!-- <td *ngIf="customerDetails.Role=='seller'">{{s.Buyer}}</td>
+                                                            <td *ngIf="customerDetails.Role=='buyer'">{{s.Seller}}</td> -->
+                                                            <!-- <td>{{s.location}}</td> -->
+                                                            <td>{{s.BuyerQuality}}</td>
+                                                            <td>{{s.BuyerQuantity}} ton.</td>
+                                                            <td>{{s.BuyerRate}} ₹</td>
+                                                            <td>{{s.PaymentValidity}}</td>
+                                                            <td>{{s.PaymentTerms}}</td>
+                                                            <!-- <td>
                                                                 <span class="badge bg-success"
                                                                     *ngIf="s.Status_Commission=='Received'">{{s.Status_Commission}}</span>
                                                                 <span class="badge bg-danger"
@@ -409,15 +407,15 @@
                                                                     *ngIf="s.Status_Payment=='Complete'">{{s.Status_Payment}}</span>
                                                                 <span class="badge bg-warning"
                                                                     *ngIf="s.Status_Payment=='Pending'">{{s.Status_Payment}}</span>
-                                                            </td>
-                                                            <!-- <td>
+                                                            </td> -->
+                                                            <td>
                                                                 <div class="d-flex flex-wrap gap-2">
                                                                     <button type="button" class="btn btn-soft-primary waves-effect waves-light"
-                                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"
+                                                                        data-bs-toggle="tooltip" data-bs-placement="top" title="View"
                                                                         (click)="editAcceptOrder(s)"><i
                                                                             class="bx bx-edit font-size-16 align-middle"></i></button>
                                                                 </div>
-                                                            </td> -->
+                                                            </td>
 
                                                         </tr>
                                                     </tbody>

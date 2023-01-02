@@ -30,6 +30,7 @@ export class SellerTradeComponent implements OnInit {
 
   editFile: boolean = true;
   removeUpload: boolean = false;
+  subActiveList: boolean = false;
   cardImageBase64: any;
   materialImage: any;
   materialMultiImage: any = [];
@@ -45,7 +46,7 @@ export class SellerTradeComponent implements OnInit {
     public formBuilder: FormBuilder,
     public sellerTradeService: SellerTradeService,
     public tradingService: TradeService,
-    private apiService:ApiService,
+    private apiService: ApiService,
     private router: Router
   ) {
     this.isPending = true;
@@ -54,21 +55,14 @@ export class SellerTradeComponent implements OnInit {
 
   ngOnInit(): void {
     this.val++;
-
     this.tradingService.newTradeReqForSeller().subscribe((res: any) => {
       this.sellerData = res;
       this.sellerTrade = [];
-
       this.sellerData.forEach((element: any) => {
         element.buyerLocation = element.street + ' ' + element.city + ' ' + element.state;
-      })
-      this.sellerData.forEach((element: any) => {
-        if (element.tradeStatus == 'IDEAL')
-          this.sellerTrade.push(element);
-
+        this.sellerTrade.push(element);
       })
       this.getActiveRequestData();
-
     })
     this.validationForm = this.formBuilder.group({
       validity: ['', Validators.required],
@@ -94,11 +88,9 @@ export class SellerTradeComponent implements OnInit {
   }
 
   acceptBuyerRequest() {
-
     this.submitted = true;
     // stop here if form is invalid
     if (this.validationForm.invalid) {
-
       return;
     } else {
       let seller: any, name: any;
@@ -108,11 +100,12 @@ export class SellerTradeComponent implements OnInit {
       this.tradeModel.sellerId = seller;
       this.tradeModel.sellerName = name;
       this.tradeModel.materialMultiImage = this.materialMultiImage;
-
       this.tradingService.saveSellerTradeRequest(this.tradeModel).subscribe((res: any) => {
         if (res == 'success') {
           this.apiService.showNotification('top', 'right', 'Trade details added Successfully.', 'success');
-
+          this.isAccept=false;
+          this.isPending=true;
+          this.ngOnInit();
         }
       })
     }
@@ -120,17 +113,18 @@ export class SellerTradeComponent implements OnInit {
   getActiveRequestData() {
     this.sellerTradeActive = [];
     this.tradingService.getAllTradingDatabyIdForSeller(localStorage.getItem('UserId')).subscribe((res: any) => {
+      debugger
       if (res.length == 0) {
         this.sellerActiveData.length = 0;
       } else {
         this.sellerActiveData = res;
+        debugger
         this.sellerActiveData.forEach((element: any) => {
           element.location = element.street + ' ' + element.city + ' ' + element.state;
         })
         this.sellerActiveData.forEach((element: any) => {
-          if (element.tradeStatus == 'PENDING')
+          if (element.TradeStatus == 'PENDING')
             this.sellerTradeActive.push(element);
-
         })
       }
 
@@ -183,7 +177,10 @@ export class SellerTradeComponent implements OnInit {
 
   }
   viewActiveDetails(data: any) {
+    this.subActiveList = true;
     this.sellerModel = data;
+    this.sellerModel.buyname = this.sellerModel.BuyerFirstName + ' ' + this.sellerModel.BuyerLastName;
+    debugger
     this.isAccept = false;
     this.isPending = false;
     this.isActiveOpen = false;

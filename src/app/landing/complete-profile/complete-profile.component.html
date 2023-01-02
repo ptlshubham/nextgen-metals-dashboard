@@ -25,7 +25,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Salutation</label>
                                                     <select required class="form-control form-select" required
-                                                        formControlName="select" [(ngModel)]="customerModel.salutation"
+                                                        formControlName="select" [(ngModel)]="customerModel.Salutation"
                                                         [ngClass]="{'is-invalid': submitted && f.select.errors}">
                                                         <option selected>Select Salutation</option>
                                                         <option value="Mr">Mr.</option>
@@ -46,7 +46,7 @@
                                                         id="fname"
                                                         [ngClass]="{ 'is-invalid': submitted && f.fname.errors }"
                                                         placeholder="Enter First Name"
-                                                        [(ngModel)]="customerModel.firstName">
+                                                        [(ngModel)]="customerModel.FirstName">
                                                     <div *ngIf="submitted && f.fname.errors" class="invalid-feedback">
                                                         <div *ngIf="f.fname.errors.required">First name is required
                                                         </div>
@@ -62,7 +62,7 @@
                                                         id="lname"
                                                         [ngClass]="{ 'is-invalid': submitted && f.lname.errors }"
                                                         placeholder="Enter Last Name"
-                                                        [(ngModel)]="customerModel.lastName">
+                                                        [(ngModel)]="customerModel.LastName">
                                                     <div *ngIf="submitted && f.lname.errors" class="invalid-feedback">
                                                         <div *ngIf="f.lname.errors.required">Last name is required
                                                         </div>
@@ -79,7 +79,7 @@
                                                         [ngClass]="{ 'is-invalid': submitted && f.contact.errors }"
                                                         class="form-control" id="contact"
                                                         placeholder="Enter Phone Number"
-                                                        [(ngModel)]="customerModel.phone">
+                                                        [(ngModel)]="customerModel.Phone">
                                                     <div *ngIf="submitted && f.contact.errors" class="invalid-feedback">
                                                         <div *ngIf="f.contact.errors.required">Phone Number is required.
                                                         </div>
@@ -96,7 +96,7 @@
                                                     <input type="email" formControlName="email"
                                                         [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
                                                         class="form-control" id="useremail" placeholder="Enter email"
-                                                        [(ngModel)]="customerModel.email">
+                                                        [(ngModel)]="customerModel.Email">
                                                     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
                                                         <div *ngIf="f.email.errors.required">Email is required</div>
                                                         <div *ngIf="f.email.errors.email">Email must be a valid email
@@ -110,7 +110,7 @@
                                                     <input type="text" required class="form-control"
                                                         formControlName="regAs"
                                                         [ngClass]="{'is-invalid': submitted && f.regAs.errors}"
-                                                        [(ngModel)]="customerModel.role">
+                                                        [(ngModel)]="customerModel.Role">
 
                                                     <div *ngIf="submitted && f.regAs.errors" class="invalid-feedback">
                                                         <span *ngIf="f.regAs.errors.required">This Field is
@@ -136,7 +136,7 @@
                                     <i class="bx bx-buildings"></i>
                                 </ng-template>
                                 <div class="row">
-                                    <form [formGroup]="validationForm" (ngSubmit)="onSubmit()">
+                                    <form [formGroup]="validationForm" >
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
@@ -146,7 +146,7 @@
                                                         class="form-control" id="companyname"
                                                         [ngClass]="{ 'is-invalid': submitted && f.companyname.errors }"
                                                         placeholder="Enter Company Name"
-                                                        [(ngModel)]="customerModel.companyName">
+                                                        [(ngModel)]="customerModel.CompanyName">
                                                     <div *ngIf="submitted && f.companyname.errors"
                                                         class="invalid-feedback">
                                                         <div *ngIf="f.companyname.errors.required">Company name is
@@ -164,7 +164,7 @@
                                                         class="form-control" id="designation"
                                                         [ngClass]="{ 'is-invalid': submitted && f.designation.errors }"
                                                         placeholder="Enter designation"
-                                                        [(ngModel)]="customerModel.designation">
+                                                        [(ngModel)]="customerModel.Designation">
                                                     <div *ngIf="submitted && f.designation.errors"
                                                         class="invalid-feedback">
                                                         <div *ngIf="f.designation.errors.required">designation is
@@ -183,7 +183,7 @@
                                                         id="gstno"
                                                         [ngClass]="{ 'is-invalid': submitted && f.gstno.errors }"
                                                         placeholder="Enter GST Number"
-                                                        [(ngModel)]="customerModel.GST_no">
+                                                        [(ngModel)]="customerModel.GSTNo">
                                                     <div *ngIf="submitted && f.gstno.errors" class="invalid-feedback">
                                                         <div *ngIf="f.gstno.errors.required">GST Number is
                                                             required
@@ -200,7 +200,7 @@
                                                         [ngClass]="{ 'is-invalid': submitted && f.workphone.errors }"
                                                         class="form-control" id="workphone"
                                                         placeholder="Enter Workphone Number"
-                                                        [(ngModel)]="customerModel.company_contact">
+                                                        [(ngModel)]="customerModel.CompanyContact">
                                                     <div *ngIf="submitted && f.workphone.errors"
                                                         class="invalid-feedback">
                                                         <div *ngIf="f.workphone.errors.required">Workphone is required.
@@ -216,15 +216,22 @@
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Material Quality</label>
-                                                    <select required class="form-control form-select"
+                                                    <!-- <select required class="form-control form-select"
                                                         formControlName="selectMaterial"
-                                                        [(ngModel)]="customerModel.material_quality"
+                                                        [(ngModel)]="customerModel.MaterialQuality"
                                                         [ngClass]="{'is-invalid': submitted && f.selectMaterial.errors}">
                                                         <option selected>Select Material Quality</option>
-                                                        <option value="q1">Q1</option>
-                                                        <option value="q2">Q2</option>
-                                                        <option value="q3">Q3</option>
-                                                    </select>
+                                                        <option value="Q1">Q1</option>
+                                                        <option value="Q2">Q2</option>
+                                                        <option value="Q3">Q3</option>
+                                                    </select> -->
+                                                    <ng-select [items]="Default" [multiple]="true"  
+                                                    bindLabel="name"  [(ngModel)]="multiDefaultOption"
+                                                    formControlName="multiDefaultOption">
+                                                         <!-- <ng-template ng-optgroup-tmp let-item="item">
+                                                             {{item.country || 'Unnamed group'}}
+                                                         </ng-template> -->
+                                                     </ng-select>
                                                     <div *ngIf="submitted && f.selectMaterial.errors"
                                                         class="invalid-feedback">
                                                         <span *ngIf="f.selectMaterial.errors.required">This Field is
@@ -239,7 +246,7 @@
                                                     <input type="number" formControlName="avg_mnth_trade"
                                                         [ngClass]="{ 'is-invalid': submitted && f.avg_mnth_trade.errors }"
                                                         class="form-control" id="avg_mnth_trade"
-                                                        [(ngModel)]="customerModel.avg_mnth_trade"
+                                                        [(ngModel)]="customerModel.AvgMonthTrade"
                                                         placeholder="Enter Average Monthly Trade (Approx)">
                                                     <div *ngIf="submitted && f.avg_mnth_trade.errors"
                                                         class="invalid-feedback">
@@ -327,10 +334,10 @@
                                                     <label for="Selct State" class="form-label">Select
                                                         State</label>
                                                     <select required class="form-select" formControlName="selectState"
-                                                        [(ngModel)]="selectedState" (change)="selectStateData($event)"
+                                                        [(ngModel)]="customerModel.state" (change)="selectStateData($event)"
                                                         [ngClass]="{'is-invalid': submitted && f.selectState.errors}">
                                                         <option>Select State</option>
-                                                        <option *ngFor="let c of stateData">{{c.name}}
+                                                        <option *ngFor="let c of stateData" value="{{c.name}}">{{c.name}}
                                                         </option>
                                                     </select>
                                                     <div *ngIf="submitted && f.selectState.errors"
@@ -366,13 +373,13 @@
                                     <i class="bx bxs-bank"></i>
                                 </ng-template>
                                 <div class="row">
-                                    <form [formGroup]="validationForm">
+                                    <form [formGroup]="validationForm" >
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Account Type</label>
                                                     <select required class="form-control form-select"
-                                                        formControlName="selectAcc" [(ngModel)]="customerModel.acc_type"
+                                                        formControlName="selectAcc" [(ngModel)]="customerModel.AccType"
                                                         [ngClass]="{'is-invalid': submitted && f.selectAcc.errors}">
                                                         <option selected>Select Account Type</option>
                                                         <option value="saving">Saving Account</option>
@@ -391,7 +398,7 @@
                                                         Holder's
                                                         Name.</label>
                                                     <input type="text" formControlName="acHolder" class="form-control"
-                                                        id="acHolder" [(ngModel)]="customerModel.acc_holder_name"
+                                                        id="acHolder" [(ngModel)]="customerModel.AccHolderName"
                                                         [ngClass]="{ 'is-invalid': submitted && f.acHolder.errors }"
                                                         placeholder="Enter A/C Holder's Name">
                                                     <div *ngIf="submitted && f.acHolder.errors"
@@ -408,7 +415,7 @@
                                                     <label for="basicpill-vatno-input1" class="form-label">Bank Name
                                                     </label>
                                                     <input type="text" formControlName="bankName" class="form-control"
-                                                        id="bankName" [(ngModel)]="customerModel.bank_name"
+                                                        id="bankName" [(ngModel)]="customerModel.BankName"
                                                         [ngClass]="{ 'is-invalid': submitted && f.bankName.errors }"
                                                         placeholder="Enter Bankname">
                                                     <div *ngIf="submitted && f.bankName.errors"
@@ -424,7 +431,7 @@
                                                     <label for="basicpill-cstno-input1" class="form-label">Bank A/c
                                                         No.</label>
                                                     <input type="number" formControlName="bankACNo" class="form-control"
-                                                        id="bankACNo" [(ngModel)]="customerModel.bank_acc_no"
+                                                        id="bankACNo" [(ngModel)]="customerModel.BankAccNo"
                                                         [ngClass]="{ 'is-invalid': submitted && f.bankACNo.errors }"
                                                         placeholder="Enter Account Number">
                                                     <div *ngIf="submitted && f.bankACNo.errors"
@@ -441,7 +448,7 @@
                                                     <label for="basicpill-phoneno-input1" class="form-label">Branch
                                                         Name</label>
                                                     <input type="text" formControlName="branchName" class="form-control"
-                                                        id="branchName" [(ngModel)]="customerModel.branch_name"
+                                                        id="branchName" [(ngModel)]="customerModel.BranchName"
                                                         [ngClass]="{ 'is-invalid': submitted && f.branchName.errors }"
                                                         placeholder="Enter Branch Name">
                                                     <div *ngIf="submitted && f.branchName.errors"
@@ -456,12 +463,12 @@
                                                 <div class="mb-3">
                                                     <label for="basicpill-phoneno-input1"
                                                         class="form-label">IFSC</label>
-                                                    <input type="text" formControlName="IFSC" class="form-control"
-                                                        id="IFSC" [(ngModel)]="customerModel.isfc_code"
-                                                        [ngClass]="{ 'is-invalid': submitted && f.IFSC.errors }"
-                                                        placeholder="Enter IFSC Code">
-                                                    <div *ngIf="submitted && f.IFSC.errors" class="invalid-feedback">
-                                                        <div *ngIf="f.IFSC.errors.required">IFSC Code is required
+                                                    <input type="text" formControlName="ISFC" class="form-control"
+                                                        id="ISFC" [(ngModel)]="customerModel.ISFCCode"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.ISFC.errors }"
+                                                        placeholder="Enter ISFC Code">
+                                                    <div *ngIf="submitted && f.ISFC.errors" class="invalid-feedback">
+                                                        <div *ngIf="f.ISFC.errors.required">ISFC Code is required
                                                         </div>
                                                     </div>
                                                 </div>

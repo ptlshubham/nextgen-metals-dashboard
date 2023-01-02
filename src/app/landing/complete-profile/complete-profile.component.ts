@@ -23,6 +23,14 @@ export class CompleteProfileComponent implements OnInit {
 
   public customerModel: any;
   userId: any;
+  
+  multiDefaultOption: any='';
+
+  Default = [
+    { name: 'Q1' },
+    { name: 'Q2' },
+    { name: 'Q3' },
+  ];
   constructor(
     public formBuilder: FormBuilder,
     public userservice: UserProfileService,
@@ -40,8 +48,12 @@ export class CompleteProfileComponent implements OnInit {
       this.userservice.getUserDetail(this.userId).subscribe((res: any) => {
         this.customerModel = res[0];
         this.selectedState = this.customerModel.state;
-        debugger
-
+        let ab = this.customerModel.MaterialQuality.split(',');
+        this.multiDefaultOption = ab;
+        this.imageUrl= this.customerModel.CancelCheque
+        if(this.imageUrl != undefined||this.imageUrl!=null ){
+          this.imageUrl='assets/images/file-upload-image.jpg';
+        }
       })
     });
     this.validationForm = this.formBuilder.group({
@@ -51,7 +63,6 @@ export class CompleteProfileComponent implements OnInit {
       lname: ['', [Validators.required]],
       contact: ['', [Validators.required, Validators.min(1)]],
       email: ['', [Validators.required, Validators.email]],
-
       companyname: ['', [Validators.required]],
       designation: ['', [Validators.required]],
       gstno: ['', [Validators.required]],
@@ -60,16 +71,15 @@ export class CompleteProfileComponent implements OnInit {
       city: ['', [Validators.required]],
       selectState: ['', [Validators.required]],
       landmark: [''],
+      multiDefaultOption: ['', [Validators.required]],
       pincode: ['', [Validators.required, Validators.min(6)]],
       avg_mnth_trade: ['0', [Validators.required, Validators.min(1)]],
-      selectMaterial: ['', [Validators.required]],
-
       selectAcc: ['', [Validators.required]],
       acHolder: ['', [Validators.required]],
       bankName: ['', [Validators.required]],
       bankACNo: ['', [Validators.required, Validators.min(1)]],
       branchName: ['', [Validators.required]],
-      IFSC: ['', [Validators.required]],
+      ISFC: ['', [Validators.required]],
 
     });
   }
@@ -77,8 +87,11 @@ export class CompleteProfileComponent implements OnInit {
   get f() { return this.validationForm.controls; }
   onSubmit() {
     this.submitted = true;
+    this.validationForm
+    debugger
     if (this.validationForm.valid) {
       this.userservice.completeProfile(this.customerModel).subscribe((res: any) => {
+        debugger
         if (res == 'success') {
           this.router.navigate(['/landing/user-home']);
         } else {
@@ -99,7 +112,6 @@ export class CompleteProfileComponent implements OnInit {
       // When file uploads set it to file formcontrol
       reader.onload = () => {
         this.imageUrl = reader.result;
-
         const imgBase64Path = reader.result;
         this.cardImageBase64 = imgBase64Path;
         const formdata = new FormData();
@@ -116,10 +128,12 @@ export class CompleteProfileComponent implements OnInit {
   getStateList() {
     this.userservice.getStateFromJson().subscribe((res: any) => {
       this.stateData = res;
+      this.selectedState = this.customerModel.state;
     })
   }
   selectStateData(e: any): void {
     this.selectedState = e.target.value;
+    this.customerModel.state = e.target.value;
   }
 
 }

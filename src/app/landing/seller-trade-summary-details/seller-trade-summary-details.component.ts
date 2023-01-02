@@ -41,15 +41,15 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.sellerModel = this.seller;
-    this.addTransporter = [{ transportVehicle: '', transporterContact: "", materialQuantity: '', invoiceAmount: '', imageUrl: 'assets/images/file-upload-image.jpg', invoiceImageUrl: 'assets/images/file-upload-image.jpg', tradeId: this.sellerModel.tradeId }]
-    this.val++;
+    this.sellerModel.buyerName = this.seller.BuyerFirstName+' '+this.seller.BuyerLastName;
     debugger
-    if (this.sellerModel.transportDetailsStatus == true) {
-      this.tradingService.getTransporterDetailsbyIdForSeller(this.sellerModel.tradeId).subscribe((res: any) => {
+    this.addTransporter = [{ transportVehicle: '', transporterContact: "", materialQuantity: '', invoiceAmount: '', imageUrl: 'assets/images/file-upload-image.jpg', invoiceImageUrl: 'assets/images/file-upload-image.jpg', tradeId: this.sellerModel.tradeId }];
+    // if (this.sellerModel.transportDetailsStatus == true) {
+      this.tradingService.getTransporterDetailsbyIdForSeller(this.sellerModel.SubOrderId).subscribe((res: any) => {
         this.transportDetails = res;
         debugger
       })
-    }
+    // }
     this.validationForm = this.formBuilder.group({
       selectStatus: ['', [Validators.required]],
       vehicle: ['', [Validators.required]],
@@ -60,8 +60,10 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
   }
   get f() { return this.validationForm.controls; }
   addTransporterList() {
-    this.val++;
+    // this.val++;
+    debugger
     this.addTransporter.push({ transportVehicle: '', transporterContact: "", materialQuantity: '', invoiceAmount: '', imageUrl: 'assets/images/file-upload-image.jpg', invoiceImageUrl: 'assets/images/file-upload-image.jpg', tradeId: this.sellerModel.tradeId });
+    debugger
   }
   removeTransporterList(val: any) {
     this.addTransporter.splice(val, 1);
@@ -73,8 +75,9 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
     } else {
       this.transportModel = [];
       this.addTransporter.forEach((element: any, index: any) => {
-        this.transportModel.push({ transportVehicle: element.transportVehicle, transporterContact: element.transporterContact, materialQuantity: element.materialQuantity, invoiceAmount: element.invoiceAmount, tradeId: element.tradeId, deliveryStatus: 'Dispatched', transportImage: this.imageArray[index], invoiceImage: this.invoiceImageArray[index] })
+        this.transportModel.push({subOrderId:this.sellerModel.SubOrderId, transportVehicle: element.transportVehicle, transporterContact: element.transporterContact, materialQuantity: element.materialQuantity, invoiceAmount: element.invoiceAmount, tradeId: element.tradeId, deliveryStatus: 'Dispatched', transportImage: this.imageArray[index], invoiceImage: this.invoiceImageArray[index] })
       });
+      this.transportModel
       debugger
       this.tradingService.saveTransporterDetails(this.transportModel).subscribe((res: any) => {
         if (res == 'success') {
@@ -90,7 +93,6 @@ export class SellerTradeSummaryDetailsComponent implements OnInit {
     let file = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
       reader.readAsDataURL(file);
-
       // When file uploads set it to file formcontrol
       reader.onload = () => {
         this.addTransporter[ind].imageUrl = reader.result;

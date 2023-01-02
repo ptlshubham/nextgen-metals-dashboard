@@ -26,6 +26,7 @@ import { SellerTradeSummaryDetailsComponent } from './seller-trade-summary-detai
 import { SellerTradePaymentDetailsComponent } from './seller-trade-payment-details/seller-trade-payment-details.component';
 import { TradePaymentDetailsComponent } from './trade-payment-details/trade-payment-details.component';
 import { SubscripitionComponent } from './subscripition/subscripition.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -60,12 +61,13 @@ import { SubscripitionComponent } from './subscripition/subscripition.component'
     NgbPaginationModule,
     NgbTypeaheadModule,
     ArchwizardModule,
-
     NgbCollapseModule,
     NgbPopoverModule,
+    NgSelectModule,
   ],
   exports:[
     TradeComponent,
+    CompleteProfileComponent,
     SellerTradeSummaryDetailsComponent
   ]
 })

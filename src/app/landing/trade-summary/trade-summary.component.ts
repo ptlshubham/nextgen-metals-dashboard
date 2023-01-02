@@ -9,11 +9,14 @@ import Swal from 'sweetalert2';
 })
 export class TradeSummaryComponent implements OnInit {
   buyerTrade: any = [ ];
+  isBuyerOpenDetails:boolean=false;
   buyerData:any=[];
   openDetails: boolean = false;
   isBuyerOpen: boolean = false;
   buyerModel: any = {};
   buyerDetails: any = {};
+  TradingResponse:any=[];
+  reqQuality:any='';
   constructor(
     public tradingService:TradeService
   ) {
@@ -22,31 +25,51 @@ export class TradeSummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.tradingService.getAllTradingDatabyIdForBuyer(localStorage.getItem('UserId')).subscribe((res:any)=>{
-      debugger
        if(res.length ==0){
         this.buyerData.length=0;
        }else{
         this.buyerData = res;
         this.buyerData.forEach((element: any) => {
-          if (element.tradeStatus === 'ACCEPTED' || element.tradeStatus==='REJECTED' )
+          element.location = element.street+' '+element.city+' '+element.state;
+          if (element.TradeStatus == 'ACCEPTED' || element.TradeStatus =='REJECTED' )
             this.buyerTrade.push(element);
         })
-        this.buyerData.forEach((element:any)=>{
-          element.location = element.street+' '+element.city+' '+element.state;
-          debugger
-        })
+       
        }
       
     })
   }
   backToSummary() {
-    this.isBuyerOpen = true;
+    this.isBuyerOpenDetails = true;
     this.openDetails = false;
+  }
+  backToActiveTrade(){
+    this.isBuyerOpenDetails=false;
+    this.isBuyerOpen = true;
   }
 
   viewTradeDetailsByTrade(data: any) {
+    this.isBuyerOpenDetails=true;
+    this.isBuyerOpen = false;;
+    this.reqQuality=data.BuyerQuality;
+    this.tradingService.GetSellerResponse(data.OrderId).subscribe((res:any)=>{
+      this.TradingResponse=[];
+      res.forEach((element:any) =>{
+        if(element.TradeStatus == 'ACCEPTED'){
+          element.location = element.street + ' ' + element.city + ' ' + element.state;
+          this.TradingResponse.push(element)
+        }
+      })
+      // this.TradingResponse = res;
+      // this.TradingResponse.forEach((element: any) => {
+      //   element.location = element.street + ' ' + element.city + ' ' + element.state;
+      // })
+    })
+    
+  }
+  viewDetailsByTrade(data:any){
     this.buyerDetails = data;
-    debugger
+    this.isBuyerOpenDetails=false;
     this.isBuyerOpen = false;
     this.openDetails = true;
   }

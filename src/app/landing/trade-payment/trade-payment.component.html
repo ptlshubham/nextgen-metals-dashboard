@@ -20,16 +20,16 @@
                         <tbody>
                             <tr *ngFor="let s of buyerTrade;let i=index">
                                 <td class="text-left">{{i+1}}</td>
-                                <td class="text-center">{{s.createdDate|date}}</td>
-                                <td class="text-center">{{s.tradeId}}</td>
-                                <td class="text-center">{{s.sellerName}}</td>
+                                <td class="text-center">{{s.CreatedDate|date}}</td>
+                                <td class="text-center">{{s.OrderId}}</td>
+                                <td class="text-center">{{s.SellerName}}</td>
                                 <td class="text-center">
-                                    <span class="badge bg-success">{{s.tradeStatus}}</span>
+                                    <span class="badge bg-success">{{s.TradeStatus}}</span>
                                 </td>
                                 <td class="text-end">
                                     <button type="button" class="btn btn-primary waves-effect waves-light"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="View & Download"
-                                        (click)="viewTransportDetails(s.tradeId)"><i class="fa fa-eye align-middle"></i>
+                                        (click)="viewTransportDetails(s)"><i class="fa fa-eye align-middle"></i>
                                         View</button>
                                 </td>
                             </tr>
@@ -40,6 +40,7 @@
         </div>
     </div>
 </div>
+
 <div class="row" *ngIf="openDelivery">
     <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12 ">
         <div class="card">
@@ -60,6 +61,7 @@
                         <thead class="table-light">
                             <tr>
                                 <th class="text-left">#</th>
+                                <th class="text-center">Order ID</th>
                                 <th class="text-center">Dispach Date</th>
                                 <th class="text-center">Vehicle No</th>
                                 <th class="text-center">Status</th>
@@ -70,25 +72,26 @@
                         <tbody>
                             <tr *ngFor="let s of transportDetails;let i=index">
                                 <td class="text-left">{{i+1}}</td>
-                                <td class="text-center">{{s.startDate|date}}</td>
-                                <td class="text-center">{{s.vehicleNo}}</td>
+                                <td class="text-center">{{s.SubOrderId}}</td>
+                                <td class="text-center">{{s.StartDate|date}}</td>
+                                <td class="text-center">{{s.VehicleNo}}</td>
                                 <td class="text-center">
                                     <span class="badge bg-warning"
-                                        *ngIf="s.deliveryStatus=='Dispatched'">Dispatched</span>
+                                        *ngIf="s.DeliveryStatus=='Dispatched'">Dispatched</span>
                                     <span class="badge bg-success"
-                                        *ngIf="s.deliveryStatus=='Delivered'">Delivered</span>
+                                        *ngIf="s.DeliveryStatus=='Delivered'">Delivered</span>
                                 </td>
                                 <td class="text-center">
                                     <span class="badge bg-warning"
-                                        *ngIf="s.paymentImage==null&&s.utrNo==null">Pending</span>
+                                        *ngIf="s.PaymentImage==null&&s.UtrNo==null">Pending</span>
                                     <span class="badge bg-success"
-                                        *ngIf="s.paymentImage!=null&&s.utrNo!=null">Completed</span>
+                                        *ngIf="s.PaymentImage!=null&&s.UtrNo!=null">Completed</span>
                                 </td>
                                 <td class="text-end">
                                     <div>
                                         <button type="button" class="btn btn-primary waves-effect waves-light"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="View & Download"
-                                            (click)="viewPaymentDetails(s)"><i class="fa fa-eye align-middle"></i>
+                                            (click)="viewPaymentDetails(s,i)"><i class="fa fa-eye align-middle"></i>
                                             View</button>
                                     </div>
                                 </td>

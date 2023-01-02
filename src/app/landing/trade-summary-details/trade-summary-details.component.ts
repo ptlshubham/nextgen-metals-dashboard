@@ -39,7 +39,7 @@ export class TradeSummaryDetailsComponent implements OnInit {
   }
   get f() { return this.validationForm.controls; }
   getTransporterDetails() {
-    this.tradingService.getTransporterDetailsbyIdForSeller(this.buyerModel.tradeId).subscribe((res: any) => {
+    this.tradingService.getTransporterDetailsbyIdForSeller(this.buyerModel.SubOrderId).subscribe((res: any) => {
       this.transportDetails = res;
       debugger
       this.transportDetails.forEach((element: any) => {
@@ -48,16 +48,18 @@ export class TradeSummaryDetailsComponent implements OnInit {
     })
   }
   saveDeliveryReciept(data: any) {
+    debugger
     this.submitted = true;
     var dt = new Date();
-    dt.setDate(dt.getDate() + this.buyerModel.payment_days);
+    dt.setDate(dt.getDate() + this.buyerModel.PaymentDays);
     if (this.validationForm.invalid) {
       return;
     } else {
-      this.recieptData.id = data.id,
-        this.recieptData.deliveryReciept = data.deliveryReciept,
-        this.recieptData.deliveryStatus = data.deliveryStatus;
-      this.recieptData.dueDate = dt;
+      this.recieptData.Id = data.Id,
+        this.recieptData.DeliveryReciept = data.deliveryReciept,
+        this.recieptData.DeliveryStatus = data.DeliveryStatus;
+        this.recieptData.OrderId = data.OrderId;
+      this.recieptData.DueDate = dt;
       this.tradingService.SaveDeliveryRecieptData(this.recieptData).subscribe((res: any) => {
         if (res == 'success') {
           this.apiService.showNotification('top', 'right', 'Delivery details added successfully.', 'success');

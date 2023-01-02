@@ -19,13 +19,15 @@ export class TradeComponent implements OnInit {
   isBuyerOpen: boolean = false;
   openPayment: boolean = false;
   isViewDetails: boolean = false;
-
+  isSalerRes:boolean=false;
+  OrderDetails:any=[];
   submitted = false;
   buyerTrade: any = [];
   buyerData: any = [];
   buyerModel: any = {};
   dt = new Date().toDateString();
   tradeModel: any = {};
+  reqQuality:any='';
   payment_days: number = 0;
   paymentTerms = [
     { id: 1, name: 'Advance Payment' },
@@ -69,7 +71,6 @@ export class TradeComponent implements OnInit {
       this.tradeModel.payment_days = this.payment_days;
       this.tradeService.newTraderequest(this.tradeModel).subscribe((res: any) => {
         if (res == 'success') {
-          debugger
           this.apiService.showNotification('top', 'right', 'Trade Request added Successfully.', 'success');
           this.getRequestList();
         }
@@ -86,6 +87,26 @@ export class TradeComponent implements OnInit {
     this.openPayment = false
     this.isViewDetails = false;
   }
+  OpenOrderDetails(data:any){
+   
+    this.OrderDetails=[];
+    this.reqQuality=data.BuyerQuality;
+    this.tradeService.GetSellerResponse(data.OrderId).subscribe((res:any)=>{
+      if(res.length>0){
+        this.isSalerRes=true;
+        this.OrderDetails = res;
+        this.OrderDetails.forEach((element: any) => {
+          element.location = element.street + ' ' + element.city + ' ' + element.state;
+        })
+      }
+      else{
+        this.viewTradeDetailsByTrade(data);
+      }
+    })
+  }
+  backToActiveTrade(){
+    this.isSalerRes = false;
+  }
 
   newTradeRequest() {
     this.openActive = false;
@@ -100,13 +121,15 @@ export class TradeComponent implements OnInit {
   }
   getRequestList() {
     this.tradeService.getAllTradingDatabyIdForBuyer(localStorage.getItem('UserId')).subscribe((res: any) => {
+      debugger
       if (res.length == 0) {
         this.buyerData.length = 0;
       } else {
         this.buyerData = res;
+        debugger
         this.buyerTrade = [];
         this.buyerData.forEach((element: any) => {
-          if (element.tradeStatus === 'IDEAL' || element.tradeStatus === 'PENDING')
+            if(element.TradeStatus)
             this.buyerTrade.push(element);
         })
         this.buyerData.forEach((element: any) => {

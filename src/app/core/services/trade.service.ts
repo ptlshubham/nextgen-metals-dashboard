@@ -26,6 +26,12 @@ export class TradeService {
         };
         return this.http.post(ApiService.getAllTradingDatabyIdForSellerURL, data);
     }
+    GetSellerResponse(id:any){
+        let data = {
+            orderId: id
+        };
+        return this.http.post(ApiService.getAllSellerResponseURL, data);
+    }
 
     getAllTradingDatabyIdForBuyer(id: any) {
         let data = {
@@ -73,6 +79,25 @@ export class TradeService {
 
         return this.http.post(ApiService.saveDileveryRecieptDataURL, data);
     }
+    GetAllTradesByUseridForBuyer(buyerId:any){
+        let data={
+            buyerId:buyerId
+        }
+        return this.http.post(ApiService.GetAllTradesByUseridForBuyerURL,data);
+    }
+    getBillTradingDataForBuyer(id:any){
+        let data={
+            userId:id
+        }
+        return this.http.post(ApiService.getBillTradingDataForBuyerURL,data);
+    }
+    getBillTradingDataForSeller(id:any){
+        let data={
+            userId:id
+        }
+        return this.http.post(ApiService.getBillTradingDataForSellerURL,data);
+    }
+
 
 
 }
